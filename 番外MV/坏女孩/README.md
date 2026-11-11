@@ -13,32 +13,21 @@
 
 片尾卡没动（仍是主演名单）。如果也要只留歌名/歌手名，改 `titleCard()` 里 `kind === "end"` 那一支。
 
-## 怎么出片
+## 怎么出片（Remotion，一条命令）
 
-这个工程不是 Remotion，用「无头浏览器逐帧截图 + ffmpeg 编码」：
+这个工程原本是 Vite + three.js 单页应用；现在包了一层 Remotion 合成（`remotion/entry.tsx` + `remotion/Three.tsx`），
+引擎和镜头一行没改：每帧调一次 `film.frame(T)`，画到同一块 canvas 上，配音/音轨由 Remotion 混进去。
 
 ```bash
-cd 番外MV/坏女孩
-npm install
-npx vite build                       # 打成 dist/index.html（单文件，7.7 MB，音轨内联）
-
+cd 番外MV/坏女孩 && npm install
 cd ../..
-npm i -D puppeteer-core
-node tools/shoot_mv.mjs 番外MV/坏女孩/dist /tmp/brframes      # 20.475–217.7 秒，30fps → 5917 张 JPG
+node tools/render_zip_mv.mjs three3d          # → 番外MV/坏女孩/成片/坏女孩_3d.mp4（1280×720 30fps，5917 帧，3:17）
+node tools/render_zip_mv.mjs three3d --still 30   # 只想看一眼：抽第 30 秒那一帧
 ```
 
-`tools/shoot_mv.mjs` 起一个本地静态服务 → 用 `@sparticuz/chromium` 启 headless Chrome（软件 WebGL）→
-等 `window.__mv.ready` → 按帧调 `window.__mv.render(T)` 拿 JPEG → 落盘。
-浏览器依赖库在 `/tmp/al2023/lib`，脚本里已经把 `LD_LIBRARY_PATH` 指过去了。
-
-编码 + 混音（音轨从原曲 20.0 秒截起，画面从 20.475 秒起，所以音频要 `-ss 0.475`）：
-
-```bash
-ffmpeg -framerate 30 -i /tmp/brframes/f%05d.jpg \
-       -ss 0.475 -t 197.225 -i /tmp/song.m4a \
-       -map 0:v -map 1:a -c:v libx264 -crf 20 -preset medium -pix_fmt yuv420p \
-       -c:a aac -b:a 192k -af apad -movflags +faststart -y 番外MV/坏女孩/成片/坏女孩.mp4
-```
+- 合成 id `ThreeMV`，时长 `(TOTAL_END − START) × 30`；音频 `trimBefore = (START − AUDIO_OFFSET) × fps`。
+- 2 核机器上大约 1–2 帧/秒，整片 1 小时上下；`CONCURRENCY=1` 可以让它别把机器占满。
+- 旧的「无头浏览器逐帧截图 + ffmpeg 编码」路子（`tools/shoot_mv.mjs`）还在，但按用户要求，出片一律走 Remotion。
 
 ## 关键常量（`src/mv/core.ts`）
 
