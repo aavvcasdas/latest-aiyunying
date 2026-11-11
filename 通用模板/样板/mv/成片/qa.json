@@ -1,0 +1,79 @@
+{
+ "frames": {
+  "frames": 630,
+  "wrong_size": [],
+  "identical_to_previous": [
+   628,
+   629
+  ],
+  "blank_background_frames": [],
+  "frozen_runs": [],
+  "shots_without_visible_cut": [],
+  "subtitle_bar_missing": [],
+  "luma_min": 0,
+  "luma_max": 255,
+  "sequence_md5": "511854f0fa3aab723876119564c5dc84",
+  "problems": []
+ },
+ "timing": {
+  "measured": false,
+  "method": "规划轴：歌词 .srt 的时间原样照抄，没有对过原曲拍点，只能出无声样片",
+  "source": {
+   "subtitles": "歌词.srt",
+   "subtitles_sha256": "76e48e679a7c91fd4ffb5cce2e4225ee367b521556722eaa7f8bd023a19cb3df"
+  },
+  "notes": [
+   "卡点是估算的（cues.json measured=false）：只能当无声样片，不能当成片交付"
+  ],
+  "shots": {
+   "count": 4,
+   "shortest_seconds": 3.35,
+   "longest_seconds": 6.86
+  },
+  "problems": []
+ },
+ "sample": {
+  "file": "MV样板_无声样片.mp4",
+  "bytes": 5335793,
+  "sha256": "0f8186fde339e9ea29fc68e327edd75057abdbcb8b5e206beaa551858ef84409",
+  "full_decode": "ok",
+  "probe": {
+   "programs": [],
+   "stream_groups": [],
+   "streams": [
+    {
+     "codec_name": "h264",
+     "profile": "100",
+     "codec_type": "video",
+     "width": 1920,
+     "height": 1080,
+     "pix_fmt": "yuv420p",
+     "color_range": "tv",
+     "color_space": "bt709",
+     "r_frame_rate": "30/1",
+     "duration": "21.000000",
+     "bit_rate": "2030024",
+     "nb_frames": "630"
+    }
+   ],
+   "format": {
+    "duration": "21.000000",
+    "size": "5335793",
+    "bit_rate": "2032683"
+   }
+  },
+  "problems": []
+ },
+ "project": {
+  "id": "mv-sample",
+  "kind": "mv",
+  "title": "MV样板",
+  "frames": 630,
+  "duration": 21,
+  "shots": 4,
+  "lines": 4,
+  "source_sha256": "b9bc760c110ff5296922ef9bf4eae37941b479b3a1dd702657bb6fd4fa5ac5b2",
+  "source_files": 17
+ },
+ "checked_at": "2026-11-11T09:33:34.152Z"
+}

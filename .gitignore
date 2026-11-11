@@ -1,0 +1,14 @@
+# 依赖与缓存
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+
+# 模板运行时生成的入口文件、打包缓存
+通用模板/.cache/
+
+# 预览台打包产物
+通用模板/preview/dist/
+
+# 渲染中间产物一律放系统临时目录（见 通用模板/README.md），不进仓库
+*.work/
