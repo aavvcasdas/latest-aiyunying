@@ -35,7 +35,9 @@ const two = (dx = 0, dz = 0) => cam([0.6 + dx, 1.7 + dz * 0.15, 6.55 + dz], [0.7
 const whaleSide = (dz = 0) => cam([-1.0, 1.6 + dz * 0.15, 4.6 + dz], [-1.0, 1.1, 0.5], 32);
 
 /** 只看碗位的特写：鲸鱼娘完全在画外 */
-const CLOSE = cam([0.5, 1.5, 2.4], [0.35, 0.98, 0.45], 30);
+const CLOSE = cam([0.75, 1.5, 2.4], [0.6, 0.98, 0.45], 30);
+/** 同一个特写稍微推近一点：两者之间慢慢蠕动，镜头不会冻住 */
+const CLOSE2 = cam([0.7, 1.47, 2.2], [0.58, 0.98, 0.45], 30);
 /** 「没收」的小牌子，立在原来放碗的地方 */
 const tag = () => standing(sheet(0.5, 0.34, text([['没收', 0.52, 0.6]], '#b3261e'), '#fff3c4'), 0.34);
 /** 一摞箱子：n 只，返回每只箱子。show(i, e) 让第 i 只落下来（e 从 0 到 1） */
@@ -96,7 +98,7 @@ export const SHOTS: ShotDef[] = [
         const { u, T } = f;
         dr.set(0.3);
         whale.set(f.line === 0 ? 'whale_point' : T % 2.7 < 0.13 ? 'whale_blink' : 'whale_idle').at(...WHALE).talk(T, f.line >= 0);
-        return track([[0, A], [f.when(0, 0.85), B], [1, C]], u);
+        return track([[0, A], [f.when(0, 0.3), CLOSE2], [f.when(0, 0.7), B], [1, C]], u); // 特写到人物之间快速带过，不停在「人露半截」的位置
       };
     },
   },
@@ -193,7 +195,7 @@ export const SHOTS: ShotDef[] = [
     build: (k) => {
       riverside(k);
       const whale = k.actor('whale');
-      const A = cam([-3.6, 2.4, 6.6], [-0.4, 0.9, -4], 38), B = cam([-2.4, 6.2, 6.2], [0.4, 0.2, -5.5], 38), C = cam([-1.6, 2.0, 5.6], [-1.0, 1.3, 0], 34);
+      const A = cam([-3.6, 2.4, 6.6], [-0.4, 0.9, -4], 38), B = cam([-1.2, 5.5, 9.5], [-0.6, 0.5, -3.5], 38), C = cam([-1.6, 2.0, 5.6], [-1.0, 1.3, 0], 34); // B：人在画面中间偏下，脚在字幕条上面
       return (f) => {
         const { u, T } = f;
         whale.set(f.said < 10 ? 'whale_point' : T % 2.7 < 0.13 ? 'whale_blink' : 'whale_idle').at(...BANK).talk(T, f.line >= 0);
@@ -258,14 +260,14 @@ export const SHOTS: ShotDef[] = [
     },
   },
   {
-    id: 'C11', look: 'sea', title: '差点沉下去', cast: ['whale'], fx: { blackIn: true },
+    id: 'C11', look: 'sea', title: '差点沉下去', cast: ['whale'],
     note: '水下。鲸鱼娘慢慢往下沉，气泡往上冒，越沉越暗。这里的「鲸落」只是掉线：不画伤害，不写那个字。',
     build: (k) => {
       const { bub } = deep(k);
       const whale = k.actor('whale').wear('tail');
       const A = cam([-1.6, 3.6, 8.2], [0, 3.4, 0], 38), B = cam([0.6, 1.6, 6.6], [0, 1.9, 0], 36);
       return ({ u, T }) => {
-        const y = lerp(4.6, SINK_Y, ease(u));
+        const y = lerp(3.9, SINK_Y, ease(u));
         whale.set('whale_big_idle').at(0, y + Math.sin(T * 1.2) * 0.05, 0).tilt(0.3 + Math.sin(T * 0.9) * 0.05).alpha(lerp(1, 0.72, u)).noShadow();
         bub(T, 0, y);
         return glide(A, B, u);
@@ -300,13 +302,13 @@ export const SHOTS: ShotDef[] = [
       const bowl = k.add(riceBowl(0.2), ...BOWL);
       const cr = crates(k, 6, PILE);
       const whale = k.actor('whale'), claude = k.actor('claude').wear('crown');
-      const A = cam([-1.2, 2.0, 6.2], [-2.6, 1.3, -3.2], 38), B = cam([0.2, 2.1, 7.6], [0.2, 1.15, -0.6], 38), C = cam([0.8, 1.9, 7.2], [0.7, 1.1, 0], 37);
+      const A = cam([0.2, 2.2, 8.4], [-0.8, 1.3, -2.0], 40), B = cam([0.5, 2.1, 7.8], [0.5, 1.15, -0.6], 38), C = cam([0.8, 1.9, 7.3], [0.7, 1.1, 0], 37);
       return (f) => {
         const { u, T } = f;
         dr.set(lerp(0.3, 1, ease(seg(lineU(f, 21), 0.05, 0.7)))); bowl.position.set(...BOWL);
         for (let i = 0; i < cr.n; i++) cr.show(i, i < 3 ? 1 : 0);
         whale.set(f.said >= 22 ? 'whale_point' : T % 2.7 < 0.13 ? 'whale_blink' : 'whale_idle').at(...WHALE).talk(T, f.line >= 0);
-        claude.walk(T, 0.9).flip().at(CLAUDE[0] - 0.1 + Math.sin(T * 0.9) * 0.25, 0, CLAUDE[2] - 1.0);
+        claude.walk(T, 0.9).flip().at(2.6 + Math.sin(T * 0.9) * 0.25, 0, CLAUDE[2] - 1.0);
         return track([[0, A], [f.when(22), B], [1, C]], u);
       };
     },
@@ -319,14 +321,14 @@ export const SHOTS: ShotDef[] = [
       const bowl = k.add(riceBowl(0.2), ...BOWL);
       const cr = crates(k, 6, PILE);
       const whale = k.actor('whale'), claude = k.actor('claude').wear('crown');
-      const A = cam([1.4, 1.9, 6.4], [2.2, 1.2, -1.0], 37), B = two(0, 0.2), C = whaleSide(0.2);
+      const A = two(0.5, 0.7), B = two(0.2, 0.1), C = whaleSide(-0.2);
       return (f) => {
         const { u, T } = f;
         dr.set(1); bowl.position.set(...BOWL);
         const p = lineU(f, 23);
         for (let i = 0; i < cr.n; i++) cr.show(i, i < 3 ? 1 : seg(p, (i - 3) * 0.3, (i - 3) * 0.3 + 0.25));
         const sw = Math.sin(T * 1.1); // 大小姐在桌子和箱子之间来回走
-        claude.walk(T, 1).at(lerp(2.0, 2.9, (sw + 1) / 2), 0, -1.0);
+        claude.walk(T, 1).at(lerp(2.5, 3.4, (sw + 1) / 2), 0, -1.0);
         if (Math.cos(T * 1.1) < 0) claude.flip();
         whale.set(f.said >= 24 ? 'whale_idle' : 'whale_point').at(...WHALE).talk(T, f.line === 23);
         return track([[0, A], [f.when(24), B], [1, C]], u);
@@ -342,7 +344,7 @@ export const SHOTS: ShotDef[] = [
       const tg = k.add(tag(), ...BOWL);
       const spot = k.add(sprite('glow', 1.5, 0xfff0b0, true));
       const whale = k.actor('whale');
-      const A = cam([-2.2, 2.0, 6.0], [-2.4, 1.3, -3.0], 38), B = cam([-0.8, 1.7, 4.4], [-0.7, 1.05, 0.4], 33), C = CLOSE;
+      const A = cam([-2.2, 2.0, 6.0], [-2.4, 1.3, -3.0], 38), B = cam([-0.8, 1.7, 4.4], [-0.7, 1.05, 0.4], 33), B2 = cam([-0.7, 1.65, 4.1], [-0.6, 1.05, 0.4], 33);
       return (f) => {
         const { u, T } = f;
         dr.set(1);
@@ -352,7 +354,7 @@ export const SHOTS: ShotDef[] = [
         tg.visible = pop > 0.001; tg.scale.setScalar(Math.max(0.001, backOut(pop)));
         spot.position.set(BOWL[0], BOWL[1] + 0.2, BOWL[2] + 0.1); setOp(spot, 0.35 + Math.sin(T * 2) * 0.04);
         whale.set(pop > 0 ? 'whale_point' : T % 2.7 < 0.13 ? 'whale_blink' : 'whale_idle').at(...WHALE).sq(pop > 0 ? Math.sin(seg(lineU(f, 27), 0.5, 1) * PI) * 0.08 : 0).talk(T, f.line >= 0);
-        return track([[0, A], [f.when(27), B], [1, C]], u);
+        return track([[0, A], [f.when(27), B], [f.when(27, 0.5), B2], [f.when(27, 0.85), CLOSE2], [1, CLOSE]], u);
       };
     },
   },
@@ -367,7 +369,7 @@ export const SHOTS: ShotDef[] = [
       return ({ u, T }) => {
         dr.set(1);
         for (let i = 0; i < cr.n; i++) cr.show(i, 1);
-        claude.walk(T, 1).at(lerp(2.0, 2.9, (Math.sin(T * 1.1) + 1) / 2), 0, -1.0);
+        claude.walk(T, 1).at(lerp(2.5, 3.4, (Math.sin(T * 1.1) + 1) / 2), 0, -1.0);
         if (Math.cos(T * 1.1) < 0) claude.flip();
         return glide(A, B, u);
       };
@@ -403,14 +405,14 @@ export const SHOTS: ShotDef[] = [
       k.add(tag(), ...BOWL);
       const bk = book(); bk.g.scale.setScalar(0.14); k.add(bk.g, 1.0, TOP + 0.02, 0.2, PI); // 转半圈：封面往右翻，不压到左边的牌子
       const whale = k.actor('whale');
-      const A = CLOSE, B = whaleSide(0.6), C = whaleSide(-0.2);
+      const B = whaleSide(0.6), C = whaleSide(-0.2);
       return (f) => {
         const { u, T } = f;
         dr.set(0.3);
         bk.cover.rotation.z = PI * 0.97; (bk.glow.material as THREE.MeshBasicMaterial).opacity = 0.75;
         const hop = Math.sin(seg(lineU(f, 32), 0.05, 0.3) * PI);
         whale.set(f.said >= 32 ? 'whale_point' : T % 2.7 < 0.13 ? 'whale_blink' : 'whale_idle').at(...WHALE).lift(hop * 0.22).talk(T, f.line >= 0);
-        return track([[0, A], [f.when(32), B], [1, C]], u);
+        return track([[0, CLOSE], [f.when(31, 0.7), CLOSE2], [f.when(32), B], [1, C]], u);
       };
     },
   },

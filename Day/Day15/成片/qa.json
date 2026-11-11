@@ -6,19 +6,11 @@
   "blank_background_frames": [],
   "frozen_runs": [],
   "shots_without_visible_cut": [],
-  "subtitle_bar_missing": [
-   {
-    "line": 19,
-    "frame": 2133,
-    "text": "说到这个，本鲸昨天差点也鲸落了。"
-   }
-  ],
-  "luma_min": 0.77,
+  "subtitle_bar_missing": [],
+  "luma_min": 101.89,
   "luma_max": 253.11,
-  "sequence_md5": "b06fa06ddcca871ea6d5877d1f145187",
-  "problems": [
-   "1 句的字幕条没检测到：[19]"
-  ]
+  "sequence_md5": "2b96876296268e4bb14b7225731acc2f",
+  "problems": []
  },
  "timing": {
   "measured": false,
@@ -39,8 +31,8 @@
  },
  "sample": {
   "file": "Day15_无声样片.mp4",
-  "bytes": 24862620,
-  "sha256": "86b9e29f692b81b59acd241e8bd17750e9abf96497f3121e6f50bc0d935c1911",
+  "bytes": 24861312,
+  "sha256": "3727d9754f0814fa956481b19bf61fb6743940988ea3563b5c7ed4c45efff106",
   "full_decode": "ok",
   "probe": {
    "programs": [],
@@ -57,14 +49,14 @@
      "color_space": "bt709",
      "r_frame_rate": "30/1",
      "duration": "132.266667",
-     "bit_rate": "1501419",
+     "bit_rate": "1501351",
      "nb_frames": "3968"
     }
    ],
    "format": {
     "duration": "132.266667",
-    "size": "24862620",
-    "bit_rate": "1503787"
+    "size": "24861312",
+    "bit_rate": "1503708"
    }
   },
   "problems": []
@@ -77,9 +69,9 @@
   "duration": 132.238,
   "shots": 18,
   "lines": 33,
-  "source_sha256": "28519365b5001eeeef6161dc795ab5fc40a2882b0750a9dbfc5e2d4ea0b81ecb",
+  "source_sha256": "258646178f09f098fbd9e3c8027120c92d9c24ddeb8fa2bb10434f3c5e6946d3",
   "source_files": 20,
   "audio": null
  },
- "checked_at": "2026-11-11T13:02:38.305Z"
+ "checked_at": "2026-11-11T13:50:39.496Z"
 }
