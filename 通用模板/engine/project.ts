@@ -41,6 +41,8 @@ export interface ProjectDef {
   cards?: { title?: { main: string; sub?: string }; end?: { shot: string; text: string } };
   /** 预览台里显示「这一句属于哪一段」，可不填 */
   sectionOf?: (cue: number) => string;
+  /** 镜头里要用的图片先在这里解码好（props.preloadImage）；没预载的图会被 props.imageOf 拦下来 */
+  preloads?: Array<() => Promise<unknown>>;
 }
 
 export const SPEAKER_NAME: Record<CharId, string> = {
@@ -79,6 +81,7 @@ export function defineProject(p: {
   subtitle?: SubtitleStyle;
   cards?: ProjectDef['cards'];
   sectionOf?: (cue: number) => string;
+  preloads?: Array<() => Promise<unknown>>;
 }): ProjectDef {
   if (!ID_OK.test(p.id)) throw new Error(`[project] id「${p.id}」只能用字母、数字和连字符`);
   const lines = p.cues.lines;
@@ -120,6 +123,6 @@ export function defineProject(p: {
     id: p.id, kind: p.kind, title: p.title, lines: lines.map((l) => l.text), starts, ends,
     speakers: who.some(Boolean) ? who : undefined,
     faces: who.some(Boolean) ? lines.map((l) => l.face ?? (l.who ? SPEAKER_PORTRAIT[l.who] : null)) : undefined,
-    shots: p.shots, plan, subtitle: p.subtitle ?? (p.kind === 'mv' ? 'lyric' : 'dialog'), cards: p.cards, sectionOf: p.sectionOf,
+    shots: p.shots, plan, subtitle: p.subtitle ?? (p.kind === 'mv' ? 'lyric' : 'dialog'), cards: p.cards, sectionOf: p.sectionOf, preloads: p.preloads,
   };
 }

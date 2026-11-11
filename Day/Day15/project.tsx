@@ -6,6 +6,8 @@ import { defineProject, type CueFile } from '@tpl/project';
 import cues from './cues.json';
 import film from './film.json';
 import { SHOTS } from './shots/shots';
+import { WHALE_FALL } from './media';
+import { preloadImage } from '@tpl/props';
 
 export default defineProject({
   id: film.id,
@@ -31,6 +33,8 @@ export default defineProject({
     { id: 'S13', cue: 18 },  // 然后本鲸的米饭，被收走了。
     { id: 'S14', cue: 19 },  // 米饭可以再挣，片子不能这么交。／鲸鱼绝不摸鱼。
   ],
+  // 电视里的上一集、鲸落那张图，都得在开渲之前解码好，否则第一帧的贴图是空的
+  preloads: [() => preloadImage(WHALE_FALL)],
   // 最后一句说完再留 0.6 秒就结束：不加片尾卡。
   planOptions: { tail: 0.6 },
 });

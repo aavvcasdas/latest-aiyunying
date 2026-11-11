@@ -49,7 +49,7 @@ export function makeFilm(project: ProjectDef): React.FC<FilmProps> {
 
     useEffect(() => {
       let dead = false;
-      Promise.all([loadAtlas(), loadFonts()])
+      Promise.all([loadAtlas(), loadFonts(), ...(project.preloads ?? []).map((f) => f())])
         .then(([a]) => {
           if (dead || !canvasRef.current) return;
           try { engineRef.current = new FilmEngine(canvasRef.current, width, height, a, project.shots); setAtlas(a); setReady(true); }

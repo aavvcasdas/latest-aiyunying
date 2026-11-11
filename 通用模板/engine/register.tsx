@@ -66,7 +66,11 @@ export function registerProject(p: ProjectDef) {
         defaultProps={defaults}
         calculateMetadata={async ({ props }) => {
           let report: CastReport;
-          try { report = castPreflight(p.shots, p.plan(props.starts, props.ends), await loadAtlas()); }
+          try {
+            // 预检也要等镜头里要用的图片（project.preloads），否则一走到用图的镜头就报「图片没有预载」
+            const [, A] = await Promise.all([Promise.all((p.preloads ?? []).map((f) => f())), loadAtlas()]);
+            report = castPreflight(p.shots, p.plan(props.starts, props.ends), A);
+          }
           catch (e) { report = { shots: 0, frames: 0, sprites: {}, problems: [e instanceof Error ? e.message : String(e)], orderChecked: 0, drawn: [] }; }
           let text: TextReport;
           try { text = textPreflight(p, report.drawn, await loadFontCoverage()); }

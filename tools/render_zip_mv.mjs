@@ -14,6 +14,14 @@ for (const lib of ['/tmp/al2023/lib', '/tmp/al2023', '/tmp']) {
 }
 
 const PROJECTS = {
+  three3d: {
+    name: '坏女孩（3d · three.js）',
+    dir: '番外MV/坏女孩',
+    entry: '番外MV/坏女孩/remotion/entry.tsx',
+    id: 'ThreeMV',
+    publicDir: '番外MV/坏女孩/public',
+    out: '番外MV/坏女孩/成片/坏女孩_3d.mp4',
+  },
   fable: {
     name: '坏女孩（fable5.2）',
     dir: '番外MV/坏女孩Fable',
@@ -50,7 +58,7 @@ console.log(`[comp] ${composition.id} ${composition.width}×${composition.height
 const still = opt('--still');
 if (still) {
   const frame = Math.round(Number(still) * composition.fps);
-  const output = path.join(REPO, '番外MV/坏女孩Fable/成片', `抽帧_${still}s.png`);
+  const output = path.join(REPO, P.dir, '成片', `抽帧_${still}s.png`);
   fs.mkdirSync(path.dirname(output), { recursive: true });
   await renderer.renderStill({ composition, serveUrl, output, frame, imageFormat: 'png', inputProps: {}, browserExecutable, chromiumOptions, timeoutInMilliseconds: 180000 });
   console.log(`STILL ${path.relative(REPO, output)}`);

@@ -347,7 +347,7 @@ track([[0, A], [0.5, B], [1, C]], u) // 多段运镜；每段起止机位要不�
 
 - **kit.ts**：`box` `cyl` `cone` `ball` `disc` `roof`（体块，自带墨线）；`tree` `pine` `cloud` `rock` `house` `lantern` `flower` `paperBoat` `clock`；`sprite('star' | 'glow' | 'heart' | 'note' | 'bubble' | 'butterfly' | 'zzz' | 'petal' | 'smoke' | 'ring' | 'drop' | 'leaf' …)` 特效贴片；`canvasTex` 画贴图；缓动 `ease` `easeOut` `backOut` `seg` `lerp`。
 - **sets.ts**：`hill` `castle` `bridge` `buildTown / useTown`（整座小镇，多个镜头共用一份）`book` `straightRiver` `Fireworks` `mushroom` `wheel`。
-- **props.ts**：`room` `door`（可开合、带光束）`windowPane` `table` `riceBowl` `hourglass`（`set(漏下去的比例, T)` 沙量守恒；`flip(e, 翻之前漏了多少, T)` 整只倒过来）`sheet + writeLine`（纸上写字）`standing`（把纸立起来当桌牌 / 价签）`paperStack` `notebook`（可翻页）`umbrella` `rain` `cameraProp` `plant`。
+- **props.ts**：`room` `door`（可开合、带光束）`windowPane` `table` `riceBowl` `hourglass`（`set(漏下去的比例, T)` 沙量守恒；`flip(e, 翻之前漏了多少, T)` 整只倒过来）`sheet + writeLine`（纸上写字）`standing`（把纸立起来当桌牌 / 价签）`paperStack` `notebook`（可翻页）`umbrella` `rain` `cameraProp` `plant` `tv`（放一串帧的旧电视：`tv({sheet, cols, rows, count, w, h})`，`set(i)` 换帧）`photo`（立起来的一张照片 / 截屏）`preloadImage` / `imageOf`（图片预载与取用，配 `project.preloads`）。
 
 会动的道具都是 `{ g, set(进度) }`：`set` 只吃当前进度，不存状态。
 

@@ -240,3 +240,74 @@ export function plant(h = 1.1): THREE.Group {
   put(g, cyl(0.03, 0.04, h * 0.5, 0x6f4630, 6, 0), 0, 0.3, 0);
   return g;
 }
+
+// ---------- 图片：预载 + 电视 / 照片 ----------
+const imgCache = new Map<string, HTMLImageElement>();
+/** 镜头里要用的图先解码好（在 project.preloads 里调用），否则第一帧的贴图是空的 */
+export function preloadImage(url: string): Promise<HTMLImageElement> {
+  const hit = imgCache.get(url);
+  if (hit && hit.naturalWidth > 0) return Promise.resolve(hit);
+  return new Promise((res, rej) => {
+    const img = new Image();
+    img.onload = () => { imgCache.set(url, img); res(img); };
+    img.onerror = () => rej(new Error(`图片加载失败：${url}`));
+    img.src = url;
+  });
+}
+/** 取预载好的图；没预载就当场报错，不要静默画一块空面板 */
+export function imageOf(url: string): HTMLImageElement {
+  const img = imgCache.get(url);
+  if (!img || !img.naturalWidth) throw new Error(`图片没有预载：${url}（在 project.tsx 的 preloads 里加 preloadImage(...)）`);
+  return img;
+}
+
+export interface Tv { g: THREE.Group; set: (i: number) => void }
+/**
+ * 一台能放「一串帧」的旧电视：图集是一张大图（cols × rows 格），set(i) 换第 i 帧。
+ * 每帧只把一小格 drawImage 进 512×219 的画布再刷贴图，比逐张加载 192 个文件稳（同一帧永远同一画面）。
+ */
+export function tv(o: { sheet: string; cols?: number; rows?: number; count?: number; w?: number; h?: number }): Tv {
+  const cols = o.cols ?? 16, rows = o.rows ?? 12, count = o.count ?? 192;
+  const w = o.w ?? 1.9, h = o.h ?? 0.81;
+  const img = imageOf(o.sheet);
+  const fw = Math.floor(img.naturalWidth / cols), fh = Math.floor(img.naturalHeight / rows);
+  const cv = document.createElement('canvas'); cv.width = fw; cv.height = fh;
+  const c = cv.getContext('2d')!; c.imageSmoothingEnabled = false;
+  const tex = new THREE.CanvasTexture(cv);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.minFilter = THREE.NearestFilter; tex.magFilter = THREE.NearestFilter; tex.generateMipmaps = false;
+  let last = -1;
+  const set = (idx: number) => {
+    const i = ((Math.floor(idx) % count) + count) % count;
+    if (i === last) return;
+    last = i;
+    c.clearRect(0, 0, fw, fh);
+    c.drawImage(img, (i % cols) * fw, Math.floor(i / cols) * fh, fw, fh, 0, 0, fw, fh);
+    tex.needsUpdate = true;
+  };
+  set(0);
+  const screen = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: tex }));
+  const g = new THREE.Group();
+  put(g, box(w + 0.2, h + 0.22, 0.1, 0x7a4a34), 0, 0, -0.02);   // 木框（薄一点，别挡住屏）
+  put(g, screen, 0, 0, 0.12);                                     // 屏：明确在木框前面，斜着看也不会被啃掉
+  return { g, set };
+}
+
+/** 立起来的一张照片 / 截屏（正面朝 +z，原点在中心）；alpha 用来淡入淡出 */
+export function photo(url: string, w = 1.0, alpha = 1): THREE.Mesh {
+  const img = imageOf(url);
+  const k = img.naturalHeight / Math.max(1, img.naturalWidth);
+  const px = 640, hpx = Math.round(px * k);
+  const tex = canvasTex(px, hpx, (c) => { c.imageSmoothingEnabled = true; c.drawImage(img, 0, 0, px, hpx); });
+  tex.minFilter = THREE.LinearFilter; tex.generateMipmaps = false;
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(w, w * k), new THREE.MeshBasicMaterial({ map: tex, transparent: true, opacity: alpha }));
+  return m;
+}
+/** 给照片加一圈细边，像贴在墙上的纸 */
+export function frame(m: THREE.Mesh, pad = 0.05) {
+  const g = new THREE.Group();
+  const r = (m.geometry as THREE.PlaneGeometry).parameters;
+  put(g, box(r.width + pad * 2, r.height + pad * 2, 0.03, 0x2a2028, 0.02), 0, 0, -0.03);
+  put(g, m, 0, 0, 0.0);
+  return g;
+}
