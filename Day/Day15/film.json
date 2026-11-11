@@ -1,0 +1,9 @@
+{
+  "id": "day15",
+  "kind": "day",
+  "title": "家变成三D了，米饭没了",
+  "script": "台词.txt",
+  "speaker": "whale",
+  "output": "成片/Day15",
+  "video": { "bitrate": "1800k", "preset": "medium" }
+}
