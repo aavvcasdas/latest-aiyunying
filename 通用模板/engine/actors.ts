@@ -333,12 +333,28 @@ export class Actor {
   }
   /**
    * 位移驱动的步态：走了多远就播到哪一格，脚底不打滑。
-   * dist=这个镜头里累计走过的世界距离（时间的纯函数），stride=播完一轮步态走多远（默认约一个身高）
+   * dist=这个镜头里累计走过的世界距离（时间的纯函数）；cycle=播完一轮步态走多远。
+   *
+   * 一轮的距离必须**跟着人物大小走**（1.15 × 当前缩放，取自《坏女孩》那版的走路修复）：
+   * 固定 1.7 的话，小个子一轮走完的路比大个子长，脚就会在地上蹭。
+   * 同时给一点上下颠（0.035 × 缩放），不然人物像贴在地上滑。
    */
-  walkBy(dist: number, stride = 1.7): this {
+  walkBy(dist: number, cycle = 1.15): this {
     const s = SETS[this.id], n = WALK_N[this.id];
-    const f = cycleIndex((dist / stride) * n, n, `${this.id}.walkBy(${dist}, ${stride})`);
+    const sz = this.baseSize * this._size;
+    const L = cycle * sz;
+    const ph = (((dist % L) + L) % L) / L;
+    const f = cycleIndex(ph * n, n, `${this.id}.walkBy(${dist}, ${cycle})`);
+    this._lift += Math.abs(Math.sin(ph * Math.PI * 2)) * 0.035 * sz;
     return this.set(`${s.walk}${f}`);
+  }
+  /** 从 a 走到 b（沿 x 轴），p 是这一镜的进度；走到哪一格由走过的距离决定，回头会自动转身 */
+  walkX(a: number, b: number, p: number, y: number, z: number): this {
+    const x = a + (b - a) * p;
+    this.walkBy(Math.abs(x - a));
+    this.at(x, y, z);
+    if (b < a) this.flip();
+    return this;
   }
   /** 正面待机 + 眨眼（确定性时间表） */
   front(T: number): this {

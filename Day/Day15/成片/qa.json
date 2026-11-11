@@ -3,17 +3,15 @@
   "frames": 1972,
   "wrong_size": [],
   "identical_to_previous": [
-   539,
-   1610,
-   1787
+   1610
   ],
   "blank_background_frames": [],
   "frozen_runs": [],
   "shots_without_visible_cut": [],
   "subtitle_bar_missing": [],
-  "luma_min": 81.44,
-  "luma_max": 114.48,
-  "sequence_md5": "971206b3aebe50f5ca647a5c2f493e57",
+  "luma_min": 79.18,
+  "luma_max": 114.55,
+  "sequence_md5": "43866084a262b2d207a02de7ff46e7f0",
   "problems": []
  },
  "timing": {
@@ -77,8 +75,8 @@
  },
  "final": {
   "file": "Day15.mp4",
-  "bytes": 16925610,
-  "sha256": "b40bae7957d6fefb6dcf1c6d667367a510e236db9835146bbfe235b7f50cc4a2",
+  "bytes": 16993736,
+  "sha256": "2d044002acc5f5bdeee21462a576a0658d428f72f84627f7a622153e6aa0dd39",
   "audio_samples": 3155968,
   "audio_seconds": 65.7493,
   "expected_seconds": 65.7333,
@@ -133,7 +131,7 @@
      "color_space": "bt709",
      "r_frame_rate": "30/1",
      "duration": "65.733333",
-     "bit_rate": "1795280",
+     "bit_rate": "1803561",
      "nb_frames": "1972"
     },
     {
@@ -150,8 +148,8 @@
    ],
    "format": {
     "duration": "65.733333",
-    "size": "16925610",
-    "bit_rate": "2059911"
+    "size": "16993736",
+    "bit_rate": "2068203"
    }
   }
  },
@@ -163,12 +161,12 @@
   "duration": 65.72,
   "shots": 14,
   "lines": 21,
-  "source_sha256": "c521f215d6249a691c735889bedc75e2d2d7192c95ef67a4e3fab81d652abcd9",
+  "source_sha256": "5cad8f54cafeac73b4c735ed1380e2b5eebdd15aa1f014d77d2cd5eca96f4b4d",
   "source_files": 19,
   "audio": {
    "file": "../../鲸鱼鲸落_克隆配音_最终版.wav",
    "present": true
   }
  },
- "checked_at": "2026-11-11T15:22:03.026Z"
+ "checked_at": "2026-11-11T16:44:22.765Z"
 }

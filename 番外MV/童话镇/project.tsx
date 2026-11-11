@@ -15,6 +15,7 @@ export default defineProject({
   shots: [...SHOTS_A, ...SHOTS_B],
   plan,
   subtitle: 'lyric',
-  cards: { title: { main: '童话镇', sub: 'AI 娘图鉴 · 立体童话书' }, end: { shot: 'OUT', text: '很久很久以后' } },
+  // 片头卡按规矩只放两行：歌名 + 歌手名。别的一律不放（字幕条里也不写歌手名）。
+  cards: { title: { main: '童话镇', sub: '陈一发儿' }, end: { shot: 'OUT', text: '很久很久以后' } },
   sectionOf: sectionOfCue,
 });

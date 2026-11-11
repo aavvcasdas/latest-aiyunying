@@ -48,7 +48,7 @@ export const SHOTS_A: ShotDef[] = [
         b.cover.rotation.z = open * 2.8;
         (b.glow.material as THREE.MeshBasicMaterial).opacity = open * 0.95;
         const run = seg(u, 0, 0.5), jump = seg(u, 0.54, 0.84);
-        if (jump <= 0) whale.walk(T, 1.5).at(lerp(-9.5, -3.8, run), 0, 5);
+        if (jump <= 0) whale.walkBy(5.7 * run).at(lerp(-9.5, -3.8, run), 0, 5);
         else { const j = ease(jump); whale.set('whale_wave').at(lerp(-3.8, 0, j), 0.85 * j, lerp(5, 0, j)).lift(Math.sin(j * PI) * 2.6).size(lerp(1, 0.4, j)).alpha(jump > 0.96 ? 0 : 1); }
         sparks.forEach((s, i) => { const ph = (T * 0.5 + hash(i)) % 1; s.position.set((hash(i + 9) - 0.5) * 5, 0.9 + ph * 4.6, (hash(i + 5) - 0.5) * 7); s.scale.setScalar(0.25 + 0.5 * Math.sin(ph * PI)); setOp(s, open * Math.sin(ph * PI)); });
         flame.scale.setScalar(1.7 + 0.18 * Math.sin(T * 9));
@@ -82,7 +82,7 @@ export const SHOTS_A: ShotDef[] = [
         useTown(k, town, 1, false);
         const { p, ang } = town.at(lerp(0.5, 0.53, u));
         sail(boat, whale, p.x, p.z, ang, T); whale.front(T);
-        gpt.walk(T).at(lerp(10, 68, u), 22 + Math.sin(u * PI) * 5, -36).noShadow();
+        gpt.walkBy(58 * u).at(lerp(10, 68, u), 22 + Math.sin(u * PI) * 5, -36).noShadow();
         return glide(A, B, u);
       };
     },
@@ -105,8 +105,9 @@ export const SHOTS_A: ShotDef[] = [
       const apples = many(3, () => k.add(ball(0.17, 0xe63946, false, 0.03)));
       return ({ u, T, t, dur }) => {
         const xa = (uu: number) => lerp(-4.5, 4.2, uu), x = xa(u);
-        claude.walk(T, 1.5).at(x, 0, 0.2).tilt(-0.1).lift(Math.abs(Math.sin(T * 9.4)) * 0.07);
-        whale.walk(T, 1.5).at(x - 3.3 + Math.sin(u * 4) * 0.3, 0, 0.7).tilt(-0.07);
+        // 按位移迈步：从 -4.5 走到 4.2，脚不再打滑
+        claude.walkBy(8.7 * u).at(x, 0, 0.2).tilt(-0.1).lift(Math.abs(Math.sin(T * 9.4)) * 0.07);
+        whale.walkBy(8.7 * u).at(x - 3.3 + Math.sin(u * 4) * 0.3, 0, 0.7).tilt(-0.07);
         bf.forEach((s, i) => { s.position.set(x + 1.6 + i * 0.7 + Math.sin(T * 2 + i) * 0.4, 1.7 + Math.sin(T * 3 + i * 2) * 0.4, -0.3 + Math.cos(T * 1.7 + i) * 0.5); s.scale.x = 0.4 * (0.35 + 0.65 * Math.abs(Math.sin(T * 14 + i))); });
         dust.forEach((s, i) => { const ph = (T * 2.4 + i / 6) % 1; s.position.set(x - 0.5 - ph * 1.5, 0.15 + ph * 0.35, 0.35); s.scale.setScalar(0.25 + ph * 0.5); setOp(s, (1 - ph) * 0.5); });
         apples.forEach((a, i) => { const t0 = 0.45 + i * 0.95, tt = t - t0; a.visible = tt > 0; a.position.set(xa(t0 / dur) - 0.4 - tt * 0.5, 0.17 + Math.abs(Math.sin(tt * 6)) * 0.7 * Math.exp(-tt * 1.6), 0.5); });
@@ -133,7 +134,7 @@ export const SHOTS_A: ShotDef[] = [
       const A = cam([-2.6, 1.35, 6.3], [-1.8, 1.0, 0], 36), B = cam([1.0, 1.5, 6.8], [0.9, 1.3, -1.4], 38);
       return ({ u, T, bt }) => {
         const x = lerp(-2.7, -0.9, seg(u, 0, 0.46)), stop = u > 0.46;
-        if (stop) doubao.front(T).at(x + Math.sin(T * 40) * 0.012, 0, 0.1).sq(beatSq(bt, 0.05)); else doubao.walk(T, 0.75).at(x, 0, 0.1);
+        if (stop) doubao.front(T).at(x + Math.sin(T * 40) * 0.012, 0, 0.1).sq(beatSq(bt, 0.05)); else doubao.walkBy(x + 2.7).at(x, 0, 0.1);   // 走到 -0.9 停住，步幅跟着位移
         basket.position.set(x + 0.32, 0.5, 0.28);
         const lift = lerp(-2.3, 0, ease(seg(u, 0.42, 0.62)));
         wolf.set('gpt_boss_rage').at(2.7, 0, -3.3).lift(lift).sil(1).noShadow();
@@ -280,7 +281,7 @@ export const SHOTS_A: ShotDef[] = [
       const A = cam([-3.6, 2.0, 12.4], [-1, 1.5, 0], 40), B = cam([-1.3, 1.7, 7.8], [-0.5, 1.5, 0], 34);
       return ({ u, T, bt }) => {
         const go = seg(u, 0, 0.8), x = lerp(-6.4, -2.3, go);
-        if (go < 1) { doubao.walk(T).at(x, 0, 1.5); gem.walk(T).at(x - 1.5, 0, 2.3); }
+        if (go < 1) { doubao.walkBy(4.1 * go).at(x, 0, 1.5); gem.walkBy(4.1 * go).at(x - 1.5, 0, 2.3); }
         else { doubao.front(T).at(x, 0, 1.5).lift(Math.sin(bt.phase * PI) * 0.25); gem.front(T).at(x - 1.5, 0, 2.3).lift(Math.sin(((bt.phase + 0.5) % 1) * PI) * 0.25); }
         puffs.forEach((s, i) => { const ph = (T * 0.4 + i / 3) % 1; s.position.set(1.7 + Math.sin(ph * 5) * 0.2, 4.6 + ph * 2.2, -2.2); s.scale.setScalar(0.3 + ph * 0.4); setOp(s, 1 - ph); });
         return glide(A, B, u);
@@ -308,7 +309,7 @@ export const SHOTS_A: ShotDef[] = [
       return ({ u, T, bt }) => {
         const s = seg(u, 0, 0.6), st = lerp(8.6, -1.6, s);
         const off = Math.max(0, u - 0.6) * 14;
-        kimi.walk(T, 1.5).at(lerp(-0.5, 3.4, s) + off, Math.max(0, Math.ceil(st) * 0.32 + 0.32) * (st > -0.4 ? 1 : 0), -st * 0.9 + (st < 0 ? 1.2 : 0)).tilt(-0.09).alpha(off > 6 ? 0 : 1);
+        kimi.walkBy(3.9 * s + off).at(lerp(-0.5, 3.4, s) + off, Math.max(0, Math.ceil(st) * 0.32 + 0.32) * (st > -0.4 ? 1 : 0), -st * 0.9 + (st < 0 ? 1.2 : 0)).tilt(-0.09).alpha(off > 6 ? 0 : 1);
         const drop = st < 3; shoe.visible = drop; shoe.rotation.y = 0.5 + Math.sin(T * 1.2) * 0.08;
         halo.scale.setScalar(1.6 + 0.5 * bt.pulse);
         tw.forEach((x, i) => { const ph = (T * 0.9 + i * 0.37) % 1; x.position.set(0.55 + Math.cos(i * 1.1) * 0.5, 1.5 + Math.sin(i * 2.3) * 0.3 + ph * 0.3, -2.7 + Math.sin(i * 1.7) * 0.2); x.scale.setScalar(0.15 + 0.35 * Math.sin(ph * PI)); setOp(x, drop ? Math.sin(ph * PI) : 0); });
@@ -356,7 +357,7 @@ export const SHOTS_A: ShotDef[] = [
       const notes = many(3, () => k.add(sprite('note', 0.4)));
       return ({ u, T, bt }) => {
         const x = lerp(-2.7, 2.6, u), z = 1.2 + Math.sin(u * PI * 3) * 0.7;
-        claude.walk(T).at(x, 0, z).lift(Math.sin(bt.phase * PI) * 0.42).sq(bt.phase < 0.12 ? 0.08 : 0);
+        claude.walkBy(5.3 * u).at(x, 0, z).lift(Math.sin(bt.phase * PI) * 0.42).sq(bt.phase < 0.12 ? 0.08 : 0);
         bf.forEach((s, i) => { s.position.set(x + 1.2 + i * 0.5 + Math.sin(T * 3 + i) * 0.3, 1.5 + i * 0.2 + Math.sin(T * 4 + i * 2) * 0.3, z + Math.cos(T * 2 + i) * 0.4); s.scale.x = 0.42 * (0.35 + 0.65 * Math.abs(Math.sin(T * 14 + i))); });
         notes.forEach((s, i) => { const ph = (T * 0.6 + i / 3) % 1; s.position.set(x - 0.4 + Math.sin(ph * 5 + i) * 0.3, 2 + ph * 1.2, z); setOp(s, Math.sin(ph * PI)); });
         whale.front(T).at(-5.4, 0, -2.0).lift(-0.35 + 0.25 * Math.sin(T * 1.6));
@@ -461,7 +462,7 @@ export const SHOTS_A: ShotDef[] = [
       return ({ u, T, bt }) => {
         qwen.front(T).at(-1.7, 0, 1).sq(beatSq(bt)).tilt(Math.sin(T * 2.2) * 0.06).lift(bt.down ? bt.pulse * 0.15 : 0);
         wand.position.set(-1.05, 1.25 + Math.sin(T * 5) * 0.1, 1.1); wand.scale.setScalar(0.5 + 0.5 * bt.pulse);
-        const [gx, gy, gz, fl] = gp(u); gpt.walk(T).at(gx, gy, gz).flip(fl).noShadow().tilt(fl ? 0.2 : -0.2);
+        const [gx, gy, gz, fl] = gp(u); gpt.walkBy(47 * u).at(gx, gy, gz).flip(fl).noShadow().tilt(fl ? 0.2 : -0.2);
         trail.forEach((s, i) => { const [a, b, c] = gp(Math.max(0, u - (i + 1) * 0.022)); s.position.set(a, b + 0.8, c); s.scale.setScalar(0.6 * (1 - i / 9)); setOp(s, 1 - i / 8); });
         wisps.forEach((s, i) => { const ph = (T * 0.25 + hash(i)) % 1, a = ph * 9 + i, r = 0.5 + ph * 1.4; s.position.set(-6 + (i / 26) * 13 + Math.cos(a) * r * 0.5, 0.2 + ph * 5.5, -4.5 + Math.sin(a) * r * 0.5); setOp(s, Math.sin(ph * PI) * 0.85); });
         floats.forEach((g, i) => { g.rotation.z = PI + Math.sin(T * 0.8 + i) * 0.16; g.rotation.y = T * 0.3 + i; g.position.y = 5.4 + i * 0.7 + Math.sin(T * 1.1 + i * 2) * 0.35; });
@@ -584,7 +585,8 @@ export const SHOTS_A: ShotDef[] = [
       return ({ u, T, bt }) => {
         useTown(k, town, 1, true, 0xffd6cc);
         const base = lerp(21.5, 27, u);
-        cast.forEach((a, i) => a.walk(T + i * 0.2).at(base + i * 2.2, 0.05, 16 + (i % 2) * 0.9).sq((bt.idx + i) % 2 ? 0 : beatSq(bt, 0.05)));
+        // 七个人一列往前走：都按同一段位移迈步，才像一队人（以前按时间各走各的，脚在打滑）
+        cast.forEach((a, i) => a.walkBy(5.5 * u - i * 0.42).at(base + i * 2.2, 0.05, 16 + (i % 2) * 0.9).sq((bt.idx + i) % 2 ? 0 : beatSq(bt, 0.05)));
         gpt.front(T).at(42, 25.6, -46.6).noShadow();
         fw.update(T, 40, 34, -70, 44);
         const cx = base + 6.6;

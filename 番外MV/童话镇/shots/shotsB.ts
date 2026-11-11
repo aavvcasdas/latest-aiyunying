@@ -55,7 +55,7 @@ export const SHOTS_B: ShotDef[] = [
         const { p, ang } = town.at(lerp(0.497, 0.532, u));
         sail(boat, whale, p.x, p.z, ang, T); whale.front(T);
         kimi.front(T).at(8, BRIDGE_RISE + 0.42, zb);
-        gpt.walk(T).at(66, 21 + Math.sin(u * PI) * 3, lerp(zb - 28, zb + 22, u)).sil(1).noShadow();
+        gpt.walkBy(50 * u).at(66, 21 + Math.sin(u * PI) * 3, lerp(zb - 28, zb + 22, u)).sil(1).noShadow();
         return glide(A, B, u);
       };
     },
@@ -157,7 +157,7 @@ export const SHOTS_B: ShotDef[] = [
         const fly = ease(seg(u, 0.45, 1)), pop = backOut(seg(u, 0.45, 0.62));
         crow.visible = u >= 0.45; crow.position.set(lerp(0, 0.8, fly), lerp(15, 7.4, fly) + Math.sin(T * 9) * 0.15, lerp(-40, -6, fly)); crow.scale.setScalar(Math.max(0.001, pop * lerp(1.7, 2.3, fly)));
         wings.forEach((w, i) => { w.rotation.x = (i ? -1 : 1) * Math.sin(T * 9) * 0.8; });
-        gpt.walk(T).at(crow.position.x + 3.4, crow.position.y + 1.0, crow.position.z - 1).noShadow().alpha(u >= 0.5 ? 1 : 0);
+        gpt.walkBy(34 * fly).at(crow.position.x + 3.4, crow.position.y + 1.0, crow.position.z - 1).noShadow().alpha(u >= 0.5 ? 1 : 0);
         whale.set(u > 0.55 ? 'whale_wave' : 'whale_idle').at(-3.9, 2.3, 4.4).tint(0x7a5230).lift(u > 0.55 ? Math.sin(bt.phase * PI) * 0.2 : 0);
         return glide(A, B, u);
       };

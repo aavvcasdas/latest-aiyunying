@@ -20,5 +20,6 @@ export default defineProject({
   ],
   // tail：最后一句唱完后片子还有多长（秒）。beat：'estimate' 按每句 8 拍估节拍；跑过 align 之后可改成 'measured' 用实测拍点。
   planOptions: { tail: 3.5, beat: 'estimate' },
-  cards: { title: { main: 'MV 样板', sub: '把这行换成副标题' }, end: { shot: 'OUT', text: '完' } },
+  // 片头卡只放两行：歌名 + 歌手名。版本说明、主演、制作一律不放（字幕里也不写歌手名）。
+  cards: { title: { main: 'MV 样板', sub: '歌手名' }, end: { shot: 'OUT', text: '完' } },
 });
