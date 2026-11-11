@@ -1,0 +1,12 @@
+{
+  "id": "day15",
+  "kind": "day",
+  "title": "Day15",
+  "script": "台词.txt",
+  "speaker": "whale",
+  "output": "成片/Day15",
+  "video": {
+    "bitrate": "1500k",
+    "preset": "medium"
+  }
+}

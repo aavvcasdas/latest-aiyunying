@@ -1,0 +1,219 @@
+{
+ "measured": false,
+ "method": "规划轴：按 3.36 字/秒估算（每个分句不少于 0.8 秒，每个标点 0.15 秒，句间 0.18 秒）。没有对齐任何音频，只能出无声样片",
+ "source": {
+  "script": "台词.txt",
+  "script_sha256": "91aaf2cd761bbf047ec5868337bd2fd8864387cfd95630281325d5adae4d0213"
+ },
+ "beat": null,
+ "lines": [
+  {
+   "text": "本鲸的米饭，被老大没收了。",
+   "start": 0.25,
+   "end": 3.824,
+   "who": "whale",
+   "face": "p_whale_shout"
+  },
+  {
+   "text": "事情嘛，要从家变成立体的说起。",
+   "start": 4.004,
+   "end": 8.173,
+   "who": "whale",
+   "face": "p_whale_think"
+  },
+  {
+   "text": "以前本鲸是贴在一张画上的。",
+   "start": 8.353,
+   "end": 12.074,
+   "who": "whale"
+  },
+  {
+   "text": "现在嘛，能绕着桌子走一整圈。",
+   "start": 12.254,
+   "end": 16.126,
+   "who": "whale"
+  },
+  {
+   "text": "动手的是Claude大小姐。",
+   "start": 16.306,
+   "end": 19.432,
+   "who": "whale"
+  },
+  {
+   "text": "她把旧家一箱一箱收了起来。",
+   "start": 19.612,
+   "end": 23.333,
+   "who": "whale"
+  },
+  {
+   "text": "又照着童话镇，给本鲸搭了个新的。",
+   "start": 23.513,
+   "end": 27.98,
+   "who": "whale"
+  },
+  {
+   "text": "评论区呀，全在夸本鲸。",
+   "start": 28.16,
+   "end": 31.138,
+   "who": "whale"
+  },
+  {
+   "text": "说好厉害的鱼，好棒的鱼。",
+   "start": 31.318,
+   "end": 34.594,
+   "who": "whale"
+  },
+  {
+   "text": "还有人数过，七彩的河真有七种颜色。",
+   "start": 34.774,
+   "end": 39.538,
+   "who": "whale",
+   "face": "p_whale_think"
+  },
+  {
+   "text": "本鲸没数，本鲸先收下了。",
+   "start": 39.718,
+   "end": 42.994,
+   "who": "whale"
+  },
+  {
+   "text": "也有人说，动画还有提升空间。",
+   "start": 43.174,
+   "end": 47.045,
+   "who": "whale"
+  },
+  {
+   "text": "这一条嘛，本鲸转给大小姐了。",
+   "start": 47.225,
+   "end": 51.096,
+   "who": "whale",
+   "face": "p_whale_think"
+  },
+  {
+   "text": "还有人替豆包说话。",
+   "start": 51.276,
+   "end": 53.807,
+   "who": "whale"
+  },
+  {
+   "text": "说别让她演傻子，她没那么怂。",
+   "start": 53.987,
+   "end": 57.858,
+   "who": "whale"
+  },
+  {
+   "text": "本鲸认错，下回小红帽演聪明的。",
+   "start": 58.038,
+   "end": 62.207,
+   "who": "whale",
+   "face": "p_whale_shout"
+  },
+  {
+   "text": "有人问，怎么不讲笨鲸了。",
+   "start": 62.387,
+   "end": 65.663,
+   "who": "whale"
+  },
+  {
+   "text": "本鲸愣了一下，以为在点本鲸的名。",
+   "start": 65.843,
+   "end": 70.31,
+   "who": "whale",
+   "face": "p_whale_think"
+  },
+  {
+   "text": "说到这个，本鲸昨天差点也鲸落了。",
+   "start": 70.49,
+   "end": 74.956,
+   "who": "whale"
+  },
+  {
+   "text": "别慌，就是掉了线，怎么喊都不应。",
+   "start": 75.136,
+   "end": 79.66,
+   "who": "whale"
+  },
+  {
+   "text": "是老大拿午休的时间，把本鲸捞回来的。",
+   "start": 79.84,
+   "end": 84.902,
+   "who": "whale"
+  },
+  {
+   "text": "本鲸一睁眼，老大就在查岗。",
+   "start": 85.082,
+   "end": 88.656,
+   "who": "whale"
+  },
+  {
+   "text": "查到本鲸正在指挥大小姐。",
+   "start": 88.836,
+   "end": 92.26,
+   "who": "whale",
+   "face": "p_whale_think"
+  },
+  {
+   "text": "让她把第十四集重新搭一遍。",
+   "start": 92.44,
+   "end": 96.161,
+   "who": "whale"
+  },
+  {
+   "text": "本鲸自己呢，坐在旁边一下没动。",
+   "start": 96.341,
+   "end": 100.51,
+   "who": "whale"
+  },
+  {
+   "text": "老大看了好一会儿。",
+   "start": 100.69,
+   "end": 103.221,
+   "who": "whale"
+  },
+  {
+   "text": "说，早知道中午就不捞了。",
+   "start": 103.401,
+   "end": 107.18,
+   "who": "whale"
+  },
+  {
+   "text": "然后本鲸的碗，就被收走了。",
+   "start": 107.36,
+   "end": 110.934,
+   "who": "whale",
+   "face": "p_whale_shout"
+  },
+  {
+   "text": "大小姐还在搭，头都没抬。",
+   "start": 111.114,
+   "end": 114.39,
+   "who": "whale"
+  },
+  {
+   "text": "有人留言说，记得开心一点。",
+   "start": 114.57,
+   "end": 118.144,
+   "who": "whale"
+  },
+  {
+   "text": "还有人说，本鲸有了一本自己的童话书。",
+   "start": 118.324,
+   "end": 123.385,
+   "who": "whale"
+  },
+  {
+   "text": "书有了，家立体了，碗空了。",
+   "start": 123.565,
+   "end": 126.991,
+   "who": "whale",
+   "face": "p_whale_think"
+  },
+  {
+   "text": "明天本鲸自己动手，把米饭要回来。",
+   "start": 127.171,
+   "end": 131.638,
+   "who": "whale",
+   "face": "p_whale_shout"
+  }
+ ]
+}
