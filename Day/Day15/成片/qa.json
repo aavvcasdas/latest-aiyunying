@@ -1,0 +1,174 @@
+{
+ "frames": {
+  "frames": 1972,
+  "wrong_size": [],
+  "identical_to_previous": [
+   539,
+   1610,
+   1787
+  ],
+  "blank_background_frames": [],
+  "frozen_runs": [],
+  "shots_without_visible_cut": [],
+  "subtitle_bar_missing": [],
+  "luma_min": 81.44,
+  "luma_max": 114.48,
+  "sequence_md5": "971206b3aebe50f5ca647a5c2f493e57",
+  "problems": []
+ },
+ "timing": {
+  "measured": true,
+  "method": "按停顿切句（20ms RMS 有声段），句界按字数占比从多个停顿里挑选——建议听一遍核对",
+  "source": {
+   "script": "台词.txt",
+   "script_sha256": "bb7cb7036e0cfaf033e1e1ce4a66d350ef962c19366ef993da78191c39e1ed81",
+   "audio": "../../鲸鱼鲸落_克隆配音_最终版.wav",
+   "audio_sha256": "70ea0316394d4622ed2118d2278e1c156c84db253f52d0c9c4ae8c1332a3234d",
+   "audio_duration": 65.13,
+   "analysis_sample_rate": 16000
+  },
+  "notes": [
+   "句界是按字数占比从多个停顿里挑的，不是逐词对齐：出片前请听一遍核对"
+  ],
+  "summary": {
+   "mapping": "by-proportion",
+   "voiced_segments": 32,
+   "median_units_per_second": 4.7,
+   "per_line_units_per_second": [
+    4.68,
+    4.79,
+    4.4,
+    4.7,
+    3.95,
+    3.93,
+    4.96,
+    5,
+    4.86,
+    4.29,
+    4.46,
+    3.45,
+    4.95,
+    4.07,
+    4.62,
+    5,
+    4.88,
+    4.91,
+    5.24,
+    4.92,
+    3.53
+   ],
+   "voiced_threshold_db": -51.7,
+   "min_pause_seconds": 0.16,
+   "lines": 21,
+   "first_start": 0.02,
+   "last_end": 65.12,
+   "shortest_gap": 0.26,
+   "longest_gap": 0.98,
+   "warnings": [
+    "句界是按字数占比从多个停顿里挑的，不是逐词对齐：出片前请听一遍核对"
+   ]
+  },
+  "shots": {
+   "count": 14,
+   "shortest_seconds": 2.3,
+   "longest_seconds": 7
+  },
+  "problems": []
+ },
+ "final": {
+  "file": "Day15.mp4",
+  "bytes": 16925610,
+  "sha256": "b40bae7957d6fefb6dcf1c6d667367a510e236db9835146bbfe235b7f50cc4a2",
+  "audio_samples": 3155968,
+  "audio_seconds": 65.7493,
+  "expected_seconds": 65.7333,
+  "audio_lag_vs_source_samples": 0,
+  "audio_lag_vs_source_ms": 0,
+  "audio_correlation": 1,
+  "correlation_window_seconds": [
+   6.57,
+   59.16
+  ],
+  "tail_rms": {
+   "-2.0s": 0.0942,
+   "-1.5s": 0.0923,
+   "-1.0s": 0.0762,
+   "-0.5s": 0,
+   "-0.25s": 0
+  },
+  "mix": {
+   "sample_rate": 48000,
+   "samples": 3155200,
+   "seconds": 65.733333,
+   "offset_seconds": 0,
+   "source_seconds": 65.13,
+   "source_used": [
+    0,
+    65.13
+   ],
+   "source_remaining_after_end_seconds": 0,
+   "silence_after_source_seconds": 0.603,
+   "fade_out_seconds": 0,
+   "peak_dbfs": -7.15,
+   "clipped_samples": 0,
+   "full_scale_samples_from_source": 0,
+   "clipped_by_mix": 0,
+   "rms_dbfs": -22.49
+  },
+  "notes": [],
+  "problems": [],
+  "full_decode": "ok",
+  "probe": {
+   "programs": [],
+   "stream_groups": [],
+   "streams": [
+    {
+     "codec_name": "h264",
+     "profile": "100",
+     "codec_type": "video",
+     "width": 1920,
+     "height": 1080,
+     "pix_fmt": "yuv420p",
+     "color_range": "tv",
+     "color_space": "bt709",
+     "r_frame_rate": "30/1",
+     "duration": "65.733333",
+     "bit_rate": "1795280",
+     "nb_frames": "1972"
+    },
+    {
+     "codec_name": "aac",
+     "profile": "1",
+     "codec_type": "audio",
+     "sample_rate": "48000",
+     "channels": 2,
+     "r_frame_rate": "0/0",
+     "duration": "65.733000",
+     "bit_rate": "256062",
+     "nb_frames": "3084"
+    }
+   ],
+   "format": {
+    "duration": "65.733333",
+    "size": "16925610",
+    "bit_rate": "2059911"
+   }
+  }
+ },
+ "project": {
+  "id": "day15",
+  "kind": "day",
+  "title": "小克把家重新装修了，米饭没了",
+  "frames": 1972,
+  "duration": 65.72,
+  "shots": 14,
+  "lines": 21,
+  "source_sha256": "c521f215d6249a691c735889bedc75e2d2d7192c95ef67a4e3fab81d652abcd9",
+  "source_files": 19,
+  "audio": {
+   "file": "../../鲸鱼鲸落_克隆配音_最终版.wav",
+   "present": true
+  }
+ },
+ "checked_at": "2026-11-11T15:22:03.026Z"
+}

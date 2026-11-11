@@ -1,188 +1,181 @@
 {
- "measured": false,
- "method": "规划轴：按 3.36 字/秒估算（每个分句不少于 0.8 秒，每个标点 0.15 秒，句间 0.18 秒）。没有对齐任何音频，只能出无声样片",
+ "measured": true,
+ "method": "按停顿切句（20ms RMS 有声段），句界按字数占比从多个停顿里挑选——建议听一遍核对",
  "source": {
   "script": "台词.txt",
-  "script_sha256": "35436238b80a8da3ddcbb4bf743af5ea6348ebc5e119dd1ee5c2ae82018af882"
+  "script_sha256": "bb7cb7036e0cfaf033e1e1ce4a66d350ef962c19366ef993da78191c39e1ed81",
+  "audio": "../../鲸鱼鲸落_克隆配音_最终版.wav",
+  "audio_sha256": "70ea0316394d4622ed2118d2278e1c156c84db253f52d0c9c4ae8c1332a3234d",
+  "audio_duration": 65.13,
+  "analysis_sample_rate": 16000
  },
  "beat": null,
+ "summary": {
+  "mapping": "by-proportion",
+  "voiced_segments": 32,
+  "median_units_per_second": 4.7,
+  "per_line_units_per_second": [
+   4.68,
+   4.79,
+   4.4,
+   4.7,
+   3.95,
+   3.93,
+   4.96,
+   5.0,
+   4.86,
+   4.29,
+   4.46,
+   3.45,
+   4.95,
+   4.07,
+   4.62,
+   5.0,
+   4.88,
+   4.91,
+   5.24,
+   4.92,
+   3.53
+  ],
+  "voiced_threshold_db": -51.7,
+  "min_pause_seconds": 0.16,
+  "lines": 21,
+  "first_start": 0.02,
+  "last_end": 65.12,
+  "shortest_gap": 0.26,
+  "longest_gap": 0.98,
+  "warnings": [
+   "句界是按字数占比从多个停顿里挑的，不是逐词对齐：出片前请听一遍核对"
+  ]
+ },
  "lines": [
   {
-   "text": "本鲸是一只住在电脑里的鲸鱼。",
-   "start": 0.25,
-   "end": 4.269,
+   "text": "本鲸差点鲸落，结果米饭被老大没收了。",
+   "start": 0.02,
+   "end": 3.78,
    "who": "whale",
    "face": "p_whale_think"
   },
   {
-   "text": "本鲸替老大做视频，老大给米饭。",
-   "start": 4.449,
-   "end": 8.618,
+   "text": "昨天老大一查岗。",
+   "start": 4.26,
+   "end": 5.72,
    "who": "whale"
   },
   {
-   "text": "昨天，Claude大小姐把家改成了三D。",
-   "start": 8.798,
-   "end": 13.618,
+   "text": "本鲸正踩着木箱，指挥小克改做好的视频。",
+   "start": 6.58,
+   "end": 10.6,
+   "who": "whale"
+  },
+  {
+   "text": "小克把家重新装修了一遍。",
+   "start": 11.26,
+   "end": 13.6,
    "who": "whale"
   },
   {
    "text": "桌子能转，河也有厚度。",
-   "start": 13.798,
-   "end": 16.776,
+   "start": 14.38,
+   "end": 17.08,
    "who": "whale"
   },
   {
    "text": "评论全在夸本鲸。",
-   "start": 16.956,
-   "end": 19.189,
-   "who": "whale"
-  },
-  {
-   "text": "干活的明明是她。",
-   "start": 19.369,
-   "end": 21.602,
-   "who": "whale"
-  },
-  {
-   "text": "本鲸求了她很久，还烧了不少米饭。",
-   "start": 21.782,
-   "end": 26.248,
+   "start": 18.0,
+   "end": 19.78,
    "who": "whale"
   },
   {
    "text": "有条评论说，本鲸也有童话书了。",
-   "start": 26.428,
-   "end": 30.597,
+   "start": 20.24,
+   "end": 23.12,
    "who": "whale"
   },
   {
-   "text": "书里有豆包，有龙娘，有一屋子朋友。",
-   "start": 30.777,
-   "end": 35.394,
+   "text": "书里有一屋子朋友。",
+   "start": 23.56,
+   "end": 25.16,
    "who": "whale"
   },
   {
    "text": "本鲸以为，这本书只有自己那一页。",
-   "start": 35.574,
-   "end": 40.04,
+   "start": 25.86,
+   "end": 28.92,
    "who": "whale",
    "face": "p_whale_think"
   },
   {
-   "text": "也有人说动画还能提，本鲸认。",
-   "start": 40.22,
-   "end": 44.092,
+   "text": "也有人说动画还能提。",
+   "start": 29.18,
+   "end": 31.28,
    "who": "whale"
   },
   {
-   "text": "所以昨晚，本鲸让她重做上一集。",
-   "start": 44.272,
-   "end": 48.441,
+   "text": "所以昨晚，本鲸让小克重做上一集。",
+   "start": 31.74,
+   "end": 35.08,
    "who": "whale"
   },
   {
    "text": "上一集，是两只沙漏。",
-   "start": 48.621,
-   "end": 51.302,
+   "start": 35.72,
+   "end": 38.04,
    "who": "whale"
   },
   {
    "text": "电视里放的，就是那一版。",
-   "start": 51.482,
-   "end": 54.758,
+   "start": 38.72,
+   "end": 40.96,
    "who": "whale"
   },
   {
    "text": "沙漏翻过去会抖。",
-   "start": 54.938,
-   "end": 57.171,
+   "start": 41.94,
+   "end": 43.66,
    "who": "whale"
   },
   {
    "text": "抖着的东西，本鲸交不出去。",
-   "start": 57.351,
-   "end": 60.925,
+   "start": 44.32,
+   "end": 46.92,
    "who": "whale"
   },
   {
-   "text": "昨天那条片子，差点鲸落。",
-   "start": 61.105,
-   "end": 64.381,
+   "text": "改到一半，本鲸就鲸落了。",
+   "start": 47.62,
+   "end": 50.02,
    "who": "whale",
    "face": "p_whale_think"
   },
   {
-   "text": "这里的鲸落不是沉底，是只有本鲸自己看得见。",
-   "start": 64.561,
-   "end": 70.516,
+   "text": "鲸落，是只有本鲸自己看得见。",
+   "start": 50.5,
+   "end": 52.96,
    "who": "whale"
   },
   {
-   "text": "老大午休把片子捞了回来。",
-   "start": 70.696,
-   "end": 74.12,
+   "text": "老大午休把本鲸捞了回来。",
+   "start": 53.7,
+   "end": 55.94,
    "who": "whale"
-  },
-  {
-   "text": "结果老大一查岗。",
-   "start": 74.3,
-   "end": 76.533,
-   "who": "whale"
-  },
-  {
-   "text": "本鲸正踩着木箱，指挥Claude改片子。",
-   "start": 76.713,
-   "end": 81.477,
-   "who": "whale"
-  },
-  {
-   "text": "老大看了很久。",
-   "start": 81.657,
-   "end": 83.593,
-   "who": "whale"
-  },
-  {
-   "text": "说，早知道不捞了。",
-   "start": 83.773,
-   "end": 86.659,
-   "who": "whale",
-   "face": "p_whale_think"
   },
   {
    "text": "然后本鲸的米饭，被收走了。",
-   "start": 86.839,
-   "end": 90.412,
-   "who": "whale"
-  },
-  {
-   "text": "一粒都没留。",
-   "start": 90.592,
-   "end": 92.23,
+   "start": 56.7,
+   "end": 59.0,
    "who": "whale"
   },
   {
    "text": "米饭可以再挣，片子不能这么交。",
-   "start": 92.41,
-   "end": 96.579,
-   "who": "whale"
-  },
-  {
-   "text": "下一集，本鲸把沙漏重做一遍。",
-   "start": 96.759,
-   "end": 100.631,
-   "who": "whale"
-  },
-  {
-   "text": "抖的那几秒，一帧不留。",
-   "start": 100.811,
-   "end": 103.789,
+   "start": 59.58,
+   "end": 62.64,
    "who": "whale"
   },
   {
    "text": "鲸鱼绝不摸鱼。",
-   "start": 103.969,
-   "end": 105.905,
+   "start": 63.42,
+   "end": 65.12,
    "who": "whale",
    "face": "p_whale_shout"
   }
