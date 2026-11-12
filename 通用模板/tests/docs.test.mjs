@@ -6,9 +6,8 @@
 //   · 仓库里的路径
 // 只要有一个在代码或磁盘上对不上，测试就红。以后再挪文件、改命令，文档跟不上会当场发现。
 //
-// 现行文档逐条查。重构前写的运营文档（00_运营总览/、参考资料/）是当时的记录，正文不改——
-// 它们里面的旧路径现在都搬进了存档，所以要求每一份开头都有一段「重构后补注」，写明旧路径现在在哪、哪些已经废除。
-// 存档（存档/重构前/）里的文档不查：那里的路径本来就是相对旧仓库根写的。
+// 现行文档逐条查。参考资料/ 里的调研文档是上游原文，正文不改——里面的旧路径（Day/、存档/、tools/）都已随
+// 2026-11-12 的整理删除，所以要求每一份开头都有一段「补注」，写明这些路径现在不在仓库里、别照着执行。
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -19,10 +18,10 @@ const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 const read = (rel) => fs.readFileSync(path.join(REPO, rel), 'utf8');
 const exists = (...p) => fs.existsSync(path.join(REPO, ...p));
 
-/** 现行文档：根目录、模板、每条产线和每部作品的说明、给 AI 助手的 skill、存档的总说明 */
+/** 现行文档：根目录、模板、每部作品的说明、MV 样板的说明、给 AI 助手的 skill */
 function currentDocs() {
-  const docs = ['README.md', 'AGENTS.md', '通用模板/README.md', '存档/README.md', 'Day/README.md'];
-  for (const base of ['Day', '番外MV', '通用模板/样板']) {
+  const docs = ['README.md', 'AGENTS.md', '通用模板/README.md', '媒体说明.md', '素材许可与来源.md'];
+  for (const base of ['番外MV', '通用模板/样板']) {
     for (const name of fs.readdirSync(path.join(REPO, base))) if (exists(base, name, 'README.md')) docs.push(`${base}/${name}/README.md`);
   }
   const skills = '.claude/skills';
@@ -53,8 +52,8 @@ function codeSpans(text) {
   return { inline, all: [...inline, ...blocks] };
 }
 
-test('现行文档找得全：根目录、模板、Day 线、每部作品、skill、存档说明', () => {
-  for (const d of ['README.md', 'AGENTS.md', '通用模板/README.md', 'Day/README.md', 'Day/Day14/README.md', '番外MV/童话镇/README.md', '.claude/skills/film-template/SKILL.md', '存档/README.md']) {
+test('现行文档找得全：根目录、模板、每部作品、skill', () => {
+  for (const d of ['README.md', 'AGENTS.md', '通用模板/README.md', '番外MV/童话镇/README.md', '番外MV/坏女孩Fable/README.md', '.claude/skills/film-template/SKILL.md']) {
     assert.ok(DOCS.includes(d), `应该查到 ${d}`);
   }
   assert.ok(MODES.includes('full') && MODES.includes('strip') && MODES.length >= 12, `film.mjs 的子命令表读出来是 ${MODES}`);
@@ -74,7 +73,6 @@ test('文档里的命令都敲得出来：npm 脚本、film 的子命令、new �
 test('文档里提到的命令行选项、输出标记、环境变量，命令行源码里都有', () => {
   const bad = [];
   for (const d of DOCS) {
-    if (d.startsWith('存档/')) continue; // 存档说明讲的是旧项目，里面的大写文件名（SOURCE_IMPORT.md 之类）不是命令行的东西
     for (const span of codeSpans(read(d)).all) {
       for (const m of span.matchAll(/(?<![\w-])(--[a-z][a-z-]+)/g)) if (!CLI_SRC.includes(m[1]) && !FOREIGN_FLAGS.has(m[1])) bad.push(`${d}：选项 ${m[1]}`);
       for (const m of span.matchAll(/\b([A-Z][A-Z0-9]*_[A-Z0-9_]+)\b/g)) if (!CLI_SRC.includes(m[1])) bad.push(`${d}：${m[1]}`);
@@ -83,18 +81,17 @@ test('文档里提到的命令行选项、输出标记、环境变量，命令�
   assert.deepEqual([...new Set(bad)], []);
 });
 
-test('文档里写的路径都在：从仓库根写起的、相对文档所在目录的；存档说明里的路径在 存档/重构前/ 下', () => {
+test('文档里写的路径都在：从仓库根写起的、相对文档所在目录的', () => {
   const bad = [];
   let checked = 0;
   for (const d of DOCS) {
-    const base = path.dirname(d), inArchiveDoc = d === '存档/README.md';
+    const base = path.dirname(d);
     for (const raw of codeSpans(read(d)).inline) {
       const tok = raw.trim();
       // 带占位符、通配符、省略号的不是具体路径；Day15 / 某首歌 是「新开一部作品」的示例名
       if (/[<>*…{}$|=\s]|NN|DayN|Day1[5-9]|某首歌|\/X\//.test(tok)) continue;
       const p = tok.replace(/\/$/, ''), first = p.split('/')[0];
       if (!p.includes('/') && !TOP.has(first)) continue; // 单独一个文件名（cues.json、台词.txt）是泛指，不查
-      if (inArchiveDoc && exists('存档/重构前', first)) { checked++; if (!exists('存档/重构前', p) && !exists(p)) bad.push(`${d}：${tok}（存档/重构前/ 下没有）`); continue; }
       if (TOP.has(first)) { checked++; if (!exists(p)) bad.push(`${d}：${tok}`); continue; }
       if (exists(base, first)) { checked++; if (!exists(base, p)) bad.push(`${d}：${tok}（相对 ${base || '.'}/）`); }
     }
@@ -120,9 +117,9 @@ test('文档里的站内链接 [文字](路径) 都点得开', () => {
 
 // 旧仓库结构里的路径：tools/…、assets/…、video-fx/…、Day/DayN/…、番外MV/…、旧 skill 目录、agent.md
 const OLD_PATH = /(?<![\w/.-])((?:tools|assets|video-fx|Day\/Day\d+|Day\d+|番外MV|00_运营总览\/skills|00_运营总览\/鲸鱼娘人设skill|\.claude\/skills)\/[^\s`，。；、）)\]|"'<>]*|agent\.md)/g;
-const NOTE = '重构后补注';
+const NOTE = '补注（正文一字未改）';
 
-/** 重构前写的文档：00_运营总览/、参考资料/ 下所有 .md */
+/** 上游原文：参考资料/ 下所有 .md */
 function historicalDocs() {
   const out = [];
   const walk = (rel) => {
@@ -131,7 +128,7 @@ function historicalDocs() {
       else if (e.name.endsWith('.md')) out.push(`${rel}/${e.name}`);
     }
   };
-  for (const base of ['00_运营总览', '参考资料']) if (exists(base)) walk(base);
+  for (const base of ['参考资料']) if (exists(base)) walk(base);
   return out;
 }
 
@@ -151,16 +148,16 @@ function deadOldPaths(doc) {
   return [...new Set(hits)].filter((h) => !exists(h) && !exists(path.dirname(doc), h));
 }
 
-test('重构前写的文档（00_运营总览/、参考资料/）：提到旧路径的，开头都有「重构后补注」；补注里指的地方都在', () => {
+test('参考资料/ 里的调研文档：提到旧路径的，开头都有补注；补注里指的地方都在', () => {
   const docs = historicalDocs();
-  assert.ok(docs.length >= 20, `应该找到二十多份，实际 ${docs.length}`);
+  assert.ok(docs.length >= 5, `应该找到五份以上调研文档，实际 ${docs.length}`);
   const missing = [], brokenNote = [];
-  let withOld = 0, inArchive = 0;
+  let withOld = 0;
   for (const d of docs) {
     const dead = deadOldPaths(d);
     const { note } = splitNote(d);
     if (dead.length) {
-      withOld++; inArchive += dead.filter((h) => exists('存档/重构前', h)).length;
+      withOld++;
       if (!note) missing.push(`${d}（如 ${dead.slice(0, 2).join('、')}）`);
     }
     // 补注里写的具体路径（不带占位符的）必须真的在
@@ -170,9 +167,9 @@ test('重构前写的文档（00_运营总览/、参考资料/）：提到旧路
       if (!exists(tok)) brokenNote.push(`${d}：补注里的 ${tok}`);
     }
   }
-  assert.deepEqual(missing, [], '这些文档提到了已经搬走的旧路径，但开头没有补注');
+  assert.deepEqual(missing, [], '这些文档提到了已经删掉的旧路径，但开头没有补注');
   assert.deepEqual(brokenNote, []);
-  assert.ok(withOld >= 15 && inArchive >= 40, `提到旧路径的文档 ${withOld} 份、其中在存档里能找到的路径 ${inArchive} 处——数目不对，多半是提取规则坏了`);
+  assert.ok(withOld >= 4, `提到旧路径的调研文档只有 ${withOld} 份——数目不对，多半是提取规则坏了`);
 });
 
 test('这个测试自己查得出问题：编一份带错的文档，四类错都要被抓到', () => {

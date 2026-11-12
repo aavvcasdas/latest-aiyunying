@@ -203,13 +203,13 @@ test('字体地址写进 CSS 时一律加引号并转义：仓库放在带空格
 
 test('仓库里每部作品现有的台词 / 歌词，模板字体里都有（新写的台词带了缺字，这里会先红）', () => {
   const works = [];
-  for (const base of ['Day', '番外MV', '通用模板/样板']) {
+  for (const base of ['番外MV', '通用模板/样板']) {
     for (const name of fs.readdirSync(path.join(REPO, base))) {
       const cues = path.join(REPO, base, name, 'cues.json');
       if (fs.existsSync(cues)) works.push([`${base}/${name}`, cues]);
     }
   }
-  assert.ok(works.length >= 4, `应该至少找到四部作品，实际 ${works.length}`);
+  assert.ok(works.length >= 3, `应该至少找到三部作品（童话镇 + 两个样板），实际 ${works.length}`);
   for (const [name, cues] of works) {
     const lines = JSON.parse(fs.readFileSync(cues, 'utf8')).lines;
     const bad = glyphProblems(lines.map((l, i) => ({ where: `${name} 第 ${i + 1} 句「${l.text}」`, text: l.text })), ZCOOL, FONT_FILE);

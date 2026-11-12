@@ -26,21 +26,44 @@ function beatIdx(t) { let lo = 0, hi = beatT.length; while (lo < hi) { const m =
 const pulse = (t) => { const i = beatIdx(t); return i ? Math.exp(-(t - beatT[i - 1]) / 0.16) : 0; };
 const energy = (t) => BEATS.env[Math.max(0, Math.min(BEATS.env.length - 1, Math.floor(t * BEATS.envHz)))] || 0;
 
-// ---------- 歌词：全曲每句 3.75s（6 拍）等距，第 k 句起点 = 21.25 + 3.75k（落在每小节第 3 拍） ----------
-const P = (k) => 21.25 + 3.75 * k;
-const VERSE = [['那时我放开了的手', '转过身只剩了保重'], ['你话都没说', '却哭了很久很久'], ['我喜欢坏坏的女友', '我喜欢刺激的感受'], ['你单纯太过', '多余了那些温柔'], ['你消失在无名大街', '从此就没有再见面'], ['好长的时间', '再没有你的来电'], ['在后来酒吧的房间', '舞池里跳动着音乐'], ['熟悉的侧脸', '迷人的笑脸吸引视线'], ['慵懒的靠在陌生的肩'], ['黑色的眼线'], ['你的指间有一点轻蔑'], ['在谁的怀中会有感觉'], ['被爱的深夜我在想念'], ['明明是为你才会改变'], ['却回不到从前']];
-const TAIL = [['然后我安静的发现'], ['两个人已经没有任何语言'], ['曾经你纯真的永远'], ['让我不顾一切开始怀念'], ['迷人的笑脸吸引视线'], ['慵懒的靠在陌生的肩'], ['黑色的眼线'], ['你的指间有一点轻蔑'], ['在谁的怀中会有感觉'], ['被爱的深夜我在想念'], ['明明是为你才会改变'], ['却回不到从前']];
-const PHRASES = [];
-const addPh = (k, parts) => {
-  const a = P(k), b = P(k + 1), text = parts.join('  '), chars = Array.from(text), n = chars.filter((c) => c !== ' ').length;
-  const s0 = a, s1 = a + (Math.min(b, 215.2) - a) * 0.9; let i = 0;
-  const ct = chars.map((c) => (c === ' ' ? null : s0 + (s1 - s0) * (i++ / n)));
-  PHRASES.push({ a, b, text, chars, ct, parts });
-};
-VERSE.forEach((p, i) => addPh(i, p)); VERSE.forEach((p, i) => addPh(24 + i, p)); TAIL.forEach((p, i) => addPh(40 + i, p));
-PHRASES.sort((x, y) => x.a - y.a);
+// ---------- 歌词：逐句实测卡点（原曲时间；与 番外MV/坏女孩/src/mv/cues.ts 是同一份，逐句对过这条音源） ----------
+// 旧版这里是「每句 3.75 秒、第 k 句 = 21.25 + 3.75k」的等距假网格：歌里句子并不等距，
+// 于是字幕从第一句就早一秒多，越往后越飘，还有几处把一句唱词从中间劈开（「黑色的眼线」/「你的指间有一点轻蔑」）。
+// 现在按实测句首排，句界与唱词一致。
+const RAW_A = [22.51, 23.94, 25.5, 29.35, 31.34, 33.15, 37.01, 39.0, 41.05, 44.28, 46.46, 48.39, 52.37, 54.48, 58.49, 61.85, 66.39, 69.62, 73.17, 76.9];
+const RAW_B = [112.99, 114.42, 116.28, 120.14, 122.13, 123.93, 127.79, 129.72, 131.34, 135.32, 136.93, 138.86, 143.4, 145.27, 148.51, 152.61, 156.9, 160.01, 163.68, 167.66];
+const RAW_C = [173.37, 175.74, 179.66, 184.01];
+const RAW_D = [187.77, 190.76, 194.49, 197.85, 201.89, 205.69, 209.42, 212.65];
+const LYR_A = [
+  '那时我放开了的手', '转过身只剩了保重', '你话都没说 却哭了很久很久',
+  '我喜欢坏坏的女友', '我喜欢刺激的感受', '你单纯太过 多余了那些温柔',
+  '你消失在无名大街', '从此就没有再见面', '好长的时间 再没有你的来电',
+  '在后来酒吧的房间', '舞池里跳动着音乐', '熟悉的侧脸', '迷人的笑脸 吸引视线',
+  '慵懒的靠在陌生的肩', '黑色的眼线 你的指间', '有一点轻蔑',
+  '在谁的怀中会有感觉', '被爱的深夜我在想念', '明明是为你才会改变', '却回不到从前',
+];
+const LYR_C = ['然后我安静的发现', '两个人已经没有任何语言', '曾经你纯真的永远', '让我不顾一切开始怀念'];
+const LYR_D = LYR_A.slice(12); // 尾段从「迷人的笑脸」起，8 句
+
+/** 每句：起唱 / 唱完 / 逐字染色时间（字在句内按字数均分，句界是真的） */
+const CUE = [];
+function cueLine(text, start, next) {
+  const chars = Array.from(text), n = chars.filter((c) => c !== ' ').length;
+  const sing = 0.36 * n + 1.4;
+  const end = Math.min(next ? next - 0.12 : start + sing, start + sing);
+  let i = 0;
+  const ct = chars.map((c) => (c === ' ' ? null : start + (end - start) * (i++ / n)));
+  CUE.push({ start, end, text, chars, ct });
+}
+const cueAll = (texts, times, next) => texts.forEach((tx, i) => cueLine(tx, times[i], i + 1 < texts.length ? times[i + 1] : next));
+cueAll(LYR_A, RAW_A, RAW_B[0]);   // 0..19   第一遍
+cueAll(LYR_A, RAW_B, RAW_C[0]);   // 20..39  第二遍
+cueAll(LYR_C, RAW_C, RAW_D[0]);   // 40..43  桥段
+cueAll(LYR_D, RAW_D, 215.05);     // 44..51  尾段
+const CS = (i) => CUE[i].start;          // 第 i 句起唱
+const CUT = (i) => CUE[i].start - 0.085; // 切镜点：起唱前两帧
 /** 给页面歌词表 / SRT 用：成片时间（已减去前奏 20s） */
-export const LINES = PHRASES.map((p) => ({ start: +(p.a - T0).toFixed(2), end: +(Math.min(p.b, 215) - T0 - 0.1).toFixed(2), text: p.parts.join(' ') }));
+export const LINES = CUE.map((p) => ({ start: +(p.start - T0).toFixed(2), end: +(p.end - T0).toFixed(2), text: p.text }));
 
 // ---------- 3D 布景构件 ----------
 class Set3 {
@@ -317,7 +340,7 @@ function card(g, x, y, items, t, t0, step) {
 function ecg(g, x, y, w, t) { g.save(); g.fillStyle = 'rgba(15,10,35,0.8)'; g.beginPath(); g.roundRect(x - 18, y - 62, w + 36, 124, 16); g.fill(); g.strokeStyle = '#7affc2'; g.lineWidth = 3; g.beginPath(); for (let i = 0; i <= w; i += 6) { const v = Math.sin((i + t * 200) * 0.05) * 1.5; if (i) g.lineTo(x + i, y + 22 + v); else g.moveTo(x + i, y + 22 + v); } g.stroke(); g.fillStyle = '#7affc2'; g.font = '26px BG'; g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText('心动检测 · 没有感觉', x, y - 30); g.restore(); }
 function tag(g, text, x, y, size = 30) { g.save(); g.font = `${size}px BG`; const w = g.measureText(text).width + 28; g.fillStyle = 'rgba(12,8,30,0.6)'; g.beginPath(); g.roundRect(x, y - size * 0.8, w, size * 1.6, 12); g.fill(); g.fillStyle = '#fff'; g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText(text, x + 14, y + 1); g.restore(); }
 
-// ---------- 分镜（时间为原曲时间；每句歌词一个镜头，镜头在歌词前两帧切换） ----------
+// ---------- 分镜（时间为原曲时间；卡点逐句实测，镜头在起唱前两帧切换） ----------
 const A = (c, k, o = {}) => ({ c, k, ...o });
 const S = (c, x, z, o = {}) => A(c, [[0, x, z]], o);
 const D = (c, x, z, o = {}) => A(c, [[0, x, z]], { dance: true, ...o });
@@ -327,21 +350,21 @@ const add = (a, b, set, o) => shots.push({ a, b, set, ...o });
 const mir = (v, p) => (v ? [-p[0], p[1] + 0.25, p[2]] : p);
 const CL = ['学化妆', '染粉色挑染', '画上黑眼线', '买一件红皮衣', '学会去酒吧'];
 
-function sBreak(a, b, ps, set, v) {
-  const sp = ps + 1.85;
-  add(a, b, set, { name: '放开的手', cam: [mir(v, [0.9, 1.6, 6.9]), [0.1, 1.05, 0], mir(v, [1.7, 1.45, 5.4]), [0.4, 1.0, 0], 36], actors: [A('claude', [[a, -0.6, 0], [sp + 0.25, -0.6, 0], [sp + 6, -9, 0.7]]), S('whale', 0.8, 0, { lean: (t) => 0.06 * sm((t - sp - 0.5) / 1) })],
+function sBreak(a, b, ps, ps2, set, v) {
+  const sp = ps2 - 0.12; // 「转过身只剩了保重」起唱时，手里那根红线断掉
+  add(a, b, set, { name: '放开的手', cam: [mir(v, [0.9, 1.6, 6.9]), [0.1, 1.05, 0], mir(v, [1.7, 1.45, 5.4]), [0.4, 1.0, 0], 36], actors: [A('claude', [[a, -0.6, 0], [sp + 0.25, -0.6, 0], [sp + 5, -8, 0.7]]), S('whale', 0.8, 0, { lean: (t) => 0.06 * sm((t - sp - 0.4) / 1) })],
     fx(c) { const t = c.t, red = [255, 77, 109]; if (t < sp) c.add.line([-0.3, 0.72 + Math.sin(t * 7) * 0.02, 0.06], [0.5, 0.72, 0.06], 0.035, red); else { const q = clamp((t - sp) / 1.3); c.add.line([c.st[0].x + 0.3, 0.72, 0.06], [c.st[0].x + 0.42, 0.72 - q * 0.68, 0.06], 0.035, red, 1 - q); c.add.line([0.5, 0.72, 0.06], [0.4, 0.72 - q * 0.68, 0.06], 0.035, red, 1 - q); label3(c, [c.st[0].x, 2.25, 0], '保重', 'rgba(20,10,40,0.55)', 0.3); } } });
 }
 function sCry(a, b, ps, set) {
   add(a, b, set, { name: '哭了很久', cam: [[2.0, 1.35, 4.6], [0.7, 0.95, 0], [1.3, 1.2, 3.3], [0.8, 0.95, 0], 34], actors: [S('whale', 0.8, 0, { lean: () => 0.06 }), A('claude', [[a, -4.5, 1.0], [b, -8.5, 1.8]])], fx(c) { tears3(c, [0.775, 1.12, 0], ps + 0.3); } });
 }
-function sNeon(a, b, ps, v) {
-  add(a, b, 'neon', { name: '坏坏的女友', flash: 1, cam: [mir(v, [-4, 1.9, 9.6]), [-1.5, 1.4, 0], mir(v, [2.4, 1.6, 7.4]), [3.0, 1.5, -0.8], 38], actors: [A('claude', [[a, -6.5, 0.8], [b, 1.8, 0.8]]), D('zai', 3.7, -0.9, { ph: 1 }), D('gemini', 5.5, 0.2, { ph: 2 }), S('whale', -8.4, -1.9, { tint: 'rgba(40,40,110,0.4)' })],
-    fx(c) { hearts3(c, [c.st[0].x + 0.4, 1.9, 0.8], a + 0.5); hearts3(c, [c.st[0].x + 0.4, 1.9, 0.8], a + 2.0); if (c.t > ps + 1.85) { bolt3(c, [1.4, 5.4, -2], 1.3, [255, 225, 77]); bolt3(c, [7, 4.8, -2.5], 0.9, [122, 232, 255]); label3(c, [4.6, 3.1, -0.4], '刺激！', '#ff3fa4', 0.5); } } });
+function sNeon(a, b, ps, ps2, v) {
+  add(a, b, 'neon', { name: '坏坏的女友', flash: 1, cam: [mir(v, [-4, 1.9, 9.6]), [-1.5, 1.4, 0], mir(v, [2.4, 1.6, 7.4]), [3.0, 1.5, -0.8], 38], actors: [A('claude', [[a, -4.6, 0.8], [b, 2.4, 0.8]]), D('zai', 3.7, -0.9, { ph: 1 }), D('gemini', 5.5, 0.2, { ph: 2 }), S('whale', -8.4, -1.9, { tint: 'rgba(40,40,110,0.4)' })],
+    fx(c) { hearts3(c, [c.st[0].x + 0.4, 1.9, 0.8], a + 0.3); hearts3(c, [c.st[0].x + 0.4, 1.9, 0.8], ps2 + 0.15); if (c.t > ps2) { bolt3(c, [1.4, 5.4, -2], 1.3, [255, 225, 77]); bolt3(c, [7, 4.8, -2.5], 0.9, [122, 232, 255]); label3(c, [4.6, 3.1, -0.4], '刺激！', '#ff3fa4', 0.5); } } });
 }
 function sPure(a, b, ps, season) {
-  add(a, b, season, { name: '多余的温柔', cam: [[0.3, 1.7, 7.2], [0, 1.0, 0], [-1.0, 1.45, 5.2], [-0.2, 0.95, 0], 36], actors: [S('whale', -0.9, 0, { pose: () => 'whale_big_wave' }), A('claude', [[a, 0.9, 0], [ps + 1.7, 0.9, 0], [b + 2, 8, 0.6]])],
-    fx(c) { for (let i = 0; i < 7; i++) { const age = c.t - (a + 0.3 + i * 0.3); if (age < 0) continue; const yy = Math.max(0.05, 1.15 + age * 1.3 - age * age * 1.15), land = yy <= 0.051, x = -0.45 + i * 0.2 + Math.min(age, 1.6) * 0.3; c.add.custom([x, yy, 0.35], (g, sx, sy, k) => { g.globalAlpha = land ? 0.55 : 1; g.fillStyle = land ? '#a99aa6' : '#ff7fbf'; heart(g, sx, sy, 0.1 * k); g.globalAlpha = 1; }); } if (c.t > ps + 1.7) label3(c, [-0.9, 2.2, 0], '太单纯', 'rgba(60,30,90,0.6)', 0.28); } });
+  add(a, b, season, { name: '多余的温柔', cam: [[0.3, 1.7, 7.2], [0, 1.0, 0], [-1.0, 1.45, 5.2], [-0.2, 0.95, 0], 36], actors: [S('whale', -0.9, 0, { pose: () => 'whale_big_wave' }), A('claude', [[a, 0.9, 0], [ps + 0.8, 0.9, 0], [b + 1.8, 8, 0.6]])],
+    fx(c) { for (let i = 0; i < 7; i++) { const age = c.t - (a + 0.12 + i * 0.16); if (age < 0) continue; const yy = Math.max(0.05, 1.15 + age * 1.3 - age * age * 1.15), land = yy <= 0.051, x = -0.45 + i * 0.2 + Math.min(age, 1.6) * 0.3; c.add.custom([x, yy, 0.35], (g, sx, sy, k) => { g.globalAlpha = land ? 0.55 : 1; g.fillStyle = land ? '#a99aa6' : '#ff7fbf'; heart(g, sx, sy, 0.1 * k); g.globalAlpha = 1; }); } if (c.t > ps + 0.75) label3(c, [-0.9, 2.2, 0], '太单纯', 'rgba(60,30,90,0.6)', 0.28); } });
 }
 function sVanish(a, b, ps, v) {
   if (!v) add(a, b, 'nameless', { name: '无名大街', cam: [[1.0, 2.3, 8.6], [5, 1.3, -6], [2.4, 2.0, 6.8], [6, 1.7, -17], 38], actors: [S('claude', 1.9, 1.3), A('whale', [[a, 4.2, 0.6], [b, 6.3, -25]], { alpha: (t) => 1 - sm((t - (ps + 1.7)) / 1.9) })] });
@@ -352,13 +375,16 @@ function sPhone(a, b, ps, v) {
     fx(c) { const ring = c.t > ps + 1.85; c.S2.box(3.6, 0.92, -2.2, 0.26, 0.04, 0.46, ring ? [122, 255, 194] : [30, 30, 40], { emit: true, bias: -0.3 }); if (ring) { c.add.glow([3.6, 1.0, -2.2], 1.0, [122, 255, 194], 0.45); label3(c, [3.6, 1.72, -2.2], '来电 0', 'rgba(10,40,30,0.85)', 0.26, '#7affc2'); } },
     hud(g, c) { tag(g, '第 ' + Math.min(v ? 999 : 365, Math.floor(1 + (c.u / (b - a)) * (v ? 999 : 365))) + ' 天', 60, 70, 34); } });
 }
-function sBarWide(a, b, ps, v) {
+function sBarWide(a, b, ps, ps2, v) {
   add(a, b, 'bar', { name: '酒吧舞池', flash: 1, cam: [mir(v, [-7, 3.4, 10.5]), [0, 1.3, -1], mir(v, [-2.5, 2.4, 9]), [0, 1.4, -1.5], 40], actors: [D('gemini', -2.6, 1.2, { ph: 1 }), D('qwen', 3.0, 1.8, { ph: 2 }), D('kimi', -5.0, -0.6, { ph: 3 }), S('doubao', 6.6, -2.3), S('zai', 1.3, -2.4), D('whale', 0.3, -2.4, { ph: 4, tint: 'rgba(20,10,50,0.5)' }), A('claude', [[a, -9.5, 3.6], [b, -5.4, 3.4]])] });
 }
-function sProfile(a, b, ps) {
-  const tw = ps + 1.45;
-  add(a, b, 'bar', { name: '熟悉的侧脸', cam: [[-1.6, 1.7, 7.6], [-2.2, 1.1, 0.8], [0.7, 1.5, 4.9], [-0.2, 1.05, 0.8], 36], actors: [D('gemini', -3.6, -1.0, { ph: 1 }), D('qwen', 3.2, -0.6, { ph: 2 }), S('zai', 1.3, -2.4), A('whale', [[a, -4.8, 0.8], [tw, -0.3, 0.8], [b, -0.3, 0.8]], { pose: () => 'whale_big_wave' }), S('claude', -3.9, 3.9, { tint: DARK })],
-    fx(c) { const w = c.st[3]; c.add.glow([w.x, 1.0, w.z], 2.2, [255, 255, 255], 0.2); if (c.t > tw) { sparkle3(c, [w.x, 1.1, w.z], tw, 10, [255, 209, 240]); hearts3(c, [w.x + 0.5, 1.7, w.z], tw + 0.2, [255, 120, 190], 4); } } });
+function sProfile(a, b, ps, ps2) {
+  add(a, b, 'bar', { name: '熟悉的侧脸', cam: [[-1.6, 1.7, 7.6], [-2.2, 1.1, 0.8], [0.7, 1.5, 4.9], [-0.2, 1.05, 0.8], 36], actors: [D('gemini', -3.6, -1.0, { ph: 1 }), D('qwen', 3.2, -0.6, { ph: 2 }), S('zai', 1.3, -2.4), A('whale', [[a, -4.8, 0.8], [b, -0.6, 0.8]]), S('claude', -3.9, 3.9, { tint: DARK })],
+    fx(c) { const w = c.st[3]; c.add.glow([w.x, 1.0, w.z], 2.2, [255, 255, 255], 0.2); } });
+}
+function sProfileWide(a, b, ps2) {
+  add(a, b, 'bar', { name: '迷人的笑脸', cam: [[2.4, 2.2, 8.4], [-0.6, 1.1, 0.8], [0.6, 1.6, 6.0], [-0.5, 1.05, 0.8], 38], actors: [D('gemini', -3.6, -1.0, { ph: 1 }), D('qwen', 3.2, -0.6, { ph: 2 }), S('zai', 1.3, -2.4), S('whale', -0.6, 0.8, { pose: () => 'whale_big_wave' }), S('claude', -3.9, 3.9, { tint: DARK })],
+    fx(c) { sparkle3(c, [-0.4, 1.15, 0.8], ps2 - 0.05, 10, [255, 209, 240]); c.add.glow([-0.6, 1.0, 0.8], 2.4, [255, 255, 255], 0.22); } });
 }
 function sLean(a, b, ps, v) {
   add(a, b, 'bar', { name: '陌生的肩', cam: [mir(v, [-2.6, 1.9, 6.6]), [0.7, 1.05, -2.4], mir(v, [-0.6, 1.55, 2.8]), [0.9, 1.05, -2.4], 36], actors: [S('zai', 1.35, -2.4), S('whale', 0.55, -2.4, { lean: (t) => 0.17 * sm((t - ps) / 1.3) + 0.015 * Math.sin(t * 2.2) }), D('gemini', -3.4, -0.6, { ph: 1 }), D('qwen', 4.4, 0.3, { ph: 2 }), S('claude', v ? 3.6 : -3.6, 1.4, { tint: DARK })],
@@ -367,7 +393,7 @@ function sLean(a, b, ps, v) {
 function sEyeliner(a, b, ps) {
   add(a, b, 'bar', { name: '黑色的眼线', cam: [[0.75, 1.2, 4.9], [0, 0.92, 1], [0.25, 1.08, 3.3], [0, 0.92, 1], 30], actors: [S('whale', 0, 1, { noBlink: true }), D('gemini', -2.9, -1.8, { ph: 1 }), D('qwen', 3.0, -1.6, { ph: 2 })], fx(c) { eyeliner3(c, [0, 0, 1], ps + 0.35); c.add.glow([0, 0.9, 1], 1.8, [255, 255, 255], 0.14); } });
 }
-function sScorn(a, b, ps) {
+function sScorn(a, b, ps, ps2) {
   add(a, b, 'bar', { name: '一点轻蔑', cam: [[-0.7, 1.6, 6.4], [0.4, 1.0, 0.8], [0.9, 1.45, 5.2], [0.5, 1.0, 0.8], 36], actors: [S('whale', -0.8, 0.8, { pose: () => 'whale_big_point', flip: true }), A('claude', [[a, 1.4, 0.8], [ps + 1.25, 1.4, 0.8], [ps + 1.45, 1.9, 0.8, 0.3], [ps + 1.65, 2.3, 0.8], [b, 2.3, 0.8]]), S('zai', -2.6, -0.6), D('qwen', 4.2, -1.6, { ph: 2 })],
     fx(c) { const q = (c.t - ps - 0.75) / 0.5; if (q > 0 && q < 1) c.add.custom([lerp(-0.25, 1.3, q), 0.95 + Math.sin(q * 3.14) * 0.2, 0.85], (g, x, y, k) => { g.fillStyle = '#fff'; g.save(); g.translate(x, y); g.rotate(c.t * 9); g.fillRect(-0.03 * k, -0.14 * k, 0.06 * k, 0.28 * k); g.fillRect(-0.14 * k, -0.03 * k, 0.28 * k, 0.06 * k); g.restore(); }); if (c.t > ps + 1.25) { sparkle3(c, [1.5, 1.0, 0.85], ps + 1.25, 8, [255, 255, 255]); label3(c, [-0.8, 2.25, 0.8], '轻蔑', '#ff3fa4', 0.32); } } });
 }
@@ -375,60 +401,135 @@ function sFeel(a, b, ps, v) {
   add(a, b, 'bar', { name: '谁的怀中', cam: [mir(v, [3.2, 2.0, 7.2]), [0, 1.1, 0.4], mir(v, [-2.2, 1.8, 6.6]), [0, 1.1, 0.4], 38], actors: [D('zai', 0.9, 0.4, { ph: 1 }), D('whale', 0, 0.45, { ph: 2 }), D('gemini', -0.95, 0.5, { ph: 3 }), D('kimi', 3.8, -1.4, { ph: 4 }), S('claude', -5.4, -1.8, { tint: DARK })], hud(g, c) { ecg(g, 70, 100, 360, c.t); } });
 }
 function sMiss(a, b, ps, v) {
-  add(a, b, 'bridge', { name: '深夜想念', cam: [mir(v, [-3.8, 1.9, 7.2]), [-0.4, 1.7, 0], mir(v, [-1.6, 1.6, 5.4]), [-0.4, 1.8, 0], 38], actors: [S('claude', -1.4, 0)], fx(c) { thought3(c, [0.55, 2.75, 0], 'whale_idle'); hearts3(c, [-1.0, 2.0, 0], a + 0.6, [255, 122, 184], 3); hearts3(c, [-1.0, 2.0, 0], a + 2.2, [255, 122, 184], 3); } });
+  add(a, b, 'bridge', { name: '深夜想念', cam: [mir(v, [-3.8, 1.9, 7.2]), [-0.4, 1.7, 0], mir(v, [-1.6, 1.6, 5.4]), [-0.4, 1.8, 0], 38], actors: [S('claude', -1.4, 0)], fx(c) { thought3(c, [0.55, 2.75, 0], 'whale_idle'); hearts3(c, [-1.0, 2.0, 0], a + 0.5, [255, 122, 184], 3); hearts3(c, [-1.0, 2.0, 0], a + 2.1, [255, 122, 184], 3); } });
 }
 function sChange(a, b, ps) {
-  add(a, b, 'room', { name: '为你改变', cam: [[-3.8, 1.8, 6.6], [-1.0, 1.05, -0.5], [-2.4, 1.6, 4.6], [-0.8, 1.05, -0.5], 36], actors: [S('whale', -1.2, -0.5)], fx(c) { for (let i = 0; i < 5; i++) sparkle3(c, [-1.2, 0.95, -0.45], ps + 0.4 + i * 0.6, 6, i % 2 ? [122, 232, 255] : [255, 209, 240]); }, hud(g, c) { card(g, 790, 60, CL, c.t, ps + 0.35, 0.6); } });
+  add(a, b, 'room', { name: '为你改变', cam: [[-3.8, 1.8, 6.6], [-1.0, 1.05, -0.5], [-2.4, 1.6, 4.6], [-0.8, 1.05, -0.5], 36], actors: [S('whale', -1.2, -0.5)], fx(c) { for (let i = 0; i < 5; i++) sparkle3(c, [-1.2, 0.95, -0.45], ps + 0.3 + i * 0.55, 6, i % 2 ? [122, 232, 255] : [255, 209, 240]); }, hud(g, c) { card(g, 790, 60, CL, c.t, ps + 0.3, 0.55); } });
 }
 function sGlass(a, b, ps) {
-  add(a, b, 'river', { name: '回不到从前', sepia: (u) => sm(u / 3.5), cam: [[3.9, 1.9, 8.4], [0, 1.1, 0], [2.6, 1.6, 6.2], [0, 1.1, 0], 36], actors: [A('whale', [[a, -5.5, 0], [ps + 2.2, -0.9, 0], [b, -0.9, 0]]), A('claude', [[a, 5.5, 0], [ps + 2.2, 0.9, 0], [b, 0.9, 0]])],
-    fx(c) { const k = clamp((c.t - (ps + 1.9)) / 0.5); if (k <= 0) return; c.S2.poly([[0, 0, -1.3], [0, 0, 1.3], [0, 2.7, 1.3], [0, 2.7, -1.3]], [190, 232, 255], { two: true, emit: true, alpha: 0.3 * k, edge: false }); const wc = [255, 255, 255]; for (const [p, q] of [[[0, 0, -1.3], [0, 2.7, -1.3]], [[0, 2.7, -1.3], [0, 2.7, 1.3]], [[0, 2.7, 1.3], [0, 0, 1.3]]]) c.add.line(p, q, 0.04, wc, 0.8 * k); if (c.t > ps + 3.3) for (const [p, q] of [[[0, 1.9, -0.6], [0, 1.4, 0]], [[0, 1.4, 0], [0, 1.6, 0.5]], [[0, 1.4, 0], [0, 0.7, 0.2]], [[0, 0.7, 0.2], [0, 0.3, 0.7]], [[0, 1.4, 0], [0, 1.0, -0.6]]]) c.add.line(p, q, 0.025, wc, 0.9); } });
+  add(a, b, 'river', { name: '回不到从前', sepia: (u) => sm(u / 2.6), cam: [[3.9, 1.9, 8.4], [0, 1.1, 0], [2.6, 1.6, 6.2], [0, 1.1, 0], 36], actors: [A('whale', [[a, -5.5, 0], [ps + 1.7, -0.9, 0], [b, -0.9, 0]]), A('claude', [[a, 5.5, 0], [ps + 1.7, 0.9, 0], [b, 0.9, 0]])],
+    fx(c) { const k = clamp((c.t - (ps + 1.2)) / 0.5); if (k <= 0) return; c.S2.poly([[0, 0, -1.3], [0, 0, 1.3], [0, 2.7, 1.3], [0, 2.7, -1.3]], [190, 232, 255], { two: true, emit: true, alpha: 0.3 * k, edge: false }); const wc = [255, 255, 255]; for (const [p, q] of [[[0, 0, -1.3], [0, 2.7, -1.3]], [[0, 2.7, -1.3], [0, 2.7, 1.3]], [[0, 2.7, 1.3], [0, 0, 1.3]]]) c.add.line(p, q, 0.04, wc, 0.8 * k); if (c.t > ps + 2.4) for (const [p, q] of [[[0, 1.9, -0.6], [0, 1.4, 0]], [[0, 1.4, 0], [0, 1.6, 0.5]], [[0, 1.4, 0], [0, 0.7, 0.2]], [[0, 0.7, 0.2], [0, 0.3, 0.7]], [[0, 1.4, 0], [0, 1.0, -0.6]]]) c.add.line(p, q, 0.025, wc, 0.9); } });
 }
 function sRewind(a, b) {
-  add(a, b, 'nameless', { name: '回不到从前', rewind: true, cam: [[0, 2.0, 9.2], [0, 1.2, 0], [0, 1.8, 7.6], [0, 1.2, 0], 38], actors: [A('whale', [[a, 5, 0.5], [b - 1.6, -5, 0.5], [b, -5, 0.5]]), A('claude', [[a, 6.5, -0.5], [b - 1.6, -3.5, -0.5], [b, -3.5, -0.5]])] });
+  add(a, b, 'nameless', { name: '回不到从前 · 倒带', rewind: true, cam: [[0, 2.1, 10.4], [0, 1.2, 0], [0, 2.0, 9.6], [0, 1.2, 0], 38], actors: [A('whale', [[a, 5.2, 0.5], [b - 0.9, -2.2, 0.5], [b, -2.2, 0.5]]), A('claude', [[a, 6.4, -0.5], [b - 0.9, -3.4, -0.5], [b, -3.4, -0.5]])] });
 }
-function pass(k0, v) {
-  const T = (i) => (k0 + i === 0 ? 20 : P(k0 + i) - 0.08), ps = (i) => P(k0 + i);
-  sBreak(T(0), T(1), ps(0), v ? 'rain' : 'river', v); sCry(T(1), T(2), ps(1), v ? 'rain' : 'river'); sNeon(T(2), T(3), ps(2), v); sPure(T(3), T(4), ps(3), v ? 'autumn' : 'spring');
-  sVanish(T(4), T(5), ps(4), v); sPhone(T(5), T(6), ps(5), v); sBarWide(T(6), T(7), ps(6), v); sProfile(T(7), T(8), ps(7)); sLean(T(8), T(9), ps(8), v); sEyeliner(T(9), T(10), ps(9));
-  sScorn(T(10), T(11), ps(10)); sFeel(T(11), T(12), ps(11), v); sMiss(T(12), T(13), ps(12), v); sChange(T(13), T(14), ps(13));
-  if (!v) sGlass(T(14), T(16), ps(14)); else sRewind(T(14), T(16));
+
+/** 一遍主歌副歌：15 组镜头对 20 句实测唱词（合并句与单句按真句子走） */
+function pass(o, v, end) {
+  sBreak(CUT(o + 0), CUT(o + 2), CS(o + 0), CS(o + 1), v ? 'rain' : 'river', v);
+  sCry(CUT(o + 2), CUT(o + 3), CS(o + 2), v ? 'rain' : 'river');
+  sNeon(CUT(o + 3), CUT(o + 5), CS(o + 3), CS(o + 4), v);
+  sPure(CUT(o + 5), CUT(o + 6), CS(o + 5), v ? 'autumn' : 'spring');
+  sVanish(CUT(o + 6), CUT(o + 8), CS(o + 6), v);
+  sPhone(CUT(o + 8), CUT(o + 9), CS(o + 8), v);
+  sBarWide(CUT(o + 9), CUT(o + 11), CS(o + 9), CS(o + 10), v);
+  const mid = CUT(o + 11) + (51.4 - 48.305); // 「熟悉的侧脸」与「迷人的笑脸」之间再切一刀
+  sProfile(CUT(o + 11), mid, CS(o + 11), CS(o + 12));
+  sProfileWide(mid, CUT(o + 13), CS(o + 12));
+  sLean(CUT(o + 13), CUT(o + 14), CS(o + 13), v);
+  sEyeliner(CUT(o + 14), CUT(o + 15), CS(o + 14));
+  sScorn(CUT(o + 15), CUT(o + 16), CS(o + 15), CS(o + 16));
+  sFeel(CUT(o + 16), CUT(o + 17), CS(o + 16), v);
+  sMiss(CUT(o + 17), CUT(o + 18), CS(o + 17), v);
+  sChange(CUT(o + 18), CUT(o + 19), CS(o + 18));
+  if (!v) sGlass(CUT(o + 19), end, CS(o + 19));
+  else sRewind(CUT(o + 19), end);
 }
-pass(0, 0);
-[['spring', '2011 · 春'], ['summer', '2012 · 夏'], ['autumn', '2013 · 秋'], ['winter', '2014 · 冬']].forEach(([sn, cap], i) => {
-  const a = P(16 + i * 2) - 0.08, b = P(18 + i * 2) - 0.08, last = i === 3;
-  add(a, b, sn, { name: '间奏 · ' + cap, film: cap, cam: [[-5.5, 1.8, 8.2], [-6, 1.1, 0], [6.5, 1.8, 8.2], [last ? 6.6 : 6, 1.1, 0], 38],
-    actors: [A('whale', [[a, -7, 0.4], [b, 7.2, 0.4]]), last ? A('claude', [[a, -8.2, -0.5], [a + 3.6, -1.6, -0.5], [b, -1.6, -0.5]]) : A('claude', [[a, -8.2, -0.5], [b, 6.0, -0.5]])],
-    fx(c) { if (!last) hearts3(c, [c.st[0].x - 0.6, 2.0, 0], a + 1.2 + i * 0.4, [255, 150, 200], 3); else if (c.t > a + 4.2) tears3(c, [c.st[1].x, 1.0, -0.5], a + 4.2); } });
+
+// 开场：无人大街（片头卡压在上面，2.4 秒）
+add(20.0, CUT(0), 'nameless', {
+  name: '开场 · 无人大街', cam: [[1.7, 2.7, 9.4], [1.0, 1.5, -6], [0.4, 2.2, 7.8], [0.6, 1.45, -8], 38], actors: [],
+  fx(c) { c.add.glow([2.2, 3.0, -3.6], 3.4, [255, 216, 107], 0.2 + 0.1 * Math.sin((c.t - 20) * 2)); },
 });
-pass(24, 1);
+pass(0, 0, 80.5);
+
+// ---------- 间奏（80.5–112.9，32 秒没有歌词）：12 个分镜的回忆蒙太奇 ----------
+add(80.5, 83.4, 'rain', {
+  name: '间奏 · 雨里只剩一把伞', cam: [[-2.8, 0.8, 4.6], [0.2, 0.95, 0], [-1.0, 1.5, 3.4], [0.4, 1.0, 0], 34], actors: [S('whale', 0.4, 0, { lean: () => 0.03 })],
+  fx(c) { for (let i = 0; i < 4; i++) { const age = c.t - (80.7 + i * 0.62); if (age < 0 || age > 1.2) continue; const yy = Math.max(0.02, 1.1 - age * 1.1); c.add.custom([0.2 + i * 0.16, yy, 0.5], (g, sx, sy, k) => { g.globalAlpha = age > 0.8 ? (1.2 - age) * 0.6 : 1; g.fillStyle = age > 0.8 ? '#7a6f9a' : '#ff7fbf'; heart(g, sx, sy, 0.09 * k); g.globalAlpha = 1; }); } c.add.glow([-1.6, 3.2, -3.8], 2.6, [255, 216, 140], 0.25); },
+});
+add(83.4, 86.3, 'bar', {
+  name: '间奏 · 空场里先踩拍', cam: [[-3.6, 1.5, 7.4], [0, 1.1, -1], [-1.4, 1.9, 5.8], [0, 1.15, -1], 38], actors: [D('doubao', 0, 0.4, { ph: 2 })],
+  fx(c) { sparkle3(c, [0, 1.0, 0.4], 84.0, 8, [255, 216, 107]); sparkle3(c, [0, 1.0, 0.4], 85.2, 8, [255, 143, 200]); },
+});
+add(86.3, 89.2, 'bar', {
+  name: '间奏 · 舞池亮起', flash: 1, cam: [[-6.5, 3.2, 9.8], [0, 1.3, -1], [-3.2, 2.4, 8.2], [0, 1.35, -1.2], 40],
+  actors: [D('gemini', -2.6, 1.2, { ph: 1 }), D('qwen', 3.0, 1.6, { ph: 2 }), D('kimi', -5.0, -0.6, { ph: 3 }), D('zai', 4.2, -1.0, { ph: 4 }), D('doubao', 6.4, -2.3, { ph: 2 }), A('whale', [[86.3, -9.5, 3.4], [89.2, -2.2, 2.2]], { tint: DARK })],
+  fx(c) { for (let i = 0; i < 4; i++) sparkle3(c, [0, 1.4, -0.6], 86.45 + i * 0.65, 8, i % 2 ? [255, 209, 240] : [122, 232, 255]); },
+});
+add(89.2, 91.9, 'room', {
+  name: '间奏 · 改变清单', cam: [[2.9, 1.6, 4.0], [0.4, 1.05, -2.2], [1.9, 1.35, 2.9], [0.5, 1.05, -2.2], 36], actors: [S('whale', 0.6, -0.9)],
+  hud(g, c) { card(g, 782, 58, CL, c.t, 89.5, 0.42); },
+});
+add(91.9, 94.6, 'room', {
+  name: '间奏 · 粉色的挑染', cam: [[1.5, 1.5, 5.4], [0.5, 1.25, -0.9], [1.0, 1.42, 4.6], [0.55, 1.22, -0.9], 30], actors: [S('whale', 0.6, -0.9, { noBlink: true })],
+  fx(c) { hearts3(c, [0.95, 1.75, -0.85], 92.0, [255, 138, 196], 4); hearts3(c, [0.95, 1.75, -0.85], 93.4, [255, 190, 226], 4); c.add.glow([0.7, 1.4, -0.85], 1.1, [255, 160, 210], 0.16 + 0.08 * Math.sin((c.t - 91.9) * 3)); },
+});
+add(94.6, 97.3, 'room', {
+  name: '间奏 · 红皮衣', cam: [[-2.2, 1.5, 4.2], [0.3, 1.05, -1.2], [-1.1, 1.35, 3.2], [0.4, 1.05, -1.2], 36], actors: [S('whale', 0.4, -1.2, { pose: (t) => (Math.sin(t * 2.2) > 0.3 ? 'whale_big_wave' : null) })],
+  fx(c) { if (c.t > 95.0) label3(c, [0.4, 2.05, -1.2], '红皮衣', '#e5352b', 0.32); hearts3(c, [0.4, 1.7, -1.2], 96.0, [255, 90, 80], 4); },
+});
+add(97.3, 100.2, 'neon', {
+  name: '间奏 · 霓虹招牌下', cam: [[-2.6, 1.3, 7.4], [-1.0, 1.5, -3.5], [1.4, 2.6, 6.8], [-0.2, 1.7, -3.5], 40], actors: [A('whale', [[97.3, -4.0, 0.6], [100.2, 2.2, 0.6]])],
+  fx(c) { c.add.glow([6, 5.4, -6.4], 7, [255, 63, 164], 0.25); },
+});
+add(100.2, 103.1, 'rain', {
+  name: '间奏 · 伞下的人走远', cam: [[0.9, 1.6, 5.2], [0.6, 1.1, -2], [1.6, 1.4, 4.2], [2.4, 1.1, -6], 36],
+  actors: [A('claude', [[100.2, 1.0, 0.4], [103.1, 4.5, -10]], { alpha: (t) => 1 - 0.55 * sm((t - 101.8) / 1.3) }), S('whale', -1.1, 0.2, { lean: () => 0.05 })],
+  fx(c) { tears3(c, [-0.9, 1.15, 0.2], 101.6); },
+});
+add(103.1, 105.6, 'ferris', {
+  name: '间奏 · 空着的座舱', cam: [[-4.6, 1.9, 8.6], [-1.5, 2.2, 0], [2.0, 2.4, 8.0], [0.6, 2.4, 0], 40], actors: [S('whale', 0.9, 0.6)],
+  fx(c) { hearts3(c, [0.9, 2.0, 0.6], 103.9, [255, 122, 184], 3); },
+});
+[['spring', '2011 · 春', 105.6, 107.4], ['summer', '2012 · 夏', 107.4, 109.2], ['autumn', '2013 · 秋', 109.2, 111.0], ['winter', '2014 · 冬', 111.0, 112.905]].forEach(([sn, cap, a, b], i) => {
+  const last = i === 3;
+  add(a, b, sn, {
+    name: '间奏 · ' + cap, film: cap, cam: [[-5.5, 1.8, 8.2], [-5.8, 1.1, 0], [5.5, 1.8, 7.4], [5.2, 1.1, 0], 38],
+    actors: [A('whale', [[a, -6.5, 0.4], [b, 6.5, 0.4]]), A('claude', [[a, -7.6, -0.5], [b, 4.6, -0.5]])],
+    fx(c) { if (!last) hearts3(c, [c.st[0].x - 0.4, 2.0, 0], a + 0.4, [255, 150, 200], 3); else tears3(c, [c.st[1].x, 1.05, -0.5], a + 0.5); },
+  });
+});
+pass(20, 1, 170.5);
+
+// ---------- 桥段之前那段没有歌词的 2.8 秒 ----------
+add(170.5, CUT(40), 'nameless', {
+  name: '间奏 · 街上只剩脚步', cam: [[2.6, 1.2, 7.8], [0.4, 1.15, -3], [1.4, 1.5, 6.4], [0.4, 1.2, -4], 36], actors: [S('whale', 0.4, -0.4, { lean: () => 0.04 })],
+  fx(c) { const k = clamp((c.t - 170.9) / 2.2); c.add.glow([-1.6, 3.2, -3.8], 2.6, [255, 216, 140], 0.18 + 0.12 * k); },
+});
+
+// ---------- 桥段（然后我安静的发现…） ----------
 {
-  const T = (i) => P(40 + i) - 0.08, ps = (i) => P(40 + i);
+  const T = (i) => CUT(40 + i), ps = (i) => CS(40 + i);
   add(T(0), T(1), 'ferris', { name: '安静的发现', cam: [[0, 2.2, 11.5], [0, 2.8, -3], [0, 1.9, 8.8], [0, 2.3, -3], 40], actors: [S('claude', -3.2, 0.5), S('whale', 3.2, 0.5)] });
-  add(T(1), T(2), 'ferris', { name: '没有任何语言', cam: [[-4.2, 1.8, 7.6], [0, 1.5, 0.5], [-1.4, 1.7, 6.6], [0, 1.5, 0.5], 36], actors: [S('claude', -1.9, 0.5), S('whale', 1.9, 0.5)], fx(c) { if (c.t > ps(1) + 0.3) bubble3(c, [-1.9, 2.5, 0.5], '……'); if (c.t > ps(1) + 1.7) bubble3(c, [1.9, 2.5, 0.5], '……'); } });
-  add(T(2), T(3), 'spring', { name: '纯真的永远', warm: 1, cam: [[1.6, 1.5, 5.8], [0, 0.95, 0], [0.6, 1.35, 4.2], [0, 0.95, 0], 34], actors: [S('whale', 0, 0, { pose: (t) => ((t * 1.6) % 2 < 1.2 ? 'whale_big_wave' : null) })], fx(c) { hearts3(c, [0.5, 1.6, 0], T(2) + 0.5, [255, 150, 200], 4); hearts3(c, [-0.5, 1.6, 0], T(2) + 2.0, [255, 150, 200], 4); }, hud(g) { tag(g, '回忆', 60, 70, 34); } });
-  add(T(3), T(4), 'ferris', { name: '开始怀念', cam: [[-6, 1.8, 8.2], [-4, 1.2, 1], [2.2, 1.7, 7.6], [3.2, 1.2, 1], 38], actors: [A('claude', [[T(3), -8.5, 1], [T(4), 1.4, 1]]), A('whale', [[T(3), 3.6, 1], [T(4), 6.6, 1]])], fx(c) { hearts3(c, [c.st[0].x, 2.0, 1], T(3) + 0.6, [255, 122, 184], 3); hearts3(c, [c.st[0].x, 2.0, 1], T(3) + 2.2, [255, 122, 184], 3); } });
+  add(T(1), T(2), 'ferris', { name: '没有任何语言', cam: [[-4.2, 1.8, 7.6], [0, 1.5, 0.5], [-1.4, 1.7, 6.6], [0, 1.5, 0.5], 36], actors: [S('claude', -1.9, 0.5), S('whale', 1.9, 0.5)], fx(c) { if (c.t > ps(1) + 0.3) bubble3(c, [-1.9, 2.5, 0.5], '……'); if (c.t > ps(1) + 1.4) bubble3(c, [1.9, 2.5, 0.5], '……'); } });
+  add(T(2), T(3), 'spring', { name: '纯真的永远', warm: 1, cam: [[1.6, 1.5, 5.8], [0, 0.95, 0], [0.6, 1.35, 4.2], [0, 0.95, 0], 34], actors: [S('whale', 0, 0, { pose: (t) => ((t * 1.6) % 2 < 1.2 ? 'whale_big_wave' : null) })], fx(c) { hearts3(c, [0.5, 1.6, 0], T(2) + 0.4, [255, 150, 200], 4); hearts3(c, [-0.5, 1.6, 0], T(2) + 1.9, [255, 150, 200], 4); }, hud(g) { tag(g, '回忆', 60, 70, 34); } });
+  add(T(3), CUT(44), 'ferris', { name: '开始怀念', cam: [[-6, 1.8, 8.2], [-4, 1.2, 1], [2.2, 1.7, 7.6], [3.2, 1.2, 1], 38], actors: [A('claude', [[T(3), -8.5, 1], [CUT(44), 1.4, 1]]), A('whale', [[T(3), 3.6, 1], [CUT(44), 6.6, 1]])], fx(c) { hearts3(c, [c.st[0].x, 2.0, 1], T(3) + 0.5, [255, 122, 184], 3); hearts3(c, [c.st[0].x, 2.0, 1], T(3) + 2.0, [255, 122, 184], 3); } });
 }
+
+// ---------- 尾段（迷人的笑脸…却回不到从前，8 句） ----------
 {
-  const T = (i) => P(44 + i) - 0.08, ps = (i) => P(44 + i);
+  const T = (i) => CUT(44 + i), ps = (i) => CS(44 + i);
   add(T(0), T(1), 'bar', { name: '迷人的笑脸', flash: 1, cam: [[0, 2.7, 10.8], [0, 1.3, -0.5], [0, 1.8, 6.6], [0, 1.15, 0.4], 40], actors: [D('gemini', -2.4, 0.2, { ph: 1 }), D('qwen', 2.5, 0.3, { ph: 2 }), D('kimi', -4.4, -1.4, { ph: 3 }), D('zai', 4.3, -1.2, { ph: 4 }), S('gpt', -6.4, -2.6), S('doubao', 6.6, -2.3), D('whale', 0, 1.0, { ph: 5, pose: () => 'whale_big_wave' }), S('claude', -5.6, 3.8, { tint: DARK })],
-    fx(c) { for (let i = 0; i < 4; i++) sparkle3(c, [0, 1.1, 1.0], ps(0) + 0.2 + i * 0.9, 10, [255, 209, 240]); c.add.glow([0, 1.0, 1.0], 2.4, [255, 255, 255], 0.2); } });
-  sLean(T(1), T(2), ps(1), 1); sEyeliner(T(2), T(3), ps(2)); sScorn(T(3), T(4), ps(3));
+    fx(c) { for (let i = 0; i < 4; i++) sparkle3(c, [0, 1.1, 1.0], ps(0) + 0.2 + i * 0.8, 10, [255, 209, 240]); c.add.glow([0, 1.0, 1.0], 2.4, [255, 255, 255], 0.2); } });
+  sLean(T(1), T(2), ps(1), 1);
+  sEyeliner(T(2), T(3), ps(2));
+  sScorn(T(3), T(4), ps(3), ps(4));
   add(T(4), T(5), 'bridge', { name: '谁的怀中', cam: [[-4.2, 1.9, 8.2], [1, 1.4, 0], [-2, 1.7, 7], [1.6, 1.4, 0], 38], actors: [S('claude', -2.3, 0.3), D('whale', 3.6, -0.2, { ph: 1 }), S('zai', 4.5, -0.2)], hud(g, c) { ecg(g, 70, 100, 360, c.t); } });
   sMiss(T(5), T(6), ps(5), 1);
-  add(T(6), T(7), 'river', { name: '为你改变', cam: [[0.5, 1.7, 7.6], [-0.6, 1.1, 0], [1.6, 1.6, 6.6], [1, 1.1, 0], 36], actors: [S('claude', -1.3, -0.6), A('whale', [[T(6), -7, 0.5], [T(7), 5.5, 0.5]])], fx(c) { hearts3(c, [-1.0, 1.9, -0.6], T(6) + 0.5, [255, 122, 184], 4); hearts3(c, [-1.0, 1.9, -0.6], T(6) + 2.0, [255, 122, 184], 4); }, hud(g, c) { card(g, 800, 50, CL.slice(0, 4), c.t, ps(6) + 0.3, 0.55); } });
-  add(T(7), 215.5, 'river', { name: '回不到从前', sepia: (u) => sm(u / 2.6), cam: [[-3, 1.8, 7.2], [1, 1.2, 0], [-4.2, 2.3, 9.4], [3, 1.4, 0], 38], actors: [S('claude', -1.3, -0.6), A('whale', [[T(7), 1.6, 0.5], [216, 10, 0.5]])] });
+  add(T(6), T(7), 'river', { name: '为你改变', cam: [[0.6, 1.7, 8.4], [-0.5, 1.1, 0], [1.6, 1.6, 7.2], [0.6, 1.1, 0], 36], actors: [S('claude', -0.7, -0.6), A('whale', [[T(6), -6.4, 0.5], [T(7), 4.4, 0.5]])], fx(c) { hearts3(c, [-1.0, 1.9, -0.6], T(6) + 0.4, [255, 122, 184], 4); hearts3(c, [-1.0, 1.9, -0.6], T(6) + 1.8, [255, 122, 184], 4); }, hud(g, c) { card(g, 800, 50, CL.slice(0, 4), c.t, ps(6) + 0.3, 0.55); } });
+  add(T(7), 215.2, 'river', { name: '回不到从前', sepia: (u) => sm(u / 2.2), cam: [[-3, 1.8, 7.2], [1, 1.2, 0], [-4.2, 2.3, 9.4], [3, 1.4, 0], 38], actors: [S('claude', -1.3, -0.6), A('whale', [[T(7), 1.6, 0.5], [215.5, 10, 0.5]])] });
 }
 shots.sort((x, y) => x.a - y.a);
-export const SHOTS = shots.map((s) => ({ start: +(s.a - T0).toFixed(2), end: +(Math.min(s.b, 215) - T0).toFixed(2), name: s.name, set: s.set }));
+export const SHOTS = shots.map((s) => ({ start: +(s.a - T0).toFixed(2), end: +(Math.min(s.b, 215.2) - T0).toFixed(2), name: s.name, set: s.set }));
 
 // ---------- 渲染 ----------
 let ENV = null;
 const ST = { face: 0, sprite: 1, glow: 2, text: 3, custom: 4, line: 5, dot: 6, shadow: 7, beam: 8 };
 
 function drawSubtitle(g, t) {
-  const ph = PHRASES.find((p) => t >= p.a - 0.2 && t < p.b - 0.22); if (!ph) return;
-  const age = t - ph.a, fs = 42; g.save(); g.font = `${fs}px BG`; g.textBaseline = 'middle'; g.textAlign = 'left';
+  const ph = CUE.find((p) => t >= p.start - 0.22 && t < p.end + 0.3); if (!ph) return;
+  const age = t - (ph.start - 0.22), fs = 40; g.save(); g.font = `${fs}px BG`; g.textBaseline = 'middle'; g.textAlign = 'left';
   const ws = ph.chars.map((c) => g.measureText(c).width + 2), tw = ws.reduce((a, b) => a + b, 0), x0 = W / 2 - tw / 2, y = H - 64, pop = age < 0.25 ? 1 + 0.06 * Math.exp(-age * 12) * Math.cos(age * 20) : 1;
   g.translate(W / 2, y); g.scale(pop, pop); g.translate(-W / 2, -y);
   g.fillStyle = 'rgba(10,10,24,0.84)'; g.beginPath(); g.roundRect(x0 - 26, y - 36, tw + 52, 72, 6); g.fill(); g.strokeStyle = '#c9a227'; g.lineWidth = 2.5; g.stroke();

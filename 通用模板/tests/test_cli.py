@@ -2,7 +2,7 @@
 """音频工具的测试：全部用「已知答案」的合成信号（不是真人配音 / 真歌）。
     python3 -m unittest discover -s 通用模板/tests -p 'test_*.py'
 覆盖：audio_mix.py（按采样对位、淡出、配乐压低、干声可减回）、align_voice.py（按停顿切句、逐词对齐、拒绝伪造）、
-      align_beats.py（实测拍点、吸附）、film.mjs plan（规划轴公式与旧项目 Day14 的规划逐句一致）。
+      align_beats.py（实测拍点、吸附）、film.mjs plan（规划轴公式与旧项目 Day14 的规划逐句一致，夹具在 tests/fixtures/）。
 """
 import json
 import os
@@ -262,15 +262,16 @@ class AlignBeats(unittest.TestCase):
 
 class PlanFormula(unittest.TestCase):
     def test_reproduces_archived_day14_planning_line_by_line(self):
-        """规划轴的估法沿用旧项目：拿存档里的 Day14 台词重估一遍，应当与存档里的 planning.json 逐句一致"""
-        old_dir = os.path.join(REPO, '存档', '重构前', 'Day', 'Day14')
-        old = jload(os.path.join(old_dir, 'planning.json'))
+        """规划轴的估法沿用旧项目：拿 Day14 的台词重估一遍，应当与当年那份 planning.json 逐句一致
+        （台词与 planning.json 作为回归夹具放在 tests/fixtures/；Day 线已从仓库删除）"""
+        fix = os.path.join(HERE, 'fixtures')
+        old = jload(os.path.join(fix, 'day14_planning.json'))
         d = tempfile.mkdtemp()
         proj = os.path.join(d, 'p')
         os.makedirs(proj)
         wtext(os.path.join(proj, 'film.json'), json.dumps({'id': 'plan-test', 'kind': 'day', 'title': 't', 'script': '台词.txt', 'speaker': 'whale'}))
         wtext(os.path.join(proj, 'project.tsx'), '// 测试占位\n')
-        wtext(os.path.join(proj, '台词.txt'), rtext(os.path.join(old_dir, 'Day14配音台词.txt')))
+        wtext(os.path.join(proj, '台词.txt'), rtext(os.path.join(fix, 'day14_台词.txt')))
         r = subprocess.run(['node', os.path.join(CLI, 'film.mjs'), 'plan', proj, '--work', os.path.join(d, 'w')], capture_output=True, text=True)
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
         new = jload(os.path.join(proj, 'cues.json'))
