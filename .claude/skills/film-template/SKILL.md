@@ -81,7 +81,7 @@ npm run film -- full <目录>      # frames → encode → mux → qa → sheet
 - 往 Canvas 上画字时字体写成 `sans-serif` 或某个系统字体 → 每台机器画出来不一样。字体一律用 `@tpl/fonts` 的 `FONT`（`` `900 40px ${FONT}` ``），或者用 `writeLine()`。文字预检会报。
 - 台词或道具上用了字体里没有的字（箭头、星号、音符、带圈数字、生僻字）→ 豆腐块。换成汉字，或者用画出来的贴片 `sprite('star' | 'note' | 'heart' | 'zzz')`。
 
-参考作品：MV 看 `番外MV/童话镇/`，口播看 `Day/Day14/`（镜头全部用 `lineU` / `when` 写的）。
+参考作品：MV 看 `番外MV/童话镇/`；口播看 `通用模板/样板/day/`（原口播线 Day14/Day15 已于 2026-11-12 删除，`git checkout b172588 -- Day/` 可取回）。
 
 ## 6. 汇报
 
