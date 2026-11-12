@@ -1,0 +1,15 @@
+{
+  "id": "day15",
+  "kind": "day",
+  "title": "小克把家重新装修了，米饭没了",
+  "script": "台词.txt",
+  "speaker": "whale",
+  "output": "成片/Day15",
+  "video": {
+    "bitrate": "1800k",
+    "preset": "medium"
+  },
+  "audio": {
+    "file": "素材/鲸鱼鲸落_克隆配音_最终版.wav"
+  }
+}

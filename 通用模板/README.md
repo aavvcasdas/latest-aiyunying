@@ -17,12 +17,12 @@ pip install --user numpy pillow                    # 对齐 / 自检用
 
 npm run film -- info   番外MV/童话镇                # 打印时间轴：每个镜头从第几帧开始
 npm run film -- sheet  番外MV/童话镇                # 分镜总览图（每个镜头一格）
-npm run film -- sheet  通用模板/样板/day --shot C05,C06   # 只看某几个镜头：每个从头到尾抽 6 格
+npm run film -- sheet  Day/Day14 --shot C05,C06    # 只看某几个镜头：每个从头到尾抽 6 格
 npm run film -- stills 番外MV/童话镇 720 2600       # 抽查任意帧
 npm run film -- full   番外MV/童话镇                # 整片：逐帧渲染 → 编码 → 混音 → 自检 → 总览图
 npm run film -- strip  番外MV/童话镇                # 渲完以后：整片每秒一格的胶片条，从头到尾过一遍
 
-npm run new -- day Day/新一集 "标题"                 # 新开一集口播（这条线现在不做，模板还在）
+npm run new -- day Day/Day15 "标题"                 # 新开一集口播
 npm run new -- mv  番外MV/某首歌 "某首歌"            # 新开一部 MV
 npm run preview                                    # 浏览器里边看边调（预览台）
 npm test && npm run typecheck                      # 改了引擎之后跑
@@ -284,7 +284,7 @@ return (f) => {
 
 这样换了卡点不用回来改数字。句序号都是**全片**的序号（从 0 数），和 `planShots` 里的 `cue` 是同一套。
 `when()` 引用了不存在的句子会直接报错。只是慢慢推拉的镜头，用 `glide(A, B, u)` 就够了。
-完整的例子见 `通用模板/样板/day/shots/shots.ts`。
+完整的例子见 `Day/Day14/shots/shots.ts`。
 
 ### 机位
 
@@ -385,7 +385,7 @@ Grok 是唯一一个**派生格**：形体取自 `gemini_*` 的同一套比例�
    - 不给 → 按停顿切句：停顿数刚好够 → 唯一解；停顿更多 → 按字数占比挑句界，并在 qa 里提醒「请听一遍核对」；停顿不够或语速离谱 → **直接失败，不写 cues.json**。
 7. `full` 出成片。配乐只写进独立的伴奏轨，成片 = 干声 + 伴奏，干声本身一个采样都不改。
 
-现成的例子：`通用模板/样板/day/`（二十来秒的无声样片）。原来那条线里最完整的一集是 Day14（19 个镜头、44 句、约 2 分 49 秒，没有配音），2026-11-12 随口播线一起删了，要翻旧内容用 `git checkout b172588 -- Day/`。
+现成的例子：`Day/Day14/`（19 个镜头、44 句、约 2 分 49 秒）。它停在第 4 步——没有配音，只有无声样片。
 
 ---
 

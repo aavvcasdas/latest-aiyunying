@@ -21,10 +21,8 @@ const exists = (...p) => fs.existsSync(path.join(REPO, ...p));
 
 /** 现行文档：根目录、模板、每条产线和每部作品的说明、给 AI 助手的 skill、存档的总说明 */
 function currentDocs() {
-  const docs = ['README.md', 'AGENTS.md', '通用模板/README.md', '存档/README.md'];
-  // 口播线 Day/ 已于 2026-11-12 删除；目录不在就跳过，不当作错误
+  const docs = ['README.md', 'AGENTS.md', '通用模板/README.md', '存档/README.md', 'Day/README.md'];
   for (const base of ['Day', '番外MV', '通用模板/样板']) {
-    if (!exists(base)) continue;
     for (const name of fs.readdirSync(path.join(REPO, base))) if (exists(base, name, 'README.md')) docs.push(`${base}/${name}/README.md`);
   }
   const skills = '.claude/skills';
@@ -55,8 +53,8 @@ function codeSpans(text) {
   return { inline, all: [...inline, ...blocks] };
 }
 
-test('现行文档找得全：根目录、模板、每部作品、skill、存档说明', () => {
-  for (const d of ['README.md', 'AGENTS.md', '通用模板/README.md', '番外MV/童话镇/README.md', '番外MV/坏女孩/README.md', '.claude/skills/film-template/SKILL.md', '存档/README.md']) {
+test('现行文档找得全：根目录、模板、Day 线、每部作品、skill、存档说明', () => {
+  for (const d of ['README.md', 'AGENTS.md', '通用模板/README.md', 'Day/README.md', 'Day/Day14/README.md', '番外MV/童话镇/README.md', '.claude/skills/film-template/SKILL.md', '存档/README.md']) {
     assert.ok(DOCS.includes(d), `应该查到 ${d}`);
   }
   assert.ok(MODES.includes('full') && MODES.includes('strip') && MODES.length >= 12, `film.mjs 的子命令表读出来是 ${MODES}`);
