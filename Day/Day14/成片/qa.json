@@ -9,7 +9,7 @@
   "subtitle_bar_missing": [],
   "luma_min": 65.23,
   "luma_max": 185.65,
-  "sequence_md5": "84a1f7afea14d5260387acc3e31f0463",
+  "sequence_md5": "8f5711f5a4c470ad3d3afd90140d4c51",
   "problems": []
  },
  "timing": {
@@ -31,8 +31,8 @@
  },
  "sample": {
   "file": "Day14_无声样片.mp4",
-  "bytes": 38198630,
-  "sha256": "0a89374d27c5a566f568b17bb3fffc6de5685adfa83e5ae9dfeed002598598f4",
+  "bytes": 38192885,
+  "sha256": "25c67c2bd32bde989597d761432d6482e2c329643696561d0c3edfbb4956d338",
   "full_decode": "ok",
   "probe": {
    "programs": [],
@@ -49,14 +49,14 @@
      "color_space": "bt709",
      "r_frame_rate": "30/1",
      "duration": "169.500000",
-     "bit_rate": "1800489",
+     "bit_rate": "1800229",
      "nb_frames": "5085"
     }
    ],
    "format": {
     "duration": "169.500000",
-    "size": "38198630",
-    "bit_rate": "1802885"
+    "size": "38192885",
+    "bit_rate": "1802614"
    }
   },
   "problems": []
@@ -69,8 +69,9 @@
   "duration": 169.493,
   "shots": 19,
   "lines": 44,
-  "source_sha256": "23ccb7df6309e90a9b2c75e63a1dfefd6d559d567afae45f8bb5c9e74ebe70ed",
-  "source_files": 17
+  "source_sha256": "4d1b818a3ae8a5d2cc91f5a666482c4cee0c96442cff9be3f3dd495d829a682b",
+  "source_files": 19,
+  "audio": null
  },
- "checked_at": "2026-11-11T07:47:36.121Z"
+ "checked_at": "2026-11-12T02:41:08.723Z"
 }
