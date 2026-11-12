@@ -143,7 +143,7 @@ export const SHOTS: ShotDef[] = [
       const A = cam([1.9, 2.35, 8.2], [-0.15, 0.98, 0.35], 38), B = cam([1.1, 1.9, 7.0], [-0.3, 1.05, 0.55], 35);
       return ({ u, T, said }) => {
         // 站着不动，只用手的造型说话：先摊手（结果）→ 指一下（饭碗没了）
-        whale.set(said >= 0 ? 'whale_point' : 'whale_idle').at(...WHALE).tilt(-0.03).talk(T, said === 0);
+        whale.set(said >= 0 ? 'whale_point' : 'whale_idle').at(...WHALE).tilt(-0.03);
         bowl.position.set(1.35, TOP, 0.45);
         hg1.set(0.35 + u * 0.15, T); hg2.set(0.55 - u * 0.15, T);
         // 图只出现 1 秒：说到「鲸落」那一下闪一下就走，不解释、不占画面
@@ -164,16 +164,16 @@ export const SHOTS: ShotDef[] = [
       const crate = k.add(box(0.78, 0.45, 0.56, 0x8a5a3c), ...CRATE);
       const papers = k.add(box(0.5, 0.14, 0.36, 0xf4ead6), 0, 0.5, 0);
       const A = cam([-3.6, 1.42, 6.0], [-0.1, 1.25, 1.15], 35), B = cam([-2.8, 1.5, 5.4], [0.15, 1.22, 1.15], 34);
-      return ({ u, T, said }) => {
+      return ({ u, said }) => {
         crate.position.set(CRATE[0], 0.225, CRATE[2]);
         // 踩箱：只有第一秒抬上去（不是走场），之后一直站在箱子上指挥
         const up = ease(seg(u, 0, 0.14));
         whale.set(said >= 2 ? 'whale_point' : 'whale_idle')
           .at(CRATE[0] + 0.05, 0.45 * up, CRATE[2] + 0.04)
-          .tilt(-0.05 * up).talk(T, said === 1 || said === 2);
+          .tilt(-0.05 * up);
         // 小克：站着翻纸，点头
         claude.set(said >= 3 ? 'claude_front_1' : 'claude_side_0').flip()
-          .at(...CLAUDE).tilt(said === 2 ? -0.05 : 0).talk(T, said === 2);
+          .at(...CLAUDE).tilt(said === 2 ? -0.05 : 0);
         // 交互：说到第「3 句」末尾，小克把手里的稿子放到桌上（先抬高一点，再落到桌面，落下去压一下）
         const drop = ease(seg(u, 0.5, 0.62));
         const lift = Math.sin(Math.min(1, seg(u, 0.42, 0.5)) * Math.PI) * 0.05;
@@ -194,8 +194,7 @@ export const SHOTS: ShotDef[] = [
       const { tbl, bowl, hg1, hg2 } = stage(k);
       const whale = W(k), claude = C(k);
       const A = cam([3.7, 2.2, 6.7], [0.2, 1.0, 0.2], 37), B = cam([-0.6, 1.62, 6.3], [-0.1, 1.0, 0.25], 36);
-      return ({ u, T, said }) => {
-        // 桌子能转：真的在转（回正），沙漏跟着走
+      return ({ u, T }) => {
         // 桌子能转：桌子、碗、两只沙漏绕桌心一起转（交互要跟得上，不能只转桌面）
         const ang = Math.sin(ease(u) * Math.PI) * 0.5;
         tbl.rotation.y = ang;
@@ -206,8 +205,8 @@ export const SHOTS: ShotDef[] = [
         ride(bowl, 0.75, 0.25);
         ride(hg1.g, -0.45, 0.15); ride(hg2.g, 0.35, -0.1);
         hg1.set(0.3, T); hg2.set(0.55, T);
-        claude.set('claude_front_0').flip().at(...CLAUDE).lift(0.12 + Math.sin(u * Math.PI) * 0.14).talk(T, said === 3);
-        whale.set('whale_idle').at(...WHALE).tilt(-0.08).talk(T, said === 4);
+        claude.set('claude_front_0').flip().at(...CLAUDE).lift(0.12);
+        whale.set('whale_idle').at(...WHALE).tilt(-0.08);
         return glide(A, B, ease(u));
       };
     },
@@ -231,8 +230,8 @@ export const SHOTS: ShotDef[] = [
           m.rotation.z = Math.sin(T * 1.4 + i) * 0.035;
           m.position.y = (i === 0 ? 2.05 : i === 1 ? 2.3 : 1.75) + Math.sin(T * 1.2 + i * 2) * 0.02;
         });
-        whale.set(said >= 5 ? 'whale_point' : 'whale_idle').at(...WHALE).tilt(said >= 5 ? -0.04 : 0).talk(T, said === 5);
-        claude.set('claude_front_0').flip().at(...CLAUDE).lift(0.1).talk(T, said === 5);
+        whale.set(said >= 5 ? 'whale_point' : 'whale_idle').at(...WHALE).tilt(said >= 5 ? -0.04 : 0);
+        claude.set('claude_front_0').flip().at(...CLAUDE).lift(0.1);
         return glide(A, B, ease(u));
       };
     },
@@ -248,8 +247,8 @@ export const SHOTS: ShotDef[] = [
       const whale = W(k);
       // 从上往下压的近景：两页纸都看得清，她站在画左伸手点过去
       const A = cam([1.85, 2.0, 3.7], [-0.15, 0.9, 0.6], 34), B = cam([1.7, 1.92, 3.4], [-0.15, 0.9, 0.6], 33);
-      return ({ u, T, said }) => {
-        whale.set('whale_point').at(-1.2, 0, 1.3).tilt(-0.26).talk(T, said === 7);
+      return ({ u }) => {
+        whale.set('whale_point').at(-1.2, 0, 1.3).tilt(-0.26);
         return glide(A, B, ease(u));
       };
     },
@@ -265,8 +264,8 @@ export const SHOTS: ShotDef[] = [
       const whale = W(k);
       // 更近、更正：翻页那一下占满画面（这一镜只拍书和那只翻页的手，人不抢戏）
       const A = cam([0.8, 1.72, 1.95], [0.3, 0.87, 0.5], 30), B = cam([0.78, 1.68, 1.8], [0.3, 0.87, 0.5], 29);
-      return ({ u, T, said }) => {
-        whale.set('whale_point').at(-1.05, 0, 2.1).tilt(-0.3).talk(T, said === 8);
+      return ({ u }) => {
+        whale.set('whale_point').at(-1.05, 0, 2.1).tilt(-0.3);
         // 绕着书脊把最后一页翻过去：0 → 1，页角从右边升起来，落到左边
         const f = ease(seg(u, 0.22, 0.7));
         const a = f * Math.PI;                  // 正角度 = 页角先抬起来，再落到左边（背面朝上就是空白）
@@ -286,9 +285,9 @@ export const SHOTS: ShotDef[] = [
       papers.rotation.y = 0.2;
       const A = cam([5.5, 1.6, 4.7], [0.4, 1.06, 0.8], 36), B = cam([5.0, 1.55, 4.1], [0.35, 1.03, 0.8], 35);
       return ({ u, T, said }) => {
-        whale.set(said >= 10 ? 'whale_point' : 'whale_idle').at(...WHALE).tilt(-0.05).talk(T, said === 9 || said === 10);
+        whale.set(said >= 10 ? 'whale_point' : 'whale_idle').at(...WHALE).tilt(-0.05);
         claude.set(said >= 10 ? 'claude_front_1' : 'claude_front_0').flip().at(...CLAUDE)
-          .tilt(said >= 10 ? -0.03 : 0).talk(T, said === 10);
+          .tilt(said >= 10 ? -0.03 : 0);
         // 交互：说到「重做上一集」，小克把那摞稿子往桌面按一下（压 0.03，有接触感）
         const press = Math.sin(seg(u, 0.35, 0.75) * Math.PI);
         papers.position.y = TOP + 0.09 - press * 0.03;
@@ -304,9 +303,9 @@ export const SHOTS: ShotDef[] = [
       const { hg1, hg2 } = stage(k);
       const whale = W(k);
       const A = cam([1.45, 1.95, 5.5], [-0.45, 0.95, 0.95], 34), B = cam([1.35, 1.88, 5.1], [-0.45, 0.94, 0.95], 33);
-      return ({ u, T, said }) => {
+      return ({ u, T }) => {
         // 本鲸蹲在左下角指着桌上，人不大、别挡沙漏
-        whale.set('whale_point').at(-1.35, 0, 2.5).tilt(-0.12).talk(T, said === 11 || said === 12);
+        whale.set('whale_point').at(-1.35, 0, 2.5).tilt(-0.12);
         hg1.set(0.25 + u * 0.12, T); hg2.set(0.65 - u * 0.1, T);
         return glide(A, B, ease(u));
       };
@@ -325,7 +324,7 @@ export const SHOTS: ShotDef[] = [
         hg1.g.rotation.z = jit * Math.sin(T * 27) * 0.012;
         hg1.g.position.y = TOP + jit * Math.sin(T * 31) * 0.004;
         hg2.set(0.5, T);
-        whale.set('whale_idle').at(2.35, 0, 2.0).tilt(said >= 14 ? -0.08 : 0).talk(T, said === 13 || said === 14);
+        whale.set('whale_idle').at(2.35, 0, 2.0).tilt(said >= 14 ? -0.08 : 0);
         return glide(A, B, ease(u));
       };
     },
@@ -337,10 +336,10 @@ export const SHOTS: ShotDef[] = [
       const { hg1, hg2 } = stage(k);
       const whale = W(k);
       const A = cam([1.0, 2.25, 8.4], [-1.0, 1.0, 1.3], 36), B = cam([0.9, 2.12, 7.8], [-1.0, 0.98, 1.3], 35);
-      return ({ u, T, said }) => {
+      return ({ u, T }) => {
         const sink = ease(seg(u, 0.1, 0.7));
         whale.set('whale_idle').at(...WHALE).sil(0.45)
-          .tilt(-0.12 * sink).lift(-0.05 * sink).talk(T, said === 15);
+          .tilt(-0.12 * sink).lift(-0.05 * sink);
         hg1.set(0.9, T); hg2.set(0.95, T);
         return glide(A, B, ease(u));
       };
@@ -353,8 +352,8 @@ export const SHOTS: ShotDef[] = [
       stage(k);
       const whale = W(k);
       const A = cam([-0.85, 1.36, 4.3], [-1.25, 1.22, 1.6], 31), B = cam([-0.85, 1.33, 3.9], [-1.25, 1.22, 1.6], 30);
-      return ({ u, T, said }) => {
-        whale.set('whale_idle').at(...WHALE).sil(0.55).tilt(-0.14).talk(T, said === 16);
+      return ({ u }) => {
+        whale.set('whale_idle').at(...WHALE).sil(0.34).tilt(-0.14);
         return glide(A, B, ease(u));
       };
     },
@@ -366,12 +365,12 @@ export const SHOTS: ShotDef[] = [
       const { dr } = stage(k);
       const whale = W(k), claude = C(k);
       const A = cam([-0.2, 1.5, 4.4], [-2.95, 1.18, -2.95], 31), B = cam([-0.5, 1.48, 3.95], [-3.05, 1.16, -3.15], 30);
-      return ({ u, T, said }) => {
+      return ({ u }) => {
         dr.set(ease(seg(u, 0.1, 0.5)));
         // 只走三步：从门槛走进光里，然后站住
         const p = ease(seg(u, 0.2, 0.62));
         const x = -2.9 + 0.7 * p, z = -3.7 + 0.75 * p;
-        whale.set('whale_idle').at(x, 0, z).sil(0.06).tilt(-0.03).talk(T, said === 17);
+        whale.set('whale_idle').at(x, 0, z).sil(0.06).tilt(-0.03);
         whale.walkBy(p * 1.9);
         // 老大在后面扶着门框，压暗一点但别糊成一团
         claude.set('claude_front_0').at(-3.45, 0, -3.5).flip().sil(0.28).lift(0.02 + 0.04 * p);
@@ -386,11 +385,11 @@ export const SHOTS: ShotDef[] = [
       const { bowl, hg1 } = stage(k);
       const whale = W(k);
       const A = cam([1.75, 1.38, 4.5], [0.15, 0.9, 0.75], 34), B = cam([1.65, 1.34, 4.1], [0.15, 0.89, 0.75], 33);
-      return ({ u, T, said }) => {
+      return ({ u, T }) => {
         const e = ease(seg(u, 0.22, 0.8));
         bowl.position.set(1.35 + e * 2.4, TOP + e * 0.18, 0.45 - e * 0.5);
         // 追半步：只挪 0.12，不是走场
-        whale.set('whale_point').at(-0.15 + 0.3 * e, 0, 1.85 - 0.05 * e).tilt(-0.06 + 0.05 * e).talk(T, said === 18);
+        whale.set('whale_point').at(-0.15 + 0.3 * e, 0, 1.85 - 0.05 * e).tilt(-0.06 + 0.05 * e);
         hg1.set(0.7, T);
         return glide(A, B, ease(u));
       };
@@ -404,8 +403,8 @@ export const SHOTS: ShotDef[] = [
       bowl.position.set(1.35, TOP, 0.45);
       const whale = W(k);
       const A = cam([2.25, 2.15, 6.6], [-0.6, 1.0, 0.4], 36), B = cam([1.95, 1.98, 6.0], [-0.65, 1.0, 0.5], 35);
-      return ({ u, T, said }) => {
-        whale.set(said >= 20 ? 'whale_wave' : 'whale_idle').at(...WHALE).tilt(0).talk(T, said === 19 || said === 20);
+      return ({ u, said }) => {
+        whale.set(said >= 20 ? 'whale_wave' : 'whale_idle').at(...WHALE).tilt(0);
         return glide(A, B, ease(u));
       };
     },

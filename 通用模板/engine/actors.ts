@@ -71,7 +71,9 @@ export function loadAtlas(): Promise<AtlasData> {
           anchors[key] = { cx: (minX + maxX) / 2, top: Math.max(0, top), hw: Math.max(8, maxX - minX) };
         }
         const tex = new THREE.Texture(img);
-        tex.flipY = false; tex.generateMipmaps = false; tex.minFilter = tex.magFilter = THREE.LinearFilter; tex.needsUpdate = true;
+        // 像素角色：放大时用最近邻，别让显卡把它插值糊掉（缩小时仍然线性，远景不闪）
+        tex.flipY = false; tex.generateMipmaps = false;
+        tex.minFilter = THREE.LinearFilter; tex.magFilter = THREE.NearestFilter; tex.needsUpdate = true;
         resolve({ tex, w: img.width, h: img.height, rects: ATLAS_META.s, anchors, url: atlasUrl });
       };
       img.onerror = () => reject(new Error(`角色图集加载失败（取不到或文件损坏）：${atlasUrl}`));
@@ -255,7 +257,7 @@ function overlayTex(atlas: AtlasData, wear: Wear, key: string): THREE.CanvasText
     const cv = document.createElement('canvas'); cv.width = r[2] + 2 * M; cv.height = r[3] + 2 * M;
     WEAR[wear].draw(cv.getContext('2d')!, atlas.anchors[key], r[2], r[3]);
     t = new THREE.CanvasTexture(cv);
-    t.flipY = false; t.generateMipmaps = false; t.minFilter = t.magFilter = THREE.LinearFilter;
+    t.flipY = false; t.generateMipmaps = false; t.minFilter = THREE.LinearFilter; t.magFilter = THREE.NearestFilter;
     overlayCache.set(id, t);
   }
   return t;

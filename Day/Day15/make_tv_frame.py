@@ -7,7 +7,7 @@ pip.sh 先把 Day14 的画面塞进洞里，再把这层框盖上去（数字在
     python3 Day/Day15/make_tv_frame.py        # → Day/Day15/素材/pip_tv.png
 """
 import pathlib
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 W, H = 600, 440
 HOLE = (80, 80, 500, 316)          # 左, 上, 右, 下
@@ -56,6 +56,15 @@ px = img.load()
 for y in range(72, 284):
     for x in range(72, 450):
         px[x, y] = (0, 0, 0, 0)
+
+# 机身下方贴一张纸条：写清楚电视里放的是哪一版（「Day14 · Claude 重构版」）
+d2 = ImageDraw.Draw(img)
+FONT_PATH = pathlib.Path(__file__).resolve().parents[2] / "通用模板" / "engine" / "assets" / "fonts" / "ZCOOLKuaiLe-Regular.ttf"
+label = "Day14 · Claude 重构版"
+font = ImageFont.truetype(str(FONT_PATH), 27)
+lw = int(d2.textlength(label, font=font)) + 28
+d2.rounded_rectangle([(76, 292), (76 + lw, 336)], radius=8, fill=(243, 232, 205, 255), outline=(58, 34, 20, 255), width=3)
+d2.text((76 + 14, 300), label, fill=(52, 34, 22, 255), font=font)
 
 out = pathlib.Path(__file__).resolve().parent / "素材" / "pip_tv.png"
 out.parent.mkdir(parents=True, exist_ok=True)
