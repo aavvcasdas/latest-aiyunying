@@ -177,10 +177,10 @@ export const SHOTS: ShotDef[] = [
       const book = notebook(0.92, 0.68);
       k.add(book.g, 0.4, TOP + 0.02, 0.3, 0.06);
       const whale = W(k);
-      const A = cam([0.95, 1.95, 4.2], [0.45, 0.9, 0.35], 34), B = cam([0.85, 1.9, 3.8], [0.45, 0.88, 0.35], 33);
+      const A = cam([1.25, 2.05, 4.6], [0.3, 0.9, 0.4], 35), B = cam([1.15, 2.0, 4.25], [0.3, 0.89, 0.4], 34);
       return ({ u, T, said }) => {
-        // 人退到画面左边、别糊在镜头上
-        whale.set('whale_idle').at(-1.5, 0, 2.3).tilt(-0.18).talk(T, said === 8);
+        // 人站在画左、俯身看书——翻页那一下要看得见，所以别再把她推到画外
+        whale.set('whale_idle').at(-0.8, 0, 2.15).tilt(-0.22).talk(T, said === 8);
         // 绕书脊翻页：0.3 起翻，翻到 1（背面朝上）
         const f = ease(seg(u, 0.3, 0.78));
         book.cover.rotation.y = f * Math.PI * 1.02;
@@ -293,7 +293,7 @@ export const SHOTS: ShotDef[] = [
         whale.set('whale_idle').at(x, 0, z).sil(0.06).tilt(-0.03).talk(T, said === 17);
         whale.walkBy(p * 1.9);
         // 老大在后面扶着门框，压暗一点但别糊成一团
-        claude.set('claude_front_0').at(-3.85, 0, -4.05).flip().sil(0.5).lift(0.02 + 0.04 * p);
+        claude.set('claude_front_0').at(-3.45, 0, -3.5).flip().sil(0.28).lift(0.02 + 0.04 * p);
         return glide(A, B, ease(u));
       };
     },
