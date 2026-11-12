@@ -131,7 +131,9 @@ test('步态：任何时间 / 速率 / 距离下画的都是图集里真有的�
     for (let d = -50; d <= 50; d += 0.137) {
       const key = a.walkBy(d).probe().key;
       assert.ok(ATLAS_META.s[key], `${id}.walkBy(${d}) → ${key}`);
-      assert.equal(key, `${s.walk}${((Math.floor((d / 1.7) * n) % n) + n) % n}`);
+      // 一轮步态走多远：早先是写死的 1.7，现在是 1.15 × 当前缩放（见 actors.ts 的 walkBy，取自《坏女孩》的走路修复）。
+      // 这里 baseSize 与 size 都是默认 1，所以一轮 = 1.15；黄金值按这版重记（旧值 1.7 是引擎改之前记的）。
+      assert.equal(key, `${s.walk}${((Math.floor((d / 1.15) * n) % n) + n) % n}`);
     }
     assert.throws(() => a.walk(NaN), /不是有限数/);
     assert.throws(() => a.walkBy(1, 0), /不是有限数/);                                   // 步幅 0 → 除出 Infinity

@@ -1,6 +1,6 @@
 # 坏女孩（fable5.2）· Remotion 版
 
-来源：用户提供的 `fable5.2坏女孩.zip`（Vite + React，`src/mv/engine.ts` 是一套 **Canvas2D 画家算法**的软 3D 引擎，
+来源：用户提供的 `fable5.2坏女孩.zip`（Vite + React，zip 原件放在本目录的 `来源/` 下，2026-11-12 从仓库根挪进来；`src/mv/engine.ts` 是一套 **Canvas2D 画家算法**的软 3D 引擎，
 1280×720 @24fps，195 秒；同一份 `render(ctx, t)` 既在网页里实时预览，也能被逐帧调用）。
 这里没有重写引擎，只做了三件事：补齐素材、套一层 Remotion 合成、按规矩改片头。
 
@@ -16,7 +16,7 @@
 | `public/song.m4a` | 内嵌音轨，从原曲 20.0 秒截起，195.11 秒 |
 | `Fable.tsx` | Remotion 合成：一块 canvas + 每帧 `render()` + `<Audio>` + 片头卡 |
 | `entry.tsx` | `registerRoot` + `<Composition id="Fable">`（4680 帧 = 195×24） |
-| `成片/坏女孩_fable5.2.mp4` | 出片结果 |
+| 成片（成片/坏女孩_fable5.2.mp4） | 出片结果。2026-11-12 已出库，跑下面那条命令就回来 |
 
 ## 按规矩改的地方
 

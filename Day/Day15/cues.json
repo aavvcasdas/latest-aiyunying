@@ -4,7 +4,7 @@
  "source": {
   "script": "台词.txt",
   "script_sha256": "bb7cb7036e0cfaf033e1e1ce4a66d350ef962c19366ef993da78191c39e1ed81",
-  "audio": "../../鲸鱼鲸落_克隆配音_最终版.wav",
+  "audio": "素材/鲸鱼鲸落_克隆配音_最终版.wav",
   "audio_sha256": "70ea0316394d4622ed2118d2278e1c156c84db253f52d0c9c4ae8c1332a3234d",
   "audio_duration": 65.13,
   "analysis_sample_rate": 16000

@@ -1,7 +1,7 @@
 // Day15 里要用到的两张图，路径都在这里汇一处：project.tsx 拿去做 preloads，shots.ts 拿去画。
 // tv_day14/sheet.jpg 是上一集成片 81.4–89.4 秒那 8 秒（192 张 512×219）拼成的 16×12 大图，24 fps 循环。
 import tvSheet from './素材/tv_day14/sheet.jpg';
-import whaleFall from '../../鲸落图.png';
+import whaleFall from './素材/鲸落图.png';
 
 export const TV_SHEET = tvSheet;
 export const TV_COLS = 16;

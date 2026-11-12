@@ -3,8 +3,8 @@
  "method": "字幕起点吸附到原曲实测拍点（±半拍内）；拍点级对齐，不是逐音节对齐",
  "source": {
   "subtitles": "歌词.srt",
-  "audio": "素材/童话镇.mp4",
-  "audio_sha256": "9dc8eb301edf33c23a7dbe4f170d774d4612bc268a86a5819e7d60d9af19173c",
+  "audio": "素材/童话镇.m4a",
+  "audio_sha256": "f53a42d6beeb5ad3081e8dc18854138bc0fad26fee91d88a7eaf8d095230694b",
   "audio_duration": 249.579,
   "analysis_sample_rate": 22050,
   "subtitles_sha256": "c31cbd61ba09e5201956432998aae804fdea17282f26db9e52caf44962c2ba18"

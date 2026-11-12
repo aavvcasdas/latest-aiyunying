@@ -1,6 +1,6 @@
 # 坏女孩 MV（3D 夜雨 · 鲸鱼娘 × Claude）
 
-来源：用户提供的 `3d坏女孩.zip`（Vite + React + three.js 单页应用，不是 Remotion 模板）。
+来源：用户提供的 `3d坏女孩.zip`（Vite + React + three.js 单页应用，不是 Remotion 模板）。zip 原件放在本目录的 `来源/` 下（2026-11-12 从仓库根挪进来）。
 整份源码、图集、字体、音轨都在这个目录里——音轨是 `src/assets/songData.ts` 里的 base64，不依赖外部文件。
 
 > 谁在这支片子里演谁、这个形象兑现她哪条习性：[`../设定表.md`](../设定表.md)。
@@ -23,11 +23,12 @@
 ```bash
 cd 番外MV/坏女孩 && npm install
 cd ../..
-node tools/render_zip_mv.mjs three3d          # → 番外MV/坏女孩/成片/坏女孩_3d.mp4（1280×720 30fps，5917 帧，3:17）
+node tools/render_zip_mv.mjs three3d          # → 成片/坏女孩_3d.mp4（1280×720 30fps，5917 帧，3:17；这个 mp4 2026-11-12 出库，跑这条就回来）
 node tools/render_zip_mv.mjs three3d --still 30   # 只想看一眼：抽第 30 秒那一帧
 ```
 
-- 合成 id `ThreeMV`，时长 `(TOTAL_END − START) × 30`；音频 `trimBefore = (START − AUDIO_OFFSET) × fps`。
+- 合成 id `ThreeMV`，时长 (TOTAL_END − START) × 30 帧；音频 trimBefore = (START − AUDIO_OFFSET) × fps。
+  （TOTAL_END / START / AUDIO_OFFSET 是 `tools/shoot_mv.mjs` 与这份工程源码里的常量，不在命令行选项里。）
 - 2 核机器上大约 1–2 帧/秒，整片 1 小时上下；`CONCURRENCY=1` 可以让它别把机器占满。
 - 旧的「无头浏览器逐帧截图 + ffmpeg 编码」路子（`tools/shoot_mv.mjs`）还在，但按用户要求，出片一律走 Remotion。
 

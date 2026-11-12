@@ -10,7 +10,7 @@
 ## 现行与废除
 
 - **现行**：`通用模板/`（引擎 + 命令行 + 样板）、`番外MV/童话镇/`、`Day/`。
-- **已废除**：`存档/重构前/` 里的一切——旧引擎（`tools/remotion-engine`、`tools/engine`、`video-fx`）、旧模板、旧成片、旧 skill（`day-series-director`、`pixel-mv-remake`、`lemo-opuscar`、`剧情生成`、`dsh-douyinxiaoqi`）、旧的 `AGENTS.md` / `agent.md`。
+- **已废除**：`存档/重构前/` 里的一切——旧引擎（`存档/重构前/tools/remotion-engine`、`存档/重构前/tools/engine`、`存档/重构前/video-fx`）、旧模板、旧成片、旧 skill（`day-series-director`、`pixel-mv-remake`、`lemo-opuscar`、`剧情生成`、`dsh-douyinxiaoqi`）、旧的 `AGENTS.md` / `agent.md`。
   - 存档**只读**：不改、不删、不往里加东西、不从里面 import 代码。
   - 需要旧素材（比如某集的台词）就**复制**到新作品目录里用，并注明出处。
   - 旧文档里的流程、入口、门禁脚本一律作废；其中与画面有关的红线已经并入下面的「画面红线」。
@@ -23,6 +23,7 @@
 - 不自动合并 PR，不自动发布到任何平台。
 - 渲染的中间文件（PNG 序列、临时音轨）放系统临时目录，不进仓库。成片目录叫 `成片/`，不要叫 `out` / `build` / `dist`（有的托管环境不保存这些目录名）。
 - 单个文件不超过 100 MB（GitHub 上限）。
+- **mp4 不进库**（2026-11-12 起 `.gitignore` 里有 `*.mp4`）：要留的声音先转成音轨（m4a / wav），画面留静帧或分镜总览图。真要交一个成片，先问用户，并把 blob 记进 `媒体说明.md`。
 
 ## 做片
 

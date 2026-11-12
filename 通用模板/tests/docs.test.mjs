@@ -34,7 +34,12 @@ const DOCS = currentDocs();
 const CLI_DIR = '通用模板/cli';
 const FILM = read(`${CLI_DIR}/film.mjs`);
 // 所有命令行的源码：选项、输出标记、环境变量都得在这里面找得到
-const CLI_SRC = [...fs.readdirSync(path.join(REPO, CLI_DIR)).filter((f) => /\.(mjs|py)$/.test(f)).map((f) => read(`${CLI_DIR}/${f}`)), read('通用模板/cast/bake_atlas.mjs')].join('\n');
+// 除了模板自己的命令行，还有仓库根 tools/ 里那两支出片脚本（《坏女孩》3D / Fable 两版用；不是模板的一部分，但文档里写的选项得真在）
+const CLI_SRC = [
+  ...fs.readdirSync(path.join(REPO, CLI_DIR)).filter((f) => /\.(mjs|py)$/.test(f)).map((f) => read(`${CLI_DIR}/${f}`)),
+  read('通用模板/cast/bake_atlas.mjs'),
+  ...(exists('tools') ? fs.readdirSync(path.join(REPO, 'tools')).filter((f) => f.endsWith('.mjs')).map((f) => read(`tools/${f}`)) : []),
+].join('\n');
 const SCRIPTS = Object.keys(JSON.parse(read('package.json')).scripts);
 const MODES = /<((?:[a-z]+\|)+[a-z]+)>/.exec(FILM)[1].split('|');
 const TOP = new Set(fs.readdirSync(REPO));
