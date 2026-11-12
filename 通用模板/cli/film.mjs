@@ -127,7 +127,7 @@ function sourceFingerprint() {
 }
 
 // —— 口播台词（day）：一行一句，行首可写「角色:」或「角色/头像:」 ——
-const CAST = ['whale', 'gpt', 'claude', 'doubao', 'gemini', 'kimi', 'qwen', 'zai'];
+const CAST = ['whale', 'gpt', 'claude', 'doubao', 'gemini', 'kimi', 'qwen', 'zai', 'grok'];
 function readScript() {
   const file = path.resolve(PROJ, film.script || '台词.txt');
   if (!fs.existsSync(file)) die(`找不到台词文件 ${rel(file)}（film.json 的 script）`);

@@ -46,11 +46,11 @@ export interface ProjectDef {
 }
 
 export const SPEAKER_NAME: Record<CharId, string> = {
-  whale: '鲸鱼娘', gpt: 'GPT 龙娘', claude: 'Claude 大小姐', doubao: '豆包', gemini: 'Gemini', kimi: 'Kimi', qwen: '千问', zai: '智谱',
+  whale: '鲸鱼娘', gpt: 'GPT 龙娘', claude: 'Claude 大小姐', doubao: '豆包', gemini: 'Gemini', kimi: 'Kimi', qwen: '千问', zai: '智谱', grok: 'Grok',
 };
 /** 对话条默认头像（图集里的 64×64 头像格） */
 export const SPEAKER_PORTRAIT: Record<CharId, string> = {
-  whale: 'p_whale_neutral', gpt: 'p_gpt_neutral', claude: 'p_claude_neutral', doubao: 'p_doubao_neutral', gemini: 'p_gemini', kimi: 'p_kimi', qwen: 'p_qwen', zai: 'p_zai',
+  whale: 'p_whale_neutral', gpt: 'p_gpt_neutral', claude: 'p_claude_neutral', doubao: 'p_doubao_neutral', gemini: 'p_gemini', kimi: 'p_kimi', qwen: 'p_qwen', zai: 'p_zai', grok: 'p_grok',
 };
 
 /** 这部作品在画面上（字幕条、名牌、片名卡、片尾字）会出现的全部文字，带出处。镜头自己往 Canvas 上画的字不在这里，由预检另外收集 */

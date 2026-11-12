@@ -1,4 +1,4 @@
-// 角色卡片：项目自带的八位轻像素角色（源数据在 通用模板/cast/source/sprites_data.js，烘焙成 assets/cast_atlas.png）
+// 角色卡片：项目自带的九位轻像素角色（源数据在 通用模板/cast/source/sprites_data.js，烘焙成 assets/cast_atlas.png）
 // 作为「3D 世界里的 2D 纸片」。对应 claude-animated-shorts 的 cast.ts / cardshade.ts：
 //   · 始终面向相机的 billboard，不进世界墨线
 //   · 受场景光染色（card tint），不自发光
@@ -17,7 +17,7 @@ import atlasJson from './assets/cast_atlas.json';
 import { FPS } from './timeline';
 import { rgb } from './kit';
 
-export type CharId = 'whale' | 'gpt' | 'claude' | 'doubao' | 'gemini' | 'kimi' | 'qwen' | 'zai';
+export type CharId = 'whale' | 'gpt' | 'claude' | 'doubao' | 'gemini' | 'kimi' | 'qwen' | 'zai' | 'grok';
 export type Wear = 'crown' | 'hood' | 'tophat' | 'bow' | 'tiara' | 'ears' | 'tail';
 type Rect = [number, number, number, number];
 interface Anchor { cx: number; top: number; hw: number }
@@ -136,6 +136,7 @@ export const CAST_SETS: Record<CharId, { walk: string; front: [string, string] }
   gemini: { walk: 'walk_gemini_', front: ['gemini_front_0', 'gemini_front_1'] },
   qwen: { walk: 'walk_qwen_', front: ['qwen_front_0', 'qwen_front_1'] },
   zai: { walk: 'walk_zai_', front: ['zai_front_0', 'zai_front_1'] },
+  grok: { walk: 'walk_grok_', front: ['grok_front_0', 'grok_front_1'] },
   doubao: { walk: 'walk_doubao_big_', front: ['doubao_cage_0', 'doubao_cage_1'] },
   gpt: { walk: 'gpt_fly_', front: ['gpt_boss_idle', 'gpt_boss_blink'] },
 };

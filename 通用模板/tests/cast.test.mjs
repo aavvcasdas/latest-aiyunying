@@ -60,9 +60,9 @@ const clone = (o) => JSON.parse(JSON.stringify(o));
 const fakeAtlas = () => ({ tex: new THREE.Texture(), w: ATLAS_META.w, h: ATLAS_META.h, rects: ATLAS_META.s, anchors: {}, url: 'test' });
 const CHARS = Object.keys(CAST_SETS);
 
-test('图集体检：仓库里的 PNG 与坐标表是同一版，108 格每一格都有像素，角色表引用的格子全都在', () => {
+test('图集体检：仓库里的 PNG 与坐标表是同一版，121 格每一格都有像素，角色表引用的格子全都在', () => {
   assert.deepEqual([PNG.w, PNG.h], [ATLAS_META.w, ATLAS_META.h]);
-  assert.equal(Object.keys(ATLAS_META.s).length, 108);
+  assert.equal(Object.keys(ATLAS_META.s).length, 121);
   assert.deepEqual(atlasProblems(ATLAS_META, PNG.w, PNG.h, PNG.alphaAt), []);
 });
 
