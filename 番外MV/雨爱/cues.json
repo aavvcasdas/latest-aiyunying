@@ -1,0 +1,164 @@
+{
+ "measured": true,
+ "method": "人声起点：faster-whisper(small) 词级时间戳 + 能量阶跃复核；拍点：通用模板/cli/align_beats.py 实测八分音符网格（0.37033s，分窗最大相位漂移 0.010s），每句起点吸附到最近的实拍。拍点级对齐，不是逐音节对齐。第 19–23 句是 99s 之后的副歌重唱（用户歌词未列出，按音轨实际演唱补入）。",
+ "source": {
+  "subtitles": "歌词.srt",
+  "subtitles_sha256": "53f7abf6d7b335698e3122b79762877fb6b453eb15efdbe226975c3a433d8ce6",
+  "audio": "media/yuai-sifeng.m4a",
+  "audio_sha256": "794767efc2dca3881d6180732c08b61e6192bb4097187f73d95f47037c7dec9a",
+  "audio_duration": 131.262,
+  "analysis_sample_rate": 22050,
+  "note": "仓库里的《雨爱》司凤版.mp3 实为 MP4 容器（H.264 + AAC 44.1kHz）；这里只无损抽出 AAC 音轨（不重编码）；2026-11-12 重新抽轨并复核：音轨逐采样与源文件里的 AAC 轨完全一致（两路解成 WAV 后 sha256 都是 606c66e25aa5891ab4bf3d75073f798fb0686474666cadb86f73a380ed9f903a），只是封装（容器元数据）不同，所以记的是这一份 m4a 的 sha"
+ },
+ "beat": {
+  "period": 0.74066,
+  "first": 12.8178,
+  "bar": 4,
+  "bpm": 81.01,
+  "eighth": {
+   "period": 0.37033,
+   "first": 10.2255
+  },
+  "max_abs_drift": 0.01
+ },
+ "lines": [
+  {
+   "text": "窗外的天气",
+   "start": 16.891,
+   "end": 19.46,
+   "beat_index": 18
+  },
+  {
+   "text": "就像是你多变的表情",
+   "start": 21.335,
+   "end": 25.2,
+   "beat_index": 30
+  },
+  {
+   "text": "下雨了 雨陪我哭泣",
+   "start": 26.89,
+   "end": 31.16,
+   "beat_index": 45
+  },
+  {
+   "text": "看不清 我也不想看清",
+   "start": 33.186,
+   "end": 37.68,
+   "beat_index": 62
+  },
+  {
+   "text": "离开你 我安静的抽离",
+   "start": 38.741,
+   "end": 42.15,
+   "beat_index": 77
+  },
+  {
+   "text": "不忍揭晓的剧情",
+   "start": 42.444,
+   "end": 44.9,
+   "beat_index": 87
+  },
+  {
+   "text": "我的泪流在心里",
+   "start": 45.407,
+   "end": 47.9,
+   "beat_index": 95
+  },
+  {
+   "text": "学会放弃",
+   "start": 48.369,
+   "end": 50.5,
+   "beat_index": 103
+  },
+  {
+   "text": "听雨的声音 一滴滴清晰",
+   "start": 51.332,
+   "end": 53.7,
+   "beat_index": 111
+  },
+  {
+   "text": "你的呼吸像雨滴渗入我的爱里",
+   "start": 53.924,
+   "end": 58.7,
+   "beat_index": 118
+  },
+  {
+   "text": "真希望雨能下不停",
+   "start": 59.479,
+   "end": 62.7,
+   "beat_index": 133
+  },
+  {
+   "text": "让想念继续 让爱变透明",
+   "start": 63.183,
+   "end": 68.6,
+   "beat_index": 143
+  },
+  {
+   "text": "我爱上给我勇气的 Rainie love",
+   "start": 69.108,
+   "end": 74.1,
+   "beat_index": 159
+  },
+  {
+   "text": "窗外的雨滴 一滴滴累积",
+   "start": 75.033,
+   "end": 77.5,
+   "beat_index": 175
+  },
+  {
+   "text": "屋内的湿气像储存爱你的记忆",
+   "start": 77.996,
+   "end": 82.4,
+   "beat_index": 183
+  },
+  {
+   "text": "真希望雨能下不停",
+   "start": 83.181,
+   "end": 86.0,
+   "beat_index": 197
+  },
+  {
+   "text": "雨爱的秘密能一直延续",
+   "start": 86.513,
+   "end": 92.3,
+   "beat_index": 206
+  },
+  {
+   "text": "我相信我将会看到彩虹的美丽",
+   "start": 92.809,
+   "end": 99.3,
+   "beat_index": 223
+  },
+  {
+   "text": "窗外的雨滴 一滴滴累积",
+   "start": 99.475,
+   "end": 101.25,
+   "beat_index": 241
+  },
+  {
+   "text": "屋内的湿气像储存爱你的记忆",
+   "start": 101.327,
+   "end": 106.4,
+   "beat_index": 246
+  },
+  {
+   "text": "真希望雨能下不停",
+   "start": 107.252,
+   "end": 109.8,
+   "beat_index": 262
+  },
+  {
+   "text": "雨爱的秘密能一直延续",
+   "start": 110.585,
+   "end": 116.2,
+   "beat_index": 271
+  },
+  {
+   "text": "我相信我将会看到彩虹的美丽",
+   "start": 116.51,
+   "end": 123.2,
+   "beat_index": 287
+  }
+ ]
+}

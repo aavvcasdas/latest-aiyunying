@@ -1,0 +1,151 @@
+{
+ "frames": {
+  "frames": 3936,
+  "wrong_size": [],
+  "identical_to_previous": [
+   3930,
+   3931,
+   3932,
+   3933,
+   3934,
+   3935
+  ],
+  "blank_background_frames": [],
+  "frozen_runs": [],
+  "shots_without_visible_cut": [],
+  "subtitle_bar_missing": [],
+  "luma_min": 0,
+  "luma_max": 252.92,
+  "sequence_md5": "45ffaae7ff7a2d02dcdef2ace8401c64",
+  "problems": []
+ },
+ "timing": {
+  "measured": true,
+  "method": "人声起点：faster-whisper(small) 词级时间戳 + 能量阶跃复核；拍点：通用模板/cli/align_beats.py 实测八分音符网格（0.37033s，分窗最大相位漂移 0.010s），每句起点吸附到最近的实拍。拍点级对齐，不是逐音节对齐。第 19–23 句是 99s 之后的副歌重唱（用户歌词未列出，按音轨实际演唱补入）。",
+  "source": {
+   "subtitles": "歌词.srt",
+   "subtitles_sha256": "53f7abf6d7b335698e3122b79762877fb6b453eb15efdbe226975c3a433d8ce6",
+   "audio": "media/yuai-sifeng.m4a",
+   "audio_sha256": "794767efc2dca3881d6180732c08b61e6192bb4097187f73d95f47037c7dec9a",
+   "audio_duration": 131.262,
+   "analysis_sample_rate": 22050,
+   "note": "仓库里的《雨爱》司凤版.mp3 实为 MP4 容器（H.264 + AAC 44.1kHz）；这里只无损抽出 AAC 音轨（不重编码）；2026-11-12 重新抽轨并复核：音轨逐采样与源文件里的 AAC 轨完全一致（两路解成 WAV 后 sha256 都是 606c66e25aa5891ab4bf3d75073f798fb0686474666cadb86f73a380ed9f903a），只是封装（容器元数据）不同，所以记的是这一份 m4a 的 sha"
+  },
+  "notes": [],
+  "beat": {
+   "bpm": 81.01,
+   "period": 0.74066,
+   "line_start_offset_to_beat_seconds": {
+    "max_abs": 0.3703,
+    "mean_abs": 0.1128
+   },
+   "cut_frames_before_beat": {
+    "min": -10.05,
+    "max": 2,
+    "shots": 23
+   }
+  },
+  "shots": {
+   "count": 30,
+   "shortest_seconds": 1.852,
+   "longest_seconds": 9.855
+  },
+  "problems": []
+ },
+ "final": {
+  "file": "雨爱.mp4",
+  "bytes": 81374544,
+  "sha256": "817409c47b352ae5efbeb05fef05a1658d93dff3c55b6fb68ab719a21b881c33",
+  "audio_samples": 6297600,
+  "audio_seconds": 131.2,
+  "expected_seconds": 131.2,
+  "audio_lag_vs_source_samples": 0,
+  "audio_lag_vs_source_ms": 0,
+  "audio_correlation": 1,
+  "correlation_window_seconds": [
+   20,
+   80
+  ],
+  "tail_rms": {
+   "-2.0s": 0.0403,
+   "-1.5s": 0.054,
+   "-1.0s": 0.0592,
+   "-0.5s": 0.0119,
+   "-0.25s": 0.0119
+  },
+  "mix": {
+   "sample_rate": 48000,
+   "samples": 6297600,
+   "seconds": 131.2,
+   "offset_seconds": 0,
+   "source_seconds": 131.262,
+   "source_used": [
+    0,
+    131.2
+   ],
+   "source_remaining_after_end_seconds": 0.062,
+   "silence_after_source_seconds": 0,
+   "fade_out_seconds": 1.5,
+   "peak_dbfs": -8.39,
+   "clipped_samples": 0,
+   "full_scale_samples_from_source": 0,
+   "clipped_by_mix": 0,
+   "rms_dbfs": -21.88
+  },
+  "notes": [],
+  "problems": [],
+  "full_decode": "ok",
+  "probe": {
+   "programs": [],
+   "stream_groups": [],
+   "streams": [
+    {
+     "codec_name": "h264",
+     "profile": "100",
+     "codec_type": "video",
+     "width": 1920,
+     "height": 1080,
+     "pix_fmt": "yuv420p",
+     "color_range": "tv",
+     "color_space": "bt709",
+     "r_frame_rate": "30/1",
+     "duration": "131.200000",
+     "bit_rate": "4697453",
+     "nb_frames": "3936"
+    },
+    {
+     "codec_name": "aac",
+     "profile": "1",
+     "codec_type": "audio",
+     "sample_rate": "48000",
+     "channels": 2,
+     "r_frame_rate": "0/0",
+     "duration": "131.200000",
+     "bit_rate": "256000",
+     "nb_frames": "6152"
+    }
+   ],
+   "format": {
+    "duration": "131.200000",
+    "size": "81374544",
+    "bit_rate": "4961862"
+   }
+  }
+ },
+ "project": {
+  "id": "yuai",
+  "kind": "mv",
+  "title": "雨爱",
+  "frames": 3936,
+  "duration": 131.2,
+  "shots": 30,
+  "lines": 23,
+  "source_sha256": "c12166f690fc0f99c052c8c653c84fbefe4ab211a0a5347c68eb6e58f89acab3",
+  "source_files": 24,
+  "audio": {
+   "file": "media/yuai-sifeng.m4a",
+   "present": true
+  }
+ },
+ "checked_at": "2026-11-12T17:57:54.664Z"
+}

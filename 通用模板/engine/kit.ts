@@ -304,6 +304,11 @@ export const LOOKS = {
   cave: { top: 0x06050c, hor: 0x1c142b, fog: [7, 46], sun: 0xffc070, sunI: 2.1, dir: [0.2, 0.9, 0.6], amb: 0x4a3670, ambI: 1.0, card: 0xe6cdb8, stars: 0 },
   stage: { top: 0x160d1c, hor: 0x4a2233, fog: [18, 110], sun: 0xffe2b0, sunI: 2.6, dir: [0.2, 0.8, 0.8], amb: 0x7a5568, ambI: 1.3, card: 0xfff0dc, stars: 0 },
   savanna: { top: 0xf2a23c, hor: 0xffe7a8, fog: [40, 300], sun: 0xffd9a0, sunI: 2.7, dir: [-0.5, 0.5, 0.5], amb: 0xd0a070, ambI: 1.4, card: 0xffeccc, stars: 0 },
+  // —— 《雨爱》那支片子加的四套光：雨天 / 雨夜 / 屋内 / 雨后 ——
+  drizzle: { top: 0x6f8fb0, hor: 0xc6d5e0, fog: [22, 150], sun: 0xe6eefc, sunI: 1.7, dir: [0.3, 0.8, 0.5], amb: 0xa9bcd8, ambI: 1.9, card: 0xeaf2fb, stars: 0 },
+  rainEve: { top: 0x27386b, hor: 0x6d86b5, fog: [18, 120], sun: 0xbfd0ff, sunI: 1.6, dir: [-0.3, 0.8, 0.5], amb: 0x7f93cc, ambI: 1.9, card: 0xdfe6ff, stars: 0 },
+  cozy: { top: 0x4a5f86, hor: 0x93a9c4, fog: [30, 200], sun: 0xffd9a8, sunI: 2.2, dir: [-0.5, 0.7, 0.6], amb: 0xc8a890, ambI: 1.7, card: 0xfff0df, stars: 0 },
+  afterRain: { top: 0x5fb0ee, hor: 0xfff1d6, fog: [45, 340], sun: 0xfff4d6, sunI: 2.6, dir: [0.5, 0.75, 0.5], amb: 0xc4dcff, ambI: 1.7, card: 0xffffff, stars: 0 },
 } satisfies Record<string, Look>;
 export type LookName = keyof typeof LOOKS;
 

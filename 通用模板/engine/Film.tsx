@@ -94,12 +94,12 @@ export function makeFilm(project: ProjectDef): React.FC<FilmProps> {
 
         {titleA > 0.01 && title && (
           <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'flex-start', paddingTop: 70 * S, opacity: titleA }}>
-            <div style={{ fontSize: 150 * S, fontWeight: 900, letterSpacing: 24 * S, color: '#fff6d8', textShadow: `0 ${6 * S}px 0 #7a2b3a, 0 0 ${40 * S}px rgba(255,200,120,.8)`, transform: `scale(${0.94 + 0.06 * titleA})` }}>{title.main}</div>
-            {title.sub && <div style={{ fontSize: 34 * S, fontWeight: 700, letterSpacing: 10 * S, color: '#ffe2a8', marginTop: 4 * S, textShadow: '0 2px 8px rgba(0,0,0,.6)' }}>{title.sub}</div>}
+            <div style={{ fontSize: 150 * S, fontWeight: 900, letterSpacing: 24 * S, color: '#fff6d8', textShadow: project.lyricTone === 'rain' ? `0 ${6 * S}px 0 #2b4a86, 0 0 ${44 * S}px rgba(150,205,255,.9)` : `0 ${6 * S}px 0 #7a2b3a, 0 0 ${40 * S}px rgba(255,200,120,.8)`, transform: `scale(${0.94 + 0.06 * titleA})` }}>{title.main}</div>
+            {title.sub && <div style={{ fontSize: 34 * S, fontWeight: 700, letterSpacing: 10 * S, color: project.lyricTone === 'rain' ? '#d6ecff' : '#ffe2a8', marginTop: 4 * S, textShadow: '0 2px 8px rgba(0,0,0,.6)' }}>{title.sub}</div>}
           </AbsoluteFill>
         )}
 
-        {cue && project.subtitle === 'lyric' && <LyricBar text={project.lines[cue.i]} cue={cue} fps={fps} S={S} />}
+        {cue && project.subtitle === 'lyric' && <LyricBar text={project.lines[cue.i]} cue={cue} fps={fps} S={S} tone={project.lyricTone} />}
         {cue && project.subtitle === 'dialog' && <DialogBar text={project.lines[cue.i]} cue={cue} fps={fps} S={S} who={project.speakers?.[cue.i] ?? null} face={project.faces?.[cue.i] ?? null} atlas={atlas} />}
 
         {endA > 0.01 && end && (

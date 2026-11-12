@@ -1,0 +1,16 @@
+{
+ "id": "yuai",
+ "kind": "mv",
+ "title": "雨爱",
+ "subtitles": "歌词.srt",
+ "audio": {
+  "file": "media/yuai-sifeng.m4a",
+  "offset": 0,
+  "fadeOut": 1.5
+ },
+ "output": "成片/雨爱",
+ "video": {
+  "bitrate": "4700k",
+  "preset": "slow"
+ }
+}

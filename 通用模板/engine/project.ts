@@ -41,6 +41,8 @@ export interface ProjectDef {
   cards?: { title?: { main: string; sub?: string }; end?: { shot: string; text: string } };
   /** 预览台里显示「这一句属于哪一段」，可不填 */
   sectionOf?: (cue: number) => string;
+  /** 歌词条与片名卡的色调：gold=童话书金色（默认）；rain=雨天的蓝 */
+  lyricTone?: 'gold' | 'rain';
   /** 镜头里要用的图片先在这里解码好（props.preloadImage）；没预载的图会被 props.imageOf 拦下来 */
   preloads?: Array<() => Promise<unknown>>;
 }
@@ -81,6 +83,7 @@ export function defineProject(p: {
   subtitle?: SubtitleStyle;
   cards?: ProjectDef['cards'];
   sectionOf?: (cue: number) => string;
+  lyricTone?: 'gold' | 'rain';
   preloads?: Array<() => Promise<unknown>>;
 }): ProjectDef {
   if (!ID_OK.test(p.id)) throw new Error(`[project] id「${p.id}」只能用字母、数字和连字符`);
@@ -123,6 +126,6 @@ export function defineProject(p: {
     id: p.id, kind: p.kind, title: p.title, lines: lines.map((l) => l.text), starts, ends,
     speakers: who.some(Boolean) ? who : undefined,
     faces: who.some(Boolean) ? lines.map((l) => l.face ?? (l.who ? SPEAKER_PORTRAIT[l.who] : null)) : undefined,
-    shots: p.shots, plan, subtitle: p.subtitle ?? (p.kind === 'mv' ? 'lyric' : 'dialog'), cards: p.cards, sectionOf: p.sectionOf, preloads: p.preloads,
+    shots: p.shots, plan, subtitle: p.subtitle ?? (p.kind === 'mv' ? 'lyric' : 'dialog'), cards: p.cards, sectionOf: p.sectionOf, lyricTone: p.lyricTone, preloads: p.preloads,
   };
 }

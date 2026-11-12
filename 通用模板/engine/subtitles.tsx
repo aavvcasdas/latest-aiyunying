@@ -8,20 +8,21 @@ import { SPEAKER_NAME } from './project';
 
 export interface CueState { i: number; p: number; age: number }
 
-/** 歌词条（与页面源码 MVComp 的写法逐项一致） */
-export const LyricBar: React.FC<{ text: string; cue: CueState; fps: number; S: number }> = ({ text, cue, fps, S }) => (
+/** 歌词条（与页面源码 MVComp 的写法逐项一致）。tone: gold=童话书金色；rain=雨天的蓝（《雨爱》用） */
+export type LyricTone = 'gold' | 'rain';
+export const LyricBar: React.FC<{ text: string; cue: CueState; fps: number; S: number; tone?: LyricTone }> = ({ text, cue, fps, S, tone = 'gold' }) => (
   <AbsoluteFill style={{ alignItems: 'center', justifyContent: 'flex-end', paddingBottom: 46 * S }}>
     <div
       style={{
-        position: 'relative', padding: `${12 * S}px ${40 * S}px ${14 * S}px`, background: 'rgba(24,18,44,.86)',
-        borderTop: `${4 * S}px solid #ffd166`, borderBottom: `${4 * S}px solid #ffd166`, borderRadius: 6 * S,
+        position: 'relative', padding: `${12 * S}px ${40 * S}px ${14 * S}px`, background: tone === 'rain' ? 'rgba(16,32,62,.66)' : 'rgba(24,18,44,.86)',
+        borderTop: `${(tone === 'rain' ? 3 : 4) * S}px solid ${tone === 'rain' ? 'rgba(170,220,255,.9)' : '#ffd166'}`, borderBottom: `${(tone === 'rain' ? 3 : 4) * S}px solid ${tone === 'rain' ? 'rgba(170,220,255,.9)' : '#ffd166'}`, borderRadius: (tone === 'rain' ? 18 : 6) * S,
         fontSize: 58 * S, fontWeight: 900, letterSpacing: 5 * S, lineHeight: 1.15, whiteSpace: 'nowrap',
         opacity: Math.min(1, cue.age * fps / 4), transform: `translateY(${(1 - Math.min(1, cue.age * fps / 5)) * 16 * S}px)`,
         boxShadow: `0 ${8 * S}px ${30 * S}px rgba(0,0,0,.35)`,
       }}
     >
       <span style={{ color: '#ffffff' }}>{text}</span>
-      <span style={{ position: 'absolute', left: 40 * S, top: 12 * S, color: '#ffd84a', clipPath: `inset(0 ${(1 - cue.p) * 100}% 0 0)` }}>{text}</span>
+      <span style={{ position: 'absolute', left: 40 * S, top: 12 * S, color: tone === 'rain' ? '#ffdc8f' : '#ffd84a', clipPath: `inset(0 ${(1 - cue.p) * 100}% 0 0)` }}>{text}</span>
     </div>
   </AbsoluteFill>
 );

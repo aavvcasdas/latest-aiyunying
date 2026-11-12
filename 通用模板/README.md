@@ -343,6 +343,7 @@ track([[0, A], [0.5, B], [1, C]], u) // 多段运镜；每段起止机位要不�
 ### 光照预设（`look`）
 
 `day` 晴天 · `golden` 暖午后（室内常用）· `dusk` 黄昏 · `night` 夜 · `forest` 密林 · `magic` 紫色魔法 · `sea` 水下 · `cave` 洞穴 · `stage` 舞台 · `savanna` 草原
+· `drizzle` 雨天 · `rainEve` 雨夜 · `cozy` 屋内 · `afterRain` 雨后（后四套是《雨爱》加的，见 `番外MV/雨爱/README.md`）
 
 ### 积木
 
