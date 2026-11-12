@@ -324,6 +324,8 @@ track([[0, A], [0.5, B], [1, C]], u) // 多段运镜；每段起止机位要不�
 
 ### 八位角色与可用造型
 
+这张表只管**造型格**。她在这版里演谁、一句话性格、动作能落到哪一层：[`番外MV/设定表.md`](../番外MV/设定表.md)；完整设定（习性、道具、关系、红线）在 [`设定/AI娘设定总纲.md`](../设定/AI娘设定总纲.md)。
+
 | id | 角色 | 造型格（`.set(…)`） | 头像格（台词里的 `角色/头像:`） |
 |---|---|---|---|
 | `whale` | 鲸鱼娘（主角） | `whale_idle` `whale_blink` `whale_point` `whale_wave`；大号 `whale_big_idle/blink/point/wave`；步态 `walk_whale_0–7` | `p_whale_neutral` `p_whale_think` `p_whale_shout` |
