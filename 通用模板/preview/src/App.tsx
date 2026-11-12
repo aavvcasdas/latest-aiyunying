@@ -1,4 +1,4 @@
-// 预览台：自动发现仓库里的作品（番外MV/*、Day/*、通用模板/样板/*），在浏览器里用 @remotion/player 播放，
+// 预览台：自动发现仓库里的作品（番外MV/*、通用模板/样板/*），在浏览器里用 @remotion/player 播放，
 // 右边是镜头表，点一下跳到那个镜头。画面由同一个引擎实时画出来——这里看到的和出片的是同一份代码。
 // 有音源的作品会边看边放音（按 film.json 的 offset 对位）；出片时的音轨则是渲染后按采样混入的，两者对位方式一致。
 import { Player, type PlayerRef } from '@remotion/player';
@@ -12,10 +12,10 @@ import { FPS, VH, VW, cueAt, fmtTime, shotIndexAt } from '@tpl/timeline';
 interface FilmJson { id: string; kind: 'mv' | 'day'; title: string; audio?: { file?: string; offset?: number } }
 interface CuesJson { measured: boolean }
 
-const projectLoaders = import.meta.glob<{ default: ProjectDef }>(['../../../番外MV/*/project.tsx', '../../../Day/*/project.tsx', '../../样板/*/project.tsx']);
-const filmJsons = import.meta.glob<FilmJson>(['../../../番外MV/*/film.json', '../../../Day/*/film.json', '../../样板/*/film.json'], { eager: true, import: 'default' });
-const cuesJsons = import.meta.glob<CuesJson>(['../../../番外MV/*/cues.json', '../../../Day/*/cues.json', '../../样板/*/cues.json'], { eager: true, import: 'default' });
-const mediaLoaders = import.meta.glob<string>(['../../../番外MV/*/素材/*', '../../../Day/*/素材/*', '../../样板/*/素材/*'], { query: '?url', import: 'default' });
+const projectLoaders = import.meta.glob<{ default: ProjectDef }>(['../../../番外MV/*/project.tsx', '../../样板/*/project.tsx']);
+const filmJsons = import.meta.glob<FilmJson>(['../../../番外MV/*/film.json', '../../样板/*/film.json'], { eager: true, import: 'default' });
+const cuesJsons = import.meta.glob<CuesJson>(['../../../番外MV/*/cues.json', '../../样板/*/cues.json'], { eager: true, import: 'default' });
+const mediaLoaders = import.meta.glob<string>(['../../../番外MV/*/素材/*', '../../样板/*/素材/*'], { query: '?url', import: 'default' });
 
 const dirOf = (p: string) => p.slice(0, p.lastIndexOf('/'));
 const labelOf = (dir: string) => dir.replace(/^(\.\.\/)+/, '');
@@ -85,7 +85,7 @@ export function App() {
     return () => p.removeEventListener('frameupdate', on);
   }, [Film, tl]);
 
-  if (!ENTRIES.length) return <div className="empty">仓库里还没有作品。用 <code>npm run new -- day Day/Day15 "标题"</code> 新建一个。</div>;
+  if (!ENTRIES.length) return <div className="empty">仓库里还没有作品。用 <code>npm run new -- mv 番外MV/某首歌 "标题"</code> 新建一个。</div>;
   const t = frame / FPS;
   const si = tl ? shotIndexAt(tl, t) : 0;
   const shot = tl?.shots[si];

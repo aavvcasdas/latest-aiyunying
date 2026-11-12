@@ -31,29 +31,6 @@ const PASSED = /还没有时间轴缓存/;
 const edit = (file, fn) => fs.writeFileSync(file, fn(fs.readFileSync(file, 'utf8')));
 const editJson = (file, fn) => edit(file, (s) => { const o = JSON.parse(s); fn(o); return JSON.stringify(o, null, 1) + '\n'; });
 
-test('口播：台词改了、卡点没重做 → 拦下；重跑 plan 之后放行', () => {
-  const s = sandbox('day');
-  try {
-    let r = s.run('encode', s.dir);
-    assert.notEqual(r.code, 0);
-    assert.match(r.text, PASSED, '原样的样板应该通过台词检查，停在「还没渲过」');
-
-    edit(path.join(s.dir, '台词.txt'), (t) => t.replace(/。\s*$/, '！\n'));
-    r = s.run('encode', s.dir);
-    assert.notEqual(r.code, 0);
-    assert.match(r.text, /台词\.txt 改过了/);
-    assert.doesNotMatch(r.text, PASSED, '应该在台词检查这一步就停下');
-
-    r = s.run('plan', s.dir);
-    assert.equal(r.code, 0, r.text);
-    r = s.run('encode', s.dir);
-    assert.match(r.text, PASSED);
-    const cues = JSON.parse(fs.readFileSync(path.join(s.dir, 'cues.json'), 'utf8'));
-    assert.equal(cues.measured, false);
-    assert.match(cues.lines.at(-1).text, /！$/, '重新 plan 之后字幕是新台词');
-  } finally { s.done(); }
-});
-
 test('MV：歌词改了、卡点没重做 → 拦下；卡点里没记歌词版本 → 也拦下', () => {
   const s = sandbox('mv');
   try {
@@ -72,7 +49,7 @@ test('MV：歌词改了、卡点没重做 → 拦下；卡点里没记歌词版�
 });
 
 test('有音源时：估出来的卡点不许出成片；按另一条音频测的卡点也不许', () => {
-  const s = sandbox('day');
+  const s = sandbox('mv');
   try {
     fs.mkdirSync(path.join(s.dir, '素材'), { recursive: true });
     fs.writeFileSync(path.join(s.dir, '素材/配音.wav'), Buffer.from('RIFF 这不是一条真的音频，只用来算指纹'));
@@ -96,17 +73,17 @@ test('有音源时：估出来的卡点不许出成片；按另一条音频测�
 });
 
 test('没有 cues.json 时：告诉人该先跑哪条命令', () => {
-  const s = sandbox('day');
+  const s = sandbox('mv');
   try {
     fs.rmSync(path.join(s.dir, 'cues.json'));
     const r = s.run('info', s.dir);
     assert.notEqual(r.code, 0);
-    assert.match(r.text, /先跑 plan/);
+    assert.match(r.text, /先跑 align/);
   } finally { s.done(); }
 });
 
 test('音源声明了但文件不在：align / mux / full 在动手之前就停，写明文件该放哪、怎么先出无声样片', () => {
-  const s = sandbox('day');
+  const s = sandbox('mv');
   try {
     editJson(path.join(s.dir, 'film.json'), (f) => { f.audio = { file: '素材/配音.wav' }; });
     for (const cmd of ['full', 'mux', 'align']) {
@@ -127,7 +104,7 @@ test('音源声明了但文件不在：align / mux / full 在动手之前就停�
 });
 
 test('配乐文件不在、音源解不出音轨：都在渲染之前就停，不等渲完再崩', () => {
-  const s = sandbox('day');
+  const s = sandbox('mv');
   try {
     const wav = path.join(s.dir, '素材/配音.wav');
     fs.mkdirSync(path.dirname(wav), { recursive: true });
@@ -150,4 +127,21 @@ test('配乐文件不在、音源解不出音轨：都在渲染之前就停，�
     assert.ok(!fs.existsSync(path.join(s.work, 'source_48000.wav')) && !fs.existsSync(path.join(s.work, 'source_48000.wav.src')), '解失败之后不留半截文件，也不留缓存标记（下次不会把它当成解好的音轨）');
     assert.ok(!fs.existsSync(path.join(s.dir, '成片')), '没有产出任何文件');
   } finally { s.done(); }
+});
+
+test('MV 分支脚手架：只创建 MV，拒绝已移除的日更类型', () => {
+  const repo = path.resolve(TPL, '..');
+  const root = fs.mkdtempSync(path.join(repo, '.mv-scaffold-test-'));
+  const cli = path.join(TPL, 'cli/new.mjs');
+  try {
+    const bad = spawnSync(process.execPath, [cli, 'day', path.join(root,'bad')], {encoding:'utf8'});
+    assert.notEqual(bad.status, 0);
+    assert.ok(!fs.existsSync(path.join(root,'bad')));
+    const dest = path.join(root, 'example');
+    const good = spawnSync(process.execPath, [cli,'mv',dest,'测试歌曲'], {encoding:'utf8'});
+    assert.equal(good.status,0,good.stdout+good.stderr);
+    assert.equal(JSON.parse(fs.readFileSync(path.join(dest,'film.json'),'utf8')).kind,'mv');
+    assert.ok(fs.existsSync(path.join(dest,'歌词.srt')));
+    assert.ok(!fs.existsSync(path.join(dest,'台词.txt')));
+  } finally { fs.rmSync(root, {recursive:true,force:true}); }
 });

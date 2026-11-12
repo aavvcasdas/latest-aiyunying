@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """音频工具的测试：全部用「已知答案」的合成信号（不是真人配音 / 真歌）。
     python3 -m unittest discover -s 通用模板/tests -p 'test_*.py'
-覆盖：audio_mix.py（按采样对位、淡出、配乐压低、干声可减回）、align_voice.py（按停顿切句、逐词对齐、拒绝伪造）、
-      align_beats.py（实测拍点、吸附）、film.mjs plan（规划轴公式与旧项目 Day14 的规划逐句一致）。
+覆盖：audio_mix.py（按采样对位、淡出、混音）、align_beats.py（实测拍点、吸附）。
 """
 import json
 import os
@@ -163,74 +162,6 @@ class Strip(unittest.TestCase):
         self.assertIn('缺帧 4', r.stderr + r.stdout)
 
 
-class AlignVoice(unittest.TestCase):
-    SR = 16000
-    LINES = ['今天的饭碗特别大。', '本鲸决定先数一数筷子。', '一双，两双，数到第七双就乱了。', '算了，先吃饭。']
-
-    def align(self, spans, lines=None, extra=(), ok=True, dur=None):
-        d = tempfile.mkdtemp()
-        wav, lj, out = os.path.join(d, 'v.wav'), os.path.join(d, 'l.json'), os.path.join(d, 'cues.json')
-        write_wav(wav, speech_like(spans, dur or spans[-1][1] + 0.5, self.SR), self.SR)
-        wtext(lj, json.dumps([{'text': t, 'who': 'whale'} for t in (lines or self.LINES)], ensure_ascii=False))
-        r = run('align_voice.py', '--wav', wav, '--lines', lj, '--out', out, '--audio-name', 'v.wav', '--audio-sha256', 'x' * 64, *extra, ok=ok)
-        return (jload(out) if os.path.exists(out) else None), r
-
-    def test_one_segment_per_line_is_unique(self):
-        truth = [(0.40, 2.90), (3.40, 6.50), (7.10, 11.30), (11.90, 13.60)]
-        cues, _ = self.align(truth)
-        self.assertTrue(cues['measured'])
-        self.assertEqual(cues['summary']['mapping'], 'unique')
-        self.assertEqual(cues['summary']['warnings'], [])
-        for line, (a, b) in zip(cues['lines'], truth):
-            self.assertLess(abs(line['start'] - a), 0.03)
-            self.assertLess(abs(line['end'] - b), 0.03)
-            self.assertEqual(line['who'], 'whale')
-
-    def test_extra_pauses_inside_lines_are_resolved_by_proportion(self):
-        # 第 3 句中间有两个逗号停顿（各 0.25 秒），句间停顿 0.5 秒
-        segs = [(0.40, 2.90), (3.40, 6.50), (7.00, 8.00), (8.25, 9.25), (9.50, 11.60), (12.10, 13.80)]
-        cues, _ = self.align(segs)
-        self.assertEqual(cues['summary']['mapping'], 'by-proportion')
-        self.assertEqual(len(cues['summary']['warnings']), 1, '按比例挑的句界必须带一条「请听一遍核对」的提醒')
-        want = [(0.40, 2.90), (3.40, 6.50), (7.00, 11.60), (12.10, 13.80)]
-        for line, (a, b) in zip(cues['lines'], want):
-            self.assertLess(abs(line['start'] - a), 0.03)
-            self.assertLess(abs(line['end'] - b), 0.03)
-
-    def test_refuses_when_pauses_are_not_enough(self):
-        cues, r = self.align([(0.4, 6.0), (6.6, 12.0)], ok=False)
-        self.assertNotEqual(r.returncode, 0)
-        self.assertIsNone(cues, '对不上就不写 cues.json')
-        self.assertIn('停顿不够分句', r.stderr + r.stdout)
-
-    def test_refuses_implausible_speaking_rate(self):
-        # 四句字数相近，但第 2 段声音只有 0.3 秒：按停顿切出来语速离谱 → 拒绝
-        lines = ['今天的饭碗特别大。', '本鲸决定数一数筷子。', '数到第七双就乱掉了。', '算了还是先吃饭吧。']
-        cues, r = self.align([(0.4, 3.0), (3.5, 3.8), (4.3, 6.9), (7.4, 10.0)], lines=lines, ok=False)
-        self.assertNotEqual(r.returncode, 0)
-        self.assertIsNone(cues)
-        self.assertIn('语速对不上', r.stderr + r.stdout)
-
-    def test_asr_words_path(self):
-        truth = [(0.40, 2.90), (3.40, 6.50), (7.10, 11.30), (11.90, 13.60)]
-        d = tempfile.mkdtemp()
-        words = []
-        for text, (a, b) in zip(self.LINES, truth):
-            chars = [c for c in text if c not in '，。']
-            step = (b - a) / len(chars)
-            # ASR 的边界故意给得粗一点（各偏 80 毫秒），并听错一个字：对齐后要被 RMS 修回真实边界
-            for i, c in enumerate(chars):
-                words.append({'word': '万' if c == '碗' else c, 'start': a + i * step + (0.08 if i == 0 else 0), 'end': a + (i + 1) * step - (0.08 if i == len(chars) - 1 else 0)})
-        wj = os.path.join(d, 'words.json')
-        wtext(wj, json.dumps({'result': words}, ensure_ascii=False))
-        cues, _ = self.align(truth, extra=('--words', wj))
-        self.assertEqual(cues['summary']['mapping'], 'asr-words')
-        self.assertGreater(cues['summary']['matched_char_ratio'], 0.9)
-        for line, (a, b) in zip(cues['lines'], truth):
-            self.assertLess(abs(line['start'] - a), 0.04)
-            self.assertLess(abs(line['end'] - b), 0.04)
-
-
 class AlignBeats(unittest.TestCase):
     def test_click_track_tempo_and_snap(self):
         sr, bpm, dur = 22050, 120.0, 40.0
@@ -258,30 +189,6 @@ class AlignBeats(unittest.TestCase):
             phase = (line['start'] - 0.25) / period
             self.assertLess(abs(phase - round(phase)) * period, 0.03, f"{line['text']} 吸到了 {line['start']}")
             self.assertLessEqual(abs(line['start'] - s), period / 2 + 1e-6)
-
-
-class PlanFormula(unittest.TestCase):
-    def test_reproduces_archived_day14_planning_line_by_line(self):
-        """规划轴的估法沿用旧项目：拿存档里的 Day14 台词重估一遍，应当与存档里的 planning.json 逐句一致"""
-        old_dir = os.path.join(REPO, '存档', '重构前', 'Day', 'Day14')
-        old = jload(os.path.join(old_dir, 'planning.json'))
-        d = tempfile.mkdtemp()
-        proj = os.path.join(d, 'p')
-        os.makedirs(proj)
-        wtext(os.path.join(proj, 'film.json'), json.dumps({'id': 'plan-test', 'kind': 'day', 'title': 't', 'script': '台词.txt', 'speaker': 'whale'}))
-        wtext(os.path.join(proj, 'project.tsx'), '// 测试占位\n')
-        wtext(os.path.join(proj, '台词.txt'), rtext(os.path.join(old_dir, 'Day14配音台词.txt')))
-        r = subprocess.run(['node', os.path.join(CLI, 'film.mjs'), 'plan', proj, '--work', os.path.join(d, 'w')], capture_output=True, text=True)
-        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
-        new = jload(os.path.join(proj, 'cues.json'))
-        self.assertFalse(new['measured'])
-        self.assertEqual(len(new['lines']), len(old['cues']))
-        self.assertAlmostEqual(new['lines'][-1]['end'], old['duration_seconds'], delta=0.0005)
-        for a, b in zip(new['lines'], old['cues']):
-            self.assertEqual(a['text'], b['text'])
-            self.assertAlmostEqual(a['start'], b['start'], delta=0.0005)
-            self.assertAlmostEqual(a['end'], b['end'], delta=0.0005)
-            self.assertEqual(a['who'], 'whale')
 
 
 if __name__ == '__main__':

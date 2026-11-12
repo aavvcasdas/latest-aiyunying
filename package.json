@@ -1,9 +1,9 @@
 {
-  "name": "newday",
+  "name": "ai-girls-mv",
   "version": "2.0.0",
   "private": true,
   "type": "module",
-  "description": "鲸鱼娘 AI 运营 · 通用模板（three.js 3D 世界 + 2D 像素纸片人，Remotion 逐帧出片）",
+  "description": "鲸鱼娘 MV · 人物设定与三维像素音乐影像制作",
   "engines": {
     "node": ">=22.18"
   },

@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 // 通用模板 · 新开一部作品
 //
-//   node 通用模板/cli/new.mjs <mv|day> <目标目录> [标题]
-//   npm run new -- day Day/Day15 "两只沙漏"
+//   node 通用模板/cli/new.mjs mv <目标目录> [标题]
 //   npm run new -- mv 番外MV/某首歌 "某首歌"
 //
-// 做的事：把 通用模板/样板/<mv|day>/ 整个抄到目标目录（不抄样板自己的成片），改好 film.json 的 id / title / output，
+// 做的事：把 通用模板/样板/mv/ 整个抄到目标目录（不抄样板自己的成片），改好 film.json 的 id / title / output，
 // 然后告诉你接下来改哪几个文件。目标目录已经有东西时拒绝执行，不覆盖任何已有文件。
 import fs from 'node:fs';
 import path from 'node:path';
@@ -17,12 +16,12 @@ const TPL = path.resolve(HERE, '..');
 const REPO = path.resolve(TPL, '..');
 const [kind, target, titleArg] = process.argv.slice(2);
 const die = (m) => { console.error(`✗ ${m}`); process.exit(1); };
-if (!['mv', 'day'].includes(kind) || !target) die('用法：node 通用模板/cli/new.mjs <mv|day> <目标目录> [标题]');
+if (!['mv'].includes(kind) || !target) die('用法：node 通用模板/cli/new.mjs mv <目标目录> [标题]');
 
 const dest = path.resolve(target);
 const relDest = path.relative(REPO, dest);
 if (relDest.startsWith('..')) die('目标目录必须在仓库里');
-if (/^(存档|通用模板|node_modules)([\\/]|$)/.test(relDest)) die(`不能建在 ${relDest.split(/[\\/]/)[0]}/ 里：存档只读，通用模板里只放模板本身`);
+if (/^(通用模板|node_modules)([\\/]|$)/.test(relDest)) die(`不能建在 ${relDest.split(/[\\/]/)[0]}/ 里：通用模板里只放模板本身`);
 if (/(^|[\\/])(out|build|dist|target|coverage)([\\/]|$)/.test(relDest)) die('目录名不要用 out / build / dist / target / coverage：部分托管环境的快照会跳过它们');
 if (fs.existsSync(dest) && fs.readdirSync(dest).length) die(`${relDest} 已经存在而且不是空的；换一个目录，或先自己清空它`);
 
@@ -50,20 +49,8 @@ film.id = id; film.title = title; film.output = `成片/${title}`;
 fs.writeFileSync(filmFile, JSON.stringify(film, null, 2) + '\n');
 
 const p = (f) => path.join(relDest, f);
-console.log(`已建好 ${relDest}/（${kind === 'mv' ? '歌词 MV' : '口播片'}，id=${id}，标题「${title}」）\n`);
-if (kind === 'day') {
-  console.log(`接下来：
-  1. 写台词        ${p('台词.txt')}（一行一句；行首可写「角色:」或「角色/头像:」）
-  2. 估一份规划轴  npm run film -- plan ${relDest}
-  3. 写镜头        ${p('shots/shots.ts')}，排镜在 ${p('project.tsx')} 的 planShots
-  4. 看分镜        npm run film -- sheet ${relDest}        （每个镜头一格的总览图）
-  5. 出无声样片    npm run film -- full ${relDest}
-  ——配音到位之后——
-  6. 把配音放进    ${p('素材/')}，并在 ${p('film.json')} 里加：
-       "audio": { "file": "素材/配音.wav", "offset": 0, "fadeOut": 0, "bgm": { "chip": 128 } }
-  7. 实测对齐      npm run film -- align ${relDest}
-  8. 出成片        npm run film -- full ${relDest}`);
-} else {
+console.log(`已建好 ${relDest}/（歌词 MV，id=${id}，标题「${title}」）\n`);
+{
   console.log(`接下来：
   1. 把原曲放进    ${p('素材/')}，并在 ${p('film.json')} 里加：
        "audio": { "file": "素材/原曲.mp3", "offset": 0, "fadeOut": 1.5 }

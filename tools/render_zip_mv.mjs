@@ -2,6 +2,10 @@
 // 用法：node tools/render_zip_mv.mjs fable [--frames a:b] [--still 秒] [--out 路径]
 //       入口、合成 id、public 目录都写在下面的 PROJECTS 里，加一部新片子就加一条。
 import fs from 'node:fs';
+import { brotliDecompressSync } from 'node:zlib';
+import { execFileSync } from 'node:child_process';
+import os from 'node:os';
+import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import chromium from '@sparticuz/chromium';
@@ -9,6 +13,18 @@ import chromium from '@sparticuz/chromium';
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const FFDIR = path.join(REPO, 'node_modules/@remotion/compositor-linux-x64-gnu');
 process.env.LD_LIBRARY_PATH = `${FFDIR}:${process.env.LD_LIBRARY_PATH || ''}`;
+// 非 Lambda Linux 也需要包内的 NSS/NSPR；chromium.executablePath 默认不会在这里解开它们。
+if (process.platform === 'linux' && process.arch === 'x64' && !fs.existsSync('/tmp/al2023/lib/libnspr4.so')) {
+  const require = createRequire(import.meta.url);
+  const bin = path.resolve(path.dirname(require.resolve('@sparticuz/chromium')), '../bin/al2023.tar.br');
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'mv-chromium-'));
+  try {
+    const tar = path.join(tmp, 'libs.tar');
+    fs.writeFileSync(tar, brotliDecompressSync(fs.readFileSync(bin)));
+    fs.mkdirSync('/tmp/al2023', {recursive: true});
+    execFileSync('tar', ['xf', tar, '-C', '/tmp/al2023']);
+  } finally { fs.rmSync(tmp, {recursive: true, force: true}); }
+}
 for (const lib of ['/tmp/al2023/lib', '/tmp/al2023', '/tmp']) {
   if (fs.existsSync(lib)) process.env.LD_LIBRARY_PATH = `${lib}:${process.env.LD_LIBRARY_PATH}`;
 }
@@ -76,7 +92,7 @@ await renderer.renderMedia({
   inputProps: {},
   browserExecutable,
   chromiumOptions,
-  concurrency: Number(process.env.CONCURRENCY || 2),
+  concurrency: Number(process.env.CONCURRENCY || 1),
   frameRange,
   imageFormat: 'jpeg',
   jpegQuality: 92,
@@ -88,6 +104,22 @@ await renderer.renderMedia({
     if (renderedFrames % 120 === 0) console.log(`[render] 已渲 ${renderedFrames} / 已编码 ${encodedFrames} · ${(progress * 100).toFixed(1)}%`);
   },
 });
+
+// Fable 的音轨无裁切/变速/淡出：直接复用源 AAC 包，避免 Remotion 再编码引入约 2 个 AAC 帧延迟。
+// 保留视频逐帧渲染结果，不重编码视频；容器 edit list 保持源 AAC 的首帧补偿。
+if (key === 'fable' && !frameRange) {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'fable-mux-'));
+  try {
+    const muxed = path.join(tmp, 'final.mp4');
+    execFileSync(path.join(FFDIR, 'ffmpeg'), [
+      '-v', 'error', '-i', outFile, '-i', path.join(publicDir, 'song.m4a'),
+      '-map', '0:v:0', '-map', '1:a:0', '-c', 'copy',
+      '-t', String(composition.durationInFrames / composition.fps),
+      '-movflags', '+faststart', '-y', muxed,
+    ]);
+    fs.copyFileSync(muxed, outFile);
+  } finally { fs.rmSync(tmp, {recursive: true, force: true}); }
+}
 
 const size = fs.statSync(outFile).size;
 console.log(`DONE ${path.relative(REPO, outFile)} · ${(size / 1048576).toFixed(1)} MB`);

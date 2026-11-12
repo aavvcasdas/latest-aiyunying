@@ -1,0 +1,350 @@
+[
+  {
+    "start": 0,
+    "end": 2.51,
+    "name": "片头 · 河岸推进",
+    "set": "river"
+  },
+  {
+    "start": 2.51,
+    "end": 5.5,
+    "name": "放开的手",
+    "set": "river"
+  },
+  {
+    "start": 5.5,
+    "end": 9.35,
+    "name": "哭了很久",
+    "set": "river"
+  },
+  {
+    "start": 9.35,
+    "end": 13.15,
+    "name": "坏坏的女友",
+    "set": "neon"
+  },
+  {
+    "start": 13.15,
+    "end": 17.01,
+    "name": "多余的温柔",
+    "set": "spring"
+  },
+  {
+    "start": 17.01,
+    "end": 21.05,
+    "name": "无名大街",
+    "set": "nameless"
+  },
+  {
+    "start": 21.05,
+    "end": 24.28,
+    "name": "没有来电",
+    "set": "room"
+  },
+  {
+    "start": 24.28,
+    "end": 28.39,
+    "name": "酒吧舞池",
+    "set": "bar"
+  },
+  {
+    "start": 28.39,
+    "end": 32.37,
+    "name": "熟悉的侧脸",
+    "set": "bar"
+  },
+  {
+    "start": 32.37,
+    "end": 34.48,
+    "name": "熟悉的侧脸",
+    "set": "bar"
+  },
+  {
+    "start": 34.48,
+    "end": 38.49,
+    "name": "陌生的肩",
+    "set": "bar"
+  },
+  {
+    "start": 38.49,
+    "end": 41.85,
+    "name": "黑色的眼线",
+    "set": "bar"
+  },
+  {
+    "start": 41.85,
+    "end": 46.39,
+    "name": "一点轻蔑",
+    "set": "bar"
+  },
+  {
+    "start": 46.39,
+    "end": 49.62,
+    "name": "谁的怀中",
+    "set": "bar"
+  },
+  {
+    "start": 49.62,
+    "end": 53.17,
+    "name": "深夜想念",
+    "set": "bridge"
+  },
+  {
+    "start": 53.17,
+    "end": 56.9,
+    "name": "为你改变",
+    "set": "room"
+  },
+  {
+    "start": 56.9,
+    "end": 60.6,
+    "name": "回不到从前",
+    "set": "river"
+  },
+  {
+    "start": 60.6,
+    "end": 64.75,
+    "name": "间奏 · 春日并肩",
+    "set": "spring"
+  },
+  {
+    "start": 64.75,
+    "end": 68.53,
+    "name": "间奏 · 夏日绕行",
+    "set": "summer"
+  },
+  {
+    "start": 68.53,
+    "end": 72.31,
+    "name": "间奏 · 秋日分岔",
+    "set": "autumn"
+  },
+  {
+    "start": 72.31,
+    "end": 74.2,
+    "name": "间奏 · 雪中空位",
+    "set": "winter"
+  },
+  {
+    "start": 74.2,
+    "end": 76.09,
+    "name": "间奏 · 雨夜独行",
+    "set": "rain"
+  },
+  {
+    "start": 76.09,
+    "end": 79.87,
+    "name": "间奏 · 人群擦肩",
+    "set": "neon"
+  },
+  {
+    "start": 79.87,
+    "end": 83.65,
+    "name": "间奏 · 窗前未眠",
+    "set": "room"
+  },
+  {
+    "start": 83.65,
+    "end": 85.54,
+    "name": "间奏 · 桥上回望",
+    "set": "bridge"
+  },
+  {
+    "start": 85.54,
+    "end": 87.43,
+    "name": "间奏 · 夜空旋转",
+    "set": "ferris"
+  },
+  {
+    "start": 87.43,
+    "end": 89.32,
+    "name": "间奏 · 空场试灯",
+    "set": "bar"
+  },
+  {
+    "start": 89.32,
+    "end": 91.21,
+    "name": "间奏 · 豆包踩拍",
+    "set": "bar"
+  },
+  {
+    "start": 91.21,
+    "end": 92.99,
+    "name": "间奏 · 重回街口",
+    "set": "rain"
+  },
+  {
+    "start": 92.99,
+    "end": 96.28,
+    "name": "放开的手",
+    "set": "rain"
+  },
+  {
+    "start": 96.28,
+    "end": 100.14,
+    "name": "雨中回望",
+    "set": "rain"
+  },
+  {
+    "start": 100.14,
+    "end": 103.93,
+    "name": "坏坏的女友",
+    "set": "neon"
+  },
+  {
+    "start": 103.93,
+    "end": 107.79,
+    "name": "多余的温柔",
+    "set": "autumn"
+  },
+  {
+    "start": 107.79,
+    "end": 111.34,
+    "name": "无名大街",
+    "set": "nameless"
+  },
+  {
+    "start": 111.34,
+    "end": 115.32,
+    "name": "没有来电",
+    "set": "room"
+  },
+  {
+    "start": 115.32,
+    "end": 118.86,
+    "name": "酒吧舞池",
+    "set": "bar"
+  },
+  {
+    "start": 118.86,
+    "end": 123.4,
+    "name": "熟悉的侧脸",
+    "set": "bar"
+  },
+  {
+    "start": 123.4,
+    "end": 125.27,
+    "name": "熟悉的侧脸",
+    "set": "bar"
+  },
+  {
+    "start": 125.27,
+    "end": 128.51,
+    "name": "陌生的肩",
+    "set": "bar"
+  },
+  {
+    "start": 128.51,
+    "end": 132.61,
+    "name": "黑色的眼线",
+    "set": "bar"
+  },
+  {
+    "start": 132.61,
+    "end": 136.9,
+    "name": "一点轻蔑",
+    "set": "bar"
+  },
+  {
+    "start": 136.9,
+    "end": 140.01,
+    "name": "谁的怀中",
+    "set": "bar"
+  },
+  {
+    "start": 140.01,
+    "end": 143.68,
+    "name": "深夜想念",
+    "set": "bridge"
+  },
+  {
+    "start": 143.68,
+    "end": 147.66,
+    "name": "为你改变",
+    "set": "room"
+  },
+  {
+    "start": 147.66,
+    "end": 150.2,
+    "name": "回不到从前",
+    "set": "nameless"
+  },
+  {
+    "start": 150.2,
+    "end": 153.37,
+    "name": "桥段前 · 灯光与距离",
+    "set": "ferris"
+  },
+  {
+    "start": 153.37,
+    "end": 155.74,
+    "name": "安静的发现",
+    "set": "ferris"
+  },
+  {
+    "start": 155.74,
+    "end": 159.66,
+    "name": "没有任何语言",
+    "set": "ferris"
+  },
+  {
+    "start": 159.66,
+    "end": 164.01,
+    "name": "纯真的永远",
+    "set": "spring"
+  },
+  {
+    "start": 164.01,
+    "end": 167.77,
+    "name": "开始怀念",
+    "set": "ferris"
+  },
+  {
+    "start": 167.77,
+    "end": 170.76,
+    "name": "迷人的笑脸",
+    "set": "bar"
+  },
+  {
+    "start": 170.76,
+    "end": 174.49,
+    "name": "陌生的肩",
+    "set": "bar"
+  },
+  {
+    "start": 174.49,
+    "end": 177.85,
+    "name": "黑色的眼线",
+    "set": "bar"
+  },
+  {
+    "start": 177.85,
+    "end": 181.89,
+    "name": "一点轻蔑",
+    "set": "bar"
+  },
+  {
+    "start": 181.89,
+    "end": 185.69,
+    "name": "谁的怀中",
+    "set": "bridge"
+  },
+  {
+    "start": 185.69,
+    "end": 189.42,
+    "name": "深夜想念",
+    "set": "bridge"
+  },
+  {
+    "start": 189.42,
+    "end": 192.65,
+    "name": "为你改变",
+    "set": "river"
+  },
+  {
+    "start": 192.65,
+    "end": 195,
+    "name": "回不到从前",
+    "set": "river"
+  }
+]
