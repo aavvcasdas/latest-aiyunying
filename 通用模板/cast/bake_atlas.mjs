@@ -25,7 +25,6 @@ const imp = (f) => import(pathToFileURL(path.join(PIXEL_MV, f)).href);
 const { RGB, T } = await imp('px.js');
 const { getBakedSprite } = await imp('sprites_data.js');
 await imp('walk_cycle_data.js'); // 把 walk_* 注册进同一张精灵表
-await imp('grok_data.js');       // Grok 的格（由 bake_grok.mjs 从 gemini_* 派生）
 
 const meta = JSON.parse(fs.readFileSync(META_PATH, 'utf8'));
 const { w: W, h: H, s: cells } = meta;
