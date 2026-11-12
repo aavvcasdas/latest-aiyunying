@@ -5,7 +5,7 @@
   1. 用 numpy 合成一段轻快的像素风衬底（拨弦 + 铺底 + 贝斯 + 轻打点，C–G–Am–F 四和弦循环）；
   2. 按片子的三段情绪排编制：白天（只有拨弦和铺底）→ 金黄/黄昏（加贝斯和打点）→
      夜里那几句（抽掉鼓和贝斯，只留铺底）→ 结尾（全编制收尾）；
-  3. 从成片里量出人声的包络，人一说话 BGM 就压 9 dB，说完 300ms 慢慢回来；
+  3. 从成片里量出人声的包络，人一说话 BGM 再压 3 dB，说完慢慢抬回来；
   4. 混好写 素材/Day15_混音.wav，再把人声那轨换掉、视频流直接 copy，输出成片。
 
     python3 Day/Day15/make_bgm.py
@@ -52,12 +52,12 @@ def env_ad(n: int, attack: float) -> np.ndarray:
 
 
 def pluck(freq: float, dur: float, amp: float = 1.0) -> np.ndarray:
-    """拨弦：三角波 + 二次谐波，短促、干净"""
+    """拨弦：三角波 + 二三次谐波，短促、干净；谐波给足一点，手机喇叭才听得出来"""
     n = int(dur * SR)
     t = np.arange(n) / SR
     ph = 2 * np.pi * freq * t
     tri = 2 / np.pi * np.arcsin(np.sin(ph))
-    tone = tri * 0.8 + np.sin(ph * 2) * 0.2
+    tone = tri * 0.65 + np.sin(ph * 2) * 0.22 + np.sin(ph * 3) * 0.13
     return tone * env_ad(n, 0.004) * amp
 
 
@@ -66,8 +66,17 @@ def pad(freq: float, dur: float, amp: float = 1.0) -> np.ndarray:
     n = int(dur * SR)
     t = np.arange(n) / SR
     a = np.clip(t / 0.35, 0, 1) * np.clip((dur - t) / 0.5, 0, 1)
-    tone = np.sin(2 * np.pi * freq * t) + 0.5 * np.sin(2 * np.pi * freq * 1.004 * t) + 0.3 * np.sin(2 * np.pi * freq * 0.5 * t)
+    tone = np.sin(2 * np.pi * freq * t) + 0.5 * np.sin(2 * np.pi * freq * 1.004 * t) + 0.25 * np.sin(2 * np.pi * freq * 2.0 * t)
     return tone * a * amp / 3
+
+
+def bell(freq: float, dur: float, amp: float = 1.0) -> np.ndarray:
+    """高音铃（音乐盒那种），给中高频一点东西——不然在手机上听不到"""
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    ph = 2 * np.pi * freq * t
+    tone = np.sin(ph) + 0.35 * np.sin(ph * 2.01) + 0.18 * np.sin(ph * 3.02)
+    return tone * np.exp(-t * 5.5) * np.clip(t / 0.003, 0, 1) * amp
 
 
 def bass(freq: float, dur: float, amp: float = 1.0) -> np.ndarray:
@@ -101,6 +110,25 @@ def add(buf: np.ndarray, sig: np.ndarray, at: float, gain: float = 1.0):
     buf[i:j] += sig[: j - i] * gain
 
 
+def highpass(x: np.ndarray, fc: float) -> np.ndarray:
+    """一阶高通（频域做，简单且不引入延迟）"""
+    n = len(x)
+    spec = np.fft.rfft(x)
+    f = np.fft.rfftfreq(n, 1 / SR)
+    spec *= 1 / (1 + (fc / np.maximum(f, 1e-6)) ** 2) ** 0.5
+    return np.fft.irfft(spec, n)
+
+
+def band_rms(x: np.ndarray, lo: float = 500.0, hi: float = 3000.0) -> float:
+    """人声与手机喇叭共同有劲的频段（500–3000Hz）里的 RMS——比总 RMS 更接近「听不听得见」"""
+    n = len(x)
+    spec = np.fft.rfft(x)
+    f = np.fft.rfftfreq(n, 1 / SR)
+    spec[(f < lo) | (f > hi)] = 0
+    y = np.fft.irfft(spec, n)
+    return float(np.sqrt((y ** 2).mean()))
+
+
 def build(total: float) -> np.ndarray:
     n = int(total * SR)
     music = np.zeros(n)
@@ -113,38 +141,48 @@ def build(total: float) -> np.ndarray:
         swell = 21 <= bar <= 22
         ending = bar >= 23
 
-        # 铺底：全程都有，夜里那几句托住情绪
+        # 铺底：高八度，落在 500–1000Hz（手机喇叭能出来的位置），全程都有
         for m in tones:
-            add(music, pad(hz(m), BAR * 0.98), t0, 0.30 if (sparse or swell) else 0.22)
+            add(music, pad(hz(m + 12), BAR * 0.98), t0, 0.30 if (sparse or swell) else 0.24)
+        # 再叠一层更高更薄的光泽
+        add(music, pad(hz(tones[2] + 24), BAR * 0.98), t0, 0.10 if (sparse or swell) else 0.07)
 
-        # 拨弦：八分音符，上行下行交替
+        # 拨弦：八分音符，上行下行交替，高八度为主
         if not sparse:
             pat = [0, 1, 2, 1, 0, 2, 1, 2]
             for k, idx in enumerate(pat):
-                m = tones[idx] + (12 if k in (3, 6) else 0)
-                add(music, pluck(hz(m), BEAT * 0.55), t0 + k * BEAT / 2, 0.16)
+                m = tones[idx] + 12 + (12 if k in (3, 6) else 0)
+                add(music, pluck(hz(m), BEAT * 0.55), t0 + k * BEAT / 2, 0.20)
         else:
             # 夜里：一小节只留两下，像有人在很远的地方弹了一下
-            add(music, pluck(hz(tones[0] + 12), BEAT * 1.2), t0 + BEAT * 0.5, 0.12)
-            add(music, pluck(hz(tones[2] + 12), BEAT * 1.2), t0 + BEAT * 2.5, 0.10)
+            add(music, pluck(hz(tones[0] + 24), BEAT * 1.2), t0 + BEAT * 0.5, 0.15)
+            add(music, pluck(hz(tones[2] + 24), BEAT * 1.2), t0 + BEAT * 2.5, 0.12)
 
-        # 贝斯：一拍一换，只在有鼓的段落
+        # 高音铃：音乐盒那种，全程都有（夜里也要有，不然那几句又变哑巴）
+        if sparse or swell:
+            add(music, bell(hz(tones[0] + 24), BEAT * 1.4), t0, 0.13)
+        else:
+            add(music, bell(hz(tones[0] + 24), BEAT * 1.1), t0, 0.17)
+            add(music, bell(hz(tones[2] + 24), BEAT * 0.9), t0 + BEAT * 2.5, 0.12)
+
+        # 贝斯：一拍一换，只在有鼓的段落；只留一点身体感，不再抢低频
         if full or ending or swell:
             for b in range(4):
-                add(music, bass(hz(root), BEAT * 0.9), t0 + b * BEAT, 0.34 if (full or ending) else 0.22)
+                add(music, bass(hz(root + 12), BEAT * 0.9), t0 + b * BEAT, 0.26 if (full or ending) else 0.16)
 
-        # 打点：轻的底鼓 + 沙锤
+        # 打点：轻的底鼓 + 沙锤（沙锤是唯一的高频，别太小声）
         if full or ending:
-            add(music, kick(), t0, 0.30)
-            add(music, kick(), t0 + BEAT * 2, 0.26)
+            add(music, kick(), t0, 0.24)
+            add(music, kick(), t0 + BEAT * 2, 0.20)
             for k in range(8):
-                add(music, shaker(), t0 + k * BEAT / 2, 0.11 if k % 2 else 0.07)
+                add(music, shaker(), t0 + k * BEAT / 2, 0.16 if k % 2 else 0.10)
 
     # 收尾：最后一个和弦长一点，整体淡出
     last = nb * BAR
     if last < total:
-        for m in [48, 55, 60, 64, 67]:
+        for m in [60, 64, 67, 72, 76]:
             add(music, pad(hz(m), total - last + 0.5), last, 0.26)
+    music = highpass(music, 170.0)
     fade = int(2.4 * SR)
     music[-fade:] *= np.linspace(1, 0, fade)
     music[: int(1.6 * SR)] *= np.linspace(0, 1, int(1.6 * SR))
@@ -172,7 +210,7 @@ def write_wav(path: pathlib.Path, x: np.ndarray, sr: int, ch: int = 2):
 
 
 def duck_gain(voice: np.ndarray, sr: int) -> np.ndarray:
-    """人声包络 → 压 BGM 的增益曲线：说话时压 9 dB，说完慢慢回来"""
+    """人声包络 → 压 BGM 的增益曲线：说话时压 3 dB，说完慢慢回来"""
     mono = np.abs(voice).mean(axis=1)
     win = int(0.02 * sr)
     frames = int(np.ceil(len(mono) / win))
@@ -184,7 +222,7 @@ def duck_gain(voice: np.ndarray, sr: int) -> np.ndarray:
     g = np.ones(frames)
     cur = 1.0
     for i, a in enumerate(act):
-        target = 1.0 - 0.50 * a
+        target = 1.0 - 0.30 * a        # 说的时候再压 3 dB，句子中间抬回来
         cur = cur + (target - cur) * (0.5 if target < cur else 0.08)
         g[i] = cur
     g = np.repeat(g, win)[: len(voice)]
@@ -202,17 +240,21 @@ def main():
     total = len(voice) / sr
     print(f"人声轨 {total:.2f}s")
 
-    # 2) 合成 BGM，按人声 RMS 定标（打字时 -28 dBFS 左右），再叠加进片子
+    # 2) 合成 BGM，按人声 RMS 定标（500–3000Hz 比人声低 12 dB），再叠加进片子
     music = build(total)
     if len(music) < len(voice):
         music = np.pad(music, (0, len(voice) - len(music)))
     music = music[: len(voice)]
-    music_rms = np.sqrt((music ** 2).mean())
-    music *= 10 ** (-29 / 20) / max(music_rms, 1e-9)
+    # 行业常见做法：背景音乐在人说话时约比人声低 18–24 dB（W3C 建议非语音至少低 20 dB，
+    # YouTube 口播常用 18–24 dB，情绪向的稀疏配乐 15–20 dB，Premiere 自动 ducking 常设 −18~−24 dB）。
+    # 这一集是按「情绪向稀疏配乐」处理：说话时低 15–16 dB，停顿处抬回来。
+    # 定标统一用 500–3000Hz 频段（人声和手机喇叭都在这儿），不用总 RMS——低频会把数值骗过去。
+    voice_band = band_rms(voice.mean(axis=1))
+    music *= voice_band * 10 ** (-12 / 20) / max(band_rms(music), 1e-9)   # 静音底 12 dB，说话时再压 3 dB → 约 15 dB
     g = duck_gain(voice, sr)
     bgm = np.stack([music * g, music * g], axis=1)
     write_wav(BGM_WAV, bgm, sr)
-    print(f"BGM {BGM_WAV.relative_to(ROOT)}（{total:.2f}s，打字时被压到 -37 dBFS 左右）")
+    print(f"BGM {BGM_WAV.relative_to(ROOT)}（{total:.2f}s，500–3000Hz 比人声低 12 dB，说话时再压 3 dB）")
 
     mix = np.clip(voice + bgm, -1, 1)
     write_wav(MIX_WAV, mix, sr)
