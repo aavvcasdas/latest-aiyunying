@@ -60,9 +60,9 @@ const clone = (o) => JSON.parse(JSON.stringify(o));
 const fakeAtlas = () => ({ tex: new THREE.Texture(), w: ATLAS_META.w, h: ATLAS_META.h, rects: ATLAS_META.s, anchors: {}, url: 'test' });
 const CHARS = Object.keys(CAST_SETS);
 
-test('图集体检：仓库里的 PNG 与坐标表是同一版，2986 格每一格都有像素，角色表引用的格子全都在', () => {
+test('图集体检：仓库里的 PNG 与坐标表是同一版，682 格每一格都有像素，角色表引用的格子全都在', () => {
   assert.deepEqual([PNG.w, PNG.h], [ATLAS_META.w, ATLAS_META.h]);
-  assert.equal(Object.keys(ATLAS_META.s).length, 2986);
+  assert.equal(Object.keys(ATLAS_META.s).length, 682);
   assert.deepEqual(atlasProblems(ATLAS_META, PNG.w, PNG.h, PNG.alphaAt), []);
 });
 
@@ -308,27 +308,4 @@ test('派生动作：循环的回绕、不循环的播完定格；缺动作 / �
   assert.match(a.stateLine(), /表情贴=无/);
   const g = new Actor(fakeAtlas(), 'gpt');
   assert.ok(ACTIONS.gpt.float.frames.includes(g.idle(1).probe().key));
-});
-
-// ---------- motion-v2（通用模板/cast/source/motion-v2.json，npm run motion） ----------
-test('motion-v2：每位十二个动作、每个 24 帧；时间确定、负时间回绕、非法参数报错、单次播放夹在首尾', () => {
-  const atlas = fakeAtlas();
-  for (const id of CHARS) {
-    const actor = new Actor(atlas, id);
-    for (const name of ['idle', 'walk', 'wave', 'talk', 'bow', 'sit', 'happy', 'think', 'surprise', 'jump']) {
-      const prefix = `motion_${id}_${name}_`;
-      assert.equal(framesIn(prefix), 24, prefix);
-      for (const T of [-3, -0.01, 0, 0.3, 1, 2, 10]) {
-        const first = actor.motion(name, T).probe().key;
-        actor.motion(name, T + 0.5);
-        assert.equal(actor.motion(name, T).probe().key, first, `${prefix}@${T}`);
-        assert.ok(ATLAS_META.s[first], first);
-      }
-      assert.equal(actor.motion(name, -1, 1, false).probe().key, `${prefix}0`);
-      assert.equal(actor.motion(name, 9, 1, false).probe().key, `${prefix}23`);
-    }
-    assert.throws(() => actor.motion('没有这个动作', 0), /没有动作/);
-    for (const T of [NaN, Infinity, -Infinity]) assert.throws(() => actor.motion('idle', T), /有限数/);
-    for (const rate of [0, -1, NaN, Infinity]) assert.throws(() => actor.motion('idle', 0, rate), /为正/);
-  }
 });

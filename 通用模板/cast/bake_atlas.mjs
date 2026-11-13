@@ -29,22 +29,9 @@ await imp('actions_data.js');    // 派生动作 / 道具 / 表情贴（由 bake
 
 const meta = JSON.parse(fs.readFileSync(META_PATH, 'utf8'));
 const { w: W, h: H, s: cells } = meta;
-// motion-v2 的格子不来自精灵表，直接带一份无损像素（zlib+base64），见 通用模板/cast/source/motion-v2.json
-const motionPath = path.join(PIXEL_MV, 'motion-v2.json');
-const motionCells = fs.existsSync(motionPath) ? JSON.parse(fs.readFileSync(motionPath, 'utf8')) : {};
 const rgba = Buffer.alloc(W * H * 4); // 透明处保持 (0,0,0,0)
 
 for (const [key, [x0, y0, w, h]] of Object.entries(cells)) {
-  const motion = motionCells[key];
-  if (motion) {
-    if (motion[0] !== w || motion[1] !== h || x0 < 0 || y0 < 0 || x0 + w > W || y0 + h > H) {
-      throw new Error(`[motion-v2] 「${key}」的坐标或尺寸不对`);
-    }
-    const pixels = zlib.inflateSync(Buffer.from(motion[2], 'base64'));
-    if (pixels.length !== w * h * 4) throw new Error(`[motion-v2] 「${key}」的像素长度不对`);
-    for (let y = 0; y < h; y++) pixels.copy(rgba, ((y0 + y) * W + x0) * 4, y * w * 4, (y + 1) * w * 4);
-    continue;
-  }
   const spr = getBakedSprite(key);
   if (!spr) throw new Error(`仓库精灵数据里没有「${key}」`);
   if (spr.w !== w || spr.h !== h) throw new Error(`「${key}」尺寸不符：精灵 ${spr.w}×${spr.h}，坐标表 ${w}×${h}`);
