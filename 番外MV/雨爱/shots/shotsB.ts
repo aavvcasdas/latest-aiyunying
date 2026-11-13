@@ -55,8 +55,8 @@ export const SHOTS_B: ShotDef[] = [
       const A = cam([0, 2.0, 7.8], [-0.05, 1.3, 0.3], 34), B = cam([0.35, 1.6, 5.6], [0.15, 1.2, 0.3], 32);
       return ({ u, T, bt }) => {
         r.set(T); rainOp(r, 0.85);
-        claude.front(T).at(-0.95, 0, 0.3);
-        whale.front(T).at(0.85, 0, 0.3).sq(beatSq(bt, 0.02));
+        claude.idle(T).at(-0.95, 0, 0.3);
+        whale.idle(T).at(0.85, 0, 0.3).sq(beatSq(bt, 0.02));
         holdBrolly(um, -0.3, 0.25, 0.3, 0.02, 0.25);
         const fill = ease(seg(u, 0.1, 0.95));
         puffs.forEach((p, i) => {
@@ -84,14 +84,14 @@ export const SHOTS_B: ShotDef[] = [
       return ({ u, T, bt }) => {
         r.set(T); rainOp(r, 1);
         const hop = Math.abs(Math.sin(beats(T) * PI));
-        whale.set('whale_wave').flip(Math.floor(beats(T)) % 2 === 0).at(-0.2, 0, 0.4).lift(hop * 0.42).sq(-0.05 * bt.pulse);
+        whale.act('wave', T).flip(Math.floor(beats(T)) % 2 === 0).at(-0.2, 0, 0.4).lift(hop * 0.42).sq(-0.05 * bt.pulse).emote('fx_heart', T);
         setRipple(rip[0], -0.2, 0.45, bt.phase, 0.9);
         // 猫：先给两个看法，最后必须选一个
         const pick = seg(u, 0.62, 0.8);
         const gx = lerp(4.1, PUD[2][0], ease(pick)), gz = lerp(-0.4, PUD[2][1], ease(pick));
         gemini.set(pick > 0 ? 'gemini_front_0' : 'gemini_side_0').flip(pick > 0 ? false : Math.floor(beats(T) * 2) % 2 === 0).at(gx, 0, gz).lift(Math.sin(pick * PI) * 0.8 + (pick >= 1 ? hop * 0.25 : 0));
         setRipple(rip[1], PUD[2][0], PUD[2][1], pick >= 1 ? bt.phase : 0, 0.9);
-        doubao.front(T).at(-4.6, 0, -0.7).sq(beatSq(bt, 0.04));
+        doubao.idle(T).at(-4.6, 0, -0.7).sq(beatSq(bt, 0.04));
         holdBrolly(red, -4.6, 0.04 * bt.pulse, -0.7);
         setRipple(rip[2], PUD[0][0], PUD[0][1], frac(beats(T) * 0.5), 0.7);
         return glide(A, B, u);
@@ -109,7 +109,7 @@ export const SHOTS_B: ShotDef[] = [
       const A = cam([-3.6, 1.8, 8.4], [-2.6, 0.8, 2.4], 34), B = cam([2.4, 2.5, 9.6], [3.0, 0.6, 2.8], 36);
       return ({ u, T, bt }) => {
         r.set(T); rainOp(r, 0.6);
-        whale.front(T).at(-3.2, 0, 1.5).sq(beatSq(bt, 0.03));
+        whale.idle(T).at(-3.2, 0, 1.5).sq(beatSq(bt, 0.03));
         boats.forEach(({ b, h }, i) => {
           const x = -5.2 + i * 2.5 + u * 3.4, y = 0.1 + Math.sin(T * 2.2 + i) * 0.03;
           b.position.set(x, y, CANAL_Z); b.rotation.set(0, 0, Math.sin(T * 1.7 + i * 2) * 0.05);
@@ -134,9 +134,10 @@ export const SHOTS_B: ShotDef[] = [
       return ({ u, T, bt }) => {
         r.set(T); rainOp(r, 0.7);
         const clear = ease(seg(u, 0.08, 0.8));
-        claude.set(u > 0.7 ? 'claude_front_1' : 'claude_front_0').at(1.0, 0, -2.6);
+        if (u > 0.7) claude.set('claude_front_1'); else claude.idle(T);
+        claude.at(1.0, 0, -2.6);
         holdBrolly(blue, 1.0, 0, -2.6);
-        whale.front(T).at(-1.9, 0, 1.0);
+        whale.idle(T).at(-1.9, 0, 1.0);
         heart.position.set(0.95, 1.55, 1.5); heart.scale.setScalar(2.7 * (1 + 0.04 * bt.pulse));
         (heart.material as THREE.SpriteMaterial).color.copy(pink).lerp(glass, clear); setOp(heart, lerp(0.96, 0.16, clear));
         rim.position.set(0.95, 1.55, 1.52); setOp(rim, clear * 0.5);
@@ -156,10 +157,10 @@ export const SHOTS_B: ShotDef[] = [
       const A = cam([-2.8, 1.8, 7.8], [-2.8, 1.2, 0.3], 34), B = cam([1.1, 1.5, 6.8], [0.7, 1.25, 0.3], 33);
       return ({ u, T }) => {
         r.set(T); rainOp(r, 0.95);
-        doubao.front(T).at(-4.2, 0, 0.3);
+        doubao.idle(T).at(-4.2, 0, 0.3);
         holdBrolly(red, -4.2, 0, 0.3, -0.12, 0.6);
         const w = ease(seg(u, 0.04, 0.82)), x = lerp(-3.3, 0.7, w);
-        if (u < 0.82) whale.walkBy(4 * w).at(x, 0, 0.4); else whale.set('whale_wave').at(0.7, 0, 0.4).lift(Math.abs(Math.sin(beats(T) * PI)) * 0.2);
+        if (u < 0.82) whale.walkBy(4 * w).at(x, 0, 0.4); else whale.act('wave', T).at(0.7, 0, 0.4).lift(Math.abs(Math.sin(beats(T) * PI)) * 0.2).emote('fx_heart', T);
         hearts.forEach((h, i) => { const ph = frac(beats(T) * 0.5 + i / 5); h.position.set(x - 0.6 - i * 0.3, 1.75 + ph * 1.3, 0.35); h.scale.setScalar(0.2 + 0.2 * Math.sin(ph * PI)); setOp(h, seg(u, 0.1, 0.3) * Math.sin(ph * PI)); });
         return glide(A, B, u);
       };
@@ -180,7 +181,7 @@ export const SHOTS_B: ShotDef[] = [
         r.set(T); rainOp(r, 1);
         const air = seg(t, 0, 0.95), landed = t >= 0.95;
         const hop = landed ? Math.abs(Math.sin(beats(T) * PI)) * 0.3 : Math.sin(air * PI) * 1.5;
-        whale.set('whale_wave').at(0.3, 0, 0.5).lift(hop).sq(landed ? -0.06 * bt.pulse : 0.05);
+        whale.act('wave', T).at(0.3, 0, 0.5).lift(hop).sq(landed ? -0.06 * bt.pulse : 0.05).emote('fx_sparkle', T);
         const s = clamp01((t - 0.95) / 1.1);
         rings.forEach((m, i) => setRipple(m, 0.3, 0.55, landed ? clamp01(s * 1.2 - i * 0.16) : 0, 1.5 + i * 0.5));
         spl.forEach((p, i) => { const a = (i / 10) * PI * 2, d = easeOut(s) * (1.2 + hash(i) * 0.9); p.position.set(0.3 + Math.cos(a) * d, 0.2 + Math.sin(s * PI) * (1.3 + hash(i + 4)) , 0.6 + Math.sin(a) * d * 0.3); setOp(p, landed ? Math.sin(Math.min(1, s * 1.05) * PI) : 0); });
@@ -206,7 +207,7 @@ export const SHOTS_B: ShotDef[] = [
         bowl.set(level + 0.03 * Math.exp(-frac(beats(T) * 2) * 5));
         drip.forEach((d, i) => { const ph = dripPh(T, i); d.position.set(1.6 + (i ? 0.07 : -0.07), fallY(ph, WIN.y + 2.9, wy + 0.08), -4.85); setOp(d, ph > 0.62 ? 1 : 0); });
         const rp = frac(beats(T) * 2); ring.position.set(1.6, wy + 0.1, -4.86); ring.scale.setScalar(0.15 + rp * 0.5); setOp(ring, (1 - rp) * 0.8);
-        whale.front(T).at(0.2, 0, -3.7);
+        whale.idle(T).at(0.2, 0, -3.7);
         return glide(A, B, u);
       };
     },
@@ -237,10 +238,11 @@ export const SHOTS_B: ShotDef[] = [
         glow.position.set(FRAMES[lit][0], FRAMES[lit][1], WIN.z + 0.3); setOp(glow, T >= tb(89) ? 0.3 + 0.3 * bt.pulse : 0);
         const draw = backOut(seg(u, 0.58, 0.74));
         heart.position.set(WIN.x + 0.9, WIN.y + 1.9, WIN.z + 0.06); heart.scale.setScalar(Math.max(0.001, 0.9 * draw)); setOp(heart, draw * 0.95);
-        whale.set(u > 0.56 ? 'whale_point' : T % 2.6 < 0.13 ? 'whale_blink' : 'whale_idle').at(-0.6, 0, -3.3);
-        qwen.front(T).at(TABLE.x + 0.5, 0, TABLE.z - 0.95);
-        kimi.front(T).at(-5.8, 0, -3.3);
-        zai.set('zai_front_1').at(-4.9, 0.16, 1.0).sq(Math.sin(T * 1.6) * 0.02);
+        if (u > 0.56) whale.act('point', T); else whale.idle(T);
+        whale.at(-0.6, 0, -3.3);
+        qwen.idle(T).at(TABLE.x + 0.5, 0, TABLE.z - 0.95);
+        kimi.idle(T).at(-5.8, 0, -3.3);
+        zai.act('doze', T).emote('fx_zzz', T).at(-4.9, 0.16, 1.0).sq(Math.sin(T * 1.6) * 0.02);
         zz.forEach((s, i) => { const ph = frac(T * 0.35 + i * 0.5); s.position.set(-4.3 + ph * 0.5, 1.9 + ph * 0.9, 1.05); s.scale.setScalar(0.3 + ph * 0.35); setOp(s, Math.sin(ph * PI) * 0.9 * (1 - seg(u, 0.5, 0.72))); });
         return track([[0, A], [0.36, B], [1, C]], u);
       };
@@ -265,7 +267,7 @@ export const SHOTS_B: ShotDef[] = [
           holdBrolly(um, wx, 0.07 * (i % 2 ? bt.pulse : 1 - bt.pulse), z, 0.06, 0.2);
         });
         const hx = 0.2 + u * 3.2;
-        whale.set('whale_wave').at(hx, 0, 0.1).lift(Math.abs(Math.sin(beats(T) * PI)) * 0.45);
+        whale.act('wave', T).at(hx, 0, 0.1).lift(Math.abs(Math.sin(beats(T) * PI)) * 0.45).emote('fx_heart', T);
         setRipple(rip[0], hx, 0.15, bt.phase, 0.8);
         setRipple(rip[1], PUD[1][0], PUD[1][1], frac(beats(T) * 0.5 + 0.3), 0.7);
         return glide(A, B, u);
@@ -294,8 +296,8 @@ export const SHOTS_B: ShotDef[] = [
       return ({ u, T, bt }) => {
         r.set(T); rainOp(r, 0.6);
         const hide = ease(seg(T, tb(100.5), tb(101.5)));
-        claude.front(T).at(-3.25, 0, 1.2);
-        whale.front(T).at(-2.0, 0, 1.2);
+        claude.idle(T).at(-3.25, 0, 1.2);
+        whale.idle(T).at(-2.0, 0, 1.2);
         um.position.set(-2.55, 0.72 - hide * 0.2, 1.3 + hide * 0.35); um.rotation.set(hide * 1.05, 0, 0);
         const pop = backOut(seg(T, tb(102), tb(102) + 0.3));
         heart.position.set(-2.6, 2.55 + Math.sin(T * 3) * 0.05, 2.0); heart.scale.setScalar(Math.max(0.001, 0.6 * pop * (1 + 0.12 * bt.pulse))); setOp(heart, pop);
@@ -325,7 +327,7 @@ export const SHOTS_B: ShotDef[] = [
         shadow.position.set(lerp(-13, 13, fly), 0.04, -0.3); setOp(shadow, fly > 0 && fly < 1 ? 0.4 : 0);
         cl.position.x = -3.6 - part * 9; cr.position.x = 3.8 + part * 9;
         setOp(shaft, part * 0.5); setOp(sun, part * 0.8);
-        whale.front(T).at(0.3, 0, 0.4);
+        whale.idle(T).at(0.3, 0, 0.4);
         return glide(A, B, u);
       };
     },
@@ -341,8 +343,8 @@ export const SHOTS_B: ShotDef[] = [
       const A = cam([0, 2.0, 13], [0, 7.5, -20], 44), B = cam([0, 2.8, 15.5], [0, 9, -20], 46);
       return ({ u, T, bt }) => {
         bow.set(seg(u, 0.02, 0.72), 0.85);
-        whale.set('whale_wave').at(-0.6, 0, 0.4).lift(Math.abs(Math.sin(beats(T) * PI)) * 0.5);
-        claude.front(T).at(1.3, 0, 0.4).sq(beatSq(bt, 0.04));
+        whale.act('wave', T).at(-0.6, 0, 0.4).lift(Math.abs(Math.sin(beats(T) * PI)) * 0.5).emote('fx_sparkle', T);
+        claude.idle(T).at(1.3, 0, 0.4).sq(beatSq(bt, 0.04));
         stars.forEach((s, i) => { const ph = frac(T * 0.5 + hash(i)); s.position.set((hash(i + 9) - 0.5) * 22, 1.5 + hash(i + 3) * 9 + ph, -2 - hash(i + 5) * 6); s.scale.setScalar(0.25 + 0.4 * Math.sin(ph * PI)); setOp(s, Math.sin(ph * PI) * 0.9); });
         return glide(A, B, u);
       };

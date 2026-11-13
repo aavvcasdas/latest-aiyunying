@@ -16,7 +16,7 @@
   "subtitle_bar_missing": [],
   "luma_min": 0,
   "luma_max": 252.92,
-  "sequence_md5": "45ffaae7ff7a2d02dcdef2ace8401c64",
+  "sequence_md5": "cf1e03001492f1f1f80eeb1d053df2b7",
   "problems": []
  },
  "timing": {
@@ -54,8 +54,8 @@
  },
  "final": {
   "file": "雨爱.mp4",
-  "bytes": 81374544,
-  "sha256": "817409c47b352ae5efbeb05fef05a1658d93dff3c55b6fb68ab719a21b881c33",
+  "bytes": 81389645,
+  "sha256": "dd2170afa919be308a38972629ac545ccd37e32e388571fbe0952dc969f1e45e",
   "audio_samples": 6297600,
   "audio_seconds": 131.2,
   "expected_seconds": 131.2,
@@ -110,7 +110,7 @@
      "color_space": "bt709",
      "r_frame_rate": "30/1",
      "duration": "131.200000",
-     "bit_rate": "4697453",
+     "bit_rate": "4698372",
      "nb_frames": "3936"
     },
     {
@@ -127,8 +127,8 @@
    ],
    "format": {
     "duration": "131.200000",
-    "size": "81374544",
-    "bit_rate": "4961862"
+    "size": "81389645",
+    "bit_rate": "4962783"
    }
   }
  },
@@ -140,12 +140,12 @@
   "duration": 131.2,
   "shots": 30,
   "lines": 23,
-  "source_sha256": "c12166f690fc0f99c052c8c653c84fbefe4ab211a0a5347c68eb6e58f89acab3",
-  "source_files": 24,
+  "source_sha256": "d6cc158648173fe48ac0b838fcb5ea83a78c83f9ff7a6d31e4939584cdd3eae0",
+  "source_files": 25,
   "audio": {
    "file": "media/yuai-sifeng.m4a",
    "present": true
   }
  },
- "checked_at": "2026-11-13T01:52:42.200Z"
+ "checked_at": "2026-11-13T13:24:41.488Z"
 }

@@ -34,7 +34,7 @@ export const SHOTS_C: ShotDef[] = [
         bowl.set(level + 0.02 * Math.exp(-frac(beats(T) * 2) * 5));
         drip.forEach((d, i) => { const ph = dripPh(T, i); d.position.set(1.6 + (i ? 0.07 : -0.07), fallY(ph, WIN.y + 2.9, wy + 0.08), -4.85); setOp(d, ph > 0.62 ? 1 : 0); });
         glint.forEach((s, i) => { const ph = frac(T * 1.2 + i / 4); s.position.set(1.6 + (hash(i) - 0.5) * 0.5, wy + 0.12 + hash(i + 2) * 0.1, -4.9); s.scale.setScalar(0.12 + 0.25 * Math.sin(ph * PI)); setOp(s, Math.sin(ph * PI)); });
-        whale.front(T).at(0.2, 0, -3.7);
+        whale.idle(T).at(0.2, 0, -3.7);
         return glide(A, B, u);
       };
     },
@@ -61,16 +61,17 @@ export const SHOTS_C: ShotDef[] = [
         bow.set(1, 0.8);
         heart.position.set(WIN.x + 0.9, WIN.y + 1.9, WIN.z + 0.06); setOp(heart, (1 - wipe) * 0.95);
         st(T, 0.7);
-        whale.set(wipe > 0.05 && wipe < 1 ? 'whale_wave' : T % 2.6 < 0.13 ? 'whale_blink' : 'whale_idle').at(-0.6 + Math.sin(wipe * PI * 3) * 0.25, 0, -3.3);
-        claude.set('claude_front_1').at(1.9, -0.2, -7.6).lift(Math.abs(Math.sin(beats(T) * PI)) * 0.3);
+        if (wipe > 0.05 && wipe < 1) whale.act('wave', T); else whale.idle(T);
+        whale.at(-0.6 + Math.sin(wipe * PI * 3) * 0.25, 0, -3.3);
+        claude.idle(T).at(1.9, -0.2, -7.6).lift(Math.abs(Math.sin(beats(T) * PI)) * 0.3);
         faces.forEach(({ cell, a }, i) => a.set(cell).at(FRAMES[i][0], FRAMES[i][1] - 0.47, WIN.z + 0.14).noShadow());
         const pop = backOut(seg(T, tb(124.5), tb(124.5) + 0.3)); // Kimi 挂上新相框：落在拍上
         fr[3].scale.setScalar(Math.max(0.001, pop)); fr[3].rotation.z = Math.sin(T * 5) * 0.04 * pop;
         duo.forEach(({ cell, a, dx }) => a.set(cell).at(FRAMES[3][0] + dx, FRAMES[3][1] - 0.42, WIN.z + 0.14).size(Math.max(0.001, pop)).alpha(pop > 0.02 ? 1 : 0).noShadow());
         glow.position.set(FRAMES[3][0], FRAMES[3][1], WIN.z + 0.3); setOp(glow, pop * (0.35 + 0.3 * bt.pulse));
-        kimi.front(T).at(-5.8, 0, -3.3).sq(pop > 0 ? beatSq(bt, 0.04) : 0);
-        qwen.front(T).at(TABLE.x + 0.5, 0, TABLE.z - 0.95);
-        zai.front(T).at(-5.3, 0, -1.4).sq(beatSq(bt, 0.03)); // 醒了，走到相框墙边
+        kimi.idle(T).at(-5.8, 0, -3.3).sq(pop > 0 ? beatSq(bt, 0.04) : 0);
+        qwen.idle(T).at(TABLE.x + 0.5, 0, TABLE.z - 0.95);
+        zai.idle(T).at(-5.3, 0, -1.4).sq(beatSq(bt, 0.03)); // 醒了，走到相框墙边
         return track([[0, A], [0.46, A2], [1, B]], u);
       };
     },
@@ -90,7 +91,7 @@ export const SHOTS_C: ShotDef[] = [
         bow.set(1, 0.8);
         gang.forEach(({ a, x, rg }, i) => {
           const c = beats(T) + (i % 2) * 0.5, hop = Math.abs(Math.sin(c * PI));
-          if (a.id === 'whale') a.set('whale_wave'); else if (a.id === 'claude') a.set('claude_front_1'); else a.front(T);
+          if (a.id === 'whale') a.act('wave', T); else a.idle(T);
           a.at(x, 0, 0.3 - (i % 2) * 0.5).lift(hop * 0.5).sq(-0.04 * (1 - hop));
           setRipple(rg, x, 0.35 - (i % 2) * 0.5, frac(c), 0.8);
         });
@@ -112,7 +113,7 @@ export const SHOTS_C: ShotDef[] = [
         const give = ease(seg(T, tb(132.5), tb(134))), go = seg(u, 0.3, 1), d = go * 6.2;
         const cx = -3.7 + d, wx = -2.2 + d;
         if (go > 0) { claude.walkBy(d).at(cx, 0, 1.2); whale.walkBy(d + 0.4).at(wx, 0, 1.2); }
-        else { claude.front(T).at(cx, 0, 1.2); whale.set(give > 0.1 ? 'whale_point' : 'whale_idle').flip(give > 0.1).at(wx, 0, 1.2); }
+        else { claude.idle(T).at(cx, 0, 1.2); whale.act(give > 0.1 ? 'point' : 'idle', T).flip(give > 0.1).at(wx, 0, 1.2); }
         holdBrolly(um, lerp(wx, cx, give), 0.06 * bt.pulse, 1.2, lerp(0.1, 0.04, give), lerp(0.38, -0.1, give));
         boats.forEach((b, i) => { b.position.set(-6 + i * 2.6 + u * 5.2, 0.1 + Math.sin(T * 2.2 + i) * 0.03, CANAL_Z); b.rotation.set(0, 0, Math.sin(T * 1.7 + i) * 0.05); });
         hearts.forEach((h, i) => { const ph = frac(beats(T) * 0.5 + i / 4); h.position.set((cx + wx) / 2 - 0.3 - i * 0.3, 1.9 + ph * 1.2, 1.25); h.scale.setScalar(0.18 + 0.2 * Math.sin(ph * PI)); setOp(h, give * Math.sin(ph * PI)); });
@@ -134,7 +135,8 @@ export const SHOTS_C: ShotDef[] = [
         bow.set(1, 0.8);
         gang.forEach(({ a, x, z }, i) => {
           const hop = Math.sin(seg(frac((beats(T) * 2 - i) / 8), 0, 0.22) * PI); // 一小节一轮，按八分音符从左传到右
-          if (a.id === 'whale') a.set(hop > 0.1 ? 'whale_wave' : 'whale_idle'); else if (a.id === 'claude') a.set(hop > 0.1 ? 'claude_front_1' : 'claude_front_0'); else a.front(T);
+          if (a.id === 'whale') a.act(hop > 0.1 ? 'wave' : 'idle', T); else a.idle(T);
+          if (a.id === 'whale') a.emote('fx_shine', T);
           a.at(x, 0, z).lift(hop * 0.5);
         });
         return glide(A, B, u);
@@ -157,7 +159,7 @@ export const SHOTS_C: ShotDef[] = [
         bow.set(1, 0.9);
         const hop = Math.abs(Math.sin(beats(T) * PI));
         gang.forEach(({ a, x, z }) => {
-          if (a.id === 'whale') a.set('whale_wave'); else if (a.id === 'claude') a.set('claude_front_1'); else a.front(T);
+          if (a.id === 'whale') a.act('wave', T).emote('fx_heart', T); else a.idle(T);
           a.at(x, 0, z).lift(hop * 0.55);
         });
         const fly = seg(u, 0.05, 0.95);
@@ -189,11 +191,11 @@ export const SHOTS_C: ShotDef[] = [
         const wy = WIN.y + 0.36 * (0.22 + 0.6 * 0.93);
         boat.position.set(2.1 + Math.sin(T * 0.7) * 0.07, wy + 0.01 + Math.sin(T * 2) * 0.006, -4.25 + Math.cos(T * 0.7) * 0.05); boat.rotation.set(0, T * 0.3, Math.sin(T * 1.6) * 0.06);
         st(T, 0.6);
-        whale.front(T).at(-1.9, 0, -2.7).sq(beatSq(bt, 0.025));
-        claude.front(T).at(-0.5, 0, -2.7).sq(beatSq(bt, 0.025));
-        zai.front(T).at(-4.9, 0.16, 1.0);
-        qwen.front(T).at(TABLE.x + 0.5, 0, TABLE.z - 0.95);
-        kimi.front(T).at(-5.8, 0, -3.3);
+        whale.idle(T).at(-1.9, 0, -2.7).sq(beatSq(bt, 0.025));
+        claude.idle(T).at(-0.5, 0, -2.7).sq(beatSq(bt, 0.025));
+        zai.idle(T).at(-4.9, 0.16, 1.0);
+        qwen.idle(T).at(TABLE.x + 0.5, 0, TABLE.z - 0.95);
+        kimi.idle(T).at(-5.8, 0, -3.3);
         faces.forEach(({ cell, a }, i) => a.set(cell).at(FRAMES[i][0], FRAMES[i][1] - 0.47, WIN.z + 0.14).noShadow());
         duo.forEach(({ cell, a, dx }) => a.set(cell).at(FRAMES[3][0] + dx, FRAMES[3][1] - 0.42, WIN.z + 0.14).noShadow());
         notes.forEach((s, i) => { const ph = frac(beats(T) * 0.5 + i / 4); s.position.set(-1.6 + i * 0.3 + Math.sin(ph * 4 + i) * 0.2, 1.9 + ph * 1.4, -2.6); s.scale.setScalar(0.28 + 0.2 * Math.sin(ph * PI)); setOp(s, seg(u, 0.3, 0.45) * (1 - seg(u, 0.8, 0.92)) * Math.sin(ph * PI)); });
