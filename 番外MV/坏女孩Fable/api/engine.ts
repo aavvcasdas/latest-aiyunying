@@ -39,38 +39,8 @@ const addPh = (k, parts) => {
 };
 VERSE.forEach((p, i) => addPh(i, p)); VERSE.forEach((p, i) => addPh(24 + i, p)); TAIL.forEach((p, i) => addPh(40 + i, p));
 PHRASES.sort((x, y) => x.a - y.a);
-// ---------- 字幕卡点（原曲时间） ----------
-// 和 3D 版 src/mv/cues.ts 是同一张表：句首取一听网 LRC 的原始时间，再吸附到实测半拍（126.99 BPM，首拍 22.365 s）。
-// 原来这里按「每句 3.75 s 等距」推时间，唱到中段会差出几秒；现在按真时间走。
-const CUE_BAR0 = 22.365, CUE_BEAT = 60 / 126.99;
-const cueSnap = (t) => CUE_BAR0 + Math.round((t - CUE_BAR0) / (CUE_BEAT / 2)) * (CUE_BEAT / 2);
-const CUE_VERSE = [
-  ['那时我放开了的手', '徐良'], ['转过身只剩了保重', '徐良'], ['你话都没说 却哭了很久很久', '徐良'], ['我喜欢坏坏的女友', '徐良'],
-  ['我喜欢刺激的感受', '徐良'], ['你单纯太过 多余了那些温柔', '徐良'], ['你消失在无名大街', '徐良'], ['从此就没有再见面', '徐良'],
-  ['好长的时间 再没有你的来电', '徐良'], ['在后来酒吧的房间', '徐良'], ['舞池里跳动着音乐', '徐良'], ['熟悉的侧脸', '徐良'],
-  ['迷人的笑脸 吸引视线', '徐良'], ['慵懒的靠在陌生的肩', '徐良'], ['黑色的眼线 你的指间', '徐良'], ['有一点轻蔑', '徐良'],
-  ['在谁的怀中会有感觉', '小凌'], ['被爱的深夜我在想念', '小凌'], ['明明是为你才会改变', '小凌'], ['却回不到从前', '小凌'],
-];
-const CUE_BRIDGE = [['然后我安静的发现'], ['两个人已经没有任何语言'], ['曾经你纯真的永远'], ['让我不顾一切开始怀念']];
-const CUE_RAW_A = [22.51, 23.94, 25.5, 29.35, 31.34, 33.15, 37.01, 39.0, 41.05, 44.28,
-  46.46, 48.39, 52.37, 54.48, 58.49, 61.85, 66.39, 69.62, 73.17, 76.9];
-const CUE_RAW_B = [112.99, 114.42, 116.28, 120.14, 122.13, 123.93, 127.79, 129.72, 131.34, 135.32,
-  136.93, 138.86, 143.4, 145.27, 148.51, 152.61, 156.9, 160.01, 163.68, 167.66];
-const CUE_RAW_C = [173.37, 175.74, 179.66, 184.01];
-const CUE_RAW_D = [187.77, 190.76, 194.49, 197.85, 201.89, 205.69, 209.42, 212.65];
-const CUES = (() => {
-  const list = [];
-  CUE_RAW_A.forEach((raw, k) => list.push({ raw, text: CUE_VERSE[k][0], singer: CUE_VERSE[k][1] }));
-  CUE_RAW_B.forEach((raw, k) => list.push({ raw, text: CUE_VERSE[k][0], singer: CUE_VERSE[k][1] }));
-  CUE_RAW_C.forEach((raw, j) => list.push({ raw, text: CUE_BRIDGE[j][0], singer: '徐良' }));
-  CUE_RAW_D.forEach((raw, j) => list.push({ raw, text: CUE_VERSE[12 + j][0], singer: CUE_VERSE[12 + j][1] }));
-  list.sort((x, y) => x.raw - y.raw);
-  return list.map((c) => { const n = c.text.replace(/\s/g, '').length; return { ...c, start: cueSnap(c.raw), sing: 0.36 * n + 1.4 }; })
-    .map((c, i, arr) => { const next = arr[i + 1]; return { start: c.start, end: Math.min(next ? next.start - 0.12 : c.start + c.sing, c.start + c.sing), text: c.text, singer: c.singer }; });
-})();
-
-/** 给页面歌词表 / SRT 用：成片时间（已减去前奏 20s），跟字幕同一张卡点表 */
-export const LINES = CUES.map((c) => ({ start: +(c.start - T0).toFixed(2), end: +(c.end - T0).toFixed(2), text: c.text }));
+/** 给页面歌词表 / SRT 用：成片时间（已减去前奏 20s） */
+export const LINES = PHRASES.map((p) => ({ start: +(p.a - T0).toFixed(2), end: +(Math.min(p.b, 215) - T0 - 0.1).toFixed(2), text: p.parts.join(' ') }));
 
 // ---------- 3D 布景构件 ----------
 class Set3 {
@@ -457,64 +427,14 @@ let ENV = null;
 const ST = { face: 0, sprite: 1, glow: 2, text: 3, custom: 4, line: 5, dot: 6, shadow: 7, beam: 8 };
 
 function drawSubtitle(g, t) {
-  // 样式照 3D 版 src/mv/film.ts 的 lyric()：没有药丸底、没有金边，只压一条渐变暗带；
-  // 每个字先描深色边再填白，唱到的部分按歌手色（小凌偏粉、徐良偏蓝）逐字渐变填上去。
-  let cue = null;
-  for (let i = CUES.length - 1; i >= 0; i--) { const c = CUES[i]; if (t >= c.start - 0.25) { if (t <= c.end + 0.35) cue = c; break; } }
-  if (!cue) return;
-  const a = Math.min(1, (t - (cue.start - 0.25)) / 0.2, (cue.end + 0.35 - t) / 0.25);
-  if (a <= 0) return;
-  const chars = Array.from(cue.text);
-  const n = chars.filter((c) => c !== ' ').length;
-  const fillDur = Math.min(cue.end - cue.start, 0.3 * n + 0.5) * 0.92;
-  const prog = ((t - cue.start) / fillDur) * n;
-  const size = 46;
-  g.save();
-  g.globalAlpha = a;
-  g.font = `${size}px BG`;
-  g.textBaseline = 'middle';
-  g.textAlign = 'left';
-  const widths = chars.map((c) => (c === ' ' ? size * 0.5 : g.measureText(c).width));
-  const tw = widths.reduce((p, v) => p + v, 0);
-  const y = H - 64;
-  const x0 = W / 2 - tw / 2;
-  // 底带：从字上方 60px 透明到画面底，比药丸轻，画面不被切一块
-  const band = g.createLinearGradient(0, y - 60, 0, H);
-  band.addColorStop(0, 'rgba(6,3,14,0)');
-  band.addColorStop(1, 'rgba(6,3,14,0.6)');
-  g.fillStyle = band;
-  g.fillRect(0, y - 60, W, H - y + 60);
-  // 字幕里不出现歌手名，音色靠颜色区分
-  g.lineJoin = 'round';
-  const grad = g.createLinearGradient(0, y - size / 2, 0, y + size / 2);
-  grad.addColorStop(0, cue.singer === '小凌' ? '#ffd1ea' : '#d8f6ff');
-  grad.addColorStop(1, cue.singer === '小凌' ? '#ff3d9a' : '#22b8ff');
-  let x = x0, j = 0;
-  chars.forEach((c, i) => {
-    const cw = widths[i];
-    if (c !== ' ') {
-      g.lineWidth = 8;
-      g.strokeStyle = 'rgba(8,4,18,0.9)';
-      g.strokeText(c, x, y);
-      g.fillStyle = '#ffffff';
-      g.fillText(c, x, y);
-      const amt = clamp(prog - j);
-      if (amt > 0) {
-        g.save();
-        g.beginPath();
-        g.rect(x - 2, y - size, cw * amt + 2, size * 2);
-        g.clip();
-        g.fillStyle = grad;
-        g.fillText(c, x, y);
-        g.restore();
-      }
-      j++;
-    }
-    x += cw;
-  });
+  const ph = PHRASES.find((p) => t >= p.a - 0.2 && t < p.b - 0.22); if (!ph) return;
+  const age = t - ph.a, fs = 42; g.save(); g.font = `${fs}px BG`; g.textBaseline = 'middle'; g.textAlign = 'left';
+  const ws = ph.chars.map((c) => g.measureText(c).width + 2), tw = ws.reduce((a, b) => a + b, 0), x0 = W / 2 - tw / 2, y = H - 64, pop = age < 0.25 ? 1 + 0.06 * Math.exp(-age * 12) * Math.cos(age * 20) : 1;
+  g.translate(W / 2, y); g.scale(pop, pop); g.translate(-W / 2, -y);
+  g.fillStyle = 'rgba(10,10,24,0.84)'; g.beginPath(); g.roundRect(x0 - 26, y - 36, tw + 52, 72, 6); g.fill(); g.strokeStyle = '#c9a227'; g.lineWidth = 2.5; g.stroke();
+  let x = x0; ph.chars.forEach((ch, i) => { const ct = ph.ct[i]; if (ct != null) { const on = t >= ct, k = on ? clamp((t - ct) / 0.12) : 0; g.fillStyle = on ? '#ffd84a' : '#ffffff'; g.fillText(ch, x + 1, y + 2 - (on ? (1 - k) * 5 : 0)); } x += ws[i]; });
   g.restore();
 }
-
 
 export function createFilm(env) {
   ENV = env; const tmp = env.makeCanvas(160, 180), tg = tmp.getContext('2d');
