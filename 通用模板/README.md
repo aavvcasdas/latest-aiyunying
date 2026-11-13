@@ -341,6 +341,8 @@ track([[0, A], [0.5, B], [1, C]], u) // 多段运镜；每段起止机位要不�
 
 上面是原有的造型格。图集来自项目自己的像素角色数据（`cast/source/`），没有新增生图。
 
+步态数据 `cast/source/walk_cycle_data.js` 由旧工程脚本按 90 px 定距切格生成，原图不在仓库里。2026-11-13 修掉了本鲸八帧步态里切进来的边角料：裙摆右前方原本多出一条与身体不相连的鱼尾（观众看到的“前面多出的鱼尾”），右下角还带进另一只靴子的边沿。修补脚本是 `tools/fix_whale_walk_bleed.mjs`（只把越界像素置透明，不动真正的鲸尾；`node tools/fix_whale_walk_bleed.mjs --check` 可复验，改完照例 `npm run atlas`）。
+
 ### 派生动作、道具与表情贴（2026-11 新增）
 
 `npm run actions` 运行 `通用模板/cast/source/bake_actions.mjs`：只对上表的原格做形变（`motion_core.mjs`：两次 Scale2x 放大后反向映射取最近邻，**每个像素都是原图里已有的调色板号，不新增颜色**），派生出下面这些动作；道具与表情贴由 `pixel_things.mjs` 用几何笔画 + 自动墨线画出，颜色只取 `px.js` 调色板。产物：`cast/source/actions_data.js`、`engine/assets/cast_actions.json`，并把新格子追加进 `cast_atlas.json`（原有 108 格坐标不动），然后 `npm run atlas` 重烘图集。`npm run actions -- --gif <目录>` 另出每个动作的 GIF 预览（放系统临时目录，不进仓库）。细节见 [`人物动作替换.md`](../人物动作替换.md)。
