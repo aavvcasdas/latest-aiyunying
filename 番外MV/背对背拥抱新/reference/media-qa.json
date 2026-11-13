@@ -1,0 +1,9 @@
+{
+  "fullDecode": "passed",
+  "fileSizeBytes": 66773107,
+  "sourceAudioDuration": 234.91775,
+  "renderedAudioDuration": 234.91775,
+  "audioCorrelationAtZeroOffset": 0.9977917254246141,
+  "audioRms": 0.28713172674179077,
+  "captionTiming": "Line timings sampled; character timings interpolated and not human-listening verified."
+}

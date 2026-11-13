@@ -1,0 +1,13 @@
+{
+  "title": "背对背拥抱",
+  "width": 1280,
+  "height": 720,
+  "fps": 24,
+  "duration": 235.08,
+  "frameCount": 5642,
+  "lyricLines": 48,
+  "audio": "Supplied branch audio, transcoded without timing edits",
+  "captionAlignment": "Line boundaries sampled from source MV at 4 fps. Character timing interpolated; not vocally verified.",
+  "renderer": "Shared deterministic Canvas2D renderer with paper-depth typography",
+  "buildTimeSeconds": 364.703
+}

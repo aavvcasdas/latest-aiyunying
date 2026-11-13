@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+html,
+body {
+  background: #14132b;
+}
+
+/* 全屏时保持 16:9，四周留黑 */
+.stage:fullscreen {
+  border-radius: 0;
+}
+.stage:fullscreen canvas {
+  width: min(100vw, 177.78vh);
+  height: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}

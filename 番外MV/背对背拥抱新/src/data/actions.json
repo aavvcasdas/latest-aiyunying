@@ -1,0 +1,136 @@
+{
+  "whale": {
+    "idle": {
+      "label": "呼吸待机",
+      "fps": 8,
+      "loop": true,
+      "frames": [
+        "act_whale_idle_0",
+        "act_whale_idle_1",
+        "act_whale_idle_2",
+        "act_whale_idle_3",
+        "act_whale_idle_4",
+        "act_whale_idle_5",
+        "act_whale_idle_6",
+        "act_whale_idle_7"
+      ],
+      "fx": null,
+      "size": [
+        84,
+        90
+      ]
+    },
+    "sad": {
+      "label": "低落",
+      "fps": 6,
+      "loop": false,
+      "frames": [
+        "act_whale_sad_0",
+        "act_whale_sad_1",
+        "act_whale_sad_2",
+        "act_whale_sad_3",
+        "act_whale_sad_4",
+        "act_whale_sad_5"
+      ],
+      "fx": "fx_gloom",
+      "size": [
+        86,
+        90
+      ]
+    },
+    "point": {
+      "label": "递出去（让位）",
+      "fps": 8,
+      "loop": false,
+      "frames": [
+        "act_whale_point_0",
+        "act_whale_point_1",
+        "act_whale_point_2",
+        "act_whale_point_3",
+        "act_whale_point_4",
+        "act_whale_point_5"
+      ],
+      "fx": null,
+      "size": [
+        94,
+        90
+      ]
+    }
+  },
+  "claude": {
+    "idle": {
+      "label": "呼吸待机",
+      "fps": 8,
+      "loop": true,
+      "frames": [
+        "act_claude_idle_0",
+        "act_claude_idle_1",
+        "act_claude_idle_2",
+        "act_claude_idle_3",
+        "act_claude_idle_4",
+        "act_claude_idle_5",
+        "act_claude_idle_6",
+        "act_claude_idle_7"
+      ],
+      "fx": null,
+      "size": [
+        92,
+        92
+      ]
+    },
+    "sad": {
+      "label": "低落",
+      "fps": 6,
+      "loop": false,
+      "frames": [
+        "act_claude_sad_0",
+        "act_claude_sad_1",
+        "act_claude_sad_2",
+        "act_claude_sad_3",
+        "act_claude_sad_4",
+        "act_claude_sad_5"
+      ],
+      "fx": "fx_gloom",
+      "size": [
+        94,
+        92
+      ]
+    },
+    "read": {
+      "label": "低头看书",
+      "fps": 5,
+      "loop": true,
+      "frames": [
+        "act_claude_read_0",
+        "act_claude_read_1",
+        "act_claude_read_2",
+        "act_claude_read_3",
+        "act_claude_read_4",
+        "act_claude_read_5"
+      ],
+      "fx": "fx_sparkle",
+      "size": [
+        92,
+        92
+      ]
+    },
+    "nod": {
+      "label": "点头",
+      "fps": 10,
+      "loop": false,
+      "frames": [
+        "act_claude_nod_0",
+        "act_claude_nod_1",
+        "act_claude_nod_2",
+        "act_claude_nod_3",
+        "act_claude_nod_4",
+        "act_claude_nod_5"
+      ],
+      "fx": null,
+      "size": [
+        92,
+        92
+      ]
+    }
+  }
+}
