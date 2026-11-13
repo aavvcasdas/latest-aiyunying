@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+/* 页面文字优先用系统的中文字体；系统里一个中文字体都没有时，落到随片子一起打包的站酷快乐体（合成加载它之后全页可用） */
+@theme {
+  --font-sans: ui-sans-serif, system-ui, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC", "ZCOOL KuaiLe", sans-serif;
+}
+
+html { background: #0b1220; }

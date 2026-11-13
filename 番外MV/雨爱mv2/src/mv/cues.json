@@ -1,0 +1,162 @@
+{
+ "measured": true,
+ "method": "faster-whisper(small) 词级时间戳定出每句大致起点，分段复听校正后，吸附到原曲实测拍点网格（八分音符 0.37033 秒，个别弱起句落在十六分位）；拍点级对齐，不是逐音节对齐",
+ "source": {
+  "subtitles": "歌词.srt",
+  "audio": "《雨爱》司凤版.mp3（容器实为 MP4：H.264 + AAC，音轨 -c:a copy 无损转存为 src/assets/yuai.m4a）",
+  "audio_sha256": "4eb33e19501614dbcf9bf7d8cbd81a2e8ac6ea51160947d2f63321e59e046eaf",
+  "audio_duration": 131.262,
+  "analysis_sample_rate": 22050
+ },
+ "beat": {
+  "period": 0.74066,
+  "first": 10.2255,
+  "bar": 4,
+  "bpm": 81.01,
+  "eighth": 0.37033,
+  "max_abs_drift": 0.01,
+  "local_phase_drift_per_15s_window": [
+   -0.006,
+   -0.002,
+   0.002,
+   0.006,
+   0.008,
+   0.004,
+   -0.01
+  ]
+ },
+ "lines": [
+  {
+   "text": "窗外的天气",
+   "start": 16.151,
+   "end": 19.4,
+   "grid_index": 16
+  },
+  {
+   "text": "就像是你多变的表情",
+   "start": 20.224,
+   "end": 25.2,
+   "grid_index": 27
+  },
+  {
+   "text": "下雨了 雨陪我哭泣",
+   "start": 26.335,
+   "end": 31.16,
+   "grid_index": 43.5
+  },
+  {
+   "text": "看不清 我也不想看清",
+   "start": 32.63,
+   "end": 37.6,
+   "grid_index": 60.5
+  },
+  {
+   "text": "离开你 我安静的抽离",
+   "start": 38.371,
+   "end": 42.15,
+   "grid_index": 76
+  },
+  {
+   "text": "不忍揭晓的剧情",
+   "start": 42.259,
+   "end": 44.6,
+   "grid_index": 86.5
+  },
+  {
+   "text": "我的泪流在心里",
+   "start": 44.851,
+   "end": 47.8,
+   "grid_index": 93.5
+  },
+  {
+   "text": "学会放弃",
+   "start": 47.999,
+   "end": 50.1,
+   "grid_index": 102
+  },
+  {
+   "text": "听雨的声音 一滴滴清晰",
+   "start": 50.962,
+   "end": 53.62,
+   "grid_index": 110
+  },
+  {
+   "text": "你的呼吸像雨滴渗入我的爱里",
+   "start": 53.739,
+   "end": 58.6,
+   "grid_index": 117.5
+  },
+  {
+   "text": "真希望雨能下不停",
+   "start": 58.739,
+   "end": 62.6,
+   "grid_index": 131
+  },
+  {
+   "text": "让想念继续 让爱变透明",
+   "start": 62.812,
+   "end": 68.62,
+   "grid_index": 142
+  },
+  {
+   "text": "我爱上给我勇气的 Rainie love",
+   "start": 68.738,
+   "end": 74.06,
+   "grid_index": 158
+  },
+  {
+   "text": "窗外的雨滴 一滴滴累积",
+   "start": 74.663,
+   "end": 77.36,
+   "grid_index": 174
+  },
+  {
+   "text": "屋内的湿气像储存爱你的记忆",
+   "start": 77.44,
+   "end": 82.28,
+   "grid_index": 181.5
+  },
+  {
+   "text": "真希望雨能下不停",
+   "start": 82.44,
+   "end": 85.9,
+   "grid_index": 195
+  },
+  {
+   "text": "雨爱的秘密能一直延续",
+   "start": 86.328,
+   "end": 92.2,
+   "grid_index": 205.5
+  },
+  {
+   "text": "我相信我将会看到彩虹的美丽",
+   "start": 92.439,
+   "end": 99.18,
+   "grid_index": 222
+  },
+  {
+   "text": "屋内的湿气像储存爱你的记忆",
+   "start": 100.956,
+   "end": 105.5,
+   "grid_index": 245
+  },
+  {
+   "text": "真希望雨能下不停",
+   "start": 106.511,
+   "end": 109.56,
+   "grid_index": 260
+  },
+  {
+   "text": "雨爱的秘密能一直延续",
+   "start": 110.029,
+   "end": 115.6,
+   "grid_index": 269.5
+  },
+  {
+   "text": "我相信我将会看到彩虹的美丽",
+   "start": 116.14,
+   "end": 123.0,
+   "grid_index": 286
+  }
+ ]
+}

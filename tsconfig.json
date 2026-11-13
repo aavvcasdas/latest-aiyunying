@@ -21,5 +21,5 @@
   },
   "include": ["通用模板/engine", "通用模板/preview", "通用模板/样板", "番外MV", "Day"],
   // 番外MV 下这些是独立的 Vite 工程，各有自己的 tsconfig，不并进仓库根的检查
-  "exclude": ["存档", "node_modules", "番外MV/坏女孩", "番外MV/坏女孩Fable", "番外MV/背对背拥抱"]
+  "exclude": ["存档", "node_modules", "番外MV/坏女孩", "番外MV/坏女孩Fable", "番外MV/背对背拥抱", "番外MV/雨爱arenamax", "番外MV/雨爱mv2"]
 }

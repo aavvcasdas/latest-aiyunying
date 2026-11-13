@@ -22,6 +22,22 @@ const PROJECTS = {
     publicDir: '番外MV/坏女孩/public',
     out: '番外MV/坏女孩/成片/坏女孩_3d.mp4',
   },
+  yuai: {
+    name: '雨爱（司凤版 · Rainfilm）',
+    dir: '番外MV/雨爱arenamax',
+    entry: '番外MV/雨爱arenamax/src/remotion/Root.tsx',
+    id: 'RainLove',
+    publicDir: '番外MV/雨爱arenamax/public',
+    out: '番外MV/雨爱arenamax/成片/雨爱.mp4',
+  },
+  yuaimv2: {
+    name: '雨爱（司凤版 · 模板引擎版）',
+    dir: '番外MV/雨爱mv2',
+    entry: '番外MV/雨爱mv2/src/remotion-entry.tsx',
+    id: 'Yuai',
+    publicDir: '番外MV/雨爱mv2/public',
+    out: '番外MV/雨爱mv2/成片/雨爱_mv2.mp4',
+  },
   fable: {
     name: '坏女孩（fable5.2）',
     dir: '番外MV/坏女孩Fable',
