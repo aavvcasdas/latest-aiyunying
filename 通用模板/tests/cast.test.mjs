@@ -15,7 +15,7 @@ import { fileURLToPath } from 'node:url';
 import './tpl-loader.mjs';
 
 const THREE = await import('three');
-const { Actor, ATLAS_META, CAST_SETS, atlasProblems, setProblems, framesIn, cycleIndex } = await import('../engine/actors.ts');
+const { Actor, ATLAS_META, CAST_SETS, atlasProblems, setProblems, framesIn, cycleIndex, ACTIONS, FX, PROPS, PROPS_OF, actionFrame, actionSeconds } = await import('../engine/actors.ts');
 const { castPreflight, frameOf } = await import('../engine/engine.ts');
 const { hourglass } = await import('../engine/props.ts');
 const { cam } = await import('../engine/core.ts');
@@ -60,9 +60,9 @@ const clone = (o) => JSON.parse(JSON.stringify(o));
 const fakeAtlas = () => ({ tex: new THREE.Texture(), w: ATLAS_META.w, h: ATLAS_META.h, rects: ATLAS_META.s, anchors: {}, url: 'test' });
 const CHARS = Object.keys(CAST_SETS);
 
-test('图集体检：仓库里的 PNG 与坐标表是同一版，121 格每一格都有像素，角色表引用的格子全都在', () => {
+test('图集体检：仓库里的 PNG 与坐标表是同一版，747 格每一格都有像素，角色表引用的格子全都在', () => {
   assert.deepEqual([PNG.w, PNG.h], [ATLAS_META.w, ATLAS_META.h]);
-  assert.equal(Object.keys(ATLAS_META.s).length, 121);
+  assert.equal(Object.keys(ATLAS_META.s).length, 747);
   assert.deepEqual(atlasProblems(ATLAS_META, PNG.w, PNG.h, PNG.alphaAt), []);
 });
 
@@ -272,4 +272,40 @@ test('沙漏：翻的时候用 flip()、翻完用 set()（Day14 的写法）—�
     };
   })], tl, fakeAtlas());
   assert.deepEqual(r.problems, []);
+});
+
+// ---------- 派生动作（cast/source/bake_actions.mjs） ----------
+test('派生动作：九位每人都有待机（龙娘是 float），每个动作的每一格都在图集里，同一动作格子同尺寸', () => {
+  for (const id of CHARS) {
+    const acts = ACTIONS[id];
+    assert.ok(acts && (acts.idle || acts.float), `${id} 没有待机动作`);
+    for (const [name, m] of Object.entries(acts)) {
+      assert.ok(m.frames.length >= 4 && m.fps > 0, `${id}.${name}`);
+      const sizes = new Set(m.frames.map((k) => { const r = ATLAS_META.s[k]; assert.ok(r, `${k} 不在图集里`); return `${r[2]}x${r[3]}`; }));
+      assert.equal(sizes.size, 1, `${id}.${name} 的格子尺寸不一致，换格时会跳`);
+    }
+  }
+  for (const k of [...PROPS, ...Object.values(FX).flat()]) assert.ok(ATLAS_META.s[k], `${k} 不在图集里`);
+  for (const list of Object.values(PROPS_OF)) for (const k of list) assert.ok(PROPS.includes(k), k);
+});
+
+test('派生动作：循环的回绕、不循环的播完定格；缺动作 / 缺表情贴直接报错；表情贴写进逐帧状态', () => {
+  const nod = ACTIONS.whale.nod, idle = ACTIONS.whale.idle;
+  assert.equal(nod.loop, false);
+  assert.equal(actionFrame(nod, -1), 0);
+  assert.equal(actionFrame(nod, 99), nod.frames.length - 1);
+  assert.equal(actionFrame(idle, idle.frames.length / idle.fps), 0);
+  assert.throws(() => actionFrame(idle, NaN), /不是有限数/);
+  assert.ok(Math.abs(actionSeconds('whale', 'nod') - nod.frames.length / nod.fps) < 1e-9);
+  const a = new Actor(fakeAtlas(), 'whale');
+  assert.equal(a.act('hop', 0).probe().key, ACTIONS.whale.hop.frames[0]);
+  assert.ok(ACTIONS.whale.idle.frames.includes(a.idle(3.3).probe().key));
+  assert.throws(() => a.act('不存在的动作', 0), /没有派生动作/);
+  assert.throws(() => a.emote('fx_不存在', 0), /没有表情贴/);
+  a.begin(); a.emote('fx_zzz', 0.5);
+  assert.match(a.stateLine(), /表情贴=fx_zzz_\d/);
+  a.begin();
+  assert.match(a.stateLine(), /表情贴=无/);
+  const g = new Actor(fakeAtlas(), 'gpt');
+  assert.ok(ACTIONS.gpt.float.frames.includes(g.idle(1).probe().key));
 });

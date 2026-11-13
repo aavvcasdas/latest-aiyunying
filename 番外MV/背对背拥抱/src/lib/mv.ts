@@ -95,6 +95,9 @@ export interface PropSpec {
   ry?: number;
 }
 
+/** 动作表里的动作名（每人不完全一样，写错会在渲染时抛错并列出可用的） */
+export type ActName = string;
+
 export interface Placement {
   id: CharId;
   cell?: string;
@@ -119,6 +122,15 @@ export interface Placement {
   wear?: "crown" | "bow" | "tiara";
   talk?: boolean;
   tag?: string;
+  /**
+   * 派生动作（见 src/data/castActions.json）：不写就用 idle 呼吸待机。
+   * 前提是没有同时给 cell / walk / pose——那三样优先级更高，给了就按它们走。
+   */
+  act?: ActName;
+  /** 动作从这一镜的第几秒开始（默认 0，也就是一进镜就在动） */
+  actAt?: number;
+  /** 头顶表情贴（fx_heart / fx_sweat …），跟动作一样只在没给 cell 时生效 */
+  emote?: string;
 }
 
 export interface Shot {

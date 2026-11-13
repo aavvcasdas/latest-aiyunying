@@ -321,6 +321,7 @@ export class FilmEngine {
     this.sky.position.copy(cam.position);
     this.stars.position.copy(cam.position);
     for (const a of rt.kit.actors) a.commit(cam, this.cardTint);
+    for (const t of rt.kit.things) t.face(cam);
     this.renderer.render(this.scene, cam);
   }
 

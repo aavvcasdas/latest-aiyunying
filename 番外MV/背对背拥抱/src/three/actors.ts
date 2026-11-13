@@ -3,6 +3,7 @@ import { CAST, type CharId } from "@/data/cast";
 import { ATLAS_H, ATLAS_W, framesIn, has, rect } from "@/lib/atlas";
 import type { Look, Placement } from "@/lib/mv";
 import { labelTex } from "@/three/kit";
+import actionsJson from "@/data/castActions.json";
 
 /* ------------------------------------------------------------------ *
  * 纸片人：图集像素角色贴在一块立在地上的平面上（永远朝镜头转，另加 ry 转身角）。
@@ -79,11 +80,51 @@ PLANE.translate(0, 0.5, 0);
 const SHADOW_GEO = new THREE.CircleGeometry(0.5, 24);
 SHADOW_GEO.rotateX(-Math.PI / 2);
 
+/* ------------------------------------------------------------------ *
+ * 派生动作（通用模板 cast/source/bake_actions.mjs 烘出来的）：
+ *   actions[角色][动作] = { label, fps, loop, frames, fx, size }
+ *   frames 是图集里的格名，按 fps 逐格播；loop 的回绕，不循环的播完定格在最后一格。
+ *   没给 act 的角色走 idle（八格呼吸 + 眨眼），比原来「一格 + 偶尔眨眼」自然得多。
+ * ------------------------------------------------------------------ */
+export interface ActionMeta {
+  label: string;
+  fps: number;
+  loop: boolean;
+  frames: string[];
+  fx: string | null;
+  size: [number, number];
+}
+const ACT_FILE = actionsJson as unknown as {
+  actions: Record<string, Record<string, ActionMeta>>;
+  props: string[];
+  propsOf: Record<string, string[]>;
+  fx: Record<string, string[]>;
+};
+export const ACTIONS = ACT_FILE.actions;
+
+/** 表情贴：fx_heart → 若干格，按 6Hz 循环 */
+export const EMOTES = ACT_FILE.fx;
+
+/** 动作播到第几格。t 从动作开始算起，负数一律停在第 0 格 */
+export function actionFrame(meta: ActionMeta, t: number): number {
+  const n = meta.frames.length;
+  const i = Math.floor(Math.max(0, t) * meta.fps + 1e-6);
+  return meta.loop ? i % n : Math.min(n - 1, i);
+}
+
 type Anim =
   | { kind: "walk"; frames: string[] }
   | { kind: "blink"; a: string; b: string; period: number }
   | { kind: "flap"; a: string; b: string }
-  | { kind: "still"; cell: string };
+  | { kind: "still"; cell: string }
+  | { kind: "act"; meta: ActionMeta; offset: number };
+
+/** 每个角色一个固定的小相位，站一排时呼吸不同步 */
+function seedOf(id: string): number {
+  let h = 0;
+  for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) % 97;
+  return h / 97;
+}
 
 /** 造型格 + 动画方式（和模板的 front / walk / set 口径一致） */
 export function resolveAnim(p: Placement): Anim {
@@ -98,6 +139,17 @@ export function resolveAnim(p: Placement): Anim {
     if (cell.startsWith("gpt_fly")) return { kind: "flap", a: "gpt_fly_0", b: "gpt_fly_1" };
     if (cell === "gpt_boss_cast0") return { kind: "blink", a: "gpt_boss_cast0", b: "gpt_boss_cast1", period: 0.9 };
     return { kind: "still", cell };
+  }
+  // 派生动作优先于脸部/待机的静态格：给了 act 就播那个，没给就播 idle（呼吸 + 眨眼）。
+  // 每个人的 seed 错开一点，一片人站着时不会像齐步走。
+  const acts = ACTIONS[p.id] ?? {};
+  const name = p.act ?? (acts.idle ? "idle" : acts.float ? "float" : null);
+  if (name) {
+    const meta = acts[name];
+    if (!meta) {
+      throw new Error(`[cast] ${p.id} 没有动作「${name}」（可用：${Object.keys(acts).join("、")}）`);
+    }
+    return { kind: "act", meta, offset: seedOf(p.id) * 1.3 };
   }
   if (p.face === "side" && m.cells.side) return { kind: "blink", a: m.cells.side[0], b: m.cells.side[1], period: 4.6 };
   if (m.cells.front) return { kind: "blink", a: m.cells.front[0], b: m.cells.front[1], period: p.id === "gpt" ? 5.2 : 4.2 };
@@ -168,7 +220,14 @@ export class Actor {
     this.shadow.position.y = 0.012;
     this.g.add(this.shadow);
 
-    const first = this.anim.kind === "walk" ? this.anim.frames[0] : this.anim.kind === "still" ? this.anim.cell : this.anim.a;
+    const first =
+      this.anim.kind === "walk"
+        ? this.anim.frames[0]
+        : this.anim.kind === "still"
+          ? this.anim.cell
+          : this.anim.kind === "act"
+            ? this.anim.meta.frames[0]
+            : this.anim.a;
     this.setCell(first);
 
     if (p.wear) this.addWear(p.wear);
@@ -274,6 +333,11 @@ export class Actor {
       this.setCell(ph > this.anim.period - 0.18 ? this.anim.b : this.anim.a);
     } else if (this.anim.kind === "flap") {
       this.setCell(Math.floor(t / 0.17) % 2 === 0 ? this.anim.a : this.anim.b);
+    } else if (this.anim.kind === "act") {
+      // 动作从 actAt 秒开始算；seed 相位让一排人不同步
+      const at = p.actAt ?? 0;
+      const i = actionFrame(this.anim.meta, t - at + this.anim.offset);
+      this.setCell(this.anim.meta.frames[i]);
     }
 
     // 走位

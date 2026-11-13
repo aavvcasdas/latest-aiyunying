@@ -38,6 +38,7 @@ const FILM = read(`${CLI_DIR}/film.mjs`);
 const CLI_SRC = [
   ...fs.readdirSync(path.join(REPO, CLI_DIR)).filter((f) => /\.(mjs|py)$/.test(f)).map((f) => read(`${CLI_DIR}/${f}`)),
   read('通用模板/cast/bake_atlas.mjs'),
+  read('通用模板/cast/source/bake_actions.mjs'),   // 派生动作烘焙（npm run actions，选项 --gif）
   ...(exists('tools') ? fs.readdirSync(path.join(REPO, 'tools')).filter((f) => f.endsWith('.mjs')).map((f) => read(`tools/${f}`)) : []),
 ].join('\n');
 const SCRIPTS = Object.keys(JSON.parse(read('package.json')).scripts);

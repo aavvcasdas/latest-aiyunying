@@ -1,15 +1,15 @@
 import raw from "@/data/castAtlas.json";
 
 /**
- * 角色图集：1024 × 1006 的一张 PNG，格子的坐标表来自仓库的 cast_atlas.json。
+ * 角色图集：一张大 PNG，格子的坐标表来自 castAtlas.json。
  * 所有像素动画都用 `calc(Npx * var(--k))` 写，这样一份 keyframes 对任意放大倍数都成立。
  */
-// 图集总尺寸必须和 src/assets/cast_atlas.png 的真实像素高度一致：
-// 贴图来自 通用模板/engine/assets/cast_atlas.png（1024×1212）。
-// zip 里那份 castAtlas.json 写的是 1006，跟这张图对不上——高度一错，
-// 采样区间整体偏移又翻过来，纸片人会变成头朝下。别改回去。
-export const ATLAS_W = 1024;
-export const ATLAS_H = 1212;
+// 图集总尺寸只从 castAtlas.json 读，不在这里写死数。
+// 上一版把高度写死成 1006，而实际 PNG 是 1212——高度一错，采样区间整体偏移又翻过来，
+// 纸片人整个头朝下。现在 JSON 和 PNG 一起换（都是 通用模板/engine/assets 里那一份），
+// 尺寸永远不会脱节；`npm run atlas:check` 在模板侧校验两者一致。
+export const ATLAS_W = raw.w;
+export const ATLAS_H = raw.h;
 
 export const RECTS = raw.s as unknown as Record<string, [number, number, number, number]>;
 

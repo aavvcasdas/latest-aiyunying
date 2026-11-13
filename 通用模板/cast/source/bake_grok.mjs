@@ -129,6 +129,30 @@ function bake(srcKey, { pad = PAD, horns = true, axe = true } = {}) {
     out[(y + pad) * W + x] = v;
   }
 
+
+  // 5. 清理（2026-11 修）：Gemini 发丝里的暗部饱和度不够，会被当成「衣服」压成黑色，头发里留下一块块黑斑；
+  //    闭眼那一格，盖在脸上的发丝又被当成「眼睛」原样留下（一块淡紫）。这里按邻居把它们收回金发：
+  //    · 黑礼服色、四周八格里金发占一半以上、且不贴透明（不是外轮廓）→ 取邻居里最多的那一档金色
+  //    · 残留的蓝紫色、紧挨着三格以上金发 → 按明度落到金发色阶
+  //    反复三遍，块状黑斑由外向内收掉；皮肤、眼睛（四周不是金发）不受影响。
+  const GOLDS = new Set([...GOLD_COLD, ...GOLD_WARM]), DARKS = new Set(BLACK);
+  for (let pass = 0; pass < 3; pass++) {
+    const src = out.slice();
+    for (let y = 1; y < HT - 1; y++) for (let x = 1; x < W - 1; x++) {
+      const v = src[y * W + x]; if (v === T) continue;
+      const cnt = new Map(); let gold = 0, clear = 0;
+      for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+        if (!dx && !dy) continue;
+        const n = src[(y + dy) * W + x + dx];
+        if (n === T) clear++;
+        else if (GOLDS.has(n)) { gold++; cnt.set(n, (cnt.get(n) ?? 0) + 1); }
+      }
+      const blueish = !GOLDS.has(v) && !DARKS.has(v) && RGB[v][2] - RGB[v][0] >= 12 && sat(v) >= 25;
+      if ((DARKS.has(v) || v === INK) && gold >= 5 && clear === 0) out[y * W + x] = [...cnt].sort((a, b) => b[1] - a[1])[0][0];
+      else if (blueish && gold >= 3) out[y * W + x] = ramp(lum(v), 110, 235, GOLD_WARM);
+    }
+  }
+
   const put = (x, y, v) => { if (x >= 0 && y >= 0 && x < W && y < HT) out[y * W + x] = v; };
   let top = 0; while (top < HT && !out.slice(top * W, (top + 1) * W).some((v) => v !== T)) top++;
   const row = []; for (let x = 0; x < W; x++) if (out[(top + 1) * W + x] !== T) row.push(x);

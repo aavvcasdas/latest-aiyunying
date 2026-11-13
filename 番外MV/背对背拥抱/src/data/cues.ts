@@ -119,7 +119,7 @@ const rows: Row[] = [
     s: shot(
       "dusk",
       high,
-      [...apart(3.2), C("kimi", -1.6, 0.6, { walk: true, from: { x: -5.5 }, move: 3.4, tag: "标一句就停" }), C("qwen", 2.2, -1.6, { tag: "排顺序" })],
+      [...apart(3.2), C("kimi", -1.6, 0.6, { walk: true, from: { x: -5.5 }, move: 3.4, tag: "标一句就停" }), C("qwen", 2.2, -1.6, { tag: "排顺序", act: "nod" })],
       "俯拍：卷轴从舞台这头铺到那头，Kimi 边走边标，千问在后头排顺序。",
       {
         props: [
@@ -237,7 +237,7 @@ const rows: Row[] = [
     t: [67.05, 71.0],
     text: "真话兜着圈子乱乱绕",
     sec: "chorus",
-    s: shot("magic", high, [...b2b(0.45, { ke: { alpha: 0.92 }, jing: { alpha: 0.92 } }), C("gemini", 2.4, 1.2, { walk: true, from: { x: -2.4, z: 1.6 }, move: 3.6, tag: "绕圈的爱丽丝" })], "俯拍紫色光圈：猫娘沿着圈走，真话在圈里绕不出去。", {
+    s: shot("magic", high, [...b2b(0.45, { ke: { alpha: 0.92, act: "lookaround" }, jing: { alpha: 0.92 } }), C("gemini", 2.4, 1.2, { walk: true, from: { x: -2.4, z: 1.6 }, move: 3.6, tag: "绕圈的爱丽丝" })], "俯拍紫色光圈：猫娘沿着圈走，真话在圈里绕不出去。", {
       fx: [
         { kind: "ring", n: 5, at: [0, 0] },
         { kind: "star", n: 18 },
@@ -267,7 +267,7 @@ const rows: Row[] = [
     t: [78.55, 81.0],
     text: "爱的警告",
     sec: "chorus",
-    s: shot("golden", wide, [ke(-0.75, 0, { ry: -10, tilt: -3 }), jing(0.75, 0, { ry: 10, tilt: 3 }), C("kimi", -4.5, -1.5, { alpha: 0.95 }), C("qwen", 4.5, -1.5, { alpha: 0.95 })], "大全景：两人正面对视，心形与光圈一起炸开，群像在两侧。", {
+    s: shot("golden", wide, [ke(-0.75, 0, { ry: -10, tilt: -3 }), jing(0.75, 0, { ry: 10, tilt: 3 }), C("kimi", -4.5, -1.5, { alpha: 0.95, act: "think" }), C("qwen", 4.5, -1.5, { alpha: 0.95, act: "nod" })], "大全景：两人正面对视，心形与光圈一起炸开，群像在两侧。", {
       fx: [
         { kind: "heart", n: 16, at: [0, 0] },
         { kind: "ring", n: 5, at: [0, 0] },
@@ -472,7 +472,7 @@ const rows: Row[] = [
     t: [144.66, 147.0],
     text: "爱的警告",
     sec: "chorus",
-    s: shot("golden", wide, [ke(-0.7, 0, { ry: -8, tilt: -2 }), jing(0.7, 0, { ry: 8, tilt: 2 }), C("kimi", -5.4, -1.2), C("qwen", -3.2, -1.2), C("gemini", 3.2, -1.2), C("doubao", 5.4, -1.2)], "全员正面站成一排，警告落在最亮的一帧上。", {
+    s: shot("golden", wide, [ke(-0.7, 0, { ry: -8, tilt: -2 }), jing(0.7, 0, { ry: 8, tilt: 2 }), C("kimi", -5.4, -1.2), C("qwen", -3.2, -1.2, { act: "bow" }), C("gemini", 3.2, -1.2), C("doubao", 5.4, -1.2, { act: "step" })], "全员正面站成一排，警告落在最亮的一帧上。", {
       fx: [
         { kind: "spark", n: 26, at: [0, 0] },
         { kind: "ring", n: 5, at: [0, 0] },
@@ -666,7 +666,7 @@ const rows: Row[] = [
     s: shot(
       "dawn",
       cam([0, 2.0, 8], [0, 1.1, 0], { pos: [0, 1.8, 6.6] }),
-      [...hug(0.36), C("kimi", -5.6, -0.6), C("qwen", -3.6, 0.8), C("gemini", 3.6, 0.8), C("doubao", 5.6, -0.6), C("zai", 2.4, -2.4, { lift: 0.45 }), C("gpt", 0, -8, { alpha: 0.3, pose: "cast0" })],
+      [...hug(0.36), C("kimi", -5.6, -0.6, { act: "hop" }), C("qwen", -3.6, 0.8, { act: "hop" }), C("gemini", 3.6, 0.8, { act: "sway" }), C("doubao", 5.6, -0.6, { act: "hop" }), C("zai", 2.4, -2.4, { lift: 0.45, act: "hop" }), C("gpt", 0, -8, { alpha: 0.3, pose: "cast0" })],
       "最后的拥抱：两张纸片转正贴上，全员在两侧挥手，心形炸满画面。",
       {
         fx: [

@@ -14,6 +14,7 @@
 import * as THREE from 'three';
 import atlasUrl from './assets/cast_atlas.png';
 import atlasJson from './assets/cast_atlas.json';
+import actionsJson from './assets/cast_actions.json';
 import { FPS } from './timeline';
 import { rgb } from './kit';
 
@@ -26,6 +27,33 @@ export interface AtlasData { tex: THREE.Texture; w: number; h: number; rects: Re
 export interface AtlasMeta { w: number; h: number; s: Record<string, Rect> }
 export const ATLAS_URL: string = atlasUrl;
 export const ATLAS_META = atlasJson as unknown as AtlasMeta;
+
+/** 派生动作表（cast/source/bake_actions.mjs 生成）：ACTIONS[角色][动作] = { label, fps, loop, frames, fx, size } */
+export interface ActionMeta { label: string; fps: number; loop: boolean; frames: string[]; fx: string | null; size: [number, number] }
+interface ActionsFile { actions: Record<string, Record<string, ActionMeta>>; props: string[]; propsOf: Record<string, string[]>; fx: Record<string, string[]> }
+const ACT_FILE = actionsJson as unknown as ActionsFile;
+export const ACTIONS = ACT_FILE.actions as Record<CharId, Record<string, ActionMeta>>;
+/** 道具格（prop_*）与表情贴序列（fx_* → 若干格） */
+export const PROPS: string[] = ACT_FILE.props;
+export const PROPS_OF = ACT_FILE.propsOf as Record<CharId, string[]>;
+export const FX: Record<string, string[]> = ACT_FILE.fx;
+
+/**
+ * 动作播到第几格：loop 的动作回绕；不循环的动作播完停在最后一格（定格）。t 是从动作开始算起的秒数。
+ * 时间在开始之前（t < 0）一律停在第 0 格。
+ */
+export function actionFrame(meta: ActionMeta, t: number, what = '动作'): number {
+  const n = meta.frames.length;
+  if (!Number.isFinite(t)) throw new Error(`[cast] ${what} 的时间不是有限数（${t}）`);
+  const i = Math.floor(Math.max(0, t) * meta.fps + 1e-6);
+  return meta.loop ? cycleIndex(i, n, what) : Math.min(n - 1, i);
+}
+/** 不循环的动作播一遍要几秒（循环动作返回一轮的长度） */
+export const actionSeconds = (id: CharId, name: string): number => {
+  const m = ACTIONS[id]?.[name];
+  if (!m) throw new Error(`[cast] 角色 ${id} 没有动作「${name}」`);
+  return m.frames.length / m.fps;
+};
 
 /**
  * 一个编号序列（walk_whale_0…7、gpt_fly_0…1）在图集里实际有几格：从 0 连着数，数到缺号为止。
@@ -126,7 +154,8 @@ void main(){
 
 const PX = 0.0195; // 每个精灵像素对应的世界单位
 const M = 48;      // 服饰叠层在精灵四周的留白（像素）
-const scaleFor = (key: string) => (key.startsWith('whale_big') ? 0.6 : key.startsWith('gpt_boss') ? 0.58 : 1);
+// 龙娘的派生动作取自 gpt_boss_*（大号格），一样缩到 0.58；只有 hover 取自 gpt_fly_*（原大）
+const scaleFor = (key: string) => (key.startsWith('whale_big') ? 0.6 : key.startsWith('gpt_boss') || (key.startsWith('act_gpt_') && !key.startsWith('act_gpt_hover_')) ? 0.58 : 1);
 
 /** 每个角色的步态序列（前缀）与正面待机 / 眨眼两格。步态有几格不写在这里——以图集为准，见 framesIn() */
 export const CAST_SETS: Record<CharId, { walk: string; front: [string, string] }> = {
@@ -281,6 +310,7 @@ export class Actor {
   // 每帧可写状态（begin() 复位）
   private _size = 1; private _sq = 0; private _tilt = 0; private _lift = 0; private _alpha = 1; private _flash = 0; private _sil = 0;
   private _flip = false; private _tint: THREE.Vector3 | null = null; private _shadow = true;
+  private _emote = ''; private emoteCard: THREE.Mesh | null = null; private emoteMat: THREE.ShaderMaterial | null = null;
   height = 1.6;
 
   constructor(private atlas: AtlasData, public id: CharId, private baseSize = 1) {
@@ -365,6 +395,31 @@ export class Actor {
     const ph = (T + this.seed * 1.3) % 2.6;
     return this.set(ph < 0.13 ? s.front[1] : s.front[0]);
   }
+  /**
+   * 派生动作（cast_actions.json）：name 见 README「派生动作」表；t0 = 动作从全片第几秒开始。
+   * 循环动作一直回绕；不循环的（点头、鞠躬、吃惊……）播完定格在最后一格。缺动作直接报错，不悄悄换成别的。
+   */
+  act(name: string, T: number, t0 = 0): this {
+    const m = ACTIONS[this.id]?.[name];
+    if (!m) throw new Error(`[cast] 角色 ${this.id} 没有派生动作「${name}」（可用：${Object.keys(ACTIONS[this.id] ?? {}).join('、')}）`);
+    return this.set(m.frames[actionFrame(m, T - t0, `${this.id}.act('${name}')`)]);
+  }
+  /** 呼吸待机：front() 的替代品（会呼吸、会眨眼）；龙娘是悬浮待机 */
+  idle(T: number): this {
+    const name = ACTIONS[this.id]?.idle ? 'idle' : 'float';
+    return this.act(name, T + this.seed * 1.3);
+  }
+  /**
+   * 头顶表情贴（fx_heart / fx_sweat / fx_question / fx_zzz …，见 FX）：每帧要显示就每帧调一次，begin() 会清掉。
+   * 多格的（zzz、sparkle、dizzy、steam）按 T 自动轮播。
+   */
+  emote(fx: string | null, T = 0): this {
+    if (!fx) { this._emote = ''; return this; }
+    const seq = FX[fx] ?? (this.atlas.rects[fx] ? [fx] : null);
+    if (!seq) throw new Error(`[cast] 没有表情贴「${fx}」（可用：${Object.keys(FX).join('、')}）`);
+    this._emote = seq[cycleIndex(Math.floor(T * 6), seq.length, `emote('${fx}')`)];
+    return this;
+  }
   /** 说话时的小动作：轻轻一颠一颠（每秒约 4 下）。on=false 时什么都不做，方便写成 a.talk(T, f.line === 3) */
   talk(T: number, on = true): this {
     if (on) { const w = Math.abs(Math.sin(T * 13)); this._lift += w * 0.035; this._sq += 0.025 * (w - 0.5); }
@@ -413,11 +468,31 @@ export class Actor {
     return [
       '显隐=显示', `造型=${this.key}`, `位置=${p.x},${p.y},${p.z}`, `挂点朝向与缩放=${q.x},${q.y},${q.z},${q.w},${sc.x},${sc.y},${sc.z}`,
       `大小=${this._size}`, `挤压=${this._sq}`, `倾斜=${this._tilt}`, `跳起=${this._lift}`, `透明度=${this._alpha}`, `闪白=${this._flash}`, `剪影=${this._sil}`,
-      `左右翻转=${this._flip}`, `染色=${t ? `${t.x},${t.y},${t.z}` : '无'}`, `阴影=${this._shadow}`,
+      `左右翻转=${this._flip}`, `染色=${t ? `${t.x},${t.y},${t.z}` : '无'}`, `阴影=${this._shadow}`, `表情贴=${this._emote || '无'}`,
     ].join(';');
   }
 
-  begin() { this._size = 1; this._sq = 0; this._tilt = 0; this._lift = 0; this._alpha = 1; this._flash = 0; this._sil = 0; this._flip = false; this._tint = null; this._shadow = true; }
+  begin() { this._emote = ''; this._size = 1; this._sq = 0; this._tilt = 0; this._lift = 0; this._alpha = 1; this._flash = 0; this._sil = 0; this._flip = false; this._tint = null; this._shadow = true; }
+
+  private commitEmote() {
+    if (!this._emote) { if (this.emoteCard) this.emoteCard.visible = false; return; }
+    if (!this.emoteCard) {
+      this.emoteMat = pixelMat(this.atlas.tex, this.atlas.w, this.atlas.h);
+      this.emoteCard = new THREE.Mesh(cardGeo, this.emoteMat);
+      this.emoteCard.position.z = 0.02;
+      this.bill.add(this.emoteCard);
+    }
+    const r = this.atlas.rects[this._emote], a = this.atlas.anchors[this.key];
+    const s = this.baseSize * this._size * this.k, body = this.atlas.rects[this.key];
+    (this.emoteMat!.uniforms.rect.value as THREE.Vector4).set(r[0], r[1], r[2], r[3]);
+    this.emoteCard.scale.set(r[2] * PX * Math.max(s, 0.6), r[3] * PX * Math.max(s, 0.6), 1);
+    // 贴在头顶偏右：按这一格的头顶锚点算，翻转时跟着到另一边
+    const side = this._flip ? -1 : 1;
+    const hx = a ? (a.cx + a.hw * 0.35 - body[2] / 2) * PX * s : 0.3 * s;
+    const top = a ? (body[3] - a.top) * PX * s : this.height;
+    this.emoteCard.position.set(side * hx, top - 0.02 * s, 0.02);
+    this.emoteCard.visible = true;
+  }
 
   commit(cam: THREE.Camera, cardTint: THREE.Vector3) {
     const vis = this._alpha > 0.02;
@@ -425,6 +500,7 @@ export class Actor {
     if (!vis) return;
     this.bill.quaternion.copy(cam.quaternion);
     this.bill.position.y = this._lift;
+    this.commitEmote();
     const s = this.baseSize * this._size;
     this.inner.scale.set(s * (1 + this._sq * 0.6), s * (1 - this._sq), 1);
     this.inner.rotation.z = this._tilt;
@@ -442,4 +518,38 @@ export class Actor {
     this.shadow.scale.set(w * k, 1, w * 0.42 * k);
     (this.shadow.material as THREE.MeshBasicMaterial).opacity = 0.3 * k * this._alpha;
   }
+}
+
+/**
+ * 像素道具卡（prop_* / fx_*，在 cast_atlas 里）：始终面向相机的小纸片，底边贴地或贴在给定高度。
+ * 用法：const bowl = k.thing('prop_bowl'); 每帧 bowl.at(x, y, z).size(1)（或 .hide()）。
+ * 规矩照旧：道具不画假手；要「拿在手里」就把它放在角色手边、略靠前（z + 0.02），不画手指。
+ */
+export class PixelThing {
+  holder = new THREE.Group();
+  private card: THREE.Mesh;
+  private mat: THREE.ShaderMaterial;
+  constructor(private atlas: AtlasData, public key: string, private baseSize = 1) {
+    const r = atlas.rects[key];
+    if (!r) throw new Error(`[cast] 缺少道具格「${key}」——按项目规则禁止静默回退`);
+    this.mat = pixelMat(atlas.tex, atlas.w, atlas.h);
+    (this.mat.uniforms.rect.value as THREE.Vector4).set(r[0], r[1], r[2], r[3]);
+    this.card = new THREE.Mesh(cardGeo, this.mat);
+    this.card.scale.set(r[2] * PX * baseSize, r[3] * PX * baseSize, 1);
+    this.holder.add(this.card);
+  }
+  /** 换一格（同尺寸序列，比如 fx_steam_0…2） */
+  set(key: string): this {
+    const r = this.atlas.rects[key];
+    if (!r) throw new Error(`[cast] 缺少道具格「${key}」`);
+    this.key = key;
+    (this.mat.uniforms.rect.value as THREE.Vector4).set(r[0], r[1], r[2], r[3]);
+    this.card.scale.set(r[2] * PX * this.baseSize, r[3] * PX * this.baseSize, 1);
+    return this;
+  }
+  at(x: number, y: number, z: number): this { this.holder.position.set(x, y, z); this.holder.visible = true; return this; }
+  size(s: number): this { this.holder.scale.setScalar(s); return this; }
+  flip(b = true): this { this.mat.uniforms.flip.value = b ? 1 : 0; return this; }
+  hide(): this { this.holder.visible = false; return this; }
+  face(cam: THREE.Camera): this { this.card.quaternion.copy(cam.quaternion); return this; }
 }

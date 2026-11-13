@@ -14,8 +14,27 @@
 | **修图集高度** | `src/lib/atlas.ts` 的 ATLAS_H、`src/data/castAtlas.json` | zip 的 `castAtlas.json` 声明高 1006，但配的图集 PNG 实际是 1024×1212。高度一错，采样区间整体偏移又翻过来，**纸片人会头朝下**。换成模板配套的 JSON（多 13 个 `grok_*` cell，本片不用），高度改 1212 |
 | **加出片模式** | `src/App.tsx`、`src/hooks/useMVPlayer.ts` | `?render=1` 时隐藏面板/片头卡/镜号轨/时码/右下角标注，时间由外部逐帧给，字幕与字卡改画进 2D canvas（`src/lib/lyricCanvas.ts`） |
 | **切镜时重置计时** | `src/three/stage.ts` 的 `setCue` | 跳帧渲染时不能把上一镜的时间差当成这一镜的 `dt`，否则机位会先顿一下 |
+| **接上派生动作**（2026-11-13） | `src/three/actors.ts`、`src/data/castActions.json` | 换用 `人物动作替换.md` 那套 747 格图集：待机从「一格 + 偶尔眨眼」变成八格呼吸（`idle`），并能按 `act` 播 82 个派生动作。每人的相位错开，站一排时不同步 |
+| **图集尺寸不再写死** | `src/lib/atlas.ts` | 宽高改从 `castAtlas.json` 读。上一版写死高度 1006 / 实际 1212，人物整个头朝下；现在 JSON 和 PNG 一起换，尺寸不可能再脱节 |
 
 歌词文本、镜头表、角色、片头卡、分辨率/帧率一律没动。
+
+## 动作怎么用（`act` / `actAt`）
+
+默认每人都是 `idle`（呼吸 + 眨眼），不用写。要指定动作就在那一个角色的 `Placement` 上加：
+
+```ts
+C("qwen", 2.2, -1.6, { act: "nod" })            // 站着点头
+C("qwen", 4.5, -1.5, { act: "bow", actAt: 1.2 }) // 进镜 1.2 秒后才开始鞠躬
+```
+
+- 动作名**不是每人通用**：Kimi 有 `think` 没有 `wave`，豆包有 `step` 没有 `wave`。
+  写错会在渲染时抛错并列出该角色可用的动作。全表见 `src/data/castActions.json`。
+- `act` 只在没有 `cell` / `walk` / `pose` 时生效——走位和指定造型优先，动作不抢。
+- 不循环的动作（`nod` `bow` `tilt` `surprise` `sad` `think` `choose` `alert` `scoff` `petri` `curtsy` `lookaround`）播完定格在最后一格；
+  循环的（`idle` `hop` `sway` `shiver` `step` `hover` `doze` `wave`）一直播。
+- 本片只用了 5 处（旧账、真话绕圈、两处爱的警告、最后的拥抱），其余靠 `idle` 呼吸。
+  **没有全片乱加**——动作多不等于好看，站着呼吸就够了。
 
 ## 字幕时间怎么定的
 

@@ -319,6 +319,9 @@ track([[0, A], [0.5, B], [1, C]], u) // 多段运镜；每段起止机位要不�
 | `.lift(h)` `.sq(a)` `.tilt(r)` | 跳起高度、挤压拉伸、倾斜 |
 | `.alpha(a)` `.hide()` `.flash(v)` `.sil(v)` `.tint(hex)` `.noShadow()` | 透明、隐藏、闪白、剪影、染色、去掉脚下阴影 |
 | `.wear('crown' \| 'hood' \| 'tophat' \| 'bow' \| 'tiara' \| 'ears' \| 'tail')` | 像素服饰叠层（在 build 里调用一次） |
+| `.idle(T)` | 呼吸待机（会呼吸、会眨眼；龙娘是悬浮）。**`.front(T)` 的替代品**——`front` 原样保留，老镜头不变 |
+| `.act('动作名', T, 开始秒数 = 0)` | 播派生动作（下表）。循环的回绕，不循环的（点头、鞠躬、吃惊……）播完定格在最后一格；缺动作直接报错 |
+| `.emote('fx_heart' 等, T)` | 头顶表情贴，每帧要显示就每帧写（`begin()` 会清掉）；多格的（`fx_zzz` `fx_sparkle` `fx_dizzy` `fx_steam`）按 T 轮播 |
 
 身高约 1.7 个世界单位；脚底在 `y = 0`。
 
@@ -338,7 +341,30 @@ track([[0, A], [0.5, B], [1, C]], u) // 多段运镜；每段起止机位要不�
 | `zai` | 智谱 | `zai_front_0/1` `zai_side_0/1`；步态 `walk_zai_0–7` | `p_zai` |
 | `grok` | Grok | `grok_front_0/1` `grok_side_0/1`；步态 `walk_grok_0–7` | `p_grok` |
 
-造型就这些——图集来自项目自己的像素角色数据（`cast/source/`），没有新增生图。要更多动作，先往 `cast/source` 加像素数据、更新 `cast_atlas.json`、`npm run atlas` 重建，再用。
+上面是原有的造型格。图集来自项目自己的像素角色数据（`cast/source/`），没有新增生图。
+
+### 派生动作、道具与表情贴（2026-11 新增）
+
+`npm run actions` 运行 `通用模板/cast/source/bake_actions.mjs`：只对上表的原格做形变（`motion_core.mjs`：两次 Scale2x 放大后反向映射取最近邻，**每个像素都是原图里已有的调色板号，不新增颜色**），派生出下面这些动作；道具与表情贴由 `pixel_things.mjs` 用几何笔画 + 自动墨线画出，颜色只取 `px.js` 调色板。产物：`cast/source/actions_data.js`、`engine/assets/cast_actions.json`，并把新格子追加进 `cast_atlas.json`（原有 121 格坐标不动），然后 `npm run atlas` 重烘图集。`npm run actions -- --gif <目录>` 另出每个动作的 GIF 预览（放系统临时目录，不进仓库）。
+
+动作名与道具取自 [`番外MV/人物设定.md`](../番外MV/人物设定.md) 第 2 节（习性 / 道具 / MV 用法）。
+
+| id | 角色 | 派生动作（`.act(…)`） | 推荐道具（`k.thing(…)`） |
+|---|---|---|---|
+| `whale` | 鲸鱼娘 | `idle`呼吸待机 `wave`挥手打招呼 `point`递出去（让位） `eat`干饭 `hop`开心跳 `nod`点头 `shake`摇头 `bow`鞠躬 `sway`摇摆舞 `surprise`吃惊 `sad`低落 `spin`转圈 `shiver`发抖 | `prop_bowl` `prop_basket` |
+| `gpt` | GPT 龙娘 | `float`悬浮待机 `hover`振翅飞行 `cast`施法 `rage`生气 `nod`点头 `tilt`歪头（疑问） `bow`鞠躬 `surprise`吃惊 `shake`摇头 | `prop_hourglass` |
+| `claude` | Claude 大小姐 | `idle`呼吸待机 `curtsy`提裙行礼 `read`低头看书 `tilt`歪头（疑问） `nod`点头 `shake`摇头 `petri`石化 `lookaround`左右张望 `sad`低落 `hop`开心跳 | `prop_teacup` `prop_book` `prop_hourglass` |
+| `doubao` | 豆包 | `idle`呼吸待机 `step`踩拍 `sway`摇摆舞 `hop`开心跳 `nod`点头 `bow`鞠躬 `tilt`歪头（疑问） `surprise`吃惊 `spin`转圈 | `prop_basket` `prop_redshoes` |
+| `gemini` | Gemini | `idle`呼吸待机 `lookaround`左右张望 `choose`两边想想再选 `hop`开心跳 `sway`摇摆舞 `spin`转圈 `nod`点头 `surprise`吃惊 `tilt`歪头（疑问） | `prop_catclock` `prop_brush` |
+| `kimi` | Kimi | `idle`呼吸待机 `think`想事情 `nod`点头 `bow`鞠躬 `lookaround`左右张望 `shake`摇头 `sad`低落 `hop`开心跳 | `prop_scroll` |
+| `qwen` | 千问 | `idle`呼吸待机 `spin`转圈 `bow`鞠躬 `sway`摇摆舞 `nod`点头 `tilt`歪头（疑问） `hop`开心跳 `shake`摇头 | `prop_fan` `prop_teacup` |
+| `zai` | 智谱 | `idle`呼吸待机 `doze`打盹 `alert`惊醒竖耳 `nod`点头 `shake`摇头 `tilt`歪头（疑问） `hop`开心跳 `lookaround`左右张望 | `prop_abacus` `prop_eyemask` |
+| `grok` | Grok | `idle`呼吸待机 `scoff`挑眉锐评 `surprise`吃惊 `tilt`歪头（疑问） `nod`点头 `hop`开心跳 `lookaround`左右张望 `shiver`发抖 | `prop_phone` `prop_magnifier` `prop_card` |
+
+- 道具：`prop_bowl` `prop_hourglass` `prop_teacup` `prop_book` `prop_scroll` `prop_fan` `prop_abacus` `prop_eyemask` `prop_phone` `prop_magnifier` `prop_card` `prop_basket` `prop_redshoes` `prop_catclock` `prop_brush`。`const bowl = k.thing('prop_bowl')`，每帧 `bowl.at(x, y, z)`（或 `.hide()`）；底边就是摆放高度。**不画假手**：要「拿着」就放在手边、略靠前。
+- 表情贴：`fx_heart` `fx_sweat` `fx_anger` `fx_exclaim` `fx_question` `fx_zzz` `fx_sparkle` `fx_dizzy` `fx_bulb` `fx_steam` `fx_gloom` `fx_shine`（`.emote(…)`，也可以 `k.thing('fx_heart_…')` 单独摆）。
+- 换格硬切、同一动作的格子同尺寸（测试会查），脚底基线不变；跳起类动作（`hop` `surprise` `alert`）的格子顶上留了空，人物在格子里离地，影子留在地上。
+- 修了两处原有造型：Grok 的派生格头发里的黑斑、闭眼格脸边的一块淡紫（`bake_grok.mjs` 第 5 步清理）；龙娘 `cast` 动作只用 `gpt_boss_cast0`（原图 `gpt_boss_cast1` 的小腿是坏的）。
 
 Grok 是唯一一个**派生格**：形体取自 `gemini_*` 的同一套比例，换色（金发 / 黑礼服）再画上角和斧形腰饰，由 `通用模板/cast/source/bake_grok.mjs` 从 Gemini 的数据烘焙出来（不要手改 `grok_data.js`）。头顶留了 9 行给角，所以她的格子高 93，其余角色是 84 或 90；脚底基线不变，站上去不会比别人高一截。
 
@@ -454,7 +480,7 @@ Grok 是唯一一个**派生格**：形体取自 `gemini_*` 的同一套比例�
 - 文字预检核对的是：项目交给模板的字幕 / 说话人名牌 / 片名卡 / 片尾字，和镜头在 Canvas 2D 上用 `fillText` / `strokeText` 画的字。以后要是有人用别的办法出字（自己加一层网页文字、贴一张带字的图片、three.js 的文字几何体），它看不到。
 - 只带一套字体、一个字重。字体里没有的字只能改写法，不能换字体补。
 - 音源只查「在不在、解不解得出来、卡点是不是按它测的」；声音本身对不对、好不好听，要人听。
-- 角色造型少（每人 4–8 个），做不了复杂表演；靠走位、机位、道具和节奏撑。
+- 原有造型每人 4–8 个；派生动作补到每人 8–13 个（都是原格的形变，转身、抬手这类原图没有的姿势仍然做不了），复杂表演还是靠走位、机位、道具和节奏撑。
 - 没有景深、辉光、描边后处理；没有音效轨和母带处理；只出 16:9 横屏。
 - 软件渲染慢（2 核实测 2–2.8 帧/秒，三分钟的片子要渲四十分钟上下）。
 - 按停顿切句只在合成信号上测过，**没有用真人配音验证过**；第一次用到真配音时务必对着 `cues.json` 听一遍。
