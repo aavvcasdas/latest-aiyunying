@@ -1,0 +1,420 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "ZCOOL KuaiLe";
+  src: url("./assets/ZCOOLKuaiLe-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --display: "ZCOOL KuaiLe", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui,
+    sans-serif;
+  --body: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
+
+  --ink: #1b1330;
+  --plum: #241c44;
+  --plum-deep: #17112e;
+  --gold: #ffd166;
+  --gold-hot: #ffe9a8;
+  --paper: #fff6e6;
+  --sage: #8fb99a;
+  --rose: #f2a7a0;
+  --sky: #9fd3e8;
+
+  /* driven from JS every frame */
+  --energy: 0;
+  --pulse: 0;
+  --wipe: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #120d22;
+  color: #f4ecdc;
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.font-display {
+  font-family: var(--display);
+}
+.font-mono-num {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- paper craft surfaces ---------- */
+.paper {
+  background: linear-gradient(178deg, #fff8ea 0%, #fdeed6 55%, #f7e2c6 100%);
+  color: var(--ink);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 -2px 6px rgba(120, 84, 40, 0.12) inset,
+    0 10px 24px rgba(10, 6, 24, 0.35);
+}
+
+.panel {
+  background:
+    linear-gradient(180deg, rgba(43, 33, 78, 0.92), rgba(23, 17, 46, 0.94)),
+    radial-gradient(120% 80% at 50% 0%, rgba(255, 209, 102, 0.09), transparent 60%);
+  border: 1px solid rgba(255, 209, 102, 0.18);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.05) inset,
+    0 18px 40px rgba(6, 3, 16, 0.45);
+}
+
+.hairline {
+  border-color: rgba(255, 224, 170, 0.14);
+}
+
+/* film grain + vignette over the whole diorama */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  pointer-events: none;
+  opacity: 0.16;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='0.55'/></svg>");
+  animation: grainShift 0.9s steps(4, end) infinite;
+  mix-blend-mode: overlay;
+}
+@keyframes grainShift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  25% {
+    transform: translate3d(-3%, 2%, 0);
+  }
+  50% {
+    transform: translate3d(2%, -3%, 0);
+  }
+  75% {
+    transform: translate3d(-2%, -2%, 0);
+  }
+  100% {
+    transform: translate3d(3%, 1%, 0);
+  }
+}
+
+.vignette {
+  background: radial-gradient(115% 85% at 50% 45%, transparent 40%, rgba(12, 7, 26, 0.55) 100%);
+}
+
+/* ---------- ambient motion ---------- */
+@keyframes bob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -6px, 0);
+  }
+}
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-2.2deg);
+  }
+  50% {
+    transform: rotate(2.2deg);
+  }
+}
+@keyframes drift {
+  from {
+    transform: translate3d(-14vw, 0, 0);
+  }
+  to {
+    transform: translate3d(114vw, 0, 0);
+  }
+}
+@keyframes driftSlow {
+  from {
+    transform: translate3d(110vw, 0, 0);
+  }
+  to {
+    transform: translate3d(-20vw, 0, 0);
+  }
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+@keyframes riseFade {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0) scale(0.7);
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--dx, 12px), -140px, 0) scale(1.1) rotate(var(--rot, 40deg));
+  }
+}
+@keyframes fallSpin {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0) rotate(0deg);
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+    transform: translate3d(var(--dx, 40px), 108vh, 0) rotate(var(--rot, 320deg));
+  }
+}
+@keyframes rainFall {
+  0% {
+    transform: translate3d(0, -30vh, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate3d(-6vw, 110vh, 0);
+    opacity: 0;
+  }
+}
+@keyframes ringOut {
+  0% {
+    opacity: 0.85;
+    transform: scale(0.35);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.1);
+  }
+}
+@keyframes flashWhite {
+  0% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(calc(1 + 0.05 + var(--energy) * 0.06));
+  }
+}
+@keyframes tick {
+  0%,
+  100% {
+    transform: rotate(-9deg);
+  }
+  50% {
+    transform: rotate(9deg);
+  }
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinSlow {
+  from {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+  to {
+    transform: rotate(-2deg);
+  }
+}
+
+.sprite {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  background-repeat: no-repeat;
+  will-change: background-position, transform;
+}
+
+.pixelated {
+  image-rendering: pixelated;
+}
+
+.cut {
+  filter: drop-shadow(0 10px 14px rgba(14, 8, 30, 0.34))
+    drop-shadow(0 2px 0 rgba(255, 255, 255, 0.35));
+}
+
+/* ---------- soft-3D lyric card ---------- */
+.lyric-3d {
+  transform-style: preserve-3d;
+}
+.ch {
+  display: inline-block;
+  position: relative;
+  transform-style: preserve-3d;
+  transition:
+    color 120ms linear,
+    text-shadow 160ms linear;
+  will-change: transform, color;
+}
+.ch-extrude {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: #b06a2c;
+  transform: translateZ(-6px);
+  opacity: 0.95;
+}
+
+/* ---------- controls ---------- */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 22px;
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 209, 102, 0.85) var(--fill, 0%),
+    rgba(255, 255, 255, 0.14) var(--fill, 0%)
+  );
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  margin-top: -6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 35% 30%, #fff3cf, #ffc94d 60%, #d99a20);
+  border: 2px solid #2a2048;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+input[type="range"]::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+}
+input[type="range"]::-moz-range-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 209, 102, 0.85);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: #ffc94d;
+  border: 2px solid #2a2048;
+}
+
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 209, 102, 0.4) transparent;
+}
+.scroll-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background: rgba(255, 209, 102, 0.32);
+  border-radius: 999px;
+}
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.btn {
+  font-family: var(--body);
+  transition:
+    transform 140ms cubic-bezier(0.2, 0.9, 0.3, 1.4),
+    background 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.reveal {
+  animation: revealUp 480ms cubic-bezier(0.16, 0.9, 0.3, 1) both;
+}
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain::after,
+  .anim {
+    animation: none !important;
+  }
+}
+
+/* ---------- 出片模式（?render=1） ---------- *
+ * 逐帧截图时不许有「按墙上时间跑」的东西：颗粒、浮现、闪白都冻在第 0 帧位置，
+ * 需要动的部分一律由 JS 按时间轴算（LyricBar / 特效字牌都是这么写的）。
+ */
+.render-mode *,
+.render-mode *::before,
+.render-mode *::after {
+  animation: none !important;
+  transition: none !important;
+}
+.render-mode .grain::after {
+  transform: translate3d(0, 0, 0) !important;
+}
+/* 字卡浮现本来靠 reveal 动画，冻掉后要保证它不透明、在原位 */
+.render-mode .reveal {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+/* 切镜闪白：纯亮闪，逐帧截图会变成一条恒亮的白膜，出片时按能量不走它 */
+.render-mode .flash-layer {
+  display: none !important;
+}
