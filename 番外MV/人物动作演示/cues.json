@@ -1,0 +1,16 @@
+{
+ "measured": false,
+ "method": "无音源、无字幕：镜头切点写死在 project.tsx 的 MARKS 表里；cues 里这一句是引擎要求的占位，时间在片子之外，永远不会被画出来（歌词.srt 也只有这一行占位）",
+ "source": {
+  "subtitles": "歌词.srt",
+  "subtitles_sha256": "0d4a90981a5b784a62c37b395de8cd27d8b5f453eb9653d958504a1bd821a0ba"
+ },
+ "beat": null,
+ "lines": [
+  {
+   "text": "（纯动作演示：无歌、无字幕、无解说）",
+   "start": -30,
+   "end": -20
+  }
+ ]
+}

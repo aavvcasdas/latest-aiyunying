@@ -1,0 +1,10 @@
+{
+  "id": "mv-c3f91f",
+  "kind": "mv",
+  "title": "人物动作演示",
+  "output": "成片/人物动作演示",
+  "video": {
+    "bitrate": "3500k",
+    "preset": "medium"
+  }
+}

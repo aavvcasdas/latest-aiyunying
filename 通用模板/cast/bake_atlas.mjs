@@ -2,7 +2,7 @@
 // 重建角色图集 通用模板/engine/assets/cast_atlas.png
 //
 // 来源包（通用模板/来源/remotion-fix-and-mv-recreation.zip）只带了图集的坐标表 cast_atlas.json，没带 PNG 本体。
-// 图集里的 108 格全部来自项目自己的像素角色数据（《达拉崩吧》《童话镇》两部旧 MV 共用的那一份，现存于 cast/source/）：
+// 图集里的格子全部来自项目自己的像素角色数据（《达拉崩吧》《童话镇》两部旧 MV 共用的那一份，现存于 cast/source/）：
 //   cast/source/sprites_data.js     立绘 / 头像
 //   cast/source/walk_cycle_data.js  8 帧步态
 //   cast/source/px.js               调色板（48 基础色 + CHAR_HEX 200 色，255 = 透明）
@@ -25,6 +25,7 @@ const imp = (f) => import(pathToFileURL(path.join(PIXEL_MV, f)).href);
 const { RGB, T } = await imp('px.js');
 const { getBakedSprite } = await imp('sprites_data.js');
 await imp('walk_cycle_data.js'); // 把 walk_* 注册进同一张精灵表
+await imp('actions_data.js');    // 派生动作 / 道具 / 表情贴（由 bake_actions.mjs 生成）
 
 const meta = JSON.parse(fs.readFileSync(META_PATH, 'utf8'));
 const { w: W, h: H, s: cells } = meta;

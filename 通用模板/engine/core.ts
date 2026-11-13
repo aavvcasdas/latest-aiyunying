@@ -8,7 +8,7 @@
 //      造型、位置、道具都不复位：只在一部分帧里写的状态，会让那一帧的画面取决于之前渲过哪些帧（engine.ts 的预检会查）。
 //   3. 缺素材直接抛错（Actor.set 会抛），不许静默换成别的造型。
 import * as THREE from 'three';
-import { Actor, type AtlasData, type CharId } from './actors';
+import { Actor, PixelThing, type AtlasData, type CharId } from './actors';
 import { ease, lerp, mulberry, put, type LookName } from './kit';
 import type { Beat } from './timeline';
 
@@ -37,6 +37,13 @@ export class Kit {
     const a = new Actor(this.atlas, id, size);
     this.actors.push(a); this.root.add(a.holder);
     return a;
+  }
+  things: PixelThing[] = [];
+  /** 像素道具 / 表情贴卡（prop_* / fx_*）：面向相机的小纸片，每帧照样要 .at(…) 或 .hide() */
+  thing(key: string, size = 1): PixelThing {
+    const t = new PixelThing(this.atlas, key, size);
+    this.things.push(t); this.root.add(t.holder);
+    return t;
   }
   /** 跨镜头共用的大布景（同一时刻只挂在当前镜头下） */
   shared<T>(key: string, make: () => T): T {
