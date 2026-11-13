@@ -1,0 +1,53 @@
+{
+ "frames": {
+  "frames": 1440,
+  "wrong_size": [],
+  "identical_to_previous": [],
+  "blank_background_frames": [],
+  "frozen_runs": [],
+  "shots_without_visible_cut": [],
+  "subtitle_bar_missing": [
+   {
+    "line": 1,
+    "frame": -882,
+    "text": "（纯动作总览：无歌、无字幕、无解说）"
+   }
+  ],
+  "luma_min": 40.72,
+  "luma_max": 48.81,
+  "sequence_md5": "c0fc0716df6113b80d9dd3edafd79e85",
+  "problems": [
+   "1 句的字幕条没检测到：[1]"
+  ]
+ },
+ "timing": {
+  "measured": false,
+  "method": "无音源、无字幕：两镜各 12 轮、每轮 2 秒，切点写死在 project.tsx 里；cues 这一句是引擎要求的占位，时间在片外，永远不会被画出来",
+  "source": {
+   "subtitles": "歌词.srt",
+   "subtitles_sha256": "4f08ba4d163e343ad49c389f46c22b5f5e51bd39ae3e985c4b2d8f69b1fad93c"
+  },
+  "notes": [
+   "卡点是估算的（cues.json measured=false）：只能当无声样片，不能当成片交付"
+  ],
+  "shots": {
+   "count": 2,
+   "shortest_seconds": 24,
+   "longest_seconds": 24
+  },
+  "problems": []
+ },
+ "project": {
+  "id": "mv-motion-v2",
+  "kind": "mv",
+  "title": "动作总览 v2",
+  "frames": 1440,
+  "duration": 48,
+  "shots": 2,
+  "lines": 1,
+  "source_sha256": "41facc64ca1d0d2a14a914f5d783c1cc8c20811b3d4807a52379a57131f71f9c",
+  "source_files": 19,
+  "audio": null
+ },
+ "checked_at": "2026-11-13T15:04:09.905Z"
+}

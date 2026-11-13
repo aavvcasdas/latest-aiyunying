@@ -1,0 +1,10 @@
+{
+  "id": "mv-motion-v2",
+  "kind": "mv",
+  "title": "动作总览 v2",
+  "output": "成片/动作总览v2",
+  "video": {
+    "bitrate": "3500k",
+    "preset": "medium"
+  }
+}

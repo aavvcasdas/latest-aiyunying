@@ -27,7 +27,7 @@
 
 | 文件 | 说明 |
 |---|---|
-| `film.json` | 元数据：**没有 `audio`、没有 `subtitles`**，`output` 写成 `成片/人物动作演示` |
+| `film.json` | 元数据：**没有 `audio`、没有 `subtitles`**，`output` 写成「成片/人物动作演示」 |
 | `project.tsx` | `defineProject` + 自己写的 `plan`：切点来自写死的 `MARKS` 表，不走「按歌词句首派生」 |
 | `cues.json` | 占位：引擎要求 cues 里至少一句，这一句的时间在片子之外（−30s），永远不会被画出来；`measured: false` |
 | `歌词.srt` | 同上，一行占位（`requireFreshText` 要文件在、sha 对得上） |

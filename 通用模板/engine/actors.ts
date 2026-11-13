@@ -356,6 +356,23 @@ export class Actor {
     }
   }
 
+  /**
+   * motion-v2 动作（motion-v2.json / `npm run motion`）：action 名见 人物动作替换指南，
+   * 每个动作 24 帧、12 fps、两秒一轮。GIF 只是预览，正式渲染走图集格子。
+   * rate 必须是正的有限数；loop=false 时夹在首尾帧。缺动作直接报错，不拿别的造型顶替。
+   */
+  motion(action: string, T: number, rate = 1, loop = true): this {
+    const prefix = `motion_${this.id}_${action}_`;
+    const n = framesIn(prefix, this.atlas.rects);
+    if (!n) throw new Error(`[motion-v2] 没有动作「${prefix}」——先跑 npm run motion`);
+    if (!Number.isFinite(T) || !Number.isFinite(rate) || rate <= 0) {
+      throw new Error('[motion-v2] 时间必须是有限数，播放速率必须为正');
+    }
+    const raw = Math.floor(T * 12 * rate);
+    const frame = loop ? cycleIndex(raw, n, prefix) : Math.max(0, Math.min(n - 1, raw));
+    return this.set(`${prefix}${frame}`);
+  }
+
   /** 步态：每格固定 3 个视频帧（30fps 下 100ms），帧号只取整数，杜绝 3/4 帧交替的抖动 */
   walk(T: number, rate = 1): this {
     const s = SETS[this.id], n = WALK_N[this.id];

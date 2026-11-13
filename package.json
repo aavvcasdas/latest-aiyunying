@@ -15,7 +15,8 @@
     "atlas:check": "node 通用模板/cast/bake_atlas.mjs --check",
     "actions": "node 通用模板/cast/source/bake_actions.mjs",
     "typecheck": "tsc --noEmit -p tsconfig.json",
-    "test": "node --experimental-transform-types --disable-warning=ExperimentalWarning --test \"通用模板/tests/*.test.mjs\" && python3 -m unittest discover -s 通用模板/tests -p \"test_*.py\""
+    "test": "node --experimental-transform-types --disable-warning=ExperimentalWarning --test \"通用模板/tests/*.test.mjs\" && python3 -m unittest discover -s 通用模板/tests -p \"test_*.py\"",
+    "motion": "node 通用模板/cast/pack_motion_v2.mjs"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.436",
