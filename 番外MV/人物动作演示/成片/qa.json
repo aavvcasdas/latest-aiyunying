@@ -1,0 +1,53 @@
+{
+ "frames": {
+  "frames": 1800,
+  "wrong_size": [],
+  "identical_to_previous": [],
+  "blank_background_frames": [],
+  "frozen_runs": [],
+  "shots_without_visible_cut": [],
+  "subtitle_bar_missing": [
+   {
+    "line": 1,
+    "frame": -882,
+    "text": "（纯动作演示：无歌、无字幕、无解说）"
+   }
+  ],
+  "luma_min": 36.59,
+  "luma_max": 70.55,
+  "sequence_md5": "3fc7f73cc20ed9b15388661dbebfb64a",
+  "problems": [
+   "1 句的字幕条没检测到：[1]"
+  ]
+ },
+ "timing": {
+  "measured": false,
+  "method": "无音源、无字幕：镜头切点写死在 project.tsx 的 MARKS 表里；cues 里这一句是引擎要求的占位，时间在片子之外，永远不会被画出来（歌词.srt 也只有这一行占位）",
+  "source": {
+   "subtitles": "歌词.srt",
+   "subtitles_sha256": "0d4a90981a5b784a62c37b395de8cd27d8b5f453eb9653d958504a1bd821a0ba"
+  },
+  "notes": [
+   "卡点是估算的（cues.json measured=false）：只能当无声样片，不能当成片交付"
+  ],
+  "shots": {
+   "count": 12,
+   "shortest_seconds": 4,
+   "longest_seconds": 9
+  },
+  "problems": []
+ },
+ "project": {
+  "id": "mv-c3f91f",
+  "kind": "mv",
+  "title": "人物动作演示",
+  "frames": 1800,
+  "duration": 60,
+  "shots": 12,
+  "lines": 1,
+  "source_sha256": "f597558daad2ee8dda534b45a01f8f4cdef9c74370557c5e3d49313166bcfe32",
+  "source_files": 19,
+  "audio": null
+ },
+ "checked_at": "2026-11-13T09:47:34.396Z"
+}
