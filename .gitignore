@@ -1,12 +1,21 @@
+# 依赖与缓存
 node_modules/
-dist/
-.reference/
-.verification/
-.python-deps/
-.motion-package/
-.screenshots/
-.vite.log
-.vite.pid
-test-results/
-playwright-report/
 __pycache__/
+*.pyc
+.DS_Store
+
+# 模板运行时生成的入口文件、打包缓存
+通用模板/.cache/
+
+# 预览台打包产物
+通用模板/preview/dist/
+
+# 渲染中间产物一律放系统临时目录（见 通用模板/README.md），不进仓库
+*.work/
+
+# 番外 MV 工程的本地构建产物
+番外MV/坏女孩/dist/
+
+# 视频一律不入库（2026-11-12 起）：成片、参考原片、素材录像都出库，
+# 只留音轨和静帧。要看某个 mp4 怎么取回来，见 媒体说明.md。
+*.mp4

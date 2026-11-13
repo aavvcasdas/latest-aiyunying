@@ -6,26 +6,19 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "types": ["node"],
-
-    /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-
-    /* Path mapping */
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
-
-    /* Linting */
+    "paths": { "@tpl/*": ["通用模板/engine/*"] },
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "vite.config.ts"]
+  "include": ["通用模板/engine", "通用模板/preview", "通用模板/样板", "番外MV"],
+  "exclude": ["存档", "node_modules", "番外MV/坏女孩", "番外MV/坏女孩Fable"]
 }
