@@ -1,77 +1,55 @@
-# newday · 鲸鱼娘 MV
+# AI Motion Workshop
 
-用项目自带的八位像素角色做**番外 MV**：给一首歌配满镜头，歌词卡拍。
+A Chinese-language pixel character motion workbench for the current
+`aavvcasdas/latest-aiyunying` character system.
 
-**做法**：three.js / Canvas2D 搭 3D 世界，像素角色当 2D 纸片人站在里面，Remotion 逐帧渲染，音轨按采样对齐混入。
-
-> **这个分支只做 MV。** 2026-11-12 把与 MV 无关的东西整批删掉了：Day 口播线（`Day/`）、重构前的存档（`存档/`）、运营、直播与数据文档（00_运营总览、参考资料/直播 等内容）以及点开过一次的旧素材。
-> 留下的只有三类：**MV 本身**（`番外MV/`）、**做 MV 的模板**（`通用模板/`）、**人物**（`设定/`）与**人物调研**（`参考资料/项目调研/`）。
-
-## 目录
-
-| 路径 | 是什么 |
-|---|---|
-| `通用模板/` | 唯一现行的制作模板：引擎、命令行、样板、测试。**从它的 README 开始读。** |
-| `番外MV/童话镇/` | **MV 线唯一的参考案例**（40 个镜头、31 句歌词、2 分 22 秒）：立体童话书、一句词一个镜头、卡点挂在词上 |
-| `番外MV/坏女孩/` | three.js 3D 版《坏女孩》（1280×720，3 分 17 秒），出片 `node tools/render_zip_mv.mjs three3d` |
-| `番外MV/坏女孩Fable/` | fable5.2 版《坏女孩》（Canvas2D 软 3D，1280×720 @24fps / 195 秒），出片 `node tools/render_zip_mv.mjs fable`。歌词逐句实测、间奏 13 个分镜 |
-| `番外MV/雨爱/` | 《雨爱》（司凤版）雨天治愈 MV（1920×1080 @30fps / 131 秒，30 镜 / 23 句），从用户上传的工程包接进模板线，出片 `npm run film -- full 番外MV/雨爱` |
-| `番外MV/人物设定.md` | 九位人物一张汇总：习性、道具、关系、示范台词、身世一句、MV 用法、边界 |
-| `番外MV/设定表.md` | 每支 MV「谁演谁」的速查表 |
-| `设定/` | 人物设定（**一人一页**，`设定/人物/`）、总纲、动作库、备选池 |
-| `参考资料/项目调研/` | 人物调研与 MV 做法调研（上游研究原文、图鉴接入边界、voxel-mv 分镜构造） |
-| `参考资料/参考MV/反乌托邦/` | 别人那版复刻的源码，**只备查、不算案例** |
-| `tools/render_zip_mv.mjs` | 《坏女孩》两版的出片脚本（Remotion + `@sparticuz/chromium`） |
-| `.claude/skills/film-template/` | 给 AI 助手用的现行 skill |
-| `AGENTS.md` | 在这个仓库里干活的规矩 |
-
-## 开始
+## Run
 
 ```bash
-npm ci
-pip install --user numpy pillow
-
-npm run film -- info 番外MV/童话镇         # 看时间轴
-npm run film -- sheet 番外MV/童话镇        # 出分镜总览图
-npm run film -- full  番外MV/童话镇        # 整片：逐帧渲染 → 编码 → 混音 → 自检
-npm run new -- mv 番外MV/某首歌 "某首歌"    # 新开一部 MV
-npm run preview                           # 浏览器里的预览台
-npm test && npm run typecheck
-
-node tools/render_zip_mv.mjs fable --still 30   # 《坏女孩》fable 版抽一帧
-node tools/render_zip_mv.mjs fable              # 整片出 mp4（画面 + 音轨一起）
+npm install
+npm run dev
+npm run build
 ```
 
-派生动作（每人 8–13 个）、像素道具、表情贴，以及怎么重烘图集、出 GIF 预览：[人物动作替换.md](人物动作替换.md)。
-完整用法、作品结构、写镜头的规矩、可用的角色造型和道具：[`通用模板/README.md`](通用模板/README.md)。
-谁是谁、怎么说话、能演什么形象、哪些话不许说：[`设定/README.md`](设定/README.md)；MV 线速查 [`番外MV/设定表.md`](番外MV/设定表.md)，九位一张汇总 [`番外MV/人物设定.md`](番外MV/人物设定.md)。
+The application provides nine characters and 108 real, transparent GIFs. It
+supports frame-by-frame preview, playback speed, looping, background checks,
+original-idle comparison, character/category filtering and local file downloads.
 
-## 参考案例只有一支
+## Deliverables
 
-写新的 MV 时，**只照《童话镇》**（[`番外MV/童话镇/`](番外MV/童话镇/)）看：立体童话书的空间做法、一句词一个镜头的切法、卡点挂在词上的写法。
-`参考资料/参考MV/反乌托邦/` 是别人的一版复刻源码，留作查用法，不算参考案例；《坏女孩》两版是自己的作品，也不当参照。
+- `public/downloads/ai-motion-v2-complete.zip`: GIFs, PNG strips, reversible installer, source data and patch.
+- `public/downloads/motion-v2.patch`: patch against source commit `2779ffd5e407e39f8acee50bc274de2fa8beeaa7`.
+- `docs/人物动作替换指南.md`: complete Chinese installation and image replacement guide.
+- `tools/build_assets.py`: deterministic motion asset generator and packager.
+- `tools/install-motion-v2.mjs`: source-repository installer with backup and rollback.
 
-## 现在有什么
+GIFs are previews. The source Remotion engine renders deterministic PNG atlas
+cells through the new `Actor.motion()` API. Legacy actions are deliberately not
+silently overridden; see the guide for adopting the new motions in actual shots.
 
-| 作品 | 状态 |
-|---|---|
-| 《童话镇》MV | 源码、歌词、卡点、字幕、分镜总览都在；成片已出库（取回方式见 `媒体说明.md`） |
-| 《坏女孩》3D 版 | 源码、图集、音轨、卡点全在；出片 `node tools/render_zip_mv.mjs three3d` |
-| 《坏女孩》fable5.2 版 | 2026-11-12 重渲：字幕改成逐句实测卡点（52 句，与 `番外MV/坏女孩/src/mv/cues.ts` 同一份），间奏从 4 个长镜改成 13 个分镜；成片 `番外MV/坏女孩Fable/成片/坏女孩_fable5.2.mp4` |
-| 《雨爱》（司凤版）MV | 2026-11-12 接进模板线并出片：81 MB 的成片在 `番外MV/雨爱/成片/雨爱.mp4`（1920×1080 @30fps / 131 秒）；原工程包只带源码，音轨从《雨爱》司凤版里无损抽出、字体与图集用模板的；四套雨天光照与雨天歌词条已并回 `通用模板/engine` |
-| MV 样板 | `通用模板/样板/mv/` 带一段二十来秒的无声样片，是新开作品时复制的起点 |
+## Verify
 
-**没有任何一部片子被人从头到尾看过、听过。** 机器自检和我抽看的静帧只能说明「没坏」。
+```bash
+npx tsc --noEmit
+npx playwright test
+python3 tools/verify_assets.py
+npm run build
+```
 
-## 几条不变的规矩
+The asset validator needs Pillow. The generator also needs NumPy and the source
+repository checked out at `.reference/` on the specified branch. Install Python
+dependencies with `python3 -m pip install --target .python-deps pillow numpy`.
+Browser tests may require `npx playwright install --with-deps chromium`.
 
-- 新片**零水印、零角标**；画面里不出现粉丝数、播放量、进度条、数据图表。
-- 时间只认实测：没对过音频的卡点（`measured=false`）只能出「无声样片」，出不了成片。
-- 缺素材直接报错，不拿别的造型顶替。
-- 自检（`qa.json`）只能证明「没坏」；好不好看、听着对不对，要人从头到尾过一遍。
+The generated source atlas, reversible installation, an actual WebGL smoke render
+and 11 source-engine cast regression tests were checked in an isolated source copy.
+All 6 browser interaction tests pass. Full source-repository tests, finished video rendering
+and human review of complete videos are not claimed. No GitHub push was made.
 
-## 公开发布前要自己确认的事
+## Source And Rights
 
-- **角色形象**：八位角色的像素造型沿用项目原有素材（第九位客人 Grok 的造型 2026-11-12 从图集里删掉了，她的文字设定还在 `设定/人物/`）。旧文档记着「上游人物图像的再分发许可仍未确认，公开传播前须核权」，这件事到现在没有人核过。逐项清单与已知来源链见 [`素材许可与来源.md`](素材许可与来源.md)。
-- **音乐**：《童话镇》《坏女孩》的原曲录音都没有授权记录，公开前自己核。原曲 mp4 不在这份仓库里，只留转存后的音轨（见 [`媒体说明.md`](媒体说明.md)）。
-- **平台声明**：片子里不放「AI 生成」角标，合规声明要在发布页用平台自带的声明功能补上。
+Base artwork comes from the linked project's pixel atlas. New motions use those
+pixels with deterministic layering, fabric movement, timing curves and
+programmatically drawn props. These are not newly hand-drawn character designs.
+The source repository notes that artwork redistribution permissions are unresolved.
+Use for internal evaluation and verify rights before commercial use or publication.

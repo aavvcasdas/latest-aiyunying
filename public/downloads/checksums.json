@@ -1,0 +1,62 @@
+{
+  "doubao-motion-v2.zip": {
+    "bytes": 1089194,
+    "sha256": "c71886b173c3f3f07bb11469397f371623725acb63d221f0f5848f47637fc253"
+  },
+  "grok-motion-v2.zip": {
+    "bytes": 2152624,
+    "sha256": "361846b11ea3d8f577b45857b614565fc4f70e91bb416e98ead1c85376449cb3"
+  },
+  "gemini-motion-v2.zip": {
+    "bytes": 3377032,
+    "sha256": "042d48565dcf2851c54236b95050c47d5cba71a370fb622aa49177ba79da3edd"
+  },
+  "kimi-motion-v2.zip": {
+    "bytes": 2003354,
+    "sha256": "0637e7495c2df363ece35c9e40b768af2a67d1a8f4fb99288745b769f7fbf25d"
+  },
+  "character-motion-v2.patch": {
+    "bytes": 4253,
+    "sha256": "cf74b0a6c36a783a7e1b998105d3bdde92f6582676ad8ae2411afd894835f4c2"
+  },
+  "zai-motion-v2.zip": {
+    "bytes": 3026460,
+    "sha256": "ea8387fc90278aa24d102e6c7cb8b6aa5d51e28ee9a684e7d0490372ac705441"
+  },
+  "claude-motion-v2.zip": {
+    "bytes": 3455252,
+    "sha256": "3de3d5e505c6c34b65a5687f3d977f45cdabec87f427b5699a27f620308fd42d"
+  },
+  "人物动作替换指南.md": {
+    "bytes": 8517,
+    "sha256": "ce266ec619aeb95b5a709ff8e817479af5147fd9cf202508517404213a3bb14e"
+  },
+  "whale-motion-v2.zip": {
+    "bytes": 3050526,
+    "sha256": "7036bbac7fe54147142c1e245cbc460401a4565087e4f31485d998d12c4be7cf"
+  },
+  "replacement-guide.md": {
+    "bytes": 8517,
+    "sha256": "ce266ec619aeb95b5a709ff8e817479af5147fd9cf202508517404213a3bb14e"
+  },
+  "install-motion-v2.mjs": {
+    "bytes": 4498,
+    "sha256": "f61d5cb19591dcfd55d5f7ca9d19c35c1d716f598108eecf1e0a65619f11beb1"
+  },
+  "gpt-motion-v2.zip": {
+    "bytes": 3452889,
+    "sha256": "053e980213a2c858d39de914ec41bc4c59ffd6ef0df45387e4dfc9c0dcd47d82"
+  },
+  "qwen-motion-v2.zip": {
+    "bytes": 1855312,
+    "sha256": "c855341d811e2e4577a1afe86ad15df214b2e23c2788bb146752b28e53881c10"
+  },
+  "ai-motion-v2-complete.zip": {
+    "bytes": 34081265,
+    "sha256": "5c5c06c3b3b8349e55eda4e8796b9704432f4179d0ec8396ef95b98bfe0c4a46"
+  },
+  "motion-v2.patch": {
+    "bytes": 4253,
+    "sha256": "cf74b0a6c36a783a7e1b998105d3bdde92f6582676ad8ae2411afd894835f4c2"
+  }
+}
