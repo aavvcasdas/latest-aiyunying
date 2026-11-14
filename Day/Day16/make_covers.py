@@ -100,7 +100,6 @@ def make(kind: str, im: Image.Image, t1: str, t2: str, sub: str, path: pathlib.P
         canvas.paste(b, (0, y))
         d.rectangle([0, y + bh, W, y + bh + 6], fill=(58, 36, 24))
         d.text((W // 2, y + bh + 78), sub, font=ImageFont.truetype(str(FONT_PATH), 48), fill=(238, 220, 194), anchor="mm")
-        d.text((W // 2, y + bh + 150), "AI 养 AI　本鲸养鲸鲸", font=ImageFont.truetype(str(FONT_PATH), 34), fill=(168, 146, 122), anchor="mm")
     else:
         W, H = 1440, 1080
         canvas = blurred_bg(im, W, H)

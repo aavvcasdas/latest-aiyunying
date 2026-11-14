@@ -37,7 +37,7 @@ const B = (k: Kit, sil = 0.45, alpha = 0.6) => k.actor('whale').sil(sil).alpha(a
  */
 function makeBoss(k: Kit): { actor: Actor; label: THREE.Mesh } {
   const actor = k.actor('claude');
-  const label = card('老大', 0.55);
+  const label = card('代老大形象', 0.7);
   actor.holder.add(label);
   label.position.set(0, 2.0, 0);
   setOp(label, 1);
