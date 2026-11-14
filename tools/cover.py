@@ -18,7 +18,7 @@
 import argparse
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
 
 ROOT = Path(__file__).resolve().parent.parent
 FONT = ROOT / '通用模板/engine/assets/fonts/ZCOOLKuaiLe-Regular.ttf'
@@ -83,7 +83,21 @@ def draw_title(img: Image.Image, title: str, cy: int, size: int, max_w_ratio: fl
     return img.convert('RGB')
 
 
-def build(still: Path, title: str, w: int, h: int, style: dict) -> Image.Image:
+def punch_up(img: Image.Image, strength: float = 1.0) -> Image.Image:
+    """缩略图提神：拉饱和/对比、轻锐化、四角压暗。只在 --punch 时用。"""
+    img = ImageEnhance.Color(img).enhance(1 + 0.20 * strength)
+    img = ImageEnhance.Contrast(img).enhance(1 + 0.10 * strength)
+    img = img.filter(ImageFilter.UnsharpMask(radius=2.0, percent=90, threshold=3))
+    w, h = img.size
+    mask = Image.new('L', (w, h), 0)
+    md = ImageDraw.Draw(mask)
+    md.ellipse((-w * 0.25, -h * 0.18, w * 1.25, h * 1.18), fill=255)
+    mask = mask.filter(ImageFilter.GaussianBlur(min(w, h) * 0.12))
+    dark = Image.new('RGB', (w, h), (2, 4, 10))
+    return Image.composite(img, Image.blend(img, dark, 0.35 * strength), mask)
+
+
+def build(still: Path, title: str, w: int, h: int, style: dict, punch: bool = False) -> Image.Image:
     src = Image.open(still).convert('RGB')
 
     if style['layout'] == 'letterbox':
@@ -147,12 +161,14 @@ def main() -> None:
     ap.add_argument('--title', required=True)
     ap.add_argument('--out', required=True)
     ap.add_argument('--name', required=True)
+    ap.add_argument('--punch', action='store_true',
+                    help='给手机端缩略图提神：饱和/对比各拉一点 + 轻锐化 + 四角压暗。默认关，不影响别的片子')
     args = ap.parse_args()
 
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     for tag, (w, h) in {'3x4': (1080, 1440), '4x3': (1440, 1080)}.items():
-        img = build(Path(args.still), args.title, w, h, STYLES[tag])
+        img = build(Path(args.still), args.title, w, h, STYLES[tag], punch=args.punch)
         path = out / f'{args.name}_{tag.replace("x", "比")}.png'
         img.save(path)
         print(f'✓ {path}  {img.size[0]}×{img.size[1]}')
