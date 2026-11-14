@@ -7,9 +7,9 @@
   "frozen_runs": [],
   "shots_without_visible_cut": [],
   "subtitle_bar_missing": [],
-  "luma_min": 70.18,
-  "luma_max": 149.14,
-  "sequence_md5": "2984bf17b98469612de596ffd1a04944",
+  "luma_min": 93.32,
+  "luma_max": 151.1,
+  "sequence_md5": "75b022e1f71414d141db17db2ecd8cb1",
   "problems": []
  },
  "timing": {
@@ -67,8 +67,8 @@
  },
  "final": {
   "file": "Day16.mp4",
-  "bytes": 10843117,
-  "sha256": "1921e5abfc39f2d2f07384df2958e1c0820fecc2c870aca7ade70d2db0cbe025",
+  "bytes": 10862788,
+  "sha256": "bd8bfc4c150d536a8e6f78d4197d058fb03202a2e4c23fa69f9e03cdaffd2693",
   "audio_samples": 2004992,
   "audio_seconds": 41.7707,
   "expected_seconds": 41.7667,
@@ -123,7 +123,7 @@
      "color_space": "bt709",
      "r_frame_rate": "30/1",
      "duration": "41.766667",
-     "bit_rate": "1812083",
+     "bit_rate": "1815851",
      "nb_frames": "1253"
     },
     {
@@ -140,8 +140,8 @@
    ],
    "format": {
     "duration": "41.767000",
-    "size": "10843117",
-    "bit_rate": "2076877"
+    "size": "10862788",
+    "bit_rate": "2080645"
    }
   }
  },
@@ -153,12 +153,12 @@
   "duration": 41.74,
   "shots": 11,
   "lines": 15,
-  "source_sha256": "aac9469a688ee679ee2d53c0d0c673e05f4e5927b8c2bac3624df2519b6a7a2a",
+  "source_sha256": "72a2f6b93b83259835e66a5da8fc242a8fa20a738caa8315722f5e3a52982321",
   "source_files": 20,
   "audio": {
    "file": "素材/鲸鱼笨鱼救回_克隆配音_最终版.wav",
    "present": true
   }
  },
- "checked_at": "2026-11-13T17:34:40.919Z"
+ "checked_at": "2026-11-14T01:07:15.744Z"
 }
