@@ -16,7 +16,8 @@ export class FilmEngine {
 
   shotIndex(T: number): number { return shotAt(this.shots, T); }
 
-  render(ctx: CanvasRenderingContext2D, T: number): void {
+  /** opts.lyrics === false 时不画底部歌词条（出封面静帧用，成片一律带歌词） */
+  render(ctx: CanvasRenderingContext2D, T: number, opts?: { lyrics?: boolean }): void {
     const i = this.shotIndex(T);
     const s = this.shots[i];
     const t = T - s.start, dur = s.end - s.start, u = clamp(t / dur);
@@ -28,7 +29,7 @@ export class FilmEngine {
     ctx.restore();
     this.fx(ctx, s, t, dur);
     if (s.fx?.title) this.titleCard(ctx, t);
-    if (line >= 0) this.lyric(ctx, line, lineU, T);
+    if (line >= 0 && opts?.lyrics !== false) this.lyric(ctx, line, lineU, T);
   }
 
   private fx(ctx: CanvasRenderingContext2D, s: Shot, t: number, dur: number): void {

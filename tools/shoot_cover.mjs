@@ -44,13 +44,15 @@ const page = await browser.newPage();
 page.on('pageerror', (e) => console.log('[page error]', String(e).slice(0, 300)));
 
 await page.goto(`http://127.0.0.1:${port}/?t=${times[0]}`, { waitUntil: 'load', timeout: 180000 });
-// 两版封面钩子的名字不一样：max 版是 __mv.cover(t)，把回忆拼好版是 __mvCover(t)
+// 封面钩子的名字不止一个：max 版是 __mv.cover(t)，把回忆拼好版是 __mvCover(t)，
+// 《勾指起誓》fable 版复用出帧钩子 __mvRender(t, true)（true = 不画歌词条，静帧干净）
 const HOOK = await page.waitForFunction(() => {
   const c = document.querySelector('canvas');
   if (!c) return false;
   const m = window.__mv;
   if (m && typeof m.cover === 'function' && (typeof m.ready !== 'function' || m.ready())) return '__mv.cover';
   if (typeof window.__mvCover === 'function') return '__mvCover';
+  if (typeof window.__mvRender === 'function') return '__mvRender';   // 《勾指起誓》fable 版：第二参数 true = 不画歌词条
   return false;
 }, { timeout: 300000, polling: 250 }).then((h) => h.jsonValue());
 console.log('封面钩子：', HOOK);
@@ -70,7 +72,12 @@ await page.evaluate(() => {
 });
 
 for (const t of times) {
-  const url = await page.evaluate((h, tt) => (h === '__mvCover' ? window.__mvCover(tt) : window.__mv.cover(tt)), HOOK, t);
+  const url = await page.evaluate((h, tt) => {
+    const r = h === '__mvCover' ? window.__mvCover(tt)
+      : h === '__mvRender' ? window.__mvRender(tt, true)
+      : window.__mv.cover(tt);
+    return typeof r === 'string' ? r : r.url;
+  }, HOOK, t);
   const file = path.join(outDir, `c${t.toFixed(2)}.jpg`);
   fs.writeFileSync(file, Buffer.from(url.slice(url.indexOf(',') + 1), 'base64'));
   console.log('✓', file);

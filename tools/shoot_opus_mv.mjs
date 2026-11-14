@@ -24,6 +24,7 @@ const dist = path.resolve(opt('--dist', ''));
 const outDir = path.resolve(opt('--out', '/tmp/frames'));
 const FPS = Number(opt('--fps', 30));
 const DUR = Number(opt('--dur', 60));
+const NO_LYRICS = process.argv.includes('--no-lyrics');   // 只对《勾指起誓》fable 版的第二参数生效
 const W = Number(opt('--w', 1920));
 const H = Number(opt('--h', 1080));
 const Q = Number(opt('--quality', 92));
@@ -109,7 +110,7 @@ for (let i = 0; i < total; i++) {
   const file = path.join(outDir, `f${String(i).padStart(5, '0')}.jpg`);
   if (hook) {
     // __mvRender 可能直接返回 dataURL，也可能返回 { url }（早期那版工程这么写）
-    const url = await page.evaluate((h, tt) => { const r = h === 'mvRender' ? window.__mvRender(tt) : window.__mv.render(tt); return typeof r === 'string' ? r : r.url; }, hook, t);
+    const url = await page.evaluate((h, tt, nl) => { const r = h === 'mvRender' ? window.__mvRender(tt, nl) : window.__mv.render(tt); return typeof r === 'string' ? r : r.url; }, hook, t, NO_LYRICS);
     fs.writeFileSync(file, Buffer.from(url.slice(url.indexOf(',') + 1), 'base64'));
   } else {
     await page.evaluate((tt) => {

@@ -58,7 +58,7 @@ export default function MVPlayer({ engine, onTime, handleRef }: Props) {
     return () => { alive = false; };
   }, [engine]);
 
-  const draw = useCallback((T: number, force = false) => {
+  const draw = useCallback((T: number, force = false, noLyrics = false) => {
     const canvas = canvasRef.current; if (!canvas) return;
     const q = qualityRef.current;
     const cw = Math.round(W * q), ch = Math.round(H * q);
@@ -68,7 +68,7 @@ export default function MVPlayer({ engine, onTime, handleRef }: Props) {
     const t0 = performance.now();
     ctx.setTransform(q, 0, 0, q, 0, 0);
     ctx.clearRect(0, 0, W, H);
-    try { engine.render(ctx, Math.min(T, DURATION - 0.001)); } catch (e) { console.error(e); }
+    try { engine.render(ctx, Math.min(T, DURATION - 0.001), { lyrics: !noLyrics }); } catch (e) { console.error(e); }
     lastRender.current = T;
     const dt = performance.now() - t0;
     const ft = frameTimes.current; ft.push(dt); if (ft.length > 45) ft.shift();
@@ -85,9 +85,10 @@ export default function MVPlayer({ engine, onTime, handleRef }: Props) {
   // 预览循环里的自适应降质靠 qualityRef，这里每次先钉回 1，画出来的永远是满分辨率。
   useEffect(() => {
     if (status !== 'ready') return;
-    (window as unknown as { __mvRender: (t: number) => string }).__mvRender = (t: number) => {
+    // 第二个参数为 true 时不画歌词条 —— 封面静帧要干净画面
+    (window as unknown as { __mvRender: (t: number, noLyrics?: boolean) => string }).__mvRender = (t: number, noLyrics?: boolean) => {
       qualityRef.current = 1;
-      draw(Math.max(0, Math.min(DURATION - 0.001, t)), true);
+      draw(Math.max(0, Math.min(DURATION - 0.001, t)), true, noLyrics);
       return canvasRef.current!.toDataURL('image/jpeg', 0.95);
     };
   }, [status, draw]);
