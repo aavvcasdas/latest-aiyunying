@@ -9,6 +9,7 @@
 //   3. 缺素材直接抛错（Actor.set 会抛），不许静默换成别的造型。
 import * as THREE from 'three';
 import { Actor, PixelThing, type AtlasData, type CharId } from './actors';
+import { Tachie, TACHIE, isTachieId, type TachieId } from './tachie';
 import { ease, lerp, mulberry, put, type LookName } from './kit';
 import type { Beat } from './timeline';
 
@@ -38,6 +39,19 @@ export class Kit {
     this.actors.push(a); this.root.add(a.holder);
     return a;
   }
+  /**
+   * 长大版立绘（默认不用）：只有「长大」时刻才派它上场，规则见 设定/立绘.md。
+   * 和 Q 版角色可以同镜——长大瞬间用 growInto()，或者让两个人（小时候与长大的自己）站在一起说话。
+   */
+  tachies: Tachie[] = [];
+  tachie(id: TachieId): Tachie {
+    if (!isTachieId(id)) throw new Error(`[tachie] 没有「${id}」的立绘（可用：${Object.keys(TACHIE).join('、')}）`);
+    const t = new Tachie(TACHIE[id]);
+    this.tachies.push(t);
+    this.root.add(t.holder);
+    return t;
+  }
+
   things: PixelThing[] = [];
   /** 像素道具 / 表情贴卡（prop_* / fx_*）：面向相机的小纸片，每帧照样要 .at(…) 或 .hide() */
   thing(key: string, size = 1): PixelThing {

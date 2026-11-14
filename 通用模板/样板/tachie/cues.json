@@ -1,0 +1,26 @@
+{
+ "measured": false,
+ "method": "样板轴：手写的三句，只用来出静帧和无声样片，不对应任何一首歌",
+ "beat": null,
+ "lines": [
+  {
+   "text": "小时候蹲在水洼边",
+   "start": 1.0,
+   "end": 4.0
+  },
+  {
+   "text": "一转眼她就长大了",
+   "start": 4.5,
+   "end": 7.5
+  },
+  {
+   "text": "长大以后还认得出自己",
+   "start": 8.0,
+   "end": 11.0
+  }
+ ],
+ "source": {
+  "subtitles": "歌词.srt",
+  "subtitles_sha256": "f8ba18143735754d510314e8f21bc939ef7bf2a99f7fd0d9c911f2fece79f00e"
+ }
+}

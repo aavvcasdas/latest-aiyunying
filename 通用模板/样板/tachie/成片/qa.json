@@ -1,0 +1,81 @@
+{
+ "frames": {
+  "frames": 390,
+  "wrong_size": [],
+  "identical_to_previous": [
+   387,
+   388,
+   389
+  ],
+  "blank_background_frames": [],
+  "frozen_runs": [],
+  "shots_without_visible_cut": [],
+  "subtitle_bar_missing": [],
+  "luma_min": 0,
+  "luma_max": 255,
+  "sequence_md5": "20104a60c3abbc68c655c8d4258e24dd",
+  "problems": []
+ },
+ "timing": {
+  "measured": false,
+  "method": "样板轴：手写的三句，只用来出静帧和无声样片，不对应任何一首歌",
+  "source": {
+   "subtitles": "歌词.srt",
+   "subtitles_sha256": "f8ba18143735754d510314e8f21bc939ef7bf2a99f7fd0d9c911f2fece79f00e"
+  },
+  "notes": [
+   "卡点是估算的（cues.json measured=false）：只能当无声样片，不能当成片交付"
+  ],
+  "shots": {
+   "count": 3,
+   "shortest_seconds": 3.5,
+   "longest_seconds": 5.067
+  },
+  "problems": []
+ },
+ "sample": {
+  "file": "长大样板_无声样片.mp4",
+  "bytes": 3982203,
+  "sha256": "1bd887562916bb231932db21f8ed53a72bdbbc219b8100499156e138e36bdb92",
+  "full_decode": "ok",
+  "probe": {
+   "programs": [],
+   "stream_groups": [],
+   "streams": [
+    {
+     "codec_name": "h264",
+     "profile": "100",
+     "codec_type": "video",
+     "width": 1920,
+     "height": 1080,
+     "pix_fmt": "yuv420p",
+     "color_range": "tv",
+     "color_space": "bt709",
+     "r_frame_rate": "30/1",
+     "duration": "13.000000",
+     "bit_rate": "2447739",
+     "nb_frames": "390"
+    }
+   ],
+   "format": {
+    "duration": "13.000000",
+    "size": "3982203",
+    "bit_rate": "2450586"
+   }
+  },
+  "problems": []
+ },
+ "project": {
+  "id": "tachie-sample",
+  "kind": "mv",
+  "title": "长大样板",
+  "frames": 390,
+  "duration": 13,
+  "shots": 3,
+  "lines": 3,
+  "source_sha256": "6458ee460cdbf69b86efe739a00e8a93d06295e1cdccdd4584e1fe011d3b869a",
+  "source_files": 33,
+  "audio": null
+ },
+ "checked_at": "2026-11-14T16:07:19.544Z"
+}

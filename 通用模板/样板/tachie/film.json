@@ -1,0 +1,8 @@
+{
+  "id": "tachie-sample",
+  "kind": "mv",
+  "title": "长大样板",
+  "subtitles": "歌词.srt",
+  "output": "成片/长大样板",
+  "video": { "bitrate": "2400k", "preset": "medium" }
+}

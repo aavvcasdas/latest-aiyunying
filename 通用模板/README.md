@@ -41,6 +41,7 @@ npm test && npm run typecheck                      # 改了引擎之后跑
 │   ├─ core.ts        镜头契约：ShotDef / Kit / 机位 cam · glide · track
 │   ├─ engine.ts      FilmEngine：给帧号画出这一帧（无随机、无累积状态）
 │   ├─ actors.ts      角色纸片：造型、步态、服饰叠层、接触阴影
+│   ├─ tachie.ts      长大版立绘：把 `立绘/art/tachie/*.png` 沿脊柱切成横带逐帧形变（默认不用，见 设定/立绘.md）
 │   ├─ kit.ts         卡通材质、墨线、基础体块、光照预设、特效贴图
 │   ├─ sets.ts        户外大布景：小镇、城堡、拱桥、彩虹河、烟花…
 │   ├─ props.ts       室内布景与道具：房间、门、桌子、饭碗、沙漏、账本、伞、雨…
@@ -59,13 +60,48 @@ npm test && npm run typecheck                      # 改了引擎之后跑
 │   ├─ audio_mix.py   音轨按采样对位、淡出、配乐压低
 │   └─ qa.py          逐帧 / 卡点 / 成片自检，分镜总览图
 ├─ cast/          图集的源数据与重建脚本（npm run atlas:check 校验逐字节一致）
-├─ 样板/          新作品的起点：样板/mv、样板/day（各带一段渲好的无声样片）
+├─ 样板/          新作品的起点：样板/mv、样板/day、样板/tachie（长大版立绘进成片，带分镜总览与长大段 gif）
 ├─ preview/       预览台
 ├─ tests/         node --test + python unittest
 └─ 来源/          来源压缩包与原页面的诊断报告（只读）
 ```
 
 作品放在模板外面：`番外MV/<歌名>/`。
+
+---
+
+## 二·五、长大版立绘（默认不用）
+
+主用 Q 版图集。**立绘只放在「长大」的时刻**：整镜切换、同一个镜头里渐变长大、或者小时候和长大的自己同框对话。
+何时该用、分寸怎么拿，规则在 [`../设定/立绘.md`](../设定/立绘.md)；这里只说引擎里怎么写。
+
+```ts
+import { growInto } from '@tpl/tachie';
+
+build: (k) => {
+  const q = k.actor('whale');        // 默认：Q 版
+  const g = k.tachie('whale');       // 长大版；动作名来自 立绘/src/mv/actions.ts
+  return ({ u, T }) => {
+    const p = seg(u, 0.52, 0.60);    // 交换压在闪白那 0.2 秒里
+    q.idle(T).at(0, 0, 0.4);
+    g.act('idle', T).at(0, 0, 0.4);
+    growInto(q, g, p);               // 同镜渐变长大；想同框就各摆各的，不调它
+    ...
+  };
+},
+```
+
+- 立绘要在 `project.tsx` 的 `preloads` 里预载：`() => preloadImage(TACHIE[id].url)`，没预载会当场报错。
+- 动作能做的：点头、歪头、鞠躬、摇摆、起跳、转身、悬浮……**没有抬手、眨眼、口型**（单张图没有分层）。
+- 立绘吃引擎的镜头调色（`cardTint`），别自己上色；要半透明用 `.alpha()`。
+- 全片预检把立绘也算进去：会不会算成 NaN、会不会悄悄不见、倒着走一不一样，都会在开渲前报。
+- 三个镜头的样板：`通用模板/样板/tachie/`（G1 小时候 → G2 动态长大 → G3 同框对话）。
+
+```bash
+npm run film -- info   通用模板/样板/tachie
+npm run film -- stills 通用模板/样板/tachie 200
+npm run film -- full   通用模板/样板/tachie
+```
 
 ---
 

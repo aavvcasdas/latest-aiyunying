@@ -44,7 +44,9 @@ const SCRIPTS = Object.keys(JSON.parse(read('package.json')).scripts);
 const MODES = /<((?:[a-z]+\|)+[a-z]+)>/.exec(FILM)[1].split('|');
 const TOP = new Set(fs.readdirSync(REPO));
 // 不是本仓库命令行的选项（npm / pip / git / node / tsc / gh 自己的）
-const FOREIGN_FLAGS = new Set(['--user', '--break-system-packages', '--depth', '--hard', '--no-save', '--experimental-transform-types', '--test', '--config', '--noEmit', '--ff-only']);
+const FOREIGN_FLAGS = new Set(['--user', '--break-system-packages', '--depth', '--hard', '--no-save', '--experimental-transform-types', '--test', '--config', '--noEmit', '--ff-only',
+  // 不是 film.mjs 的选项：封面脚本 tools/cover.py 自己的参数
+  '--still', '--title', '--out', '--name', '--punch']);
 
 /** 行内代码 `…` 和代码块里的每一行 */
 function codeSpans(text) {

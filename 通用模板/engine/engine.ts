@@ -115,12 +115,12 @@ function objectDigest(root: THREE.Object3D, skip: Set<THREE.Object3D>): number {
 }
 
 /** 一帧里「会影响画面」的全部状态：机位、每个角色、搭景里每个顶层物体（k.add 进来的那些） */
-interface FrameState { cam: number; actors: string[]; things: number[] }
+interface FrameState { cam: number; actors: string[]; tachies: string[]; things: number[] }
 function frameState(kit: Kit, cs: CamState): FrameState {
-  const holders = new Set<THREE.Object3D>(kit.actors.map((a) => a.holder));
+  const holders = new Set<THREE.Object3D>([...kit.actors.map((a) => a.holder), ...kit.tachies.map((t) => t.holder)]);
   let c = 2166136261;
   for (const v of [...cs.p, ...cs.l, cs.fov, cs.roll]) c = mixNum(c, v);
-  return { cam: c >>> 0, actors: kit.actors.map((a) => a.stateLine()), things: kit.root.children.filter((o) => !holders.has(o)).map((o) => objectDigest(o, holders)) };
+  return { cam: c >>> 0, actors: kit.actors.map((a) => a.stateLine()), tachies: kit.tachies.map((t) => t.stateLine()), things: kit.root.children.filter((o) => !holders.has(o)).map((o) => objectDigest(o, holders)) };
 }
 
 const spans = (frames: number[]) => {
@@ -211,6 +211,7 @@ function walkFilm(shots: ShotDef[], tl: Timeline, atlas: AtlasData, enter: (shot
       const fr = frameOf(tl, st, f);
       timeU.value = fr.T;
       for (const a of rt.kit.actors) a.begin();
+      for (const t of rt.kit.tachies) t.begin();
       const now = frameState(rt.kit, rt.update(fr));
       orderChecked++;
       if (now.cam !== was.cam) differ(`镜头 ${st.id}：机位`, f);
@@ -220,7 +221,11 @@ function walkFilm(shots: ShotDef[], tl: Timeline, atlas: AtlasData, enter: (shot
         const names = a.length === b.length ? a.filter((x, j) => x !== b[j]).map((x) => x.split('=')[0]) : ['显隐'];
         differ(`镜头 ${st.id}：角色 ${rt.kit.actors[i]?.id ?? '?'}（本镜第 ${i + 1} 个）的${names.join('、')}`, f);
       }
-      const things = rt.kit.root.children.filter((o) => !rt!.kit.actors.some((a) => a.holder === o));
+      for (let i = 0; i < Math.max(now.tachies.length, was.tachies.length); i++) {
+        if (now.tachies[i] === was.tachies[i]) continue;
+        differ(`镜头 ${st.id}：长大版立绘 ${rt.kit.tachies[i]?.stateLine().split(';')[1] ?? ''} 的状态`, f);
+      }
+      const things = rt.kit.root.children.filter((o) => !rt!.kit.actors.some((a) => a.holder === o) && !rt!.kit.tachies.some((t) => t.holder === o));
       for (let i = 0; i < Math.max(now.things.length, was.things.length); i++) {
         if (now.things[i] === was.things[i]) continue;
         const key = `${st.id}#${i}`;
@@ -309,6 +314,7 @@ export class FilmEngine {
     const fr = frameOf(tl, st, frame), bt = fr.bt;
     timeU.value = T;
     for (const a of rt.kit.actors) a.begin();
+    for (const t of rt.kit.tachies) t.begin();
     const cs = rt.update(fr);
     const cam = this.camera;
     cam.position.set(cs.p[0], cs.p[1], cs.p[2]);
@@ -321,6 +327,7 @@ export class FilmEngine {
     this.sky.position.copy(cam.position);
     this.stars.position.copy(cam.position);
     for (const a of rt.kit.actors) a.commit(cam, this.cardTint);
+    for (const t of rt.kit.tachies) t.commit(cam, this.cardTint);
     for (const t of rt.kit.things) t.face(cam);
     this.renderer.render(this.scene, cam);
   }
