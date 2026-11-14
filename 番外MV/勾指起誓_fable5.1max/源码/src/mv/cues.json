@@ -1,0 +1,346 @@
+{
+ "measured": true,
+ "method": "LRC起点吸附到实测拍点网格（半拍，两处人声切分前置取四分之一拍）；拍点级对齐，不是逐音节对齐",
+ "beat": {
+  "period": 0.7058,
+  "first": 21.295,
+  "bpm": 85.01,
+  "bar": 4
+ },
+ "audio_duration": 183.701,
+ "lines": [
+  {
+   "text": "你是信的开头诗的内容",
+   "start": 22.001,
+   "end": 25.48,
+   "lrc_start": 21.96,
+   "delta": 0.041,
+   "beat_index": 1
+  },
+  {
+   "text": "童话的结尾",
+   "start": 25.53,
+   "end": 27.597,
+   "lrc_start": 25.39,
+   "delta": 0.14,
+   "beat_index": 6
+  },
+  {
+   "text": "你是理所当然的奇迹",
+   "start": 27.647,
+   "end": 30.95,
+   "lrc_start": 27.51,
+   "delta": 0.137,
+   "beat_index": 9
+  },
+  {
+   "text": "你是月色真美",
+   "start": 31.0,
+   "end": 33.244,
+   "lrc_start": 30.93,
+   "delta": 0.07,
+   "beat_index": 13.75
+  },
+  {
+   "text": "你是圣诞老人送给我",
+   "start": 33.294,
+   "end": 36.773,
+   "lrc_start": 33.13,
+   "delta": 0.164,
+   "beat_index": 17
+  },
+  {
+   "text": "好孩子的礼物",
+   "start": 36.823,
+   "end": 38.89,
+   "lrc_start": 36.7,
+   "delta": 0.123,
+   "beat_index": 22
+  },
+  {
+   "text": "你是三千美丽世界里",
+   "start": 38.94,
+   "end": 42.419,
+   "lrc_start": 38.91,
+   "delta": 0.03,
+   "beat_index": 25
+  },
+  {
+   "text": "我的一瓢水",
+   "start": 42.469,
+   "end": 44.536,
+   "lrc_start": 42.33,
+   "delta": 0.139,
+   "beat_index": 30
+  },
+  {
+   "text": "所以让我再靠近一点点",
+   "start": 44.586,
+   "end": 48.065,
+   "lrc_start": 44.52,
+   "delta": 0.066,
+   "beat_index": 33
+  },
+  {
+   "text": "因为你太温暖",
+   "start": 48.115,
+   "end": 50.183,
+   "lrc_start": 48.04,
+   "delta": 0.075,
+   "beat_index": 38
+  },
+  {
+   "text": "我会再变得坚强一点点",
+   "start": 50.233,
+   "end": 53.712,
+   "lrc_start": 50.1,
+   "delta": 0.133,
+   "beat_index": 41
+  },
+  {
+   "text": "因为你太柔软",
+   "start": 53.762,
+   "end": 55.829,
+   "lrc_start": 53.65,
+   "delta": 0.112,
+   "beat_index": 46
+  },
+  {
+   "text": "交换无名指金色的契约",
+   "start": 55.879,
+   "end": 59.358,
+   "lrc_start": 55.74,
+   "delta": 0.139,
+   "beat_index": 49
+  },
+  {
+   "text": "给彼此岁月",
+   "start": 59.408,
+   "end": 61.476,
+   "lrc_start": 59.29,
+   "delta": 0.118,
+   "beat_index": 54
+  },
+  {
+   "text": "说好从今以后都牵着手",
+   "start": 61.526,
+   "end": 65.005,
+   "lrc_start": 61.41,
+   "delta": 0.116,
+   "beat_index": 57
+  },
+  {
+   "text": "因为要走很远",
+   "start": 65.055,
+   "end": 67.72,
+   "lrc_start": 64.95,
+   "delta": 0.105,
+   "beat_index": 62
+  },
+  {
+   "text": "你是我万水千山的冒险",
+   "start": 89.758,
+   "end": 93.237,
+   "lrc_start": 89.67,
+   "delta": 0.088,
+   "beat_index": 97
+  },
+  {
+   "text": "要找的标记点",
+   "start": 93.287,
+   "end": 95.354,
+   "lrc_start": 93.19,
+   "delta": 0.097,
+   "beat_index": 102
+  },
+  {
+   "text": "你是我分割人生的线",
+   "start": 95.404,
+   "end": 98.707,
+   "lrc_start": 95.3,
+   "delta": 0.104,
+   "beat_index": 105
+  },
+  {
+   "text": "又将它们相连",
+   "start": 98.757,
+   "end": 101,
+   "lrc_start": 98.68,
+   "delta": 0.077,
+   "beat_index": 109.75
+  },
+  {
+   "text": "你是前世千次的回眸",
+   "start": 101.05,
+   "end": 104.529,
+   "lrc_start": 100.93,
+   "delta": 0.12,
+   "beat_index": 113
+  },
+  {
+   "text": "虔诚牵的手",
+   "start": 104.579,
+   "end": 106.647,
+   "lrc_start": 104.51,
+   "delta": 0.069,
+   "beat_index": 118
+  },
+  {
+   "text": "你是其余所有的一切",
+   "start": 106.697,
+   "end": 110.176,
+   "lrc_start": 106.6,
+   "delta": 0.097,
+   "beat_index": 121
+  },
+  {
+   "text": "你是我的世界",
+   "start": 110.226,
+   "end": 112.293,
+   "lrc_start": 110.12,
+   "delta": 0.106,
+   "beat_index": 126
+  },
+  {
+   "text": "所以请你再闪亮一点点",
+   "start": 112.343,
+   "end": 115.822,
+   "lrc_start": 112.23,
+   "delta": 0.113,
+   "beat_index": 129
+  },
+  {
+   "text": "尽管我太平凡",
+   "start": 115.872,
+   "end": 117.94,
+   "lrc_start": 115.8,
+   "delta": 0.072,
+   "beat_index": 134
+  },
+  {
+   "text": "我会再变得柔软一点点",
+   "start": 117.99,
+   "end": 121.469,
+   "lrc_start": 117.9,
+   "delta": 0.09,
+   "beat_index": 137
+  },
+  {
+   "text": "因为你太敏感",
+   "start": 121.519,
+   "end": 123.586,
+   "lrc_start": 121.41,
+   "delta": 0.109,
+   "beat_index": 142
+  },
+  {
+   "text": "交换无名指金色的契约",
+   "start": 123.636,
+   "end": 127.115,
+   "lrc_start": 123.47,
+   "delta": 0.166,
+   "beat_index": 145
+  },
+  {
+   "text": "给彼此岁月",
+   "start": 127.165,
+   "end": 129.232,
+   "lrc_start": 127.06,
+   "delta": 0.105,
+   "beat_index": 150
+  },
+  {
+   "text": "说好从今以后都牵着手",
+   "start": 129.282,
+   "end": 132.761,
+   "lrc_start": 129.16,
+   "delta": 0.122,
+   "beat_index": 153
+  },
+  {
+   "text": "不管要走多远",
+   "start": 132.811,
+   "end": 135.12,
+   "lrc_start": 132.69,
+   "delta": 0.121,
+   "beat_index": 158
+  },
+  {
+   "text": "所以",
+   "start": 156.809,
+   "end": 158.17,
+   "lrc_start": 156.8,
+   "delta": 0.009,
+   "beat_index": 192
+  },
+  {
+   "text": "让我再靠近一点点",
+   "start": 158.22,
+   "end": 160.993,
+   "lrc_start": 158.24,
+   "delta": -0.02,
+   "beat_index": 194
+  },
+  {
+   "text": "因为你太温暖",
+   "start": 161.043,
+   "end": 163.111,
+   "lrc_start": 161.04,
+   "delta": 0.003,
+   "beat_index": 198
+  },
+  {
+   "text": "我会再变得坚强一点点",
+   "start": 163.161,
+   "end": 166.64,
+   "lrc_start": 163.09,
+   "delta": 0.071,
+   "beat_index": 201
+  },
+  {
+   "text": "因为你太柔软",
+   "start": 166.69,
+   "end": 168.757,
+   "lrc_start": 166.61,
+   "delta": 0.08,
+   "beat_index": 206
+  },
+  {
+   "text": "交换无名指金色的契约",
+   "start": 168.807,
+   "end": 172.286,
+   "lrc_start": 168.73,
+   "delta": 0.077,
+   "beat_index": 209
+  },
+  {
+   "text": "给彼此岁月",
+   "start": 172.336,
+   "end": 174.404,
+   "lrc_start": 172.3,
+   "delta": 0.036,
+   "beat_index": 214
+  },
+  {
+   "text": "说好从今以后都牵着手",
+   "start": 174.454,
+   "end": 177.933,
+   "lrc_start": 174.38,
+   "delta": 0.074,
+   "beat_index": 217
+  },
+  {
+   "text": "因为要走很远",
+   "start": 177.983,
+   "end": 180.7,
+   "lrc_start": 177.92,
+   "delta": 0.063,
+   "beat_index": 222
+  }
+ ],
+ "summary": {
+  "lines": 41,
+  "mean_abs_delta": 0.093,
+  "max_abs_delta": 0.166
+ }
+}

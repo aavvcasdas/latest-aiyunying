@@ -11,6 +11,7 @@
 // 用法：
 //   node tools/shoot_opus_mv.mjs --dist /tmp/dist_max --out /tmp/frames_max
 //   node tools/shoot_opus_mv.mjs --dist /tmp/dist_mem --out /tmp/frames_mem --from 10 --to 12
+//   node tools/shoot_opus_mv.mjs --dist /tmp/dist_gq_fable5.1max --out /tmp/frames_gq_fable --dur 183.7
 import fs from 'node:fs';
 import path from 'node:path';
 import http from 'node:http';
@@ -63,12 +64,13 @@ await page.waitForFunction(() => {
   if (!c) return false;
   const hook = window.__mv || null;
   if (hook && typeof hook.ready === 'function' && !hook.ready()) return false;
+  if (typeof window.__mvRender === 'function') return true;   // 《勾指起誓》三版：页面自己装帧钩子
   return !!window.__seek || !!(hook && typeof hook.seek === 'function');
 }, { timeout: 300000, polling: 250 });
 
 // 只留舞台：隐藏页面外框（标题、播放条、分镜表），把舞台铺满 1920×1080
 await page.evaluate(() => {
-  const c = document.querySelector('canvas');
+  const c = [...document.querySelectorAll('canvas')].sort((a, b) => b.width * b.height - a.width * a.height)[0];
   const st = c.parentElement;
   document.documentElement.style.background = '#000';
   document.body.style.visibility = 'hidden';
@@ -81,9 +83,10 @@ await page.evaluate(() => {
   document.querySelectorAll('audio,video').forEach((el) => { el.pause(); el.muted = true; });
 });
 
+// 取「最大的那块 canvas」（页面里常还有小尺寸的角色头像 canvas）
 await page.waitForFunction((w, h) => {
-  const c = document.querySelector('canvas');
-  return c && c.width >= w - 2 && c.height >= h - 2;
+  const cs = [...document.querySelectorAll('canvas')];
+  return cs.some((c) => c.width >= w - 2 && c.height >= h - 2);
 }, { timeout: 60000, polling: 100 }, W, H);
 
 // 两条取帧路径：
@@ -105,7 +108,8 @@ for (let i = 0; i < total; i++) {
   const t = from + i / FPS;
   const file = path.join(outDir, `f${String(i).padStart(5, '0')}.jpg`);
   if (hook) {
-    const url = await page.evaluate((h, tt) => (h === 'mvRender' ? window.__mvRender(tt).url : window.__mv.render(tt)), hook, t);
+    // __mvRender 可能直接返回 dataURL，也可能返回 { url }（早期那版工程这么写）
+    const url = await page.evaluate((h, tt) => { const r = h === 'mvRender' ? window.__mvRender(tt) : window.__mv.render(tt); return typeof r === 'string' ? r : r.url; }, hook, t);
     fs.writeFileSync(file, Buffer.from(url.slice(url.indexOf(',') + 1), 'base64'));
   } else {
     await page.evaluate((tt) => {

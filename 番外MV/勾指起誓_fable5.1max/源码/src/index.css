@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --font-kuaile: "ZCOOL KuaiLe", "ZCOOLKuaiLe", "Noto Sans SC", system-ui, sans-serif;
+}
+
+html { color-scheme: light; }
+body { margin: 0; font-family: ui-sans-serif, system-ui, "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; }
+.font-kuaile { font-family: var(--font-kuaile); }
+
+.mv-wrap:fullscreen { display: flex; align-items: center; justify-content: center; }
+.mv-wrap:fullscreen > .mv-box { width: min(100vw, calc(100vh * 16 / 9)); }

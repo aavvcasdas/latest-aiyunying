@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "ZCOOL KuaiLe";
+  src: url("./assets/zcool-sub.woff2") format("woff2");
+  font-display: block;
+}
+
+html, body { background: #0d0620; }
+body { margin: 0; -webkit-font-smoothing: antialiased; }
+input[type="range"] { appearance: auto; }
