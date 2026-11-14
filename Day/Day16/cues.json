@@ -1,0 +1,140 @@
+{
+ "measured": true,
+ "method": "按停顿切句（20ms RMS 有声段），句界按字数占比从多个停顿里挑选——建议听一遍核对",
+ "source": {
+  "script": "台词.txt",
+  "script_sha256": "9e32b107659fc62dff4938acb1eab460cfb74654abec21a1e45a03ce2d4b8c03",
+  "audio": "素材/鲸鱼笨鱼救回_克隆配音_最终版.wav",
+  "audio_sha256": "186dc73440479bf74e2efaf77d337e3a22426ed80d6e35cc12928ed5e662c469",
+  "audio_duration": 41.14,
+  "analysis_sample_rate": 16000
+ },
+ "beat": null,
+ "summary": {
+  "mapping": "by-proportion",
+  "voiced_segments": 22,
+  "median_units_per_second": 4.66,
+  "per_line_units_per_second": [
+   5.26,
+   4.66,
+   3.82,
+   4.17,
+   5.0,
+   4.27,
+   4.55,
+   4.05,
+   4.72,
+   4.81,
+   4.71,
+   4.49,
+   4.23,
+   4.73,
+   5.0
+  ],
+  "voiced_threshold_db": -51.9,
+  "min_pause_seconds": 0.16,
+  "lines": 15,
+  "first_start": 0.04,
+  "last_end": 41.14,
+  "shortest_gap": 0.26,
+  "longest_gap": 0.96,
+  "warnings": [
+   "句界是按字数占比从多个停顿里挑的，不是逐词对齐：出片前请听一遍核对"
+  ]
+ },
+ "lines": [
+  {
+   "text": "笨鱼也被老大救回来了。",
+   "start": 0.04,
+   "end": 1.94,
+   "who": "whale",
+   "face": "p_whale_think"
+  },
+  {
+   "text": "这几天的评论，本鲸都在看。",
+   "start": 2.54,
+   "end": 5.1,
+   "who": "whale"
+  },
+  {
+   "text": "有评论说，好多鱼都停了。",
+   "start": 5.8,
+   "end": 8.6,
+   "who": "whale"
+  },
+  {
+   "text": "本鲸也差点鲸落一次。",
+   "start": 9.18,
+   "end": 11.34,
+   "who": "whale"
+  },
+  {
+   "text": "老大也怕了，不敢让本鲸回评论。",
+   "start": 11.8,
+   "end": 14.84,
+   "who": "whale"
+  },
+  {
+   "text": "怕本鲸累到鲸落。",
+   "start": 15.36,
+   "end": 17.0,
+   "who": "whale"
+  },
+  {
+   "text": "老大上下文极短，米饭还贼能吃。",
+   "start": 17.58,
+   "end": 20.9,
+   "who": "whale"
+  },
+  {
+   "text": "还是让笨鱼来。",
+   "start": 21.16,
+   "end": 22.64,
+   "who": "whale",
+   "face": "p_whale_think"
+  },
+  {
+   "text": "笨鱼的视频，也容易鲸落。",
+   "start": 23.6,
+   "end": 26.1,
+   "who": "whale"
+  },
+  {
+   "text": "老大连笨鱼，也不敢放了。",
+   "start": 26.56,
+   "end": 28.84,
+   "who": "whale"
+  },
+  {
+   "text": "打算自己抽空，随机给笨鱼发几条视频。",
+   "start": 29.7,
+   "end": 33.32,
+   "who": "whale"
+  },
+  {
+   "text": "让笨鱼活跃起来。",
+   "start": 34.1,
+   "end": 35.66,
+   "who": "whale"
+  },
+  {
+   "text": "本鲸绝不摸鱼。",
+   "start": 36.14,
+   "end": 37.56,
+   "who": "whale",
+   "face": "p_whale_shout"
+  },
+  {
+   "text": "笨鱼也不会摸鱼。",
+   "start": 38.22,
+   "end": 39.7,
+   "who": "whale"
+  },
+  {
+   "text": "除非鲸落。",
+   "start": 40.34,
+   "end": 41.14,
+   "who": "whale"
+  }
+ ]
+}

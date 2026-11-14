@@ -1,0 +1,164 @@
+{
+ "frames": {
+  "frames": 1253,
+  "wrong_size": [],
+  "identical_to_previous": [],
+  "blank_background_frames": [],
+  "frozen_runs": [],
+  "shots_without_visible_cut": [],
+  "subtitle_bar_missing": [],
+  "luma_min": 70.18,
+  "luma_max": 149.14,
+  "sequence_md5": "2984bf17b98469612de596ffd1a04944",
+  "problems": []
+ },
+ "timing": {
+  "measured": true,
+  "method": "按停顿切句（20ms RMS 有声段），句界按字数占比从多个停顿里挑选——建议听一遍核对",
+  "source": {
+   "script": "台词.txt",
+   "script_sha256": "9e32b107659fc62dff4938acb1eab460cfb74654abec21a1e45a03ce2d4b8c03",
+   "audio": "素材/鲸鱼笨鱼救回_克隆配音_最终版.wav",
+   "audio_sha256": "186dc73440479bf74e2efaf77d337e3a22426ed80d6e35cc12928ed5e662c469",
+   "audio_duration": 41.14,
+   "analysis_sample_rate": 16000
+  },
+  "notes": [
+   "句界是按字数占比从多个停顿里挑的，不是逐词对齐：出片前请听一遍核对"
+  ],
+  "summary": {
+   "mapping": "by-proportion",
+   "voiced_segments": 22,
+   "median_units_per_second": 4.66,
+   "per_line_units_per_second": [
+    5.26,
+    4.66,
+    3.82,
+    4.17,
+    5,
+    4.27,
+    4.55,
+    4.05,
+    4.72,
+    4.81,
+    4.71,
+    4.49,
+    4.23,
+    4.73,
+    5
+   ],
+   "voiced_threshold_db": -51.9,
+   "min_pause_seconds": 0.16,
+   "lines": 15,
+   "first_start": 0.04,
+   "last_end": 41.14,
+   "shortest_gap": 0.26,
+   "longest_gap": 0.96,
+   "warnings": [
+    "句界是按字数占比从多个停顿里挑的，不是逐词对齐：出片前请听一遍核对"
+   ]
+  },
+  "shots": {
+   "count": 11,
+   "shortest_seconds": 1.467,
+   "longest_seconds": 6.64
+  },
+  "problems": []
+ },
+ "final": {
+  "file": "Day16.mp4",
+  "bytes": 10843117,
+  "sha256": "1921e5abfc39f2d2f07384df2958e1c0820fecc2c870aca7ade70d2db0cbe025",
+  "audio_samples": 2004992,
+  "audio_seconds": 41.7707,
+  "expected_seconds": 41.7667,
+  "audio_lag_vs_source_samples": 0,
+  "audio_lag_vs_source_ms": 0,
+  "audio_correlation": 1,
+  "correlation_window_seconds": [
+   4.18,
+   37.59
+  ],
+  "tail_rms": {
+   "-2.0s": 0,
+   "-1.5s": 0.0414,
+   "-1.0s": 0.0841,
+   "-0.5s": 0,
+   "-0.25s": 0
+  },
+  "mix": {
+   "sample_rate": 48000,
+   "samples": 2004800,
+   "seconds": 41.766667,
+   "offset_seconds": 0,
+   "source_seconds": 41.14,
+   "source_used": [
+    0,
+    41.14
+   ],
+   "source_remaining_after_end_seconds": 0,
+   "silence_after_source_seconds": 0.627,
+   "fade_out_seconds": 0,
+   "peak_dbfs": -7.25,
+   "clipped_samples": 0,
+   "full_scale_samples_from_source": 0,
+   "clipped_by_mix": 0,
+   "rms_dbfs": -22.34
+  },
+  "notes": [],
+  "problems": [],
+  "full_decode": "ok",
+  "probe": {
+   "programs": [],
+   "stream_groups": [],
+   "streams": [
+    {
+     "codec_name": "h264",
+     "profile": "100",
+     "codec_type": "video",
+     "width": 1920,
+     "height": 1080,
+     "pix_fmt": "yuv420p",
+     "color_range": "tv",
+     "color_space": "bt709",
+     "r_frame_rate": "30/1",
+     "duration": "41.766667",
+     "bit_rate": "1812083",
+     "nb_frames": "1253"
+    },
+    {
+     "codec_name": "aac",
+     "profile": "1",
+     "codec_type": "audio",
+     "sample_rate": "48000",
+     "channels": 2,
+     "r_frame_rate": "0/0",
+     "duration": "41.767000",
+     "bit_rate": "256024",
+     "nb_frames": "1960"
+    }
+   ],
+   "format": {
+    "duration": "41.767000",
+    "size": "10843117",
+    "bit_rate": "2076877"
+   }
+  }
+ },
+ "project": {
+  "id": "day16",
+  "kind": "day",
+  "title": "老大怕了，本鲸没躲",
+  "frames": 1253,
+  "duration": 41.74,
+  "shots": 11,
+  "lines": 15,
+  "source_sha256": "aac9469a688ee679ee2d53c0d0c673e05f4e5927b8c2bac3624df2519b6a7a2a",
+  "source_files": 20,
+  "audio": {
+   "file": "素材/鲸鱼笨鱼救回_克隆配音_最终版.wav",
+   "present": true
+  }
+ },
+ "checked_at": "2026-11-13T17:34:40.919Z"
+}

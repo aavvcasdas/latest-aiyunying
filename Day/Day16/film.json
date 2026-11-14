@@ -1,0 +1,15 @@
+{
+  "id": "day16",
+  "kind": "day",
+  "title": "老大怕了，本鲸没躲",
+  "script": "台词.txt",
+  "speaker": "whale",
+  "output": "成片/Day16",
+  "video": {
+    "bitrate": "1800k",
+    "preset": "medium"
+  },
+  "audio": {
+    "file": "素材/鲸鱼笨鱼救回_克隆配音_最终版.wav"
+  }
+}
