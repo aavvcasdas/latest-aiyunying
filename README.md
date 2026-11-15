@@ -16,6 +16,9 @@
 | `番外MV/坏女孩/` | three.js 3D 版《坏女孩》（1280×720，3 分 17 秒），出片 `node tools/render_zip_mv.mjs three3d` |
 | `番外MV/坏女孩Fable/` | fable5.2 版《坏女孩》（Canvas2D 软 3D，1280×720 @24fps / 195 秒），出片 `node tools/render_zip_mv.mjs fable`。歌词逐句实测、间奏 13 个分镜 |
 | `番外MV/雨爱/` | 《雨爱》（司凤版）雨天治愈 MV（1920×1080 @30fps / 131 秒，30 镜 / 23 句），从用户上传的工程包接进模板线，出片 `npm run film -- full 番外MV/雨爱` |
+| `番外MV/情歌_opus5.5max/` | 《情歌》opus5.5max 版（three.js + 泛光，1280×720 @30fps / 261.5 秒）：四分钟里一句词一个场景，歌词逐字卡点。用户上传工程，图集/音轨/字体是补的 |
+| `番外MV/情歌_opus5.5max-gpt6max开头/` | 同一支《情歌》，开头换成八镜「回忆序章」（琥珀 → 信 → 放映厅 → 唱片 → 琴键 → 红豆 → 空位 → 穿入琥珀），见该目录 `IMPLEMENTATION.md` |
+| `番外MV/我好想你mv/` | 《我好想你》（苏打绿）剪纸 3D 版（纯 DOM/CSS，原生 1280×720 @30fps / 329.33 秒）：撕边相纸框、精灵图角色、逐句歌词 |
 | `番外MV/人物设定.md` | 九位人物一张汇总：习性、道具、关系、示范台词、身世一句、MV 用法、边界 |
 | `番外MV/设定表.md` | 每支 MV「谁演谁」的速查表 |
 | `设定/` | 人物设定（**一人一页**，`设定/人物/`）、总纲、动作库、备选池 |
@@ -23,6 +26,9 @@
 | `参考资料/项目调研/` | 人物调研与 MV 做法调研（上游研究原文、图鉴接入边界、voxel-mv 分镜构造） |
 | `参考资料/参考MV/反乌托邦/` | 别人那版复刻的源码，**只备查、不算案例** |
 | `tools/render_zip_mv.mjs` | 《坏女孩》两版的出片脚本（Remotion + `@sparticuz/chromium`） |
+| `tools/shoot_vite_mv.mjs` | 上传的 Vite 单页 MV 逐帧截图（自动走 `__mv.render(t)` 或 `__seek(t)` + 整页截图；`--hide` 可摘掉很贵的 CSS 叠层） |
+| `tools/encode_frames.py` | 帧序列 → mp4（h264 + aac，显式压到 bt709 limited range；`--grain` 给摘掉 CSS 颗粒的片子补噪声） |
+| `番外MV/上传工程_还原与出片记录.md` | 2026-11-15 三个上传包缺了哪些素材、怎么补的、源码上动过哪几行 |
 | `.claude/skills/film-template/` | 给 AI 助手用的现行 skill |
 | `AGENTS.md` | 在这个仓库里干活的规矩 |
 
