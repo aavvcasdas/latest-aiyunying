@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "automatedOnly": true,
+  "humanFullPlaybackReviewed": false,
+  "audioAudited": false,
+  "desktop": {
+    "luminance": 49.250289351851876,
+    "visibleFraction": 0.9995659722222222
+  },
+  "mobile": {
+    "luminance": 54.45399305555547,
+    "visibleFraction": 1
+  },
+  "errors": [],
+  "shotsRendered": 51,
+  "openingShots": 8,
+  "verifiedInteractions": [
+    "play/pause",
+    "keyboard seek",
+    "mute/unmute",
+    "captions toggle",
+    "fullscreen enter/exit",
+    "lyric jump",
+    "storyboard filtering",
+    "cast tab",
+    "deterministic amber seek",
+    "mobile 16:9 playback",
+    "no horizontal overflow"
+  ],
+  "buildSha256": "bcc725b9871e38d1ae0e7c6bf3aa095a6327b6f3e768f28ce5e215dd9dadf6fe",
+  "audioSha256": "258b50fcbb94f709c42e478ad3ff1998a6e57227dc88ab2645670627f23d988a"
+}
