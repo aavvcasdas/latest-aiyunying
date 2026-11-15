@@ -29,6 +29,7 @@ def main() -> int:
     ap.add_argument('--height', type=int, default=-2)
     ap.add_argument('--preset', default='medium')
     ap.add_argument('--grain', type=int, default=0, help='补胶片颗粒（alls 强度，0=不加）；给摘掉 CSS grain 的片子用')
+    ap.add_argument('--multiply', type=float, default=1.0, help='整体压暗系数（1=不压）。摘掉 multiply 混合的颗粒层后用它把亮度还原回去')
     a = ap.parse_args()
 
     frames = sorted(f for f in os.listdir(a.frames) if f.startswith('f') and f.endswith('.jpg'))
@@ -46,6 +47,8 @@ def main() -> int:
     # 逐帧 JPEG 是 full range（yuvj420p），这里显式压到 limited range 的 bt709，
     # 否则播放器按 tv range 解释会显得发灰/发脏（左边不加 in_range=full 就会偏）
     vf = f'scale={a.width}:{a.height}:flags=lanczos:in_range=full:out_range=tv'
+    if a.multiply and a.multiply != 1.0:
+        vf += f',colorlevels=rimax={a.multiply}:gimax={a.multiply}:bimax={a.multiply}'
     if a.grain:
         vf += f',noise=alls={a.grain}:allf=t'
     vf += ',format=yuv420p'
