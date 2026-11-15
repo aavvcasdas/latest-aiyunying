@@ -1,7 +1,8 @@
 :root { color-scheme: dark; --bg: #14101f; --panel: #1f1930; --line: #3a3154; --text: #efeaf7; --dim: #a79fbd; --gold: #ffd166; --hot: #ff8fa3; }
 * { box-sizing: border-box; }
 html, body, #root { height: 100%; margin: 0; }
-body { background: var(--bg); color: var(--text); font: 14px/1.55 "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif; }
+/* 字体栈里带上随合成加载的站酷快乐体：沙盒 / 海外机器上常常没有中文字体，没有它整页界面都是豆腐块 */
+body { background: var(--bg); color: var(--text); font: 14px/1.55 "ZCOOL KuaiLe", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif; }
 button { font: inherit; color: inherit; cursor: pointer; }
 .app { display: grid; grid-template-rows: auto 1fr; height: 100%; }
 .top { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--line); background: var(--panel); }
