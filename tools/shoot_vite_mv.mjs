@@ -67,7 +67,8 @@ await page.goto(`http://127.0.0.1:${port}/${query ? `?${query}` : ''}`, { waitUn
 await page.waitForFunction(() => {
   const hook = window.__mv || null;
   if (hook && typeof hook.ready === 'function' && !hook.ready()) return false;
-  return typeof window.__seek === 'function' || !!(hook && typeof hook.seek === 'function');
+  return typeof window.__seek === 'function'
+    || !!(hook && (typeof hook.seek === 'function' || typeof hook.render === 'function'));
 }, { timeout: 300000, polling: 250 });
 
 // 页面字号：等字体（ZCOOL 子集）解码完再开始，否则前几帧的字会掉回系统字体
