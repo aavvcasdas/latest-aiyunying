@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@layer base {
+  html,
+  body {
+    background-color: #0b0910;
+    color: #f5efe8;
+    font-family: 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', 'ZCOOLKuaiLeMV', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* 细腻滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(249, 168, 212, 0.28);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(249, 168, 212, 0.48);
+}
