@@ -35,7 +35,7 @@ export default function App() {
         // 出片钩子（tools/shoot_vite_mv.mjs 用）：render(t, clean, w, h) 直接把当前帧吐成 JPEG dataURL
         (window as any).__mv = {
           duration: DUR, shots: mv.shots.length, ready: () => true,
-          render: (s: number, _clean?: boolean, w = 1280, h = 720) => {
+          render: (s: number, _clean?: boolean, w = 1280, h = Math.round((w * 9) / 16)) => {
             const c = canvas.current!;
             if (c.width !== w || c.height !== h) mv.resize(w, h);
             T.current = s; mv.render(s);
