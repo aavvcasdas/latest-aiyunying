@@ -1,0 +1,14 @@
+{
+  "checks": [
+    "Mobile tap-to-play, pause and native 16:9 framing",
+    "Downloaded MP4 matches the verified 39,743,537-byte export",
+    "SRT, both editable ASS variants and JSON files available",
+    "Exported video opens in browser with 720p dimensions and full duration"
+  ],
+  "metadata": {
+    "w": 1280,
+    "h": 720,
+    "d": 152.125
+  },
+  "sha256": "45e9f6bfa0f9a2a4394f699e8c811faaadddbc4d182113613e26d439601dd6b9"
+}
