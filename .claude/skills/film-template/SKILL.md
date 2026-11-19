@@ -30,7 +30,7 @@ node tools/render_zip_mv.mjs fable --still 30   # 《坏女孩》两版走这条
 | 新一部 MV | `npm run new -- mv 番外MV/歌名 "歌名"` → 第 2 节 |
 | 改已有作品的镜头 / 歌词 | 直接改作品目录里的 `shots/`、`歌词.srt`、`project.tsx`；改了歌词要重跑 `plan`（没有音源）或 `align`（有音源），不重跑其他命令会拒绝干活 |
 | 原曲到位了 | `align` → `full` |
-| 改《坏女孩》两版（自带引擎，不走模板） | 改 `番外MV/坏女孩/src/`、`番外MV/坏女孩Fable/api/`，出片 `node tools/render_zip_mv.mjs three3d\|fable` |
+| 改《坏女孩》两版（自带引擎，不走模板） | 改原《坏女孩》3D 工程（已删，见 git 历史）、`番外MV/坏女孩Fable/api/`，出片 `node tools/render_zip_mv.mjs three3d\|fable` |
 | 引擎缺功能（新道具、新造型、新字幕样式） | 改 `通用模板/engine/`，然后 `npm test && npm run typecheck`，并对 `番外MV/童话镇` 跑一次 `sheet` |
 
 ## 2. MV

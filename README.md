@@ -1,39 +1,45 @@
 # 番外 MV · 八位 AI 娘的像素 MV 项目
 
-这是一个**做 MV 的仓库**：拿项目自带的八位 Q 版像素 AI 娘，给一首歌配满镜头，歌词卡在拍子上，出成片。
-
+拿项目自带的八位 Q 版像素 AI 娘，给一首歌配满镜头、歌词卡在拍子上，出成片。
 做法是 three.js / Canvas2D 搭场景，像素角色当 2D 纸片人站在里面，逐帧渲染（Remotion 或 Vite 单页 + 截图），音轨按实测采样对齐后混进去。
 
 八位角色：`whale`（DeepSeek 鲸鱼娘）、`gpt`（白龙娘）、`claude`、`doubao`（豆包 Seed）、`gemini`、`kimi`、`qwen`（千问）、`zai`（GLM 阔耳狐）。
 
-## 现在在做的片子：《譬如我》3D 版
+**人物素材全部在根目录 `人物/`**（图集、拆好的分组图、长大立绘、形象提示词），各 MV 工程里的副本照旧保留、代码不用改。
 
-`番外MV/譬如我_sonnet5.5/` —— three.js 真三维场景 + 三维挤出字卡，1280×720 / 24 fps / **2:32.08** / 56.4 MB（h264 crf23 + aac 44.1k）。
+## 片子
 
-| 文件 | 是什么 |
-| --- | --- |
-| `成片/譬如我_3d.mp4` | 成片（56 MB，`.mp4` 不入库，本地生成） |
-| `源码/` | Vite + React 19 + three.js 0.187；`src/mv/` 十一个模块（`shots` / `setsA|B` / `cards` / `engine` / `lyricsData`），`viteSingleFile` 打成单文件 index.html |
-| `文案.md` | 逐镜文案（贴代码真实画面，第一人称） |
-| `上片记录.md` | 这包缺了什么、补了什么、源码改了哪一处出片钩子 |
-| `素材/譬如我.mp3` | 音轨（152.11 s，与 `DUR = 152.1` 对齐） |
+| 目录 | 源码 | 成片 |
+| --- | --- | --- |
+| `番外MV/譬如我_sonnet5.5/` | 有（Vite + React + three.js，1280×720 / 24fps / 2:32.08） | `成片/譬如我_3d.mp4` |
+| `番外MV/童话镇/` | — | 分镜总览 + srt + qa（`.mp4` 出库，见 `媒体说明.md`） |
+| `番外MV/坏女孩Fable/` | — | `坏女孩_fable5.2.mp4` + 抽帧 |
+| `番外MV/雨爱/` | — | `雨爱.mp4` + srt + qa |
+| `番外MV/情歌_opus5.5max/`、`情歌_opus5.5max-gpt6max开头/` | 有 | `情歌_opus5.5max.mp4`、`情歌_opus5.5max-gpt6max开头.mp4` |
+| `番外MV/把回忆拼好_opus5.5max/` | 有 | `把回忆拼好_opus5.5max.mp4` |
+| `番外MV/再悲伤的时候/` | 有 | `再悲伤的时候.mp4` |
+| `番外MV/不小心惹了上帝/`、`番外MV/樱花树下的约定/` | 有 | — |
+| `番外MV/设定表.md`、`番外MV/人物设定.md` | 谁演谁 / 九位人物一张汇总 | — |
+
+> `.mp4` 一律不入库（`.gitignore`），成片在本地生成或按 `媒体说明.md` 取回。
 
 ## 目录
 
 | 路径 | 是什么 |
 | --- | --- |
-| `番外MV/<歌名>/` | 一支 MV 一个目录：`源码/` + `成片/` + `素材/` + 文案。成片只放这里 |
-| `番外MV/设定表.md` | 每支 MV「谁演谁」速查 |
-| `番外MV/人物设定.md` | 九位人物一张汇总（习性、道具、关系、示范台词、MV 用法） |
-| `通用模板/` | 唯一现行的制作模板：引擎、命令行、样板、测试。**从这里开始读 `通用模板/README.md`** |
-| `通用模板/engine/assets/cast_atlas.png` | 像素图集母版：2048×3126 / 682 帧 / 八位，单帧约 84×90（按动作 39–148 px 不等），`NearestFilter` 硬边 |
-| `人物/提示词/` | 九位角色的 Q 版绿幕生图提示词（`00_通用规则.txt` 共用口径 + 九份可复制的提示词） |
-| `人物/参考/grok/` | Grok 娘的正面设定图与来源（CC BY-NC-SA 4.0，只作形象参照） |
-| `人物/生成/grok_绿幕_Q版.png` | 用上面那份提示词出的 Grok Q 版绿幕形象（参考用，不入图集） |
-| `立绘/` | 八张七头身立绘 + 骨架动作引擎（`rig.ts` / `actions.ts`）。**默认不用**，长大时刻才接 |
+| `人物/atlas.png` | 母版图集副本：2048×3126 / 682 帧 / 八位，单帧约 84×90，`NearestFilter` 硬边 |
+| `人物/q版/<角色>.png` | 一位角色一张，一行动作，等格网格（538 帧） |
+| `人物/行走/walk.png`（56）、`头像/portraits.png`（15）、`变体/variants.png`（37）、`道具/props.png`（15）、`特效/fx.png`（21） | 按用途拆开的分组图 |
+| `人物/index.json` | 每张分组图里每帧的 `{row, col}` + 母版里的 `{x, y, w, h}` + `actions` 分组 |
+| `人物/立绘/` | 七头身立绘与骨架引擎：`art/raw`（原图）、`art/tachie`（透明底）、`src/mv/rig.ts`、`人物/立绘/tools/render-actions.mjs`。**默认不用**，长大时刻才接 |
+| `人物/提示词/` | 九位角色的 Q 版绿幕生图提示词（`00_通用规则.txt` 共用口径 + 每人一份） |
+| `人物/参考/grok/`、`人物/生成/grok_绿幕_Q版.png` | Grok 娘的正面设定图与来源、用上面提示词出的 Q 版形象（参考用，不进图集） |
+| `番外MV/<歌名>/` | 一支 MV 一个目录：`源码/` + `成片/` + `素材/` + 文案 |
+| `通用模板/` | 唯一现行的制作模板：引擎、命令行、样板、测试。**从 `通用模板/README.md` 开始读** |
+| `通用模板/engine/assets/cast_atlas.png` / `.json` | 图集母版本体与行表（`人物/atlas.png` 就是它的副本） |
 | `设定/` | 人物设定（一人一页）、总纲、动作库 |
 | `参考资料/` | 人物调研、MV 做法调研、别人那版复刻源码（只备查） |
-| `tools/` | 出片与工具脚本：`shoot_vite_mv.mjs`（Vite 单页逐帧截图）、`encode_frames.py`（帧→mp4）、`render_zip_mv.mjs`（《坏女孩》Remotion 出片） |
+| `tools/` | `shoot_vite_mv.mjs`（Vite 单页逐帧截图）、`encode_frames.py`（帧→mp4）、`render_zip_mv.mjs`（Remotion 出片）、`split_cast.py`（母版 → `人物/`） |
 
 ## 怎么跑
 
@@ -41,6 +47,7 @@
 npm ci
 pip install --user numpy pillow
 
+python3 tools/split_cast.py                # 母版 → 人物/（六组图集 + index.json）
 npm run film -- info 番外MV/童话镇         # 看时间轴
 npm run film -- sheet 番外MV/童话镇        # 分镜总览图
 npm run film -- full  番外MV/童话镇        # 整片：逐帧渲染 → 编码 → 混音 → 自检
@@ -49,12 +56,11 @@ npm run preview                           # 浏览器里的预览台
 npm test && npm run typecheck
 ```
 
-当前这包的出片走 Vite 单页：
+Vite 单页那类（如 `番外MV/譬如我_sonnet5.5/源码`）：
 
 ```bash
 cd 番外MV/譬如我_sonnet5.5/源码 && npx tsc --noEmit && npx vite build
 node tools/shoot_vite_mv.mjs --dist dist --out /tmp/fs --dur 2 --w 1280 --h 720 --fps 24
-python3 tools/encode_frames.py ...
 ```
 
 ## 规矩
@@ -68,11 +74,9 @@ python3 tools/encode_frames.py ...
 
 ## 人物图集：在哪、坐标怎么读、为什么看着糊
 
-- **图集**：`番外MV/譬如我_sonnet5.5/源码/src/assets/atlas.png` —— 2048×3126 RGBA / 1.62 MB / `sha256 5f9894b6…`，
-  与母版 `通用模板/engine/assets/cast_atlas.png` 逐字节相同（这包没做过重排）。
-- **坐标表**：同工程 `src/mv/atlasData.ts` —— `ATLAS_W/H` + `RECTS`（686 条逐帧 `[x, y, w, h]`，实际用 538 帧）+ `ACTIONS`（8 角色 / 59 动作 / 538 帧）。
-- **母版行表**：`通用模板/engine/assets/cast_atlas.json`（682 帧，按行记 `{y, w, h, n, fps}`，第 i 帧 x = `i × w`）。
-  行表是「行布局」、`atlasData` 是「逐帧矩形」，**两套坐标不能混用**；加角色要从行表生成矩形，别手抄。
+- **根目录副本**：`人物/atlas.png`（= 母版，2048×3126 / 1.62 MB），拆好的分组图在 `人物/q版|行走|头像|变体|道具|特效/`，坐标在 `人物/index.json`。
+- **各工程里的**：`番外MV/譬如我_sonnet5.5/源码/src/assets/atlas.png` + `src/mv/atlasData.ts`（`RECTS` 686 条逐帧矩形，实际用 538 帧；`ACTIONS` 8 角色 / 59 动作）；其余工程多是 `源码/src/assets/cast_atlas.{png,json}`。
+- **母版行表**：`通用模板/engine/assets/cast_atlas.json`（682 帧，按行记 `{y, w, h, n, fps}`，第 i 帧 x = `i × w`）。行表是「行布局」、`atlasData` 是「逐帧矩形」，**两套坐标不能混用**。
 - **贴图换算**（`src/mv/engine.ts` 的 `Actor`）：`e = 0.4` 防相邻帧溢出内缩，`v` 要上下翻；材质 `MeshBasicMaterial`（`alphaTest 0.3`，不受光，靠 `color` 乘出「夜 / 昼 / 黎明」）；
   帧号 `floor((T - t0) × fps × speed)`，`loop` 取模否则夹末帧；纸片人每帧 `rotation.y` 转朝镜头。
 - **坑**：走路帧在母版里叫 `walk_whale_0..7`，**不带 `act_` 前缀**，按 `act_` 扫会漏帧；单帧约 84×90，近景放大 2.8 倍，**像素块是设计如此**。
@@ -86,10 +90,11 @@ python3 tools/encode_frames.py ...
 - 派生动作、像素道具、表情贴、重烘图集：[`人物动作替换.md`](人物动作替换.md)
 - 视频/音频入没入库、怎么取回：[`媒体说明.md`](媒体说明.md)
 - 逐项许可与来源链：[`素材许可与来源.md`](素材许可与来源.md)
-- 人物设定：[`设定/README.md`](设定/README.md)；写镜头与角色用法：[`通用模板/README.md`](通用模板/README.md)
+- 人物设定：[`设定/README.md`](设定/README.md)；长大立绘规则：[`设定/立绘.md`](设定/立绘.md)
+- 写镜头与角色用法：[`通用模板/README.md`](通用模板/README.md)
 
 ## 公开发布前要自己确认的事
 
 - **角色形象**：像素造型沿用项目原有素材，上游再分发许可**仍未核**（见 `素材许可与来源.md`）。形象源头是 ZipZipPipe《大AI和小AI们》，CC BY-NC-SA 4.0 —— 二创要署名、不商用、同协议共享。
-- **音乐**：《譬如我》等原曲录音都没有授权记录，公开前自己核。
+- **音乐**：各片原曲录音都没有授权记录，公开前自己核。
 - **平台声明**：片子里不放「AI 生成」角标，合规声明在发布页用平台自带功能补上。

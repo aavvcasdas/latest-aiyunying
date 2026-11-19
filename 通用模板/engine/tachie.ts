@@ -1,4 +1,4 @@
-// 「长大后的样子」进成片：把立绘（`立绘/art/tachie/*.png`）沿脊柱切成横带，逐条平移 / 旋转 / 缩放，
+// 「长大后的样子」进成片：把立绘（`人物/立绘/art/tachie/*.png`）沿脊柱切成横带，逐条平移 / 旋转 / 缩放，
 // 每帧画进一张离屏 Canvas，再当贴图挂在一条面向相机的纸片上——和 Q 版像素角色用同一套机位、光照、景深。
 //
 // 用法（镜头里）：
@@ -10,10 +10,10 @@
 // 也可以让小时候和长大的自己同框说话。切换处要给转场（闪白 / 推镜），不要硬切。
 //
 // 为什么是「每帧重画一张 Canvas」而不是几十个网格：立绘的形变本来就是 2D 画布上的横带积分，
-// `立绘/src/mv/rig.ts` 里那份 drawTachie 是唯一出处，这里直接调它，两边长得一模一样，也不用维护第二套公式。
+// `人物/立绘/src/mv/rig.ts` 里那份 drawTachie 是唯一出处，这里直接调它，两边长得一模一样，也不用维护第二套公式。
 import * as THREE from 'three';
-import { drawTachie } from '../../立绘/src/mv/rig';
-import { poseOf, ACTIONS } from '../../立绘/src/mv/actions';
+import { drawTachie } from '../../人物/立绘/src/mv/rig';
+import { poseOf, ACTIONS } from '../../人物/立绘/src/mv/actions';
 import type { Actor } from './actors';
 import { imageOf } from './props';
 
@@ -27,13 +27,13 @@ export interface TachieMeta {
   /** 原图像素尺寸 */
   w: number;
   h: number;
-  /** 骨架三参数：下巴占全高比例、脚底中心、头部中心（量自立绘原图，见 立绘/src/mv/cast.ts） */
+  /** 骨架三参数：下巴占全高比例、脚底中心、头部中心（量自立绘原图，见 人物/立绘/src/mv/cast.ts） */
   neck: number;
   cx: number;
   hx: number;
 }
 
-/** 八位角色的长大版。w/h/neck/cx/hx 与 立绘/src/mv/cast.ts 保持一致，换图两边一起改 */
+/** 八位角色的长大版。w/h/neck/cx/hx 与 人物/立绘/src/mv/cast.ts 保持一致，换图两边一起改 */
 export const TACHIE: Record<TachieId, TachieMeta> = {
   whale: { id: 'whale', name: '本鲸', url: '', w: 721, h: 1280, neck: 0.2, cx: 0.411, hx: 0.406 },
   gpt: { id: 'gpt', name: '龙娘', url: '', w: 581, h: 1280, neck: 0.2, cx: 0.458, hx: 0.468 },
@@ -105,7 +105,7 @@ export class Tachie {
   }
 
   /**
-   * 换成某个动作的第 t 秒（动作名见 立绘/src/mv/actions.ts 的 ACTIONS）。
+   * 换成某个动作的第 t 秒（动作名见 人物/立绘/src/mv/actions.ts 的 ACTIONS）。
    * T 是全片时间，只用来叠呼吸与头部微动——同一帧永远画出同一张，不存状态。
    */
   act(action: string, t: number, T = 0): this {
