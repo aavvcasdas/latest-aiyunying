@@ -41,7 +41,7 @@
             └── index.ts          render(g, t)
 ```
 
-**图集和音轨不在包里**。`npm run dev` / `npm run build` 之前会自动跑 `scripts/link-assets.mjs`：
+**图集和音轨不在包里**。`npx vite` / `npx vite build` 之前会自动跑 `scripts/link-assets.mjs`：
 从仓库根把 `人物/atlas.png` 和 `大肥鱼翻唱《浪人琵琶》.mp3` 复制成 `src/assets/atlas.png`、`src/assets/bgm.mp3`
 （这两个文件写在 `源码/.gitignore` 里，不入库，避免同一份素材两个来源）。图集的 sha256 对不上会直接停下，
 因为坐标表是照那张图生成的。
@@ -126,8 +126,8 @@
 ```bash
 cd 番外MV/浪人琵琶/源码
 npm install
-npm run dev        # 浏览器里看（会先自动取图集和音轨）
-npm run build      # 出 dist/index.html（单文件，约 6.4 MB）
+npx vite           # 浏览器里看（会先自动取图集和音轨）
+npx vite build     # 出 dist/index.html（单文件，约 6.4 MB）
 ```
 
 页面装了截帧钩子，`tools/shoot_vite_mv.mjs` 会自动走最快的那条路（`window.__mv.render(t, clean, width)` 直接回 JPEG）：
@@ -163,7 +163,7 @@ mp4 入不入库要先问（`AGENTS.md` 的规矩）。
 这些我没有办法替你确认，写在这里：
 
 1. **没有人整片看过、听过。** 机器查过的只有：全片每 0.1 秒渲一帧（1730 帧）不报错；42 镜首尾相接、盖满 172.9 秒；
-   `tsc --noEmit` 零报错；压缩包解进仓库克隆后 `npm install && npm run build` 通过（只新增 `番外MV/浪人琵琶/`，`git status` 里没有别的改动）。
+   `tsc --noEmit` 零报错；压缩包解进仓库克隆后 `npm install && npx vite build` 通过（只新增 `番外MV/浪人琵琶/`，`git status` 里没有别的改动）。
    我看过的只有静帧：每镜两格的总览图和十几张放大图。声画是否真的对得上、节奏好不好，要人戴耳机从头过一遍。
 2. **这不是模板线工程。** 它没有走 `npm run new -- mv`，`cues.json` 也不是 `film.mjs plan / align` 生成的，
    所以 `npm run film -- info / sheet / full` 对它不适用。它和 `情歌_opus5.5max` 是一类：上传的 Vite 单页工程，

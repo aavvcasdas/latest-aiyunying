@@ -10,8 +10,8 @@ Canvas2D 纸本手卷画风；八位角色全部用 `人物/atlas.png` 里的像
 ```bash
 cd 番外MV/浪人琵琶/源码
 npm install
-npm run dev      # 预览
-npm run build    # 出 dist/index.html
+npx vite          # 预览
+npx vite build    # 出 dist/index.html
 ```
 
 构建前会自动执行 `scripts/link-assets.mjs`，从仓库根取 `人物/atlas.png` 与 `大肥鱼翻唱《浪人琵琶》.mp3`
@@ -43,7 +43,7 @@ node tools/shoot_vite_mv.mjs --dist 番外MV/浪人琵琶/源码/dist --out /tmp
 
 - **改某句的时间**：只改 `lyrics.ts` 那一行；镜头会跟着走。
 - **改画面上的字**（歌词、匾、木牌）：改完重跑 `python3 tools/subset_font.py <MaShanZheng-Regular.ttf>`，缺字会报错。
-- **母版图集重排之后**：重跑仓库根的 `tools/gen_atlas_ts.py`，把生成的 `atlasData.ts` 覆盖到 `src/mv/`，
+- **母版图集重排之后**：用仓库根的图集坐标脚本重跑一遍（本仓库已删掉那个脚本，见 git 历史；坐标口径见 `人物/index.json`），把生成的 `atlasData.ts` 覆盖到 `src/mv/`，
   再把 `scripts/link-assets.mjs` 里的 sha256 前缀换成新的。
 - 写镜头守三条：逐帧函数只读时间；角色每帧重新摆；缺素材就报错。
 
