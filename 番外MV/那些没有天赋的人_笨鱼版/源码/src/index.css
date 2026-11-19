@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "MVSerif";
+  src: url("./assets/serif.ttf") format("truetype");   /* 仓库里没有 woff2，用 OFL 的 ZCOOLKuaiLe 顶上 */
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: block;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  background: #05060a;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: #eceaf8;
+  font-family: "MVSerif", "Noto Serif SC", "Songti SC", "SimSun", serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+input[type="range"] {
+  accent-color: #4d6bfe;
+}
+
+.scroll-x::-webkit-scrollbar {
+  height: 6px;
+}
+.scroll-x::-webkit-scrollbar-thumb {
+  background: #2a2f55;
+  border-radius: 6px;
+}
