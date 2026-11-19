@@ -11,15 +11,9 @@
 
 | 目录 | 源码 | 成片 |
 | --- | --- | --- |
-| `番外MV/譬如我_sonnet5.5/` | 有（Vite + React + three.js，1280×720 / 24fps / 2:32.08） | `成片/譬如我_3d.mp4` |
 | `番外MV/童话镇/` | — | 分镜总览 + srt + qa（`.mp4` 出库，见 `媒体说明.md`） |
-| `番外MV/坏女孩Fable/` | — | `坏女孩_fable5.2.mp4` + 抽帧 |
-| `番外MV/雨爱/` | — | `雨爱.mp4` + srt + qa |
-| `番外MV/情歌_opus5.5max/`、`情歌_opus5.5max-gpt6max开头/` | 有 | `情歌_opus5.5max.mp4`、`情歌_opus5.5max-gpt6max开头.mp4` |
-| `番外MV/把回忆拼好_opus5.5max/` | 有 | `把回忆拼好_opus5.5max.mp4` |
-| `番外MV/再悲伤的时候/` | 有 | `再悲伤的时候.mp4` |
-| `番外MV/不小心惹了上帝/`、`番外MV/樱花树下的约定/` | 有 | — |
-| `番外MV/设定表.md`、`番外MV/人物设定.md` | 谁演谁 / 九位人物一张汇总 | — |
+| `番外MV/情歌_opus5.5max/`、`番外MV/情歌_opus5.5max-gpt6max开头/` | 有 | `情歌_opus5.5max.mp4`、`情歌_opus5.5max-gpt6max开头.mp4` |
+| `番外MV/浪人琵琶/` | 有（模板线，44 镜 / 5187 帧 / 2:52.9） | `成片/浪人琵琶.mp4` |
 
 > `.mp4` 一律不入库（`.gitignore`），成片在本地生成或按 `媒体说明.md` 取回。
 
@@ -56,10 +50,10 @@ npm run preview                           # 浏览器里的预览台
 npm test && npm run typecheck
 ```
 
-Vite 单页那类（如 `番外MV/譬如我_sonnet5.5/源码`）：
+Vite 单页那类（`番外MV/<歌名>/源码`）：
 
 ```bash
-cd 番外MV/譬如我_sonnet5.5/源码 && npx tsc --noEmit && npx vite build
+cd 番外MV/<歌名>/源码 && npx tsc --noEmit && npx vite build
 node tools/shoot_vite_mv.mjs --dist dist --out /tmp/fs --dur 2 --w 1280 --h 720 --fps 24
 ```
 
@@ -75,7 +69,7 @@ node tools/shoot_vite_mv.mjs --dist dist --out /tmp/fs --dur 2 --w 1280 --h 720 
 ## 人物图集：在哪、坐标怎么读、为什么看着糊
 
 - **根目录副本**：`人物/atlas.png`（= 母版，2048×3126 / 1.62 MB），拆好的分组图在 `人物/q版|行走|头像|变体|道具|特效/`，坐标在 `人物/index.json`。
-- **各工程里的**：`番外MV/譬如我_sonnet5.5/源码/src/assets/atlas.png` + `src/mv/atlasData.ts`（`RECTS` 686 条逐帧矩形，实际用 538 帧；`ACTIONS` 8 角色 / 59 动作）；其余工程多是 `源码/src/assets/cast_atlas.{png,json}`。
+- **各工程里的**：模板线作品从 `通用模板/engine` 取；上传的 Vite 工程自带一份 `源码/src/assets/`（图集 + 坐标表 `atlasData.ts`：逐帧 `RECTS` + 按角色分组的 `ACTIONS`）。
 - **母版行表**：`通用模板/engine/assets/cast_atlas.json`（682 帧，按行记 `{y, w, h, n, fps}`，第 i 帧 x = `i × w`）。行表是「行布局」、`atlasData` 是「逐帧矩形」，**两套坐标不能混用**。
 - **贴图换算**（`src/mv/engine.ts` 的 `Actor`）：`e = 0.4` 防相邻帧溢出内缩，`v` 要上下翻；材质 `MeshBasicMaterial`（`alphaTest 0.3`，不受光，靠 `color` 乘出「夜 / 昼 / 黎明」）；
   帧号 `floor((T - t0) × fps × speed)`，`loop` 取模否则夹末帧；纸片人每帧 `rotation.y` 转朝镜头。
@@ -83,7 +77,6 @@ node tools/shoot_vite_mv.mjs --dist dist --out /tmp/fs --dur 2 --w 1280 --h 720 
 - **为什么角色看着糊**（不是「挤一张图」的锅，打包效率 75%，拆开也一样）：① 源头单帧中位 90×90，1280 宽近景要放大 2.8 倍、脸只有 30×30 的信息量（根本原因）；
   ② bloom 0.5 + 色差基线 0.0012 每帧带红蓝边、白围裙烧穿（观感上最像糊）；③ `toDataURL` jpeg 0.94 + h264 crf23 二次损失。
   改法：后期先调（bloom ×0.45、阈值 0.95、色差基线归零）+ 2× 超采样降采样；真要变清楚只能提高母版分辨率（按角色拆多张 ≤4096）。
-  实测三方案对照见 `番外MV/譬如我_sonnet5.5/清晰度对比.jpg`。
 
 ## 其它文档
 

@@ -1,0 +1,16 @@
+{
+  "id": "langren-pipa",
+  "kind": "mv",
+  "title": "浪人琵琶",
+  "subtitles": "歌词.srt",
+  "audio": {
+    "file": "素材/浪人琵琶.mp3",
+    "offset": 0,
+    "fadeOut": 0.3
+  },
+  "output": "成片/浪人琵琶",
+  "video": {
+    "bitrate": "4700k",
+    "preset": "slow"
+  }
+}

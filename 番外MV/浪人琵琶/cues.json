@@ -1,0 +1,451 @@
+{
+ "measured": true,
+ "method": "字幕起点吸附到原曲实测拍点（±半拍内）；拍点级对齐，不是逐音节对齐",
+ "source": {
+  "subtitles": "歌词.srt",
+  "audio": "素材/浪人琵琶.mp3",
+  "audio_sha256": "90dedd6d26e9763fb0741891b46e314c95584b60d37604edf95e082ae8b7ac7a",
+  "audio_duration": 172.873,
+  "analysis_sample_rate": 22050,
+  "subtitles_sha256": "dca8d95204b9001d8cc0b4b59c4c88f92a17243b49bf6d389e2570f95dd91a89"
+ },
+ "beat": {
+  "period": 0.41668,
+  "first": 10.2635,
+  "bar": 4,
+  "bpm": 143.997,
+  "comb_score_vs_baseline": 5.3,
+  "local_phase_drift_per_15s_window": [
+   0.002,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   -0.002
+  ],
+  "max_abs_drift": 0.002
+ },
+ "summary": {
+  "lines": 41,
+  "mean_abs_delta": 0.095,
+  "max_abs_delta": 0.199,
+  "beats_between_lines": [
+   8,
+   9,
+   8,
+   7,
+   8,
+   9,
+   16,
+   8,
+   9,
+   15,
+   8,
+   8,
+   15,
+   8,
+   10,
+   7,
+   7,
+   15,
+   9,
+   8,
+   8,
+   9,
+   8,
+   7,
+   8,
+   9,
+   47,
+   8,
+   10,
+   7,
+   7,
+   15,
+   9,
+   8,
+   8,
+   9,
+   8,
+   7,
+   8,
+   9
+  ],
+  "warnings": []
+ },
+ "lines": [
+  {
+   "text": "小生的花伞还落在你家",
+   "start": 0.263,
+   "end": 3.397,
+   "srt_start": 0.07,
+   "srt_end": 3.2,
+   "delta": 0.193,
+   "beat_index": -24
+  },
+  {
+   "text": "你美眷如花 我浪迹天涯",
+   "start": 3.597,
+   "end": 6.2,
+   "srt_start": 3.4,
+   "srt_end": 6.2,
+   "delta": 0.197,
+   "beat_index": -16
+  },
+  {
+   "text": "为我泡杯花茶 和你有些不搭",
+   "start": 7.347,
+   "end": 10.47,
+   "srt_start": 7.27,
+   "srt_end": 10.3,
+   "delta": 0.077,
+   "beat_index": -7
+  },
+  {
+   "text": "气氛开始有一点尴尬",
+   "start": 10.68,
+   "end": 13.397,
+   "srt_start": 10.51,
+   "srt_end": 13.2,
+   "delta": 0.17,
+   "beat_index": 1
+  },
+  {
+   "text": "你腼腆一笑 竟如此融洽",
+   "start": 13.597,
+   "end": 16.74,
+   "srt_start": 13.4,
+   "srt_end": 16.55,
+   "delta": 0.197,
+   "beat_index": 8
+  },
+  {
+   "text": "我情不自禁会为你牵挂",
+   "start": 16.93,
+   "end": 20.38,
+   "srt_start": 16.74,
+   "srt_end": 20.4,
+   "delta": 0.19,
+   "beat_index": 16
+  },
+  {
+   "text": "什么时代 早已经不想回家",
+   "start": 20.68,
+   "end": 26.397,
+   "srt_start": 20.7,
+   "srt_end": 26.4,
+   "delta": -0.02,
+   "beat_index": 25
+  },
+  {
+   "text": "你微微一笑 蝴蝶为你倾倒",
+   "start": 27.347,
+   "end": 30.411,
+   "srt_start": 27.35,
+   "srt_end": 30.4,
+   "delta": -0.003,
+   "beat_index": 41
+  },
+  {
+   "text": "凝眸几秒 不知道该干嘛",
+   "start": 30.681,
+   "end": 33.731,
+   "srt_start": 30.67,
+   "srt_end": 33.7,
+   "delta": 0.011,
+   "beat_index": 49
+  },
+  {
+   "text": "你拂袖模样 情千变万化",
+   "start": 34.431,
+   "end": 39,
+   "srt_start": 34.4,
+   "srt_end": 39,
+   "delta": 0.031,
+   "beat_index": 58
+  },
+  {
+   "text": "一壶好酒 趁着夜还未央",
+   "start": 40.681,
+   "end": 43.674,
+   "srt_start": 40.74,
+   "srt_end": 43.7,
+   "delta": -0.059,
+   "beat_index": 73
+  },
+  {
+   "text": "独自品尝 这大把好时光",
+   "start": 44.014,
+   "end": 46.848,
+   "srt_start": 44.04,
+   "srt_end": 47,
+   "delta": -0.026,
+   "beat_index": 81
+  },
+  {
+   "text": "夜深人静 略显一丝凄凉",
+   "start": 47.348,
+   "end": 52.648,
+   "srt_start": 47.5,
+   "srt_end": 52.6,
+   "delta": -0.152,
+   "beat_index": 89
+  },
+  {
+   "text": "东奔西走 微醺不宜骑马",
+   "start": 53.598,
+   "end": 56.731,
+   "srt_start": 53.55,
+   "srt_end": 56.7,
+   "delta": 0.048,
+   "beat_index": 104
+  },
+  {
+   "text": "听着浪人 弹着断了弦的琵琶",
+   "start": 56.931,
+   "end": 60.198,
+   "srt_start": 56.9,
+   "srt_end": 60.2,
+   "delta": 0.031,
+   "beat_index": 112
+  },
+  {
+   "text": "路过青楼酒馆",
+   "start": 61.098,
+   "end": 63.415,
+   "srt_start": 61.1,
+   "srt_end": 63.5,
+   "delta": -0.002,
+   "beat_index": 122
+  },
+  {
+   "text": "官人进来坐坐 好吗",
+   "start": 64.015,
+   "end": 65.9,
+   "srt_start": 64.1,
+   "srt_end": 65.9,
+   "delta": -0.085,
+   "beat_index": 129
+  },
+  {
+   "text": "我的思念似六月里的小雨哗哗",
+   "start": 66.932,
+   "end": 72.882,
+   "srt_start": 66.93,
+   "srt_end": 72.7,
+   "delta": 0.002,
+   "beat_index": 136
+  },
+  {
+   "text": "对你情有所钟",
+   "start": 73.182,
+   "end": 75.8,
+   "srt_start": 73,
+   "srt_end": 75.8,
+   "delta": 0.182,
+   "beat_index": 151
+  },
+  {
+   "text": "为你两袖清风",
+   "start": 76.932,
+   "end": 79.565,
+   "srt_start": 76.93,
+   "srt_end": 79.4,
+   "delta": 0.002,
+   "beat_index": 160
+  },
+  {
+   "text": "小生的花伞还落在你家",
+   "start": 80.265,
+   "end": 83.399,
+   "srt_start": 80.1,
+   "srt_end": 83.2,
+   "delta": 0.165,
+   "beat_index": 168
+  },
+  {
+   "text": "你美眷如花 我浪迹天涯",
+   "start": 83.599,
+   "end": 86.2,
+   "srt_start": 83.4,
+   "srt_end": 86.2,
+   "delta": 0.199,
+   "beat_index": 176
+  },
+  {
+   "text": "为我泡杯花茶 和你有些不搭",
+   "start": 87.349,
+   "end": 90.472,
+   "srt_start": 87.27,
+   "srt_end": 90.3,
+   "delta": 0.079,
+   "beat_index": 185
+  },
+  {
+   "text": "气氛开始有一点尴尬",
+   "start": 90.682,
+   "end": 93.389,
+   "srt_start": 90.51,
+   "srt_end": 93.2,
+   "delta": 0.172,
+   "beat_index": 193
+  },
+  {
+   "text": "你腼腆一笑 竟如此融洽",
+   "start": 93.599,
+   "end": 96.742,
+   "srt_start": 93.41,
+   "srt_end": 96.55,
+   "delta": 0.189,
+   "beat_index": 200
+  },
+  {
+   "text": "我情不自禁会为你牵挂",
+   "start": 96.932,
+   "end": 100.372,
+   "srt_start": 96.74,
+   "srt_end": 100.4,
+   "delta": 0.192,
+   "beat_index": 208
+  },
+  {
+   "text": "什么时代 早已经不想回家",
+   "start": 100.682,
+   "end": 106.4,
+   "srt_start": 100.71,
+   "srt_end": 106.4,
+   "delta": -0.028,
+   "beat_index": 217
+  },
+  {
+   "text": "东奔西走 微醺不宜骑马",
+   "start": 120.266,
+   "end": 123.39,
+   "srt_start": 120.31,
+   "srt_end": 123.4,
+   "delta": -0.044,
+   "beat_index": 264
+  },
+  {
+   "text": "听着浪人 弹着断了弦的琵琶",
+   "start": 123.6,
+   "end": 126.866,
+   "srt_start": 123.61,
+   "srt_end": 126.9,
+   "delta": -0.01,
+   "beat_index": 272
+  },
+  {
+   "text": "路过青楼酒馆",
+   "start": 127.766,
+   "end": 130.193,
+   "srt_start": 127.8,
+   "srt_end": 130.2,
+   "delta": -0.034,
+   "beat_index": 282
+  },
+  {
+   "text": "官人进来坐坐 好吗",
+   "start": 130.683,
+   "end": 132.5,
+   "srt_start": 130.69,
+   "srt_end": 132.5,
+   "delta": -0.007,
+   "beat_index": 289
+  },
+  {
+   "text": "我的思念似六月里的小雨哗哗",
+   "start": 133.6,
+   "end": 139.35,
+   "srt_start": 133.58,
+   "srt_end": 139.4,
+   "delta": 0.02,
+   "beat_index": 296
+  },
+  {
+   "text": "对你情有所钟",
+   "start": 139.85,
+   "end": 142.5,
+   "srt_start": 139.9,
+   "srt_end": 142.5,
+   "delta": -0.05,
+   "beat_index": 311
+  },
+  {
+   "text": "为你两袖清风",
+   "start": 143.6,
+   "end": 146.263,
+   "srt_start": 143.61,
+   "srt_end": 146.1,
+   "delta": -0.01,
+   "beat_index": 320
+  },
+  {
+   "text": "小生的花伞还落在你家",
+   "start": 146.933,
+   "end": 150.047,
+   "srt_start": 146.77,
+   "srt_end": 149.85,
+   "delta": 0.163,
+   "beat_index": 328
+  },
+  {
+   "text": "你美眷如花 我浪迹天涯",
+   "start": 150.267,
+   "end": 152.85,
+   "srt_start": 150.07,
+   "srt_end": 152.85,
+   "delta": 0.197,
+   "beat_index": 336
+  },
+  {
+   "text": "为我泡杯花茶 和你有些不搭",
+   "start": 154.017,
+   "end": 157.12,
+   "srt_start": 153.94,
+   "srt_end": 156.95,
+   "delta": 0.077,
+   "beat_index": 345
+  },
+  {
+   "text": "气氛开始有一点尴尬",
+   "start": 157.35,
+   "end": 160.037,
+   "srt_start": 157.18,
+   "srt_end": 159.85,
+   "delta": 0.17,
+   "beat_index": 353
+  },
+  {
+   "text": "你腼腆一笑 竟如此融洽",
+   "start": 160.267,
+   "end": 163.441,
+   "srt_start": 160.08,
+   "srt_end": 163.25,
+   "delta": 0.187,
+   "beat_index": 360
+  },
+  {
+   "text": "我情不自禁会为你牵挂",
+   "start": 163.601,
+   "end": 167.071,
+   "srt_start": 163.41,
+   "srt_end": 167.1,
+   "delta": 0.191,
+   "beat_index": 368
+  },
+  {
+   "text": "什么时代 早已经不想回家",
+   "start": 167.351,
+   "end": 172.6,
+   "srt_start": 167.38,
+   "srt_end": 172.6,
+   "delta": -0.029,
+   "beat_index": 377
+  }
+ ]
+}
