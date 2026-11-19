@@ -20,7 +20,7 @@ export const SHOTS_A: ShotDef[] = [
       const c = courtyard(k);
       const um = flowerUmbrella(); k.add(um.g, c.umbrellaSpot[0], 0.05, c.umbrellaSpot[2]); um.g.rotation.z = 0.3; um.set(0.1);
       const whale = k.actor('whale'), qwen = k.actor('qwen');
-      const A = cam([3.6, 1.3, -2.6], [2.5, 0.9, -5.5], 30), B = cam([2.0, 1.9, 3.6], [3.3, 1.0, -4.4], 40);
+      const A = cam([5.4, 1.45, 0.6], [3.1, 1.0, -4.9], 34), B = cam([2.6, 1.55, 2.6], [3.1, 1.0, -4.8], 36);
       return ({ u, T, t, bt }) => {
         dropPetals(c.petals, T);
         const go = seg(u, 0.3, 1);
@@ -40,7 +40,7 @@ export const SHOTS_A: ShotDef[] = [
       many(9, (i) => k.add(box(1.2, 0.04, 0.8, 0xc9b79a, 0.02), 6.5 + i * 1.6, 0, -6.5 - i * 1.3));
       const qwen = k.actor('qwen'), whale = k.actor('whale');
       const fan = k.thing('prop_fan'), bundle = k.add(ball(0.26, 0x6b4a8a, true, 0.03));
-      const A = cam([-0.5, 1.6, 4.5], [0.3, 1.2, -3.0], 38), B = cam([6.5, 2.6, 2.0], [11, 1.5, -11], 40);
+      const A = cam([-0.5, 1.6, 4.5], [0.3, 1.2, -3.0], 38), B = cam([8.0, 2.0, -2.0], [14.5, 1.2, -12.5], 38);
       return ({ u, T, bt }) => {
         dropPetals(c.petals, T, 0.6, -3, 3.4);
         qwen.act('sway', T).at(0.9, 0, -1.6).sq(beatSq(bt));
@@ -48,7 +48,7 @@ export const SHOTS_A: ShotDef[] = [
         const w = seg(u, 0.15, 1);
         const wx = lerp(7.0, 18.5, w), wz = lerp(-6.8, -16.5, w);
         whale.walkBy(14 * w).at(wx, 0, wz).size(1).flip(false);
-        bundle.position.set(wx - 0.42, 1.2, wz + 0.02);
+        bundle.position.set(wx - 0.38, 1.06, wz - 0.1);
         return glide(A, B, u);
       };
     },
@@ -153,8 +153,8 @@ export const SHOTS_A: ShotDef[] = [
       const um = flowerUmbrella(); k.add(um.g, c.umbrellaSpot[0], 0.05, c.umbrellaSpot[2]); um.g.rotation.z = 0.3; um.set(0.1);
       many(9, (i) => k.add(box(1.2, 0.04, 0.8, 0xc9b79a, 0.02), 6.5 + i * 1.6, 0, -6.5 - i * 1.3));
       const whale = k.actor('whale'), qwen = k.actor('qwen');
-      const bundle = k.add(ball(0.26, 0x6b4a8a, true, 0.03));
-      const A = cam([6.2, 1.4, -4.2], [3.4, 1.0, -6.4], 36), B = cam([7.5, 6.5, 2.5], [6.0, 1.2, -9.0], 44);
+      const bundle = k.add(ball(0.18, 0x6b4a8a, true, 0.03));
+      const A = cam([7.2, 1.5, -10.8], [5.0, 1.1, -6.6], 30), B = cam([9.8, 3.6, -12.6], [5.2, 1.0, -6.6], 38);
       return ({ u, T, bt }) => {
         dropPetals(c.petals, T);
         setOp(c.lampGlow, 0.3 + 0.7 * seg(u, 0.2, 0.5));
@@ -338,10 +338,10 @@ export const SHOTS_A: ShotDef[] = [
     note: '桥上。另一位浪人 Kimi 坐在桥心灯下抱着琵琶，三根弦飘出音符，第四根弦断着垂下来，每轮总有一个音抖着掉进河里。本鲸走到桥头停住，靠着栏杆听。月在水里。',
     build: (k) => {
       const s = street(k);
-      const pp = pipa(); k.add(pp.g, 0.55, s.P.bridge[1] - 0.05, -15.6); pp.g.rotation.z = 0.5; pp.g.rotation.y = -0.4;
+      const pp = pipa(); pp.g.scale.setScalar(0.8); k.add(pp.g, -0.52, s.P.bridge[1] - 0.05, -15.72); pp.g.rotation.z = 0.5; pp.g.rotation.y = 0.7;
       const ns = notes(k, 8);
       const kimi = k.actor('kimi'), whale = k.actor('whale');
-      const A = cam([-7.5, 2.2, -9.0], [-1.5, 3.2, -16], 40), B = cam([-3.2, 3.6, -11.5], [0.3, 3.4, -16], 34);
+      const A = cam([9.6, 5.7, -16.15], [0.2, 4.25, -15.9], 34), B = cam([6.0, 5.2, -16.05], [0.35, 4.25, -15.95], 30);
       return ({ u, T, bt }) => {
         kimi.act('think', T).at(0, s.P.bridge[1], -16).sq(beatSq(bt, 0.04));
         pp.g.rotation.z = 0.5 + Math.sin(T * 6) * 0.03;
@@ -424,7 +424,7 @@ export const SHOTS_A: ShotDef[] = [
       const glow = k.add(sprite('glow', 3.5, 0xffe8a8, true, 0.6), 30, 7.4, -45.8);
       const whale = k.actor('whale');
       const heart = k.add(sprite('heart', 0.4, 0xff8fb0));
-      const A = cam([9.5, 1.4, 4.4], [12, 2.2, -8], 38), B = cam([10.0, 1.5, 3.2], [13, 2.6, -10], 36);
+      const A = cam([10.7, 1.6, 5.4], [10.7, 1.15, 0.3], 34), B = cam([10.9, 1.55, 4.8], [11.2, 1.2, 0.0], 32);
       return ({ u, T, t, bt }) => {
         rn.set(T);
         s.redLanterns.forEach((l) => lampLevel(l, 0.6));

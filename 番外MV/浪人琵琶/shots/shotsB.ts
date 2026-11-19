@@ -50,14 +50,16 @@ export const SHOTS_B: ShotDef[] = [
       const um = flowerUmbrella(); k.add(um.g); const tray = k.add(teaTrayAt(), 2.6, 0.96, -2.8);
       const qwen = k.actor('qwen');
       const petals = many(8, (i) => k.add(sprite('petal', 0.2, i % 2 ? 0xffffff : 0xf4a7c0)));
-      const C0 = cam([-0.5, 1.4, 5.2], [-2.0, 1.3, 1.0], 36), C1 = cam([-4.2, 1.6, 4.6], [-2.0, 1.3, 1.0], 36), C2 = cam([-5.4, 1.5, 0.8], [-2.0, 1.4, 1.0], 36);
+      // 机位只能在门前这一侧绕：原来的收尾把镜头推到了左墙里（最后半秒是一块墙板，qa 报 frozen）
+      const C0 = cam([-0.5, 1.45, 5.4], [-2.0, 1.3, 1.0], 36), C1 = cam([-2.8, 1.6, 5.6], [-2.0, 1.3, 1.0], 36), C2 = cam([-4.2, 1.5, 4.4], [-2.0, 1.3, 1.0], 36);
       return ({ u, T, t, bt }) => {
         h.rain.set(T); h.door.set(0.75);
         void tray;
-        const lift = ease(seg(u, 0.05, 0.3)), open = ease(seg(u, 0.3, 0.55)), spin = seg(u, 0.55, 1);
-        qwen.act(spin > 0 && spin < 1 ? 'spin' : 'idle', T, T - t + 1.55).at(-2.0, 0, 1.0).flip(true).sq(beatSq(bt, 0.03));
+        const lift = ease(seg(u, 0.05, 0.3)), open = ease(seg(u, 0.3, 0.55)), spin = seg(u, 0.55, 0.9);
+        // 转完那一圈就回到 idle：'spin' 是单次动作，停在末帧会让最后半秒整段冻住（qa 会报 frozen）
+        qwen.act(u > 0.5 && u < 0.93 ? 'spin' : 'idle', T, T - t + 1.55).at(-2.0, 0, 1.0).flip(true).sq(beatSq(bt, 0.03));
         um.g.position.set(lerp(-3.6, -1.5, lift), lerp(0.04, 0.9, lift), lerp(1.5, 1.3, lift)); um.g.rotation.z = lerp(-0.3, 0.08, lift) + Math.sin(T * 1.5) * 0.03; um.set(0.1 + 0.9 * open);
-        petals.forEach((p, i) => { const ph = (spin * 1.3 + i / 8) % 1; p.position.set(-1.5 + Math.cos(i * 0.8 + T) * 1.0, lerp(2.3, 0.1, easeOut(ph)), 1.3 + Math.sin(i * 0.8 + T) * 1.0); p.material.rotation = ph * 5 + i; setOp(p, spin > 0 ? Math.min(1, (1 - ph) * 2) : 0); });
+        petals.forEach((p, i) => { const ph = (spin * 1.3 + T * 0.12 + i / 8) % 1; p.position.set(-1.5 + Math.cos(i * 0.8 + T) * 1.0, lerp(2.3, 0.1, easeOut(ph)), 1.3 + Math.sin(i * 0.8 + T) * 1.0); p.material.rotation = ph * 5 + i; setOp(p, spin > 0 ? Math.min(1, (1 - ph) * 2) : 0); });
         return track([[0, C0], [0.55, C1], [1, C2]], u);
       };
     },
@@ -181,10 +183,10 @@ export const SHOTS_B: ShotDef[] = [
     build: (k) => {
       const s = street(k);
       const rn = rain(200, 36, 30, 10); k.add(rn.g, 0, 0, -8);
-      const pp = pipa(); k.add(pp.g, 0.55, s.P.bridge[1] - 0.05, -15.6); pp.g.rotation.z = 0.5; pp.g.rotation.y = -0.4;
+      const pp = pipa(); pp.g.scale.setScalar(0.8); k.add(pp.g, -0.52, s.P.bridge[1] - 0.05, -15.72); pp.g.rotation.z = 0.5; pp.g.rotation.y = 0.7;
       const ns = notes(k, 8);
       const kimi = k.actor('kimi');
-      const A = cam([-9, 1.2, -4], [0, 3.0, -16], 44), B = cam([-2, 6.5, 2], [1, 2.5, -14], 40);
+      const A = cam([2.0, 4.6, -9.5], [0.0, 3.4, -16.0], 44), B = cam([-3.0, 8.0, 0.5], [0.5, 2.6, -15.0], 40);
       return ({ u, T, bt }) => {
         rn.set(T);
         s.redLanterns.forEach((l, i) => lampLevel(l, 0.5 + 0.3 * ((bt.idx + i) % 2)));
@@ -267,10 +269,10 @@ export const SHOTS_B: ShotDef[] = [
     build: (k) => {
       const s = street(k);
       const rn = rain(120, 20, 12, 8); k.add(rn.g, 0, 0, -14);
-      const pp = pipa(); k.add(pp.g, 0.55, s.P.bridge[1] - 0.05, -15.6); pp.g.rotation.z = 0.5; pp.g.rotation.y = -0.4;
+      const pp = pipa(); pp.g.scale.setScalar(0.8); k.add(pp.g, -0.52, s.P.bridge[1] - 0.05, -15.72); pp.g.rotation.z = 0.5; pp.g.rotation.y = 0.7;
       const ns = notes(k, 8);
       const kimi = k.actor('kimi'), whale = k.actor('whale');
-      const A = cam([2.8, 4.6, -11.2], [0.1, 3.8, -15.9], 34), B = cam([-3.0, 4.4, -11.0], [-0.8, 3.7, -16], 36);
+      const A = cam([9.2, 5.5, -16.1], [-0.4, 4.2, -16.0], 32), B = cam([5.8, 5.15, -16.0], [-0.3, 4.2, -16.05], 28);
       return ({ u, T, t, bt }) => {
         rn.set(T);
         const mend = ease(seg(u, 0.15, 0.6));
@@ -330,7 +332,7 @@ export const SHOTS_B: ShotDef[] = [
       k.add(box(0.12, 3.0, 0.12, 0x3a3340), 20, 0, -8); k.add(sprite('glow', 3.0, 0xffd9a0, true, 0.6), 20, 3.1, -8);
       const um = flowerUmbrella(); k.add(um.g);
       const whale = k.actor('whale'), qwen = k.actor('qwen');
-      const A = cam([14, 7.5, 8], [22, 1.5, -10], 44), B = cam([18, 5.0, 4], [24, 1.5, -12], 40);
+      const A = cam([8.5, 1.8, 2.0], [18, 1.2, -6.5], 46), B = cam([12.0, 2.2, -1.0], [22, 1.2, -8.5], 44);
       return ({ u, T, bt }) => {
         rn.set(T); s.redLanterns.forEach((l) => lampLevel(l, 0.4));
         const wx = lerp(11, 20, u), wz = lerp(-1.5, -8.0, u);
@@ -350,13 +352,13 @@ export const SHOTS_B: ShotDef[] = [
       const rn = rain(160, 20, 10, 8); k.add(rn.g, 24, 0, -10);
       puddles(k, 5, 24, -9.5);
       many(8, (i) => k.add(box(1.2, 0.04, 0.8, 0xa9a39a, 0.02), 19 + i * 1.5, 0, -7 - i * 0.6));
-      const um = flowerUmbrella(); k.add(um.g, 27 - 0.25, 0.95, -10);
+      const um = flowerUmbrella(); k.add(um.g, 25.6 - 0.25, 0.95, -10);
       const whale = k.actor('whale'), qwen = k.actor('qwen');
-      const A = cam([24, 1.6, -3.0], [24, 1.2, -10], 40), B = cam([24, 1.5, -4.0], [24, 1.2, -10], 38);
+      const A = cam([24, 1.75, -4.2], [24.0, 1.15, -10], 40), B = cam([24, 1.6, -5.0], [24.0, 1.15, -10], 38);
       return ({ u, T, t, bt }) => {
         rn.set(T); void s;
-        whale.act(u > 0.1 ? 'surprise' : 'idle', T, T - t + 0.3).at(21, 0, -10).flip(false).sq(beatSq(bt, 0.02)).emote(u > 0.5 ? 'fx_exclaim' : null, T);
-        qwen.act(u > 0.2 ? 'tilt' : 'idle', T, T - t + 0.6).at(27, 0, -10).flip(true).sq(beatSq(bt, 0.02));
+        whale.act(u > 0.1 ? 'surprise' : 'idle', T, T - t + 0.3).at(22.4, 0, -10).flip(false).sq(beatSq(bt, 0.02)).emote(u > 0.5 ? 'fx_exclaim' : null, T);
+        qwen.act(u > 0.2 ? 'tilt' : 'idle', T, T - t + 0.6).at(25.6, 0, -10).flip(true).sq(beatSq(bt, 0.02));
         um.g.rotation.z = lerp(0.12, 0.42, ease(seg(u, 0.2, 0.5)));
         return glide(A, B, u);
       };
@@ -507,7 +509,7 @@ export const SHOTS_B: ShotDef[] = [
       const qwen = k.actor('qwen'), whale = k.actor('whale');
       const fan = k.thing('prop_fan');
       const heart = k.add(sprite('heart', 0.3, 0xff8fb0));
-      const A = cam([3.4, 1.4, -1.2], [2.9, 1.1, -4.2], 32), B = cam([3.2, 1.35, -1.8], [2.9, 1.1, -4.2], 30);
+      const A = cam([3.0, 1.6, 2.4], [2.9, 1.15, -4.2], 34), B = cam([3.0, 1.55, 1.4], [2.9, 1.15, -4.2], 30);
       return ({ u, T, t, bt }) => {
         setOp(c.lampGlow, 0.1); dropPetals(c.petals, T, 0.6, -3, 3.2, 0.8);
         const give = ease(seg(u, 0.1, 0.45)), hide = ease(seg(u, 0.5, 0.7));
