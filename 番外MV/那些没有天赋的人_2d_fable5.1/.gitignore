@@ -1,0 +1,6 @@
+node_modules/
+dist/
+src/assets/atlas.png
+src/assets/bgm.mp3
+src/assets/brush.woff2
+src/assets/heavy.woff2
