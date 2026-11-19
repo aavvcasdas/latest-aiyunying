@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+html {
+  background: #0b1126;
+}
+body {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", "PingFang SC", "Microsoft YaHei", serif;
+  -webkit-font-smoothing: antialiased;
+}
+.brush {
+  font-family: "MVBrush", "Kaiti SC", "KaiTi", "STKaiti", serif;
+  font-weight: 400;
+}
+.pixel {
+  image-rendering: pixelated;
+}
+/* 手卷的裱边：磁青底、泥金菱格 */
+.brocade {
+  background-color: #141b33;
+  background-image: linear-gradient(45deg, rgba(217, 164, 65, 0.5) 25%, transparent 25%, transparent 75%, rgba(217, 164, 65, 0.5) 75%);
+  background-size: 6px 6px;
+  border-block: 1px solid #d9a441;
+}
+/* 进度条：只留一个拖动的把手，轨道由下面那层画 */
+.seek {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+  margin: 0;
+}
+.seek::-webkit-slider-runnable-track {
+  background: transparent;
+  height: 2rem;
+}
+.seek::-moz-range-track {
+  background: transparent;
+  height: 2rem;
+}
+.seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 22px;
+  margin-top: 5px;
+  border-radius: 3px;
+  background: #b5352b;
+  border: 1px solid #f3d691;
+}
+.seek::-moz-range-thumb {
+  width: 12px;
+  height: 20px;
+  border-radius: 3px;
+  background: #b5352b;
+  border: 1px solid #f3d691;
+}
+.seek:focus-visible {
+  outline: 2px solid #f3d691;
+  outline-offset: 2px;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #f3d691;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}

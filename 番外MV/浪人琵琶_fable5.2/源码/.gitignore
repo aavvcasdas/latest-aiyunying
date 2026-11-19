@@ -1,0 +1,8 @@
+# 构建前由 scripts/link-assets.mjs 从仓库根取，不入库（同一份素材只留一个来源）
+src/assets/atlas.png
+src/assets/bgm.mp3
+# 本机顶替的字体与空壳交付包（见 ../适配说明.md）
+src/assets/brush.ttf
+src/assets/delivery.zip
+node_modules/
+dist/
