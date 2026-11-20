@@ -14,9 +14,8 @@ const ATLAS_SHA = "5f9894b6ad38";
 const NEED = [
   { from: "人物/atlas.png", to: "atlas.png", sha: ATLAS_SHA },
   { from: "譬如我.mp3", to: "bgm.mp3" },
-  // 包里自带的 brush/heavy 字体没有授权，改用仓库里的 OFL 字体（扩展名照旧，FontFace 按字节认）
-  { from: "通用模板/engine/assets/fonts/ZCOOLKuaiLe-Regular.ttf", to: "brush.woff2" },
-  { from: "通用模板/engine/assets/fonts/ZCOOLKuaiLe-Regular.ttf", to: "heavy.woff2" },
+  // 字体不进 link：brush/heavy.woff2 是用 tools/subset_font.py 从
+  // 站酷庆科黄油体、马善政毛笔楷书（google/fonts ofl/，SIL OFL 1.1）裁出来的，直接入库
 ];
 
 function findUp(rel) {

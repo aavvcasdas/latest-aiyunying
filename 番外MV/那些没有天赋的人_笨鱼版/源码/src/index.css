@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "MVSerif";
-  src: url("./assets/serif.ttf") format("truetype");   /* 仓库里没有 woff2，用 OFL 的 ZCOOLKuaiLe 顶上 */
+  src: url("./assets/serif.woff2") format("woff2");   /* 思源宋体（Noto Serif SC）900，OFL，按片中用字裁过 */
   font-weight: 100 900;
   font-style: normal;
   font-display: block;

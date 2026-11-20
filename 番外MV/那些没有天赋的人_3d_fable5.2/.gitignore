@@ -1,5 +1,4 @@
 node_modules/
 dist/
-# 下面两个由根目录素材生成，见 适配说明.md
+# 音轨由根目录素材生成，见 适配说明.md
 src/assets/bgm.m4a
-src/assets/serif.woff2

@@ -1,4 +1,3 @@
-src/assets/song.mp3
-src/assets/serif.ttf
 node_modules/
 dist/
+src/assets/song.mp3
