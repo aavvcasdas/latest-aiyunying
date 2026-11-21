@@ -160,15 +160,6 @@
      "rows": 1,
      "fps": 8,
      "loop": true
-    },
-    "spin": {
-     "label": "转身",
-     "fps": 10,
-     "loop": true,
-     "frames": 12,
-     "cols": 12,
-     "rows": 1,
-     "file": "whale/spin.png"
     }
    }
   },

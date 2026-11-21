@@ -180,14 +180,20 @@ void main(){ vUv = uv; vec4 mvPosition = modelViewMatrix * vec4(position,1.0); g
     fragmentShader: `uniform sampler2D map; uniform vec2 texSize; uniform vec4 rect; uniform float flip; uniform vec3 tint;
 uniform float sil; uniform vec3 silColor; uniform float flash; uniform float alpha; uniform float cut;
 uniform sampler2D detail; uniform vec2 detailSize; uniform vec4 hdRect; uniform float detailScale; varying vec2 vUv;
+#define SHARPEN 1.5
 #include <fog_pars_fragment>
 void main(){
   if (1.0 - vUv.y > cut) discard;
   vec2 uv = vUv; if (flip > 0.5) uv.x = 1.0 - uv.x;
   vec2 pix = rect.xy + vec2(uv.x, 1.0 - uv.y) * rect.zw;
-  vec2 seam = floor(pix + 0.5);
-  vec2 d = max(fwidth(pix), vec2(0.0001));
-  pix = seam + clamp((pix - seam) / d, -0.5, 0.5);
+  // 1 倍图集是像素画：把取样点吸到格心，放大时边缘是硬的、缩小时不闪（老行为，原样保留）。
+  // 但高清层（4 倍超分那批基础格）是有真实细节的连续图像，再吸到 1 倍格心就等于把细节全抹掉、
+  // 退化成大方块——所以有高清层时不吸附，直接按高清纹素做线性过滤。
+  if (detailScale < 0.5) {
+    vec2 seam = floor(pix + 0.5);
+    vec2 d = max(fwidth(pix), vec2(0.0001));
+    pix = seam + clamp((pix - seam) / d, -0.5, 0.5);
+  }
   pix = clamp(pix, rect.xy + 0.5, rect.xy + rect.zw - 0.5);
   // 有高清层就按「1 倍像素坐标 × 倍数」到高清图上取样；没有就照旧用 1 倍图集
   // 高清图集里一格周围是别的格子，夹取范围要按这一格的 rect 收窄（1 倍图集也一样收，免得取到邻格）。
@@ -197,7 +203,18 @@ void main(){
     // hdRect.xy 是这一格在高清图集里的左上角（高清像素）；pix − rect.xy 是「这一格里第几个 1 倍像素」
     vec2 hd = hdRect.xy + (pix - rect.xy) * detailScale;
     vec2 lo = hdRect.xy + vec2(0.5), hi = hdRect.xy + rect.zw * detailScale - vec2(0.5);
-    c = texture2D(detail, clamp(hd, lo, hi) / detailSize);
+    vec2 hduv = (clamp(hd, lo, hi) - vec2(0.5)) / detailSize;
+    vec2 t = vec2(1.0) / detailSize;
+    vec4 s0 = texture2D(detail, hduv);
+    // 锐化：4 邻域反锐化（USM）。超分图本身是抗锯齿的，直接双线性采样到屏幕上就是一层柔焦；
+    // 这里把「中心 − 邻域均值」的差放大回一部分，轮廓重新变硬，同时不会像阈值化那样把细发丝切掉。
+    vec4 avg = 0.25 * (texture2D(detail, clamp(hduv + vec2(t.x, 0.0), lo / detailSize, hi / detailSize))
+                     + texture2D(detail, clamp(hduv - vec2(t.x, 0.0), lo / detailSize, hi / detailSize))
+                     + texture2D(detail, clamp(hduv + vec2(0.0, t.y), lo / detailSize, hi / detailSize))
+                     + texture2D(detail, clamp(hduv - vec2(0.0, t.y), lo / detailSize, hi / detailSize)));
+    c = clamp(s0 + (s0 - avg) * SHARPEN, 0.0, 1.0);
+    // 轮廓再把 alpha 收硬一点：超分在边上留了 1–2 纹素的渐变，不收就是一圈灰边
+    c.a = smoothstep(0.45, 0.62, c.a);
   } else {
     c = texture2D(map, pix / texSize);
   }
