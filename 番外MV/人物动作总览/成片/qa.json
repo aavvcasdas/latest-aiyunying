@@ -7,9 +7,9 @@
   "frozen_runs": [],
   "shots_without_visible_cut": [],
   "subtitle_bar_missing": [],
-  "luma_min": 37.9,
-  "luma_max": 179.39,
-  "sequence_md5": "7fe36595c03d5c2e67e83816d4fce057",
+  "luma_min": 37.59,
+  "luma_max": 179.45,
+  "sequence_md5": "8ce034a5d360d027419b9f69a9717f4c",
   "problems": []
  },
  "timing": {
@@ -31,8 +31,8 @@
  },
  "sample": {
   "file": "人物动作总览_无声样片.mp4",
-  "bytes": 69591859,
-  "sha256": "954e19c6efd40d0954b6f91141bf1de44274a220734e0bff2ebdb5a724e7fb5d",
+  "bytes": 69724335,
+  "sha256": "0a90d8be932047f1c264c18f29c57cd5e210c12c952894768f30e31bc5167e37",
   "full_decode": "ok",
   "probe": {
    "programs": [],
@@ -49,14 +49,14 @@
      "color_space": "bt709",
      "r_frame_rate": "30/1",
      "duration": "159.066667",
-     "bit_rate": "3497626",
+     "bit_rate": "3504281",
      "nb_frames": "4772"
     }
    ],
    "format": {
     "duration": "159.066667",
-    "size": "69591859",
-    "bit_rate": "3500009"
+    "size": "69724335",
+    "bit_rate": "3506672"
    }
   },
   "problems": []
@@ -69,9 +69,9 @@
   "duration": 159.03699999999998,
   "shots": 8,
   "lines": 71,
-  "source_sha256": "78f1b95c3f0f8c3bd5377658f46efcac266b637528b2341d8e5062dee073a23d",
+  "source_sha256": "966d4a4bf6c60dd670eafda03e01a0bfbc83fd95e8c3cf0507cfb6202e56e5e3",
   "source_files": 35,
   "audio": null
  },
- "checked_at": "2026-11-21T15:24:18.660Z"
+ "checked_at": "2026-11-21T17:07:25.234Z"
 }

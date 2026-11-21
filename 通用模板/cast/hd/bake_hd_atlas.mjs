@@ -31,6 +31,7 @@ const CHECK = process.argv.includes('--check');
 const PSNR = process.argv.includes('--psnr');
 
 const one = JSON.parse(fs.readFileSync(ONE_X, 'utf8'));
+
 const index = JSON.parse(fs.readFileSync(path.join(PACK, 'index.json'), 'utf8'));
 const cache = new Map();
 const load = async (file) => {
@@ -67,18 +68,24 @@ async function cellArt(key) {
     const ox = (i % act.cols) * cw, oy = Math.floor(i / act.cols) * ch;
     src = strip.rgba; sw = strip.w; sh = strip.h;
     const out = new Uint8ClampedArray(tw * th * 4);
-    const fx = Math.round(cw / 2 - tw / 2), fy = index.chars[id].anchor[1] - th;   // 底边中点对齐
+    // 对齐：把这一帧的「内容外框底边中点」挪到 1 倍那一格的「内容外框底边中点」。
+    // 派生格的画布是这位角色最大的格子（四周留了晃动余量），比 1 倍格宽、脚底也不在格底，
+    // 只按格宽 / 格底对齐会让整格偏几十像素（gpt 的振翅悬停就只剩躯干）。按内容外框对齐才和 1 倍层重合。
+    // 派生格自己留了晃动余量，格底就是脚底、格宽中点就是脚底中心：按这两条对齐到 1 倍格。
+    // （只按「脚底」对齐会让卡通大格在画框里上下颠倒地偏；按格底中点最稳。）
+    const dx = Math.round(cw / 2 - tw / 2);
+    const dy = index.chars[id].anchor[1] - th;
     for (let y = 0; y < th; y++) {
-      const sy = oy + fy + y; if (sy < 0 || sy >= sh) continue;
+      const sy = oy + y + dy; if (sy < 0 || sy >= sh) continue;
       for (let x = 0; x < tw; x++) {
-        const sx = ox + fx + x; if (sx < 0 || sx >= sw) continue;
+        const sx = ox + x + dx; if (sx < 0 || sx >= sw) continue;
         const a = (sy * sw + sx) * 4, b = (y * tw + x) * 4;
         out[b] = src[a]; out[b + 1] = src[a + 1]; out[b + 2] = src[a + 2]; out[b + 3] = src[a + 3];
       }
     }
     return { rgba: out, w: tw, h: th };
   } else return null; // 道具 / 表情贴（prop_* / fx_*）：高清包不派生它们，留空
-  // 基础格：按底边中点裁到 tw × th
+  // 基础格：按底边中点裁到 tw × th（基础格就是 1 倍格本身放大，底边中点 = 脚底中点）
   const dst = new Uint8ClampedArray(tw * th * 4);
   const pad = index.base[key] ? Math.max(0, sh - th) : 0;   // 补过墨线的走路帧：上下各多 scale 像素，取下半部分
   const fx = Math.round(sw / 2 - tw / 2), fy = sh - th;

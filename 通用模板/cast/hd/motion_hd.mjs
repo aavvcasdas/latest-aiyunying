@@ -38,7 +38,13 @@ const LIB = {
   shake: { label: '摇头', fps: 12, loop: false, n: 12, f: (c, i, n) => { const a = sin(TAU * 2 * i / n) * (1 - 0.3 * i / n); return { k: c.front, headDx: 2.2 * a, head: 0.05 * a }; } },
   tilt: { label: '歪头', fps: 10, loop: false, n: 10, f: (c, i, n) => { const v = ease(i / (n * 0.55)); return { k: i === 6 ? c.blink : c.front, head: 0.13 * v, headDx: 1.0 * v }; } },
   bow: { label: '鞠躬', fps: 12, loop: false, n: 14, f: (c, i, n) => { const v = inOut(i / (n - 1), 0, 0.38, 0.62, 1); return { k: v > 0.9 ? c.blink : c.front, bow: 0.16 * v, headDy: 3.5 * v }; } },
-  hop: { label: '开心跳', fps: 12, loop: true, n: 12, f: (c, i) => { const dy = [0, 0, -3, -7, -9, -9, -7, -3, 0, 0, 0, 0][i], sy = [0.97, 0.93, 1.03, 1.05, 1.03, 1, 1.02, 1.04, 0.93, 0.96, 0.99, 1][i]; return { k: c.front, dy, sy, sx: 1 + (1 - sy) * 0.6 }; } },
+  // 起跳方向要和 1 倍那一层一致：1 倍的 hop 是「先蹲一下、再往上跳离地」。
+  // 这里以前 sy 只在 0.93–1.05 之间抖、dy 最大 -9，跳起来的幅度比 1 倍小一半，看起来像在原地压扁。
+  hop: { label: '开心跳', fps: 12, loop: true, n: 12, f: (c, i) => {
+    const dy = [0, 1.5, -6, -13, -18, -18, -13, -6, 0, 0.5, 0, 0][i];
+    const sy = [0.96, 0.92, 1.04, 1.06, 1.04, 1.02, 1.03, 1.05, 0.94, 0.97, 0.99, 1][i];
+    return { k: c.front, dy, sy, sx: 1 + (1 - sy) * 0.7 };
+  } },
   cheer: { label: '欢呼', fps: 12, loop: true, n: 12, f: (c, i, n) => { const a = sin(TAU * i / n); return { k: c.wave || c.front, dy: -4 * abs(a), lean: 0.05 * a, sy: 1 + 0.02 * abs(a) }; } },
   sway: { label: '摇摆', fps: 10, loop: true, n: 16, f: (c, i, n) => { const a = sin(TAU * i / n); return { k: i === 13 ? c.blink : c.front, sway: 3 * a, head: -0.05 * a, dy: -0.8 * abs(a) }; } },
   step: { label: '踩拍', fps: 12, loop: true, n: 16, f: (c, i, n) => { const q = (i / n) * 4, b = Math.floor(q), p = sin(Math.PI * (q - b)), a = b % 2 ? 1 : -1; return { k: c.front, sway: 2.4 * a * p, dy: -2.2 * p, head: -0.05 * a * p, lean: 0.03 * a * p }; } },
@@ -57,7 +63,12 @@ const LIB = {
   wave: { label: '挥手', fps: 10, loop: true, n: 12, f: (c, i, n) => { const a = sin(TAU * 2 * i / n); return { k: c.wave, lean: 0.035 * a, head: 0.04 * a, dy: -0.6 * abs(a) }; } },
   point: { label: '递出去', fps: 10, loop: false, n: 10, f: (c, i, n) => { const v = ease((i - 2) / 4); return i < 3 ? { k: c.front, lean: 0.015 * i } : { k: c.point, dx: 1.5 * v, lean: 0.05 * v }; } },
   float: { label: '悬浮待机', fps: 8, loop: true, n: 16, f: (c, i, n) => ({ k: i === 9 ? c.blink : c.front, dy: -3 - 2.5 * sin(TAU * i / n), sway: 1.2 * sin(TAU * i / n + 1) }) },
-  hover: { label: '振翅悬停', fps: 12, loop: true, n: 12, f: (c, i, n) => { const a = sin(TAU * i / n); return { k: c.front, dy: -5 - 4 * a, sy: 1 + 0.015 * a, sx: 1 - 0.01 * a }; } },
+  // 悬停要用振翅格（c.fly），不能用站姿大格 c.front：引擎里这一格的画框按 1 倍设计（小格），
+  // 换成大格会大出 1.9 倍，裁到画框里就只剩躯干和腿（这就是之前「GPT 龙娘」那一帧的样子）。
+  // 悬停必须用振翅小格（c.fly），不能用站姿大格 c.front：
+  // 引擎里这一格的画框是按 1 倍的振翅格（75×104）算的，换成 264×352 的大格会大出近 2 倍，
+  // 裁进画框就只剩躯干和腿——「GPT 龙娘 · 振翅悬停」那一帧就是这样。
+  hover: { label: '振翅悬停', fps: 12, loop: true, n: 12, f: (c, i, n) => { const a = sin(TAU * i / n); return { k: c.fly + (i % 2), dy: -4 - 3.5 * a, head: 0.03 * a, sy: 1 + 0.012 * a }; } },
   fly: { label: '飞行', fps: 10, loop: true, n: 8, f: (c, i, n) => ({ k: c.fly + (i % 2), dy: -6 - 3 * sin(TAU * i / n) }) },
   cast: { label: '施法', fps: 10, loop: false, n: 14, f: (c, i, n) => { const v = ease((i - 2) / 5); return i < 3 ? { k: c.front, sy: 1 - 0.02 * i } : { k: c.cast, dy: -4 * v, lean: 0.05 * v, sy: 1 + 0.02 * v }; } },
   rage: { label: '生气', fps: 14, loop: true, n: 10, f: (c, i) => ({ k: c.rage, dx: (i % 2 ? -1 : 1) * 0.8, dy: [0, -2, -3, -2, 0, 0, -2, -3, -2, 0][i], sy: [0.97, 1.01, 1.02, 1.01, 0.96, 0.97, 1.01, 1.02, 1.01, 0.96][i] }) },
