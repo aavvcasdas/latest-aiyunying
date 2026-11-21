@@ -1,0 +1,437 @@
+{
+ "measured": false,
+ "method": "规划轴：按 3.36 字/秒估算（每个分句不少于 0.8 秒，每个标点 0.15 秒，句间 0.18 秒）。没有对齐任何音频，只能出无声样片",
+ "source": {
+  "script": "台词.txt",
+  "script_sha256": "3171b61732a092ea5f75c0e6fa509ae8b2bb1650a6b460f5c861c96ceb4df919"
+ },
+ "beat": null,
+ "lines": [
+  {
+   "text": "鲸鱼娘的呼吸待机",
+   "start": 0.25,
+   "end": 2.631,
+   "who": "whale"
+  },
+  {
+   "text": "鲸鱼娘的挥手打招呼",
+   "start": 2.811,
+   "end": 5.49,
+   "who": "whale"
+  },
+  {
+   "text": "鲸鱼娘的递出去让位",
+   "start": 5.67,
+   "end": 8.349,
+   "who": "whale"
+  },
+  {
+   "text": "鲸鱼娘的干饭",
+   "start": 8.529,
+   "end": 10.315,
+   "who": "whale"
+  },
+  {
+   "text": "鲸鱼娘的开心跳",
+   "start": 10.495,
+   "end": 12.578,
+   "who": "whale"
+  },
+  {
+   "text": "鲸鱼娘的点头",
+   "start": 12.758,
+   "end": 14.544,
+   "who": "whale"
+  },
+  {
+   "text": "鲸鱼娘的摇头",
+   "start": 14.724,
+   "end": 16.51,
+   "who": "whale"
+  },
+  {
+   "text": "鲸鱼娘的鞠躬",
+   "start": 16.69,
+   "end": 18.476,
+   "who": "whale"
+  },
+  {
+   "text": "鲸鱼娘的摇摆舞",
+   "start": 18.656,
+   "end": 20.739,
+   "who": "whale"
+  },
+  {
+   "text": "鲸鱼娘的吃惊",
+   "start": 20.919,
+   "end": 22.705,
+   "who": "whale"
+  },
+  {
+   "text": "鲸鱼娘的低落",
+   "start": 22.885,
+   "end": 24.671,
+   "who": "whale"
+  },
+  {
+   "text": "鲸鱼娘的发抖",
+   "start": 24.851,
+   "end": 26.637,
+   "who": "whale"
+  },
+  {
+   "text": "GPT 龙娘的悬浮待机",
+   "start": 26.817,
+   "end": 29.347,
+   "who": "gpt"
+  },
+  {
+   "text": "GPT 龙娘的振翅悬停",
+   "start": 29.527,
+   "end": 32.057,
+   "who": "gpt"
+  },
+  {
+   "text": "GPT 龙娘的施法",
+   "start": 32.237,
+   "end": 34.172,
+   "who": "gpt"
+  },
+  {
+   "text": "GPT 龙娘的生气",
+   "start": 34.352,
+   "end": 36.287,
+   "who": "gpt"
+  },
+  {
+   "text": "GPT 龙娘的点头",
+   "start": 36.467,
+   "end": 38.402,
+   "who": "gpt"
+  },
+  {
+   "text": "GPT 龙娘的歪头疑问",
+   "start": 38.582,
+   "end": 41.112,
+   "who": "gpt"
+  },
+  {
+   "text": "GPT 龙娘的鞠躬",
+   "start": 41.292,
+   "end": 43.227,
+   "who": "gpt"
+  },
+  {
+   "text": "GPT 龙娘的吃惊",
+   "start": 43.407,
+   "end": 45.342,
+   "who": "gpt"
+  },
+  {
+   "text": "GPT 龙娘的摇头",
+   "start": 45.522,
+   "end": 47.457,
+   "who": "gpt"
+  },
+  {
+   "text": "Claude 大小姐的呼吸待机",
+   "start": 47.637,
+   "end": 50.911,
+   "who": "claude"
+  },
+  {
+   "text": "Claude 大小姐的提裙行礼",
+   "start": 51.091,
+   "end": 54.365,
+   "who": "claude"
+  },
+  {
+   "text": "Claude 大小姐的低头看书",
+   "start": 54.545,
+   "end": 57.819,
+   "who": "claude"
+  },
+  {
+   "text": "Claude 大小姐的歪头疑问",
+   "start": 57.999,
+   "end": 61.273,
+   "who": "claude"
+  },
+  {
+   "text": "Claude 大小姐的点头",
+   "start": 61.453,
+   "end": 64.132,
+   "who": "claude"
+  },
+  {
+   "text": "Claude 大小姐的摇头",
+   "start": 64.312,
+   "end": 66.991,
+   "who": "claude"
+  },
+  {
+   "text": "Claude 大小姐的左右张望",
+   "start": 67.171,
+   "end": 70.445,
+   "who": "claude"
+  },
+  {
+   "text": "Claude 大小姐的低落",
+   "start": 70.625,
+   "end": 73.304,
+   "who": "claude"
+  },
+  {
+   "text": "Claude 大小姐的开心跳",
+   "start": 73.484,
+   "end": 76.46,
+   "who": "claude"
+  },
+  {
+   "text": "豆包的呼吸待机",
+   "start": 76.64,
+   "end": 78.723,
+   "who": "doubao"
+  },
+  {
+   "text": "豆包的踩拍",
+   "start": 78.903,
+   "end": 80.391,
+   "who": "doubao"
+  },
+  {
+   "text": "豆包的摇摆舞",
+   "start": 80.571,
+   "end": 82.357,
+   "who": "doubao"
+  },
+  {
+   "text": "豆包的开心跳",
+   "start": 82.537,
+   "end": 84.323,
+   "who": "doubao"
+  },
+  {
+   "text": "豆包的点头",
+   "start": 84.503,
+   "end": 85.991,
+   "who": "doubao"
+  },
+  {
+   "text": "豆包的鞠躬",
+   "start": 86.171,
+   "end": 87.659,
+   "who": "doubao"
+  },
+  {
+   "text": "豆包的歪头疑问",
+   "start": 87.839,
+   "end": 89.922,
+   "who": "doubao"
+  },
+  {
+   "text": "豆包的吃惊",
+   "start": 90.102,
+   "end": 91.59,
+   "who": "doubao"
+  },
+  {
+   "text": "豆包的转圈",
+   "start": 91.77,
+   "end": 93.258,
+   "who": "doubao"
+  },
+  {
+   "text": "Gemini的呼吸待机",
+   "start": 93.438,
+   "end": 95.819,
+   "who": "gemini"
+  },
+  {
+   "text": "Gemini的左右张望",
+   "start": 95.999,
+   "end": 98.38,
+   "who": "gemini"
+  },
+  {
+   "text": "Gemini的两边想想再选",
+   "start": 98.56,
+   "end": 101.536,
+   "who": "gemini"
+  },
+  {
+   "text": "Gemini的开心跳",
+   "start": 101.716,
+   "end": 103.799,
+   "who": "gemini"
+  },
+  {
+   "text": "Gemini的摇摆舞",
+   "start": 103.979,
+   "end": 106.062,
+   "who": "gemini"
+  },
+  {
+   "text": "Gemini的点头",
+   "start": 106.242,
+   "end": 108.028,
+   "who": "gemini"
+  },
+  {
+   "text": "Gemini的吃惊",
+   "start": 108.208,
+   "end": 109.994,
+   "who": "gemini"
+  },
+  {
+   "text": "Gemini的歪头疑问",
+   "start": 110.174,
+   "end": 112.555,
+   "who": "gemini"
+  },
+  {
+   "text": "Kimi的呼吸待机",
+   "start": 112.735,
+   "end": 114.818,
+   "who": "kimi"
+  },
+  {
+   "text": "Kimi的想事情",
+   "start": 114.998,
+   "end": 116.784,
+   "who": "kimi"
+  },
+  {
+   "text": "Kimi的点头",
+   "start": 116.964,
+   "end": 118.452,
+   "who": "kimi"
+  },
+  {
+   "text": "Kimi的鞠躬",
+   "start": 118.632,
+   "end": 120.12,
+   "who": "kimi"
+  },
+  {
+   "text": "Kimi的左右张望",
+   "start": 120.3,
+   "end": 122.383,
+   "who": "kimi"
+  },
+  {
+   "text": "Kimi的摇头",
+   "start": 122.563,
+   "end": 124.051,
+   "who": "kimi"
+  },
+  {
+   "text": "Kimi的低落",
+   "start": 124.231,
+   "end": 125.719,
+   "who": "kimi"
+  },
+  {
+   "text": "Kimi的开心跳",
+   "start": 125.899,
+   "end": 127.685,
+   "who": "kimi"
+  },
+  {
+   "text": "千问的呼吸待机",
+   "start": 127.865,
+   "end": 129.948,
+   "who": "qwen"
+  },
+  {
+   "text": "千问的鞠躬",
+   "start": 130.128,
+   "end": 131.616,
+   "who": "qwen"
+  },
+  {
+   "text": "千问的摇摆舞",
+   "start": 131.796,
+   "end": 133.582,
+   "who": "qwen"
+  },
+  {
+   "text": "千问的点头",
+   "start": 133.762,
+   "end": 135.25,
+   "who": "qwen"
+  },
+  {
+   "text": "千问的歪头疑问",
+   "start": 135.43,
+   "end": 137.513,
+   "who": "qwen"
+  },
+  {
+   "text": "千问的开心跳",
+   "start": 137.693,
+   "end": 139.479,
+   "who": "qwen"
+  },
+  {
+   "text": "千问的摇头",
+   "start": 139.659,
+   "end": 141.147,
+   "who": "qwen"
+  },
+  {
+   "text": "千问的转圈",
+   "start": 141.327,
+   "end": 142.815,
+   "who": "qwen"
+  },
+  {
+   "text": "智谱的呼吸待机",
+   "start": 142.995,
+   "end": 145.078,
+   "who": "zai"
+  },
+  {
+   "text": "智谱的打盹",
+   "start": 145.258,
+   "end": 146.746,
+   "who": "zai"
+  },
+  {
+   "text": "智谱的惊醒竖耳",
+   "start": 146.926,
+   "end": 149.009,
+   "who": "zai"
+  },
+  {
+   "text": "智谱的点头",
+   "start": 149.189,
+   "end": 150.677,
+   "who": "zai"
+  },
+  {
+   "text": "智谱的摇头",
+   "start": 150.857,
+   "end": 152.345,
+   "who": "zai"
+  },
+  {
+   "text": "智谱的歪头疑问",
+   "start": 152.525,
+   "end": 154.608,
+   "who": "zai"
+  },
+  {
+   "text": "智谱的开心跳",
+   "start": 154.788,
+   "end": 156.574,
+   "who": "zai"
+  },
+  {
+   "text": "智谱的左右张望",
+   "start": 156.754,
+   "end": 158.837,
+   "who": "zai"
+  }
+ ]
+}

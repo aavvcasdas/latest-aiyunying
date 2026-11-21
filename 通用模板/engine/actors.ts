@@ -13,6 +13,8 @@
 //   · 开渲前把全片过一遍        → engine.ts 的 castPreflight() 用 Actor.probe() 逐帧看每个角色画哪一格、会不会悄悄不见
 import * as THREE from 'three';
 import atlasUrl from './assets/cast_atlas.png';
+import hdAtlasUrl from './assets/cast_hd_atlas.png';
+import hdAtlasJson from './assets/cast_hd_atlas.json';
 import atlasJson from './assets/cast_atlas.json';
 import actionsJson from './assets/cast_actions.json';
 import { FPS } from './timeline';
@@ -22,7 +24,23 @@ export type CharId = 'whale' | 'gpt' | 'claude' | 'doubao' | 'gemini' | 'kimi' |
 export type Wear = 'crown' | 'hood' | 'tophat' | 'bow' | 'tiara' | 'ears' | 'tail';
 type Rect = [number, number, number, number];
 interface Anchor { cx: number; top: number; hw: number }
-export interface AtlasData { tex: THREE.Texture; w: number; h: number; rects: Record<string, Rect>; anchors: Record<string, Anchor>; url: string }
+/**
+ * 高清细节层（cast_hd_atlas.png，由 node 通用模板/cast/hd/bake_hd_atlas.mjs 从 人物/q版HD_2x 烘出来）。
+ * 每格的 rect 是高清图里的像素坐标，宽高严格等于 1 倍 rect × scale，底边中点对齐——
+ * 所以引擎摆卡片只用 1 倍那套坐标，画面内容和高清像素一一对上。
+ * rect 为 null 的格子（道具、表情贴、几个旧动作）没有高清版，照旧取 1 倍那一层。
+ */
+export interface HdAtlas { tex: THREE.Texture; w: number; h: number; scale: number; rects: Record<string, Rect | null> }
+export interface AtlasData {
+  tex: THREE.Texture; w: number; h: number; rects: Record<string, Rect>; anchors: Record<string, Anchor>; url: string;
+  hd?: HdAtlas;
+}
+export const HD_ATLAS_META = hdAtlasJson as unknown as { w: number; h: number; scale: number; s: Record<string, Rect | null> };
+/**
+ * 高清开关：删掉 通用模板/engine/assets/cast_hd_atlas.png（同时清空 json）就是「不做高清」——
+ * 常量在编译期就是 false，那 14 MB 不会被打进包里，也不会有一次多余的解码。
+ */
+const HAS_HD = Object.keys(HD_ATLAS_META.s).length > 0;
 
 export interface AtlasMeta { w: number; h: number; s: Record<string, Rect> }
 export const ATLAS_URL: string = atlasUrl;
@@ -75,10 +93,35 @@ export function cycleIndex(i: number, n: number, what = '帧号'): number {
   return ((Math.floor(i) % n) + n) % n;
 }
 
+/** 高清图集加载好了没有（数字，预检 / 文案用这个数说话；0 = 没装高清包） */
+export function hdCellCount(): number { return Object.values(HD_ATLAS_META.s).filter(Boolean).length; }
+
+/** 把高清细节层挂上图集：一次解码一张图集（14 MB 左右），只用一格 rect，不预载别的。 */
+function loadHdLayer(): Promise<HdAtlas> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const tex = new THREE.Texture(img);
+      tex.flipY = false; tex.generateMipmaps = false;
+      tex.minFilter = THREE.LinearFilter; tex.magFilter = THREE.NearestFilter; tex.needsUpdate = true;
+      resolve({ tex, w: img.width, h: img.height, scale: HD_ATLAS_META.scale, rects: HD_ATLAS_META.s });
+    };
+    img.onerror = () => reject(new Error(`高清图集加载失败（取不到或文件损坏）：${hdAtlasUrl}\n  它由 node 通用模板/cast/hd/bake_hd_atlas.mjs 从 人物/q版HD_2x 烘出来；要做回 1 倍就把 通用模板/engine/assets/cast_hd_atlas.* 删掉。`));
+    img.src = hdAtlasUrl;
+  });
+}
+
 let atlasPromise: Promise<AtlasData> | null = null;
 export function loadAtlas(): Promise<AtlasData> {
   if (!atlasPromise) {
     atlasPromise = new Promise<AtlasData>((resolve, reject) => {
+      // 高清层：先量一下高清图集的文件头（几十字节，不用解码），把尺寸和实际贴图对一遍；
+      // 图集和 1 倍坐标表不是同一版时，宁可这里失败，也不要在成片里切到别的格子上。
+      const hdReady = HAS_HD ? fetch(hdAtlasUrl).then((r) => r.arrayBuffer()).then((b) => {
+        const dv = new DataView(b);
+        const w = dv.getUint32(16), h = dv.getUint32(20);
+        if (w !== HD_ATLAS_META.w || h !== HD_ATLAS_META.h) throw new Error(`高清图集 PNG 是 ${w}×${h}，坐标表写的是 ${HD_ATLAS_META.w}×${HD_ATLAS_META.h}：两个文件不是同一版，重新跑 node 通用模板/cast/hd/bake_hd_atlas.mjs`);
+      }) : Promise.resolve();
       const img = new Image();
       img.onload = () => {
         const cv = document.createElement('canvas'); cv.width = img.width; cv.height = img.height;
@@ -102,7 +145,9 @@ export function loadAtlas(): Promise<AtlasData> {
         // 像素角色：放大时用最近邻，别让显卡把它插值糊掉（缩小时仍然线性，远景不闪）
         tex.flipY = false; tex.generateMipmaps = false;
         tex.minFilter = THREE.LinearFilter; tex.magFilter = THREE.NearestFilter; tex.needsUpdate = true;
-        resolve({ tex, w: img.width, h: img.height, rects: ATLAS_META.s, anchors, url: atlasUrl });
+        const done = (hd?: HdAtlas) => resolve({ tex, w: img.width, h: img.height, rects: ATLAS_META.s, anchors, url: atlasUrl, hd });
+        if (!HAS_HD) { done(); return; }
+        hdReady.then(() => loadHdLayer()).then(done, reject);
       };
       img.onerror = () => reject(new Error(`角色图集加载失败（取不到或文件损坏）：${atlasUrl}`));
       img.src = atlasUrl;
@@ -112,13 +157,19 @@ export function loadAtlas(): Promise<AtlasData> {
 }
 
 // 抗锯齿像素采样：任意缩放下像素边缘保持锐利且不闪烁（纹理本身用线性过滤）
-export function pixelMat(tex: THREE.Texture, tw: number, th: number): THREE.ShaderMaterial {
+/** 高清细节层的取样参数：rect 由调用方在换格时写（没有高清版就写 detailScale=0，退回 1 倍那一层） */
+export interface DetailLayer { tex: THREE.Texture; w: number; h: number; scale: number }
+
+export function pixelMat(tex: THREE.Texture, tw: number, th: number, detail?: DetailLayer): THREE.ShaderMaterial {
   const m = new THREE.ShaderMaterial({
     fog: true, side: THREE.DoubleSide,
     uniforms: {
       map: { value: tex }, texSize: { value: new THREE.Vector2(tw, th) }, rect: { value: new THREE.Vector4(0, 0, tw, th) },
       flip: { value: 0 }, tint: { value: new THREE.Vector3(1, 1, 1) }, sil: { value: 0 }, silColor: { value: rgb(0x120e1f) },
       flash: { value: 0 }, alpha: { value: 1 }, cut: { value: 2 },
+      // 高清细节层：pix 仍是 1 倍坐标（采样精度、rect 边界都按 1 倍算），到高清图上按 ×scale 取样
+      detail: { value: detail?.tex ?? tex }, detailSize: { value: new THREE.Vector2(detail?.w ?? tw, detail?.h ?? th) },
+      hdRect: { value: new THREE.Vector4(0, 0, 0, 0) }, detailScale: { value: 0 },
       fogColor: { value: new THREE.Color() }, fogNear: { value: 1 }, fogFar: { value: 1000 },
     },
     vertexShader: `varying vec2 vUv;
@@ -127,7 +178,8 @@ void main(){ vUv = uv; vec4 mvPosition = modelViewMatrix * vec4(position,1.0); g
 #include <fog_vertex>
 }`,
     fragmentShader: `uniform sampler2D map; uniform vec2 texSize; uniform vec4 rect; uniform float flip; uniform vec3 tint;
-uniform float sil; uniform vec3 silColor; uniform float flash; uniform float alpha; uniform float cut; varying vec2 vUv;
+uniform float sil; uniform vec3 silColor; uniform float flash; uniform float alpha; uniform float cut;
+uniform sampler2D detail; uniform vec2 detailSize; uniform vec4 hdRect; uniform float detailScale; varying vec2 vUv;
 #include <fog_pars_fragment>
 void main(){
   if (1.0 - vUv.y > cut) discard;
@@ -137,7 +189,18 @@ void main(){
   vec2 d = max(fwidth(pix), vec2(0.0001));
   pix = seam + clamp((pix - seam) / d, -0.5, 0.5);
   pix = clamp(pix, rect.xy + 0.5, rect.xy + rect.zw - 0.5);
-  vec4 c = texture2D(map, pix / texSize);
+  // 有高清层就按「1 倍像素坐标 × 倍数」到高清图上取样；没有就照旧用 1 倍图集
+  // 高清图集里一格周围是别的格子，夹取范围要按这一格的 rect 收窄（1 倍图集也一样收，免得取到邻格）。
+  // 贴图本身是线性过滤：图上相邻两像素正好是「1 倍尺度下的一个像素」，缩小时和 1 倍图集走同一条插值路径。
+  vec4 c;
+  if (detailScale > 0.5) {
+    // hdRect.xy 是这一格在高清图集里的左上角（高清像素）；pix − rect.xy 是「这一格里第几个 1 倍像素」
+    vec2 hd = hdRect.xy + (pix - rect.xy) * detailScale;
+    vec2 lo = hdRect.xy + vec2(0.5), hi = hdRect.xy + rect.zw * detailScale - vec2(0.5);
+    c = texture2D(detail, clamp(hd, lo, hi) / detailSize);
+  } else {
+    c = texture2D(map, pix / texSize);
+  }
   if (c.a < 0.5) discard;
   if (alpha < 0.999) { float n = fract(sin(dot(floor(gl_FragCoord.xy), vec2(12.9898, 78.233))) * 43758.5453); if (n > alpha) discard; }
   vec3 col = c.rgb / max(c.a, 0.001);
@@ -292,6 +355,20 @@ function overlayTex(atlas: AtlasData, wear: Wear, key: string): THREE.CanvasText
   return t;
 }
 
+/**
+ * 换格时把「这一格的高清 rect」写进材质：有高清版就用 detail 图集取像素，没有就退回 1 倍那一层。
+ * hdRect.xy 是这一格在高清图集里的左上角（高清像素），采样公式是（hdRect.xy + (pix − rect.xy) × scale）/ detailSize。
+ */
+function setHdRect(mat: THREE.ShaderMaterial, hd: HdAtlas | undefined, key: string) {
+  const u = mat.uniforms;
+  const r = hd?.rects[key] ?? null;
+  if (!hd || !r) { u.detailScale.value = 0; return; }
+  (u.detail.value as THREE.Texture) = hd.tex;
+  (u.detailSize.value as THREE.Vector2).set(hd.w, hd.h);
+  (u.hdRect.value as THREE.Vector4).set(r[0], r[1], 0, 0);
+  u.detailScale.value = hd.scale;
+}
+
 const cardGeo = new THREE.PlaneGeometry(1, 1).translate(0, 0.5, 0);
 const shadowGeo = new THREE.CircleGeometry(0.5, 20).rotateX(-Math.PI / 2);
 
@@ -339,6 +416,7 @@ export class Actor {
     if (!r) throw new Error(`[cast] 缺少角色精灵「${key}」——按项目规则禁止静默回退到替代造型`);
     this.key = key; this.k = scaleFor(key);
     (this.mat.uniforms.rect.value as THREE.Vector4).set(r[0], r[1], r[2], r[3]);
+    setHdRect(this.mat, this.atlas.hd, key);
     this.card.scale.set(r[2] * PX * this.k, r[3] * PX * this.k, 1);
     this.height = r[3] * PX * this.k * this.baseSize;
     this.syncLayers();

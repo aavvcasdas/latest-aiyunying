@@ -60,6 +60,8 @@ npm test && npm run typecheck                      # 改了引擎之后跑
 │   ├─ audio_mix.py   音轨按采样对位、淡出、配乐压低
 │   └─ qa.py          逐帧 / 卡点 / 成片自检，分镜总览图
 ├─ cast/          图集的源数据与重建脚本（npm run atlas:check 校验逐字节一致）
+│   └─ hd/        2 倍高清素材链路：hd_base.py（去残留+放大）→ bake_hd.mjs（动作派生）→ bake_hd_atlas.mjs（细节层图集）
+│                 svg_px.mjs / svg_pack.mjs 把基础格导成 SVG（每色一条 path），命令见 `人物/q版HD_2x/README.md`
 ├─ 样板/          新作品的起点：样板/mv、样板/day、样板/tachie（长大版立绘进成片，带分镜总览与长大段 gif）
 ├─ preview/       预览台
 ├─ tests/         node --test + python unittest

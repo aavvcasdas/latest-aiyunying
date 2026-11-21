@@ -1,0 +1,12 @@
+{
+  "id": "cast-actions-overview",
+  "kind": "day",
+  "title": "人物动作总览",
+  "script": "台词.txt",
+  "speaker": "whale",
+  "output": "成片/人物动作总览",
+  "video": {
+    "bitrate": "3500k",
+    "preset": "medium"
+  }
+}

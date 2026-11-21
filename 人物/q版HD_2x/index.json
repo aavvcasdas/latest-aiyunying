@@ -1,0 +1,1764 @@
+{
+ "scale": 2,
+ "note": "每个动作一张网格图，帧号从左到右、从上到下；同一角色所有动作同格同锚点。anchor = 脚底中心在格内的像素坐标。",
+ "chars": {
+  "whale": {
+   "name": "本鲸",
+   "cell": [
+    232,
+    224
+   ],
+   "anchor": [
+    116,
+    208
+   ],
+   "size1x": [
+    116,
+    112
+   ],
+   "actions": {
+    "idle": {
+     "label": "呼吸待机",
+     "file": "whale/idle.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "label": "走路",
+     "file": "whale/walk.png",
+     "frames": 8,
+     "cols": 8,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    },
+    "wave": {
+     "label": "挥手",
+     "file": "whale/wave.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    },
+    "point": {
+     "label": "递出去",
+     "file": "whale/point.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 10,
+     "loop": false
+    },
+    "nod": {
+     "label": "点头",
+     "file": "whale/nod.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "shake": {
+     "label": "摇头",
+     "file": "whale/shake.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "tilt": {
+     "label": "歪头",
+     "file": "whale/tilt.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 10,
+     "loop": false
+    },
+    "bow": {
+     "label": "鞠躬",
+     "file": "whale/bow.png",
+     "frames": 14,
+     "cols": 14,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "hop": {
+     "label": "开心跳",
+     "file": "whale/hop.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "cheer": {
+     "label": "欢呼",
+     "file": "whale/cheer.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "sway": {
+     "label": "摇摆",
+     "file": "whale/sway.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    },
+    "step": {
+     "label": "踩拍",
+     "file": "whale/step.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "surprise": {
+     "label": "吃惊",
+     "file": "whale/surprise.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "sad": {
+     "label": "低落",
+     "file": "whale/sad.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 8,
+     "loop": false
+    },
+    "shiver": {
+     "label": "发抖",
+     "file": "whale/shiver.png",
+     "frames": 8,
+     "cols": 8,
+     "rows": 1,
+     "fps": 14,
+     "loop": true
+    },
+    "lookaround": {
+     "label": "左右张望",
+     "file": "whale/lookaround.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 8,
+     "loop": true
+    }
+   }
+  },
+  "gpt": {
+   "name": "龙娘",
+   "cell": [
+    328,
+    392
+   ],
+   "anchor": [
+    164,
+    376
+   ],
+   "size1x": [
+    164,
+    196
+   ],
+   "actions": {
+    "float": {
+     "label": "悬浮待机",
+     "file": "gpt/float.png",
+     "frames": 16,
+     "cols": 12,
+     "rows": 2,
+     "fps": 8,
+     "loop": true
+    },
+    "hover": {
+     "label": "振翅悬停",
+     "file": "gpt/hover.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "fly": {
+     "label": "飞行",
+     "file": "gpt/fly.png",
+     "frames": 8,
+     "cols": 8,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    },
+    "cast": {
+     "label": "施法",
+     "file": "gpt/cast.png",
+     "frames": 14,
+     "cols": 12,
+     "rows": 2,
+     "fps": 10,
+     "loop": false
+    },
+    "rage": {
+     "label": "生气",
+     "file": "gpt/rage.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 14,
+     "loop": true
+    },
+    "nod": {
+     "label": "点头",
+     "file": "gpt/nod.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "shake": {
+     "label": "摇头",
+     "file": "gpt/shake.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "tilt": {
+     "label": "歪头",
+     "file": "gpt/tilt.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 10,
+     "loop": false
+    },
+    "bow": {
+     "label": "鞠躬",
+     "file": "gpt/bow.png",
+     "frames": 14,
+     "cols": 12,
+     "rows": 2,
+     "fps": 12,
+     "loop": false
+    },
+    "sway": {
+     "label": "摇摆",
+     "file": "gpt/sway.png",
+     "frames": 16,
+     "cols": 12,
+     "rows": 2,
+     "fps": 10,
+     "loop": true
+    },
+    "surprise": {
+     "label": "吃惊",
+     "file": "gpt/surprise.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "sad": {
+     "label": "低落",
+     "file": "gpt/sad.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 8,
+     "loop": false
+    },
+    "shiver": {
+     "label": "发抖",
+     "file": "gpt/shiver.png",
+     "frames": 8,
+     "cols": 8,
+     "rows": 1,
+     "fps": 14,
+     "loop": true
+    }
+   }
+  },
+  "claude": {
+   "name": "小克",
+   "cell": [
+    240,
+    224
+   ],
+   "anchor": [
+    120,
+    208
+   ],
+   "size1x": [
+    120,
+    112
+   ],
+   "actions": {
+    "idle": {
+     "label": "呼吸待机",
+     "file": "claude/idle.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "label": "走路",
+     "file": "claude/walk.png",
+     "frames": 8,
+     "cols": 8,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    },
+    "curtsy": {
+     "label": "提裙行礼",
+     "file": "claude/curtsy.png",
+     "frames": 14,
+     "cols": 14,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "read": {
+     "label": "低头看书",
+     "file": "claude/read.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 6,
+     "loop": true
+    },
+    "nod": {
+     "label": "点头",
+     "file": "claude/nod.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "shake": {
+     "label": "摇头",
+     "file": "claude/shake.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "tilt": {
+     "label": "歪头",
+     "file": "claude/tilt.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 10,
+     "loop": false
+    },
+    "bow": {
+     "label": "鞠躬",
+     "file": "claude/bow.png",
+     "frames": 14,
+     "cols": 14,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "hop": {
+     "label": "开心跳",
+     "file": "claude/hop.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "cheer": {
+     "label": "欢呼",
+     "file": "claude/cheer.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "sway": {
+     "label": "摇摆",
+     "file": "claude/sway.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    },
+    "step": {
+     "label": "踩拍",
+     "file": "claude/step.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "surprise": {
+     "label": "吃惊",
+     "file": "claude/surprise.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "sad": {
+     "label": "低落",
+     "file": "claude/sad.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 8,
+     "loop": false
+    },
+    "shiver": {
+     "label": "发抖",
+     "file": "claude/shiver.png",
+     "frames": 8,
+     "cols": 8,
+     "rows": 1,
+     "fps": 14,
+     "loop": true
+    },
+    "lookaround": {
+     "label": "左右张望",
+     "file": "claude/lookaround.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 8,
+     "loop": true
+    }
+   }
+  },
+  "doubao": {
+   "name": "豆包",
+   "cell": [
+    224,
+    216
+   ],
+   "anchor": [
+    112,
+    200
+   ],
+   "size1x": [
+    112,
+    108
+   ],
+   "actions": {
+    "idle": {
+     "label": "呼吸待机",
+     "file": "doubao/idle.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "label": "走路",
+     "file": "doubao/walk.png",
+     "frames": 8,
+     "cols": 8,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    },
+    "nod": {
+     "label": "点头",
+     "file": "doubao/nod.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "shake": {
+     "label": "摇头",
+     "file": "doubao/shake.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "tilt": {
+     "label": "歪头",
+     "file": "doubao/tilt.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 10,
+     "loop": false
+    },
+    "bow": {
+     "label": "鞠躬",
+     "file": "doubao/bow.png",
+     "frames": 14,
+     "cols": 14,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "hop": {
+     "label": "开心跳",
+     "file": "doubao/hop.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "cheer": {
+     "label": "欢呼",
+     "file": "doubao/cheer.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "sway": {
+     "label": "摇摆",
+     "file": "doubao/sway.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    },
+    "step": {
+     "label": "踩拍",
+     "file": "doubao/step.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "surprise": {
+     "label": "吃惊",
+     "file": "doubao/surprise.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "sad": {
+     "label": "低落",
+     "file": "doubao/sad.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 8,
+     "loop": false
+    },
+    "shiver": {
+     "label": "发抖",
+     "file": "doubao/shiver.png",
+     "frames": 8,
+     "cols": 8,
+     "rows": 1,
+     "fps": 14,
+     "loop": true
+    },
+    "lookaround": {
+     "label": "左右张望",
+     "file": "doubao/lookaround.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 8,
+     "loop": true
+    }
+   }
+  },
+  "gemini": {
+   "name": "猫",
+   "cell": [
+    224,
+    216
+   ],
+   "anchor": [
+    112,
+    200
+   ],
+   "size1x": [
+    112,
+    108
+   ],
+   "actions": {
+    "idle": {
+     "label": "呼吸待机",
+     "file": "gemini/idle.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "label": "走路",
+     "file": "gemini/walk.png",
+     "frames": 8,
+     "cols": 8,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    },
+    "choose": {
+     "label": "两边想想再选",
+     "file": "gemini/choose.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 8,
+     "loop": false
+    },
+    "nod": {
+     "label": "点头",
+     "file": "gemini/nod.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "shake": {
+     "label": "摇头",
+     "file": "gemini/shake.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "tilt": {
+     "label": "歪头",
+     "file": "gemini/tilt.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 10,
+     "loop": false
+    },
+    "bow": {
+     "label": "鞠躬",
+     "file": "gemini/bow.png",
+     "frames": 14,
+     "cols": 14,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "hop": {
+     "label": "开心跳",
+     "file": "gemini/hop.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "cheer": {
+     "label": "欢呼",
+     "file": "gemini/cheer.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "sway": {
+     "label": "摇摆",
+     "file": "gemini/sway.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    },
+    "step": {
+     "label": "踩拍",
+     "file": "gemini/step.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "surprise": {
+     "label": "吃惊",
+     "file": "gemini/surprise.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "sad": {
+     "label": "低落",
+     "file": "gemini/sad.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 8,
+     "loop": false
+    },
+    "shiver": {
+     "label": "发抖",
+     "file": "gemini/shiver.png",
+     "frames": 8,
+     "cols": 8,
+     "rows": 1,
+     "fps": 14,
+     "loop": true
+    },
+    "lookaround": {
+     "label": "左右张望",
+     "file": "gemini/lookaround.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 8,
+     "loop": true
+    }
+   }
+  },
+  "kimi": {
+   "name": "Kimi",
+   "cell": [
+    224,
+    216
+   ],
+   "anchor": [
+    112,
+    200
+   ],
+   "size1x": [
+    112,
+    108
+   ],
+   "actions": {
+    "idle": {
+     "label": "呼吸待机",
+     "file": "kimi/idle.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "label": "走路",
+     "file": "kimi/walk.png",
+     "frames": 8,
+     "cols": 8,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    },
+    "think": {
+     "label": "歪头思考",
+     "file": "kimi/think.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 6,
+     "loop": true
+    },
+    "nod": {
+     "label": "点头",
+     "file": "kimi/nod.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "shake": {
+     "label": "摇头",
+     "file": "kimi/shake.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "tilt": {
+     "label": "歪头",
+     "file": "kimi/tilt.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 10,
+     "loop": false
+    },
+    "bow": {
+     "label": "鞠躬",
+     "file": "kimi/bow.png",
+     "frames": 14,
+     "cols": 14,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "hop": {
+     "label": "开心跳",
+     "file": "kimi/hop.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "cheer": {
+     "label": "欢呼",
+     "file": "kimi/cheer.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "sway": {
+     "label": "摇摆",
+     "file": "kimi/sway.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    },
+    "step": {
+     "label": "踩拍",
+     "file": "kimi/step.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "surprise": {
+     "label": "吃惊",
+     "file": "kimi/surprise.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "sad": {
+     "label": "低落",
+     "file": "kimi/sad.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 8,
+     "loop": false
+    },
+    "shiver": {
+     "label": "发抖",
+     "file": "kimi/shiver.png",
+     "frames": 8,
+     "cols": 8,
+     "rows": 1,
+     "fps": 14,
+     "loop": true
+    },
+    "lookaround": {
+     "label": "左右张望",
+     "file": "kimi/lookaround.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 8,
+     "loop": true
+    }
+   }
+  },
+  "qwen": {
+   "name": "千问",
+   "cell": [
+    224,
+    216
+   ],
+   "anchor": [
+    112,
+    200
+   ],
+   "size1x": [
+    112,
+    108
+   ],
+   "actions": {
+    "idle": {
+     "label": "呼吸待机",
+     "file": "qwen/idle.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "label": "走路",
+     "file": "qwen/walk.png",
+     "frames": 8,
+     "cols": 8,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    },
+    "nod": {
+     "label": "点头",
+     "file": "qwen/nod.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "shake": {
+     "label": "摇头",
+     "file": "qwen/shake.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "tilt": {
+     "label": "歪头",
+     "file": "qwen/tilt.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 10,
+     "loop": false
+    },
+    "bow": {
+     "label": "鞠躬",
+     "file": "qwen/bow.png",
+     "frames": 14,
+     "cols": 14,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "hop": {
+     "label": "开心跳",
+     "file": "qwen/hop.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "cheer": {
+     "label": "欢呼",
+     "file": "qwen/cheer.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "sway": {
+     "label": "摇摆",
+     "file": "qwen/sway.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    },
+    "step": {
+     "label": "踩拍",
+     "file": "qwen/step.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "surprise": {
+     "label": "吃惊",
+     "file": "qwen/surprise.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "sad": {
+     "label": "低落",
+     "file": "qwen/sad.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 8,
+     "loop": false
+    },
+    "shiver": {
+     "label": "发抖",
+     "file": "qwen/shiver.png",
+     "frames": 8,
+     "cols": 8,
+     "rows": 1,
+     "fps": 14,
+     "loop": true
+    },
+    "lookaround": {
+     "label": "左右张望",
+     "file": "qwen/lookaround.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 8,
+     "loop": true
+    },
+    "turn": {
+     "label": "转身",
+     "file": "qwen/turn.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    }
+   }
+  },
+  "zai": {
+   "name": "狐狸",
+   "cell": [
+    224,
+    216
+   ],
+   "anchor": [
+    112,
+    200
+   ],
+   "size1x": [
+    112,
+    108
+   ],
+   "actions": {
+    "idle": {
+     "label": "呼吸待机",
+     "file": "zai/idle.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 8,
+     "loop": true
+    },
+    "walk": {
+     "label": "走路",
+     "file": "zai/walk.png",
+     "frames": 8,
+     "cols": 8,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    },
+    "doze": {
+     "label": "打盹",
+     "file": "zai/doze.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 6,
+     "loop": true
+    },
+    "alert": {
+     "label": "惊醒竖耳",
+     "file": "zai/alert.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "nod": {
+     "label": "点头",
+     "file": "zai/nod.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "shake": {
+     "label": "摇头",
+     "file": "zai/shake.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "tilt": {
+     "label": "歪头",
+     "file": "zai/tilt.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 10,
+     "loop": false
+    },
+    "bow": {
+     "label": "鞠躬",
+     "file": "zai/bow.png",
+     "frames": 14,
+     "cols": 14,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "hop": {
+     "label": "开心跳",
+     "file": "zai/hop.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "cheer": {
+     "label": "欢呼",
+     "file": "zai/cheer.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "sway": {
+     "label": "摇摆",
+     "file": "zai/sway.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 10,
+     "loop": true
+    },
+    "step": {
+     "label": "踩拍",
+     "file": "zai/step.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 12,
+     "loop": true
+    },
+    "surprise": {
+     "label": "吃惊",
+     "file": "zai/surprise.png",
+     "frames": 10,
+     "cols": 10,
+     "rows": 1,
+     "fps": 12,
+     "loop": false
+    },
+    "sad": {
+     "label": "低落",
+     "file": "zai/sad.png",
+     "frames": 12,
+     "cols": 12,
+     "rows": 1,
+     "fps": 8,
+     "loop": false
+    },
+    "shiver": {
+     "label": "发抖",
+     "file": "zai/shiver.png",
+     "frames": 8,
+     "cols": 8,
+     "rows": 1,
+     "fps": 14,
+     "loop": true
+    },
+    "lookaround": {
+     "label": "左右张望",
+     "file": "zai/lookaround.png",
+     "frames": 16,
+     "cols": 16,
+     "rows": 1,
+     "fps": 8,
+     "loop": true
+    }
+   }
+  }
+ },
+ "base": {
+  "claude_front_0": {
+   "file": "base/claude_front_0.png",
+   "w": 170,
+   "h": 180
+  },
+  "claude_front_1": {
+   "file": "base/claude_front_1.png",
+   "w": 172,
+   "h": 180
+  },
+  "claude_side_0": {
+   "file": "base/claude_side_0.png",
+   "w": 124,
+   "h": 180
+  },
+  "claude_side_1": {
+   "file": "base/claude_side_1.png",
+   "w": 124,
+   "h": 180
+  },
+  "doubao_cage_0": {
+   "file": "base/doubao_cage_0.png",
+   "w": 70,
+   "h": 168
+  },
+  "doubao_cage_1": {
+   "file": "base/doubao_cage_1.png",
+   "w": 70,
+   "h": 168
+  },
+  "gemini_front_0": {
+   "file": "base/gemini_front_0.png",
+   "w": 176,
+   "h": 168
+  },
+  "gemini_front_1": {
+   "file": "base/gemini_front_1.png",
+   "w": 176,
+   "h": 168
+  },
+  "gemini_side_0": {
+   "file": "base/gemini_side_0.png",
+   "w": 122,
+   "h": 168
+  },
+  "gemini_side_1": {
+   "file": "base/gemini_side_1.png",
+   "w": 112,
+   "h": 168
+  },
+  "gpt_boss_blink": {
+   "file": "base/gpt_boss_blink.png",
+   "w": 264,
+   "h": 352
+  },
+  "gpt_boss_cast0": {
+   "file": "base/gpt_boss_cast0.png",
+   "w": 274,
+   "h": 352
+  },
+  "gpt_boss_cast1": {
+   "file": "base/gpt_boss_cast1.png",
+   "w": 254,
+   "h": 352
+  },
+  "gpt_boss_idle": {
+   "file": "base/gpt_boss_idle.png",
+   "w": 264,
+   "h": 352
+  },
+  "gpt_boss_rage": {
+   "file": "base/gpt_boss_rage.png",
+   "w": 264,
+   "h": 352
+  },
+  "gpt_fly_0": {
+   "file": "base/gpt_fly_0.png",
+   "w": 138,
+   "h": 192
+  },
+  "gpt_fly_1": {
+   "file": "base/gpt_fly_1.png",
+   "w": 128,
+   "h": 192
+  },
+  "kimi_front_0": {
+   "file": "base/kimi_front_0.png",
+   "w": 102,
+   "h": 168
+  },
+  "kimi_front_1": {
+   "file": "base/kimi_front_1.png",
+   "w": 102,
+   "h": 168
+  },
+  "kimi_side_0": {
+   "file": "base/kimi_side_0.png",
+   "w": 108,
+   "h": 168
+  },
+  "kimi_side_1": {
+   "file": "base/kimi_side_1.png",
+   "w": 108,
+   "h": 168
+  },
+  "p_claude_dizzy": {
+   "file": "base/p_claude_dizzy.png",
+   "w": 128,
+   "h": 128
+  },
+  "p_claude_neutral": {
+   "file": "base/p_claude_neutral.png",
+   "w": 128,
+   "h": 128
+  },
+  "p_claude_petri": {
+   "file": "base/p_claude_petri.png",
+   "w": 128,
+   "h": 128
+  },
+  "p_doubao_blink": {
+   "file": "base/p_doubao_blink.png",
+   "w": 128,
+   "h": 128
+  },
+  "p_doubao_neutral": {
+   "file": "base/p_doubao_neutral.png",
+   "w": 128,
+   "h": 128
+  },
+  "p_gemini": {
+   "file": "base/p_gemini.png",
+   "w": 128,
+   "h": 128
+  },
+  "p_gpt_haughty": {
+   "file": "base/p_gpt_haughty.png",
+   "w": 128,
+   "h": 128
+  },
+  "p_gpt_neutral": {
+   "file": "base/p_gpt_neutral.png",
+   "w": 128,
+   "h": 128
+  },
+  "p_gpt_rage": {
+   "file": "base/p_gpt_rage.png",
+   "w": 128,
+   "h": 128
+  },
+  "p_kimi": {
+   "file": "base/p_kimi.png",
+   "w": 128,
+   "h": 128
+  },
+  "p_qwen": {
+   "file": "base/p_qwen.png",
+   "w": 128,
+   "h": 128
+  },
+  "p_whale_neutral": {
+   "file": "base/p_whale_neutral.png",
+   "w": 128,
+   "h": 128
+  },
+  "p_whale_shout": {
+   "file": "base/p_whale_shout.png",
+   "w": 128,
+   "h": 128
+  },
+  "p_whale_think": {
+   "file": "base/p_whale_think.png",
+   "w": 128,
+   "h": 128
+  },
+  "p_zai": {
+   "file": "base/p_zai.png",
+   "w": 128,
+   "h": 128
+  },
+  "qwen_front_0": {
+   "file": "base/qwen_front_0.png",
+   "w": 90,
+   "h": 168
+  },
+  "qwen_front_1": {
+   "file": "base/qwen_front_1.png",
+   "w": 90,
+   "h": 168
+  },
+  "qwen_side_0": {
+   "file": "base/qwen_side_0.png",
+   "w": 78,
+   "h": 168
+  },
+  "qwen_side_1": {
+   "file": "base/qwen_side_1.png",
+   "w": 80,
+   "h": 168
+  },
+  "walk_claude_0": {
+   "file": "base/walk_claude_0.png",
+   "w": 188,
+   "h": 184
+  },
+  "walk_claude_1": {
+   "file": "base/walk_claude_1.png",
+   "w": 188,
+   "h": 184
+  },
+  "walk_claude_2": {
+   "file": "base/walk_claude_2.png",
+   "w": 188,
+   "h": 184
+  },
+  "walk_claude_3": {
+   "file": "base/walk_claude_3.png",
+   "w": 188,
+   "h": 184
+  },
+  "walk_claude_4": {
+   "file": "base/walk_claude_4.png",
+   "w": 188,
+   "h": 184
+  },
+  "walk_claude_5": {
+   "file": "base/walk_claude_5.png",
+   "w": 188,
+   "h": 184
+  },
+  "walk_claude_6": {
+   "file": "base/walk_claude_6.png",
+   "w": 188,
+   "h": 184
+  },
+  "walk_claude_7": {
+   "file": "base/walk_claude_7.png",
+   "w": 188,
+   "h": 184
+  },
+  "walk_doubao_big_0": {
+   "file": "base/walk_doubao_big_0.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_doubao_big_1": {
+   "file": "base/walk_doubao_big_1.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_doubao_big_2": {
+   "file": "base/walk_doubao_big_2.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_doubao_big_3": {
+   "file": "base/walk_doubao_big_3.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_doubao_big_4": {
+   "file": "base/walk_doubao_big_4.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_doubao_big_5": {
+   "file": "base/walk_doubao_big_5.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_doubao_big_6": {
+   "file": "base/walk_doubao_big_6.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_doubao_big_7": {
+   "file": "base/walk_doubao_big_7.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_gemini_0": {
+   "file": "base/walk_gemini_0.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_gemini_1": {
+   "file": "base/walk_gemini_1.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_gemini_2": {
+   "file": "base/walk_gemini_2.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_gemini_3": {
+   "file": "base/walk_gemini_3.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_gemini_4": {
+   "file": "base/walk_gemini_4.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_gemini_5": {
+   "file": "base/walk_gemini_5.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_gemini_6": {
+   "file": "base/walk_gemini_6.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_gemini_7": {
+   "file": "base/walk_gemini_7.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_kimi_0": {
+   "file": "base/walk_kimi_0.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_kimi_1": {
+   "file": "base/walk_kimi_1.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_kimi_2": {
+   "file": "base/walk_kimi_2.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_kimi_3": {
+   "file": "base/walk_kimi_3.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_kimi_4": {
+   "file": "base/walk_kimi_4.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_kimi_5": {
+   "file": "base/walk_kimi_5.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_kimi_6": {
+   "file": "base/walk_kimi_6.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_kimi_7": {
+   "file": "base/walk_kimi_7.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_qwen_0": {
+   "file": "base/walk_qwen_0.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_qwen_1": {
+   "file": "base/walk_qwen_1.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_qwen_2": {
+   "file": "base/walk_qwen_2.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_qwen_3": {
+   "file": "base/walk_qwen_3.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_qwen_4": {
+   "file": "base/walk_qwen_4.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_qwen_5": {
+   "file": "base/walk_qwen_5.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_qwen_6": {
+   "file": "base/walk_qwen_6.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_qwen_7": {
+   "file": "base/walk_qwen_7.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_whale_0": {
+   "file": "base/walk_whale_0.png",
+   "w": 184,
+   "h": 180
+  },
+  "walk_whale_1": {
+   "file": "base/walk_whale_1.png",
+   "w": 184,
+   "h": 180
+  },
+  "walk_whale_2": {
+   "file": "base/walk_whale_2.png",
+   "w": 184,
+   "h": 180
+  },
+  "walk_whale_3": {
+   "file": "base/walk_whale_3.png",
+   "w": 184,
+   "h": 180
+  },
+  "walk_whale_4": {
+   "file": "base/walk_whale_4.png",
+   "w": 184,
+   "h": 180
+  },
+  "walk_whale_5": {
+   "file": "base/walk_whale_5.png",
+   "w": 184,
+   "h": 180
+  },
+  "walk_whale_6": {
+   "file": "base/walk_whale_6.png",
+   "w": 184,
+   "h": 180
+  },
+  "walk_whale_7": {
+   "file": "base/walk_whale_7.png",
+   "w": 184,
+   "h": 180
+  },
+  "walk_zai_0": {
+   "file": "base/walk_zai_0.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_zai_1": {
+   "file": "base/walk_zai_1.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_zai_2": {
+   "file": "base/walk_zai_2.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_zai_3": {
+   "file": "base/walk_zai_3.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_zai_4": {
+   "file": "base/walk_zai_4.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_zai_5": {
+   "file": "base/walk_zai_5.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_zai_6": {
+   "file": "base/walk_zai_6.png",
+   "w": 176,
+   "h": 172
+  },
+  "walk_zai_7": {
+   "file": "base/walk_zai_7.png",
+   "w": 176,
+   "h": 172
+  },
+  "whale_big_blink": {
+   "file": "base/whale_big_blink.png",
+   "w": 262,
+   "h": 296
+  },
+  "whale_big_idle": {
+   "file": "base/whale_big_idle.png",
+   "w": 262,
+   "h": 296
+  },
+  "whale_big_point": {
+   "file": "base/whale_big_point.png",
+   "w": 260,
+   "h": 296
+  },
+  "whale_big_wave": {
+   "file": "base/whale_big_wave.png",
+   "w": 262,
+   "h": 296
+  },
+  "whale_blink": {
+   "file": "base/whale_blink.png",
+   "w": 156,
+   "h": 176
+  },
+  "whale_idle": {
+   "file": "base/whale_idle.png",
+   "w": 156,
+   "h": 176
+  },
+  "whale_point": {
+   "file": "base/whale_point.png",
+   "w": 154,
+   "h": 176
+  },
+  "whale_wave": {
+   "file": "base/whale_wave.png",
+   "w": 156,
+   "h": 176
+  },
+  "zai_front_0": {
+   "file": "base/zai_front_0.png",
+   "w": 176,
+   "h": 168
+  },
+  "zai_front_1": {
+   "file": "base/zai_front_1.png",
+   "w": 176,
+   "h": 168
+  },
+  "zai_side_0": {
+   "file": "base/zai_side_0.png",
+   "w": 118,
+   "h": 168
+  },
+  "zai_side_1": {
+   "file": "base/zai_side_1.png",
+   "w": 100,
+   "h": 168
+  }
+ }
+}

@@ -1,0 +1,95 @@
+{
+ "id": "doubao",
+ "name": "豆包",
+ "scale": 2,
+ "sheet": {
+  "w": 2112,
+  "h": 172
+ },
+ "cells": [
+  {
+   "key": "doubao_cage_0",
+   "x": 0,
+   "y": 0,
+   "w": 176,
+   "h": 172
+  },
+  {
+   "key": "doubao_cage_1",
+   "x": 176,
+   "y": 0,
+   "w": 176,
+   "h": 172
+  },
+  {
+   "key": "p_doubao_blink",
+   "x": 352,
+   "y": 0,
+   "w": 176,
+   "h": 172
+  },
+  {
+   "key": "p_doubao_neutral",
+   "x": 528,
+   "y": 0,
+   "w": 176,
+   "h": 172
+  },
+  {
+   "key": "walk_doubao_big_0",
+   "x": 704,
+   "y": 0,
+   "w": 176,
+   "h": 172
+  },
+  {
+   "key": "walk_doubao_big_1",
+   "x": 880,
+   "y": 0,
+   "w": 176,
+   "h": 172
+  },
+  {
+   "key": "walk_doubao_big_2",
+   "x": 1056,
+   "y": 0,
+   "w": 176,
+   "h": 172
+  },
+  {
+   "key": "walk_doubao_big_3",
+   "x": 1232,
+   "y": 0,
+   "w": 176,
+   "h": 172
+  },
+  {
+   "key": "walk_doubao_big_4",
+   "x": 1408,
+   "y": 0,
+   "w": 176,
+   "h": 172
+  },
+  {
+   "key": "walk_doubao_big_5",
+   "x": 1584,
+   "y": 0,
+   "w": 176,
+   "h": 172
+  },
+  {
+   "key": "walk_doubao_big_6",
+   "x": 1760,
+   "y": 0,
+   "w": 176,
+   "h": 172
+  },
+  {
+   "key": "walk_doubao_big_7",
+   "x": 1936,
+   "y": 0,
+   "w": 176,
+   "h": 172
+  }
+ ]
+}

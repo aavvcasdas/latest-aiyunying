@@ -1,0 +1,72 @@
+# 人物动作总览：一行一句 = 一句一个动作，一人一组。八位角色 × 高清派生动作（无声样片）。
+whale: 鲸鱼娘的呼吸待机
+whale: 鲸鱼娘的挥手打招呼
+whale: 鲸鱼娘的递出去让位
+whale: 鲸鱼娘的干饭
+whale: 鲸鱼娘的开心跳
+whale: 鲸鱼娘的点头
+whale: 鲸鱼娘的摇头
+whale: 鲸鱼娘的鞠躬
+whale: 鲸鱼娘的摇摆舞
+whale: 鲸鱼娘的吃惊
+whale: 鲸鱼娘的低落
+whale: 鲸鱼娘的发抖
+gpt: GPT 龙娘的悬浮待机
+gpt: GPT 龙娘的振翅悬停
+gpt: GPT 龙娘的施法
+gpt: GPT 龙娘的生气
+gpt: GPT 龙娘的点头
+gpt: GPT 龙娘的歪头疑问
+gpt: GPT 龙娘的鞠躬
+gpt: GPT 龙娘的吃惊
+gpt: GPT 龙娘的摇头
+claude: Claude 大小姐的呼吸待机
+claude: Claude 大小姐的提裙行礼
+claude: Claude 大小姐的低头看书
+claude: Claude 大小姐的歪头疑问
+claude: Claude 大小姐的点头
+claude: Claude 大小姐的摇头
+claude: Claude 大小姐的左右张望
+claude: Claude 大小姐的低落
+claude: Claude 大小姐的开心跳
+doubao: 豆包的呼吸待机
+doubao: 豆包的踩拍
+doubao: 豆包的摇摆舞
+doubao: 豆包的开心跳
+doubao: 豆包的点头
+doubao: 豆包的鞠躬
+doubao: 豆包的歪头疑问
+doubao: 豆包的吃惊
+doubao: 豆包的转圈
+gemini: Gemini的呼吸待机
+gemini: Gemini的左右张望
+gemini: Gemini的两边想想再选
+gemini: Gemini的开心跳
+gemini: Gemini的摇摆舞
+gemini: Gemini的点头
+gemini: Gemini的吃惊
+gemini: Gemini的歪头疑问
+kimi: Kimi的呼吸待机
+kimi: Kimi的想事情
+kimi: Kimi的点头
+kimi: Kimi的鞠躬
+kimi: Kimi的左右张望
+kimi: Kimi的摇头
+kimi: Kimi的低落
+kimi: Kimi的开心跳
+qwen: 千问的呼吸待机
+qwen: 千问的鞠躬
+qwen: 千问的摇摆舞
+qwen: 千问的点头
+qwen: 千问的歪头疑问
+qwen: 千问的开心跳
+qwen: 千问的摇头
+qwen: 千问的转圈
+zai: 智谱的呼吸待机
+zai: 智谱的打盹
+zai: 智谱的惊醒竖耳
+zai: 智谱的点头
+zai: 智谱的摇头
+zai: 智谱的歪头疑问
+zai: 智谱的开心跳
+zai: 智谱的左右张望
