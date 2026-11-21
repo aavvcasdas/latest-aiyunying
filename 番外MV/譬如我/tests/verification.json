@@ -1,0 +1,45 @@
+{
+  "shots": 43,
+  "frames": 86,
+  "failed": [],
+  "min": 35.54,
+  "max": 134.28,
+  "ranks": {
+    "claude": {
+      "visible": true,
+      "x": 0,
+      "y": 1.56,
+      "crown": true
+    },
+    "gpt": {
+      "visible": true,
+      "x": -2.3,
+      "y": 1.0197857909551136
+    }
+  },
+  "deterministic": true,
+  "fonts": [
+    true,
+    true
+  ],
+  "errors": [],
+  "fullFilmTest": {
+    "sourceSeconds": 152.1067,
+    "renderedSeconds": 152.17,
+    "size": "320x180",
+    "fps": 6,
+    "video": "H.264",
+    "audio": "AAC-LC stereo",
+    "audioCorrelation": 0.99953
+  },
+  "productionButtonTest": {
+    "sampleSeconds": 2.2,
+    "size": "1280x720",
+    "fps": 24,
+    "video": "H.264",
+    "audio": "AAC-LC stereo",
+    "actualDownload": true
+  },
+  "humanFullFilmReview": false,
+  "humanWordAlignmentReview": false
+}
