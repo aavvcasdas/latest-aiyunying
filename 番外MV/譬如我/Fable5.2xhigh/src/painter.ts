@@ -22,7 +22,7 @@ export const rnd = (seed: number) => {
 
 const FONTS = {
   serif: '"MVSong","Noto Serif SC","Songti SC","SimSun",serif',
-  sans: '"PingFang SC","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",system-ui,sans-serif',
+  sans: '"MVUI","PingFang SC","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",system-ui,sans-serif',
   mono: 'ui-monospace,"SF Mono",Menlo,Consolas,"Noto Sans Mono",monospace',
 };
 const OUT8 = [[1, 0], [-1, 0], [0, 1], [0, -1], [0.7, 0.7], [-0.7, 0.7], [0.7, -0.7], [-0.7, -0.7]];
