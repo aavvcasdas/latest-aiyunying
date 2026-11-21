@@ -99,7 +99,9 @@ if (mode === 'seek') {
 // 全屏混合让每帧截图多花 300–450 ms（实测 2.6 fps → 1.2 fps）。这类层可以让脚本先摘掉，
 // 出片后再用 ffmpeg 的 noise 补回颗粒感。
 if (hide.length) {
-  await page.evaluate((sels) => { for (const s of sels) document.querySelectorAll(s).forEach((el) => { el.style.display = 'none'; }); }, hide);
+  // Use a persistent !important rule: React may recreate overlays on every timestamp update,
+  // which would discard per-element inline styles set here.
+  await page.addStyleTag({ content: hide.map((s) => `${s} { display: none !important; }`).join('\n') });
   console.log(`[hide] ${hide.join(' ')}`);
 }
 
