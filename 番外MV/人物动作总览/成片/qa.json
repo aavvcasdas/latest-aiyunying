@@ -9,7 +9,7 @@
   "subtitle_bar_missing": [],
   "luma_min": 37.9,
   "luma_max": 179.39,
-  "sequence_md5": "8059e6480ceedd4129cf63005892a09b",
+  "sequence_md5": "7fe36595c03d5c2e67e83816d4fce057",
   "problems": []
  },
  "timing": {
@@ -31,8 +31,8 @@
  },
  "sample": {
   "file": "人物动作总览_无声样片.mp4",
-  "bytes": 69573095,
-  "sha256": "6ee06f969a2585a5f616d1b3988d956c05b59d230b58d4ff8e1f8273b2fda01c",
+  "bytes": 69591859,
+  "sha256": "954e19c6efd40d0954b6f91141bf1de44274a220734e0bff2ebdb5a724e7fb5d",
   "full_decode": "ok",
   "probe": {
    "programs": [],
@@ -49,14 +49,14 @@
      "color_space": "bt709",
      "r_frame_rate": "30/1",
      "duration": "159.066667",
-     "bit_rate": "3496685",
+     "bit_rate": "3497626",
      "nb_frames": "4772"
     }
    ],
    "format": {
     "duration": "159.066667",
-    "size": "69573095",
-    "bit_rate": "3499065"
+    "size": "69591859",
+    "bit_rate": "3500009"
    }
   },
   "problems": []
@@ -69,9 +69,9 @@
   "duration": 159.03699999999998,
   "shots": 8,
   "lines": 71,
-  "source_sha256": "ff841bf16679359ce7312c161b999c0d9d1e5233492c3d8c3d62ce3f6e7e5867",
+  "source_sha256": "78f1b95c3f0f8c3bd5377658f46efcac266b637528b2341d8e5062dee073a23d",
   "source_files": 35,
   "audio": null
  },
- "checked_at": "2026-11-21T14:50:30.885Z"
+ "checked_at": "2026-11-21T15:24:18.660Z"
 }

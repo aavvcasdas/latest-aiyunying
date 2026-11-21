@@ -82,12 +82,17 @@ export const ACTIONS_OF = {
   zai: ['idle', 'walk', 'doze', 'alert', ...COMMON, 'lookaround'],
 };
 export const actionMeta = (name) => { const a = LIB[name]; if (!a) throw new Error(`没有动作「${name}」`); return { name, label: a.label, fps: a.fps, loop: a.loop, n: a.n }; };
-export const frameSpec = (charId, name, i) => LIB[name].f(CAST[charId], i, LIB[name].n);
+export const frameSpec = (charId, name, i) => {
+  const a = LIB[name]; if (!a) throw new Error(`HD 动作表里没有动作「${name}」`);
+  const c = CAST[charId]; if (!c) throw new Error(`HD 动作表里没有角色「${charId}」`);
+  return a.f(c, i, a.n);
+};
 
 /** 这位角色的全部动作会用到哪些基础格 */
 export function baseKeysOf(charId) {
   const keys = new Set();
-  for (const name of ACTIONS_OF[charId]) for (let i = 0; i < LIB[name].n; i++) keys.add(frameSpec(charId, name, i).k);
+  const list = ACTIONS_OF[charId] ?? (() => { throw new Error(`HD 动作表里没有角色「${charId}」`); })();
+  for (const name of list) for (let i = 0; i < LIB[name].n; i++) keys.add(frameSpec(charId, name, i).k);
   return [...keys];
 }
 
