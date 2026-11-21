@@ -11,7 +11,8 @@
 
 用法：
     python3 通用模板/cast/hd/hd_base.py                 # 全部基础格，2 倍，出 人物/q版HD_2x/
-    python3 通用模板/cast/hd/hd_base.py --scale 4       # 4 倍（要 sr.py 的模型与权重）
+    python3 通用模板/cast/hd/hd_base.py --scale 4       # 4 倍超分：要 onnxruntime + Real-ESRGAN 权重
+                                                        #（本仓库没有带权重，也没有在这台机器上跑通过）
     python3 通用模板/cast/hd/hd_base.py whale_idle ...  # 只做这几格
     python3 通用模板/cast/hd/hd_base.py --report        # 只量残留数量，不写图（核对白边用）
 
