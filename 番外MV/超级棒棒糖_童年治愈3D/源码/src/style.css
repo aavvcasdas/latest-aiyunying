@@ -1,0 +1,8 @@
+html, body { margin: 0; height: 100%; background: #1b1838; color: #fff; font-family: system-ui, sans-serif; }
+#app { height: 100%; display: flex; flex-direction: column; }
+.stage { flex: 1; display: grid; place-items: center; overflow: hidden; }
+#mv { width: min(100vw, calc((100vh - 56px) * 16 / 9)); aspect-ratio: 16 / 9; display: block; }
+.clean #mv { width: 100vw; height: 100vh; }
+.bar { height: 56px; display: flex; gap: 12px; align-items: center; padding: 0 16px; background: rgba(255, 255, 255, 0.06); font-size: 14px; }
+.bar input { flex: 1; accent-color: #ff8fb1; }
+.bar button { border: 0; border-radius: 999px; padding: 8px 18px; background: #ff8fb1; color: #fff; font-size: 14px; cursor: pointer; }
