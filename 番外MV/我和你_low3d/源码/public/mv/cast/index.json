@@ -1,0 +1,12462 @@
+{
+ "source": {
+  "png": "atlas.png",
+  "w": 2048,
+  "h": 3126,
+  "frames": 682
+ },
+ "sheets": {
+  "q版/whale.png": {
+   "cell": [
+    100,
+    110
+   ],
+   "cols": 8,
+   "rows": 12,
+   "pad": 2,
+   "margin": 2,
+   "frames": [
+    {
+     "name": "act_whale_bow_0",
+     "row": 0,
+     "col": 0,
+     "sheet": [
+      10,
+      22,
+      84,
+      90
+     ],
+     "atlas": [
+      1072,
+      2147,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_bow_1",
+     "row": 0,
+     "col": 1,
+     "sheet": [
+      112,
+      22,
+      84,
+      90
+     ],
+     "atlas": [
+      1158,
+      2147,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_bow_2",
+     "row": 0,
+     "col": 2,
+     "sheet": [
+      214,
+      22,
+      84,
+      90
+     ],
+     "atlas": [
+      1244,
+      2147,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_bow_3",
+     "row": 0,
+     "col": 3,
+     "sheet": [
+      316,
+      22,
+      84,
+      90
+     ],
+     "atlas": [
+      1330,
+      2147,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_bow_4",
+     "row": 0,
+     "col": 4,
+     "sheet": [
+      418,
+      22,
+      84,
+      90
+     ],
+     "atlas": [
+      532,
+      2148,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_bow_5",
+     "row": 0,
+     "col": 5,
+     "sheet": [
+      520,
+      22,
+      84,
+      90
+     ],
+     "atlas": [
+      618,
+      2148,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_bow_6",
+     "row": 0,
+     "col": 6,
+     "sheet": [
+      622,
+      22,
+      84,
+      90
+     ],
+     "atlas": [
+      704,
+      2148,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_bow_7",
+     "row": 0,
+     "col": 7,
+     "sheet": [
+      724,
+      22,
+      84,
+      90
+     ],
+     "atlas": [
+      790,
+      2148,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_eat_0",
+     "row": 1,
+     "col": 0,
+     "sheet": [
+      10,
+      134,
+      84,
+      90
+     ],
+     "atlas": [
+      274,
+      2057,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_eat_1",
+     "row": 1,
+     "col": 1,
+     "sheet": [
+      112,
+      134,
+      84,
+      90
+     ],
+     "atlas": [
+      360,
+      2057,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_eat_2",
+     "row": 1,
+     "col": 2,
+     "sheet": [
+      214,
+      134,
+      84,
+      90
+     ],
+     "atlas": [
+      446,
+      2057,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_eat_3",
+     "row": 1,
+     "col": 3,
+     "sheet": [
+      316,
+      134,
+      84,
+      90
+     ],
+     "atlas": [
+      178,
+      2085,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_eat_4",
+     "row": 1,
+     "col": 4,
+     "sheet": [
+      418,
+      134,
+      84,
+      90
+     ],
+     "atlas": [
+      2,
+      2087,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_eat_5",
+     "row": 1,
+     "col": 5,
+     "sheet": [
+      520,
+      134,
+      84,
+      90
+     ],
+     "atlas": [
+      88,
+      2087,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_eat_6",
+     "row": 1,
+     "col": 6,
+     "sheet": [
+      622,
+      134,
+      84,
+      90
+     ],
+     "atlas": [
+      1606,
+      2119,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_eat_7",
+     "row": 1,
+     "col": 7,
+     "sheet": [
+      724,
+      134,
+      84,
+      90
+     ],
+     "atlas": [
+      1692,
+      2119,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_hop_0",
+     "row": 2,
+     "col": 0,
+     "sheet": [
+      8,
+      232,
+      88,
+      104
+     ],
+     "atlas": [
+      296,
+      1212,
+      88,
+      104
+     ]
+    },
+    {
+     "name": "act_whale_hop_1",
+     "row": 2,
+     "col": 1,
+     "sheet": [
+      110,
+      232,
+      88,
+      104
+     ],
+     "atlas": [
+      386,
+      1212,
+      88,
+      104
+     ]
+    },
+    {
+     "name": "act_whale_hop_2",
+     "row": 2,
+     "col": 2,
+     "sheet": [
+      212,
+      232,
+      88,
+      104
+     ],
+     "atlas": [
+      1898,
+      1246,
+      88,
+      104
+     ]
+    },
+    {
+     "name": "act_whale_hop_3",
+     "row": 2,
+     "col": 3,
+     "sheet": [
+      314,
+      232,
+      88,
+      104
+     ],
+     "atlas": [
+      476,
+      1282,
+      88,
+      104
+     ]
+    },
+    {
+     "name": "act_whale_hop_4",
+     "row": 2,
+     "col": 4,
+     "sheet": [
+      416,
+      232,
+      88,
+      104
+     ],
+     "atlas": [
+      566,
+      1282,
+      88,
+      104
+     ]
+    },
+    {
+     "name": "act_whale_hop_5",
+     "row": 2,
+     "col": 5,
+     "sheet": [
+      518,
+      232,
+      88,
+      104
+     ],
+     "atlas": [
+      656,
+      1282,
+      88,
+      104
+     ]
+    },
+    {
+     "name": "act_whale_hop_6",
+     "row": 2,
+     "col": 6,
+     "sheet": [
+      620,
+      232,
+      88,
+      104
+     ],
+     "atlas": [
+      746,
+      1282,
+      88,
+      104
+     ]
+    },
+    {
+     "name": "act_whale_hop_7",
+     "row": 2,
+     "col": 7,
+     "sheet": [
+      722,
+      232,
+      88,
+      104
+     ],
+     "atlas": [
+      836,
+      1282,
+      88,
+      104
+     ]
+    },
+    {
+     "name": "act_whale_idle_0",
+     "row": 3,
+     "col": 0,
+     "sheet": [
+      10,
+      358,
+      84,
+      90
+     ],
+     "atlas": [
+      1118,
+      2055,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_idle_1",
+     "row": 3,
+     "col": 1,
+     "sheet": [
+      112,
+      358,
+      84,
+      90
+     ],
+     "atlas": [
+      1204,
+      2055,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_idle_2",
+     "row": 3,
+     "col": 2,
+     "sheet": [
+      214,
+      358,
+      84,
+      90
+     ],
+     "atlas": [
+      1290,
+      2055,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_idle_3",
+     "row": 3,
+     "col": 3,
+     "sheet": [
+      316,
+      358,
+      84,
+      90
+     ],
+     "atlas": [
+      1376,
+      2055,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_idle_4",
+     "row": 3,
+     "col": 4,
+     "sheet": [
+      418,
+      358,
+      84,
+      90
+     ],
+     "atlas": [
+      556,
+      2056,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_idle_5",
+     "row": 3,
+     "col": 5,
+     "sheet": [
+      520,
+      358,
+      84,
+      90
+     ],
+     "atlas": [
+      642,
+      2056,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_idle_6",
+     "row": 3,
+     "col": 6,
+     "sheet": [
+      622,
+      358,
+      84,
+      90
+     ],
+     "atlas": [
+      728,
+      2056,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_idle_7",
+     "row": 3,
+     "col": 7,
+     "sheet": [
+      724,
+      358,
+      84,
+      90
+     ],
+     "atlas": [
+      814,
+      2056,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_nod_0",
+     "row": 4,
+     "col": 0,
+     "sheet": [
+      10,
+      470,
+      84,
+      90
+     ],
+     "atlas": [
+      1778,
+      2119,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_nod_1",
+     "row": 4,
+     "col": 1,
+     "sheet": [
+      112,
+      470,
+      84,
+      90
+     ],
+     "atlas": [
+      1864,
+      2119,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_nod_2",
+     "row": 4,
+     "col": 2,
+     "sheet": [
+      214,
+      470,
+      84,
+      90
+     ],
+     "atlas": [
+      1950,
+      2119,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_nod_3",
+     "row": 4,
+     "col": 3,
+     "sheet": [
+      316,
+      470,
+      84,
+      90
+     ],
+     "atlas": [
+      1462,
+      2146,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_nod_4",
+     "row": 4,
+     "col": 4,
+     "sheet": [
+      418,
+      470,
+      84,
+      90
+     ],
+     "atlas": [
+      900,
+      2147,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_nod_5",
+     "row": 4,
+     "col": 5,
+     "sheet": [
+      520,
+      470,
+      84,
+      90
+     ],
+     "atlas": [
+      986,
+      2147,
+      84,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_point_0",
+     "row": 4,
+     "col": 6,
+     "sheet": [
+      617,
+      470,
+      94,
+      90
+     ],
+     "atlas": [
+      1520,
+      1962,
+      94,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_point_1",
+     "row": 4,
+     "col": 7,
+     "sheet": [
+      719,
+      470,
+      94,
+      90
+     ],
+     "atlas": [
+      950,
+      1963,
+      94,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_point_2",
+     "row": 5,
+     "col": 0,
+     "sheet": [
+      5,
+      582,
+      94,
+      90
+     ],
+     "atlas": [
+      1046,
+      1963,
+      94,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_point_3",
+     "row": 5,
+     "col": 1,
+     "sheet": [
+      107,
+      582,
+      94,
+      90
+     ],
+     "atlas": [
+      1142,
+      1963,
+      94,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_point_4",
+     "row": 5,
+     "col": 2,
+     "sheet": [
+      209,
+      582,
+      94,
+      90
+     ],
+     "atlas": [
+      1238,
+      1963,
+      94,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_point_5",
+     "row": 5,
+     "col": 3,
+     "sheet": [
+      311,
+      582,
+      94,
+      90
+     ],
+     "atlas": [
+      1334,
+      1963,
+      94,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_sad_0",
+     "row": 5,
+     "col": 4,
+     "sheet": [
+      417,
+      582,
+      86,
+      90
+     ],
+     "atlas": [
+      1430,
+      1963,
+      86,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_sad_1",
+     "row": 5,
+     "col": 5,
+     "sheet": [
+      519,
+      582,
+      86,
+      90
+     ],
+     "atlas": [
+      2,
+      1995,
+      86,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_sad_2",
+     "row": 5,
+     "col": 6,
+     "sheet": [
+      621,
+      582,
+      86,
+      90
+     ],
+     "atlas": [
+      90,
+      1995,
+      86,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_sad_3",
+     "row": 5,
+     "col": 7,
+     "sheet": [
+      723,
+      582,
+      86,
+      90
+     ],
+     "atlas": [
+      1616,
+      2027,
+      86,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_sad_4",
+     "row": 6,
+     "col": 0,
+     "sheet": [
+      9,
+      694,
+      86,
+      90
+     ],
+     "atlas": [
+      1704,
+      2027,
+      86,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_sad_5",
+     "row": 6,
+     "col": 1,
+     "sheet": [
+      111,
+      694,
+      86,
+      90
+     ],
+     "atlas": [
+      1792,
+      2027,
+      86,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_shake_0",
+     "row": 6,
+     "col": 2,
+     "sheet": [
+      211,
+      694,
+      90,
+      90
+     ],
+     "atlas": [
+      574,
+      1964,
+      90,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_shake_1",
+     "row": 6,
+     "col": 3,
+     "sheet": [
+      313,
+      694,
+      90,
+      90
+     ],
+     "atlas": [
+      666,
+      1964,
+      90,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_shake_2",
+     "row": 6,
+     "col": 4,
+     "sheet": [
+      415,
+      694,
+      90,
+      90
+     ],
+     "atlas": [
+      758,
+      1964,
+      90,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_shake_3",
+     "row": 6,
+     "col": 5,
+     "sheet": [
+      517,
+      694,
+      90,
+      90
+     ],
+     "atlas": [
+      850,
+      1964,
+      90,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_shake_4",
+     "row": 6,
+     "col": 6,
+     "sheet": [
+      619,
+      694,
+      90,
+      90
+     ],
+     "atlas": [
+      280,
+      1965,
+      90,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_shake_5",
+     "row": 6,
+     "col": 7,
+     "sheet": [
+      721,
+      694,
+      90,
+      90
+     ],
+     "atlas": [
+      372,
+      1965,
+      90,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_shake_6",
+     "row": 7,
+     "col": 0,
+     "sheet": [
+      7,
+      806,
+      90,
+      90
+     ],
+     "atlas": [
+      464,
+      1965,
+      90,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_shake_7",
+     "row": 7,
+     "col": 1,
+     "sheet": [
+      109,
+      806,
+      90,
+      90
+     ],
+     "atlas": [
+      182,
+      1993,
+      90,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_shiver_0",
+     "row": 7,
+     "col": 2,
+     "sheet": [
+      213,
+      806,
+      86,
+      90
+     ],
+     "atlas": [
+      1880,
+      2027,
+      86,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_shiver_1",
+     "row": 7,
+     "col": 3,
+     "sheet": [
+      315,
+      806,
+      86,
+      90
+     ],
+     "atlas": [
+      1518,
+      2054,
+      86,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_shiver_2",
+     "row": 7,
+     "col": 4,
+     "sheet": [
+      417,
+      806,
+      86,
+      90
+     ],
+     "atlas": [
+      942,
+      2055,
+      86,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_shiver_3",
+     "row": 7,
+     "col": 5,
+     "sheet": [
+      519,
+      806,
+      86,
+      90
+     ],
+     "atlas": [
+      1030,
+      2055,
+      86,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_spin_0",
+     "row": 7,
+     "col": 6,
+     "sheet": [
+      623,
+      806,
+      82,
+      90
+     ],
+     "atlas": [
+      264,
+      2149,
+      82,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_spin_1",
+     "row": 7,
+     "col": 7,
+     "sheet": [
+      725,
+      806,
+      82,
+      90
+     ],
+     "atlas": [
+      348,
+      2149,
+      82,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_spin_2",
+     "row": 8,
+     "col": 0,
+     "sheet": [
+      11,
+      918,
+      82,
+      90
+     ],
+     "atlas": [
+      432,
+      2149,
+      82,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_spin_3",
+     "row": 8,
+     "col": 1,
+     "sheet": [
+      113,
+      918,
+      82,
+      90
+     ],
+     "atlas": [
+      174,
+      2177,
+      82,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_spin_4",
+     "row": 8,
+     "col": 2,
+     "sheet": [
+      215,
+      918,
+      82,
+      90
+     ],
+     "atlas": [
+      2,
+      2179,
+      82,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_spin_5",
+     "row": 8,
+     "col": 3,
+     "sheet": [
+      317,
+      918,
+      82,
+      90
+     ],
+     "atlas": [
+      86,
+      2179,
+      82,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_spin_6",
+     "row": 8,
+     "col": 4,
+     "sheet": [
+      419,
+      918,
+      82,
+      90
+     ],
+     "atlas": [
+      1548,
+      2211,
+      82,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_spin_7",
+     "row": 8,
+     "col": 5,
+     "sheet": [
+      521,
+      918,
+      82,
+      90
+     ],
+     "atlas": [
+      1632,
+      2211,
+      82,
+      90
+     ]
+    },
+    {
+     "name": "act_whale_surprise_0",
+     "row": 8,
+     "col": 6,
+     "sheet": [
+      621,
+      910,
+      86,
+      98
+     ],
+     "atlas": [
+      1649,
+      1486,
+      86,
+      98
+     ]
+    },
+    {
+     "name": "act_whale_surprise_1",
+     "row": 8,
+     "col": 7,
+     "sheet": [
+      723,
+      910,
+      86,
+      98
+     ],
+     "atlas": [
+      1737,
+      1486,
+      86,
+      98
+     ]
+    },
+    {
+     "name": "act_whale_surprise_2",
+     "row": 9,
+     "col": 0,
+     "sheet": [
+      9,
+      1022,
+      86,
+      98
+     ],
+     "atlas": [
+      379,
+      1490,
+      86,
+      98
+     ]
+    },
+    {
+     "name": "act_whale_surprise_3",
+     "row": 9,
+     "col": 1,
+     "sheet": [
+      111,
+      1022,
+      86,
+      98
+     ],
+     "atlas": [
+      467,
+      1490,
+      86,
+      98
+     ]
+    },
+    {
+     "name": "act_whale_surprise_4",
+     "row": 9,
+     "col": 2,
+     "sheet": [
+      213,
+      1022,
+      86,
+      98
+     ],
+     "atlas": [
+      555,
+      1490,
+      86,
+      98
+     ]
+    },
+    {
+     "name": "act_whale_surprise_5",
+     "row": 9,
+     "col": 3,
+     "sheet": [
+      315,
+      1022,
+      86,
+      98
+     ],
+     "atlas": [
+      643,
+      1490,
+      86,
+      98
+     ]
+    },
+    {
+     "name": "act_whale_sway_0",
+     "row": 9,
+     "col": 4,
+     "sheet": [
+      413,
+      1029,
+      94,
+      91
+     ],
+     "atlas": [
+      950,
+      1870,
+      94,
+      91
+     ]
+    },
+    {
+     "name": "act_whale_sway_1",
+     "row": 9,
+     "col": 5,
+     "sheet": [
+      515,
+      1029,
+      94,
+      91
+     ],
+     "atlas": [
+      1046,
+      1870,
+      94,
+      91
+     ]
+    },
+    {
+     "name": "act_whale_sway_2",
+     "row": 9,
+     "col": 6,
+     "sheet": [
+      617,
+      1029,
+      94,
+      91
+     ],
+     "atlas": [
+      1142,
+      1870,
+      94,
+      91
+     ]
+    },
+    {
+     "name": "act_whale_sway_3",
+     "row": 9,
+     "col": 7,
+     "sheet": [
+      719,
+      1029,
+      94,
+      91
+     ],
+     "atlas": [
+      1238,
+      1870,
+      94,
+      91
+     ]
+    },
+    {
+     "name": "act_whale_sway_4",
+     "row": 10,
+     "col": 0,
+     "sheet": [
+      5,
+      1141,
+      94,
+      91
+     ],
+     "atlas": [
+      1334,
+      1870,
+      94,
+      91
+     ]
+    },
+    {
+     "name": "act_whale_sway_5",
+     "row": 10,
+     "col": 1,
+     "sheet": [
+      107,
+      1141,
+      94,
+      91
+     ],
+     "atlas": [
+      286,
+      1872,
+      94,
+      91
+     ]
+    },
+    {
+     "name": "act_whale_sway_6",
+     "row": 10,
+     "col": 2,
+     "sheet": [
+      209,
+      1141,
+      94,
+      91
+     ],
+     "atlas": [
+      382,
+      1872,
+      94,
+      91
+     ]
+    },
+    {
+     "name": "act_whale_sway_7",
+     "row": 10,
+     "col": 3,
+     "sheet": [
+      311,
+      1141,
+      94,
+      91
+     ],
+     "atlas": [
+      478,
+      1872,
+      94,
+      91
+     ]
+    },
+    {
+     "name": "act_whale_wave_0",
+     "row": 10,
+     "col": 4,
+     "sheet": [
+      416,
+      1141,
+      88,
+      91
+     ],
+     "atlas": [
+      1430,
+      1870,
+      88,
+      91
+     ]
+    },
+    {
+     "name": "act_whale_wave_1",
+     "row": 10,
+     "col": 5,
+     "sheet": [
+      518,
+      1141,
+      88,
+      91
+     ],
+     "atlas": [
+      190,
+      1900,
+      88,
+      91
+     ]
+    },
+    {
+     "name": "act_whale_wave_2",
+     "row": 10,
+     "col": 6,
+     "sheet": [
+      620,
+      1141,
+      88,
+      91
+     ],
+     "atlas": [
+      2,
+      1902,
+      88,
+      91
+     ]
+    },
+    {
+     "name": "act_whale_wave_3",
+     "row": 10,
+     "col": 7,
+     "sheet": [
+      722,
+      1141,
+      88,
+      91
+     ],
+     "atlas": [
+      92,
+      1902,
+      88,
+      91
+     ]
+    },
+    {
+     "name": "act_whale_wave_4",
+     "row": 11,
+     "col": 0,
+     "sheet": [
+      8,
+      1253,
+      88,
+      91
+     ],
+     "atlas": [
+      1617,
+      1934,
+      88,
+      91
+     ]
+    },
+    {
+     "name": "act_whale_wave_5",
+     "row": 11,
+     "col": 1,
+     "sheet": [
+      110,
+      1253,
+      88,
+      91
+     ],
+     "atlas": [
+      1707,
+      1934,
+      88,
+      91
+     ]
+    },
+    {
+     "name": "act_whale_wave_6",
+     "row": 11,
+     "col": 2,
+     "sheet": [
+      212,
+      1253,
+      88,
+      91
+     ],
+     "atlas": [
+      1797,
+      1934,
+      88,
+      91
+     ]
+    },
+    {
+     "name": "act_whale_wave_7",
+     "row": 11,
+     "col": 3,
+     "sheet": [
+      314,
+      1253,
+      88,
+      91
+     ],
+     "atlas": [
+      1887,
+      1934,
+      88,
+      91
+     ]
+    }
+   ],
+   "actions": {
+    "bow": [
+     "act_whale_bow_0",
+     "act_whale_bow_1",
+     "act_whale_bow_2",
+     "act_whale_bow_3",
+     "act_whale_bow_4",
+     "act_whale_bow_5",
+     "act_whale_bow_6",
+     "act_whale_bow_7"
+    ],
+    "eat": [
+     "act_whale_eat_0",
+     "act_whale_eat_1",
+     "act_whale_eat_2",
+     "act_whale_eat_3",
+     "act_whale_eat_4",
+     "act_whale_eat_5",
+     "act_whale_eat_6",
+     "act_whale_eat_7"
+    ],
+    "hop": [
+     "act_whale_hop_0",
+     "act_whale_hop_1",
+     "act_whale_hop_2",
+     "act_whale_hop_3",
+     "act_whale_hop_4",
+     "act_whale_hop_5",
+     "act_whale_hop_6",
+     "act_whale_hop_7"
+    ],
+    "idle": [
+     "act_whale_idle_0",
+     "act_whale_idle_1",
+     "act_whale_idle_2",
+     "act_whale_idle_3",
+     "act_whale_idle_4",
+     "act_whale_idle_5",
+     "act_whale_idle_6",
+     "act_whale_idle_7"
+    ],
+    "nod": [
+     "act_whale_nod_0",
+     "act_whale_nod_1",
+     "act_whale_nod_2",
+     "act_whale_nod_3",
+     "act_whale_nod_4",
+     "act_whale_nod_5"
+    ],
+    "point": [
+     "act_whale_point_0",
+     "act_whale_point_1",
+     "act_whale_point_2",
+     "act_whale_point_3",
+     "act_whale_point_4",
+     "act_whale_point_5"
+    ],
+    "sad": [
+     "act_whale_sad_0",
+     "act_whale_sad_1",
+     "act_whale_sad_2",
+     "act_whale_sad_3",
+     "act_whale_sad_4",
+     "act_whale_sad_5"
+    ],
+    "shake": [
+     "act_whale_shake_0",
+     "act_whale_shake_1",
+     "act_whale_shake_2",
+     "act_whale_shake_3",
+     "act_whale_shake_4",
+     "act_whale_shake_5",
+     "act_whale_shake_6",
+     "act_whale_shake_7"
+    ],
+    "shiver": [
+     "act_whale_shiver_0",
+     "act_whale_shiver_1",
+     "act_whale_shiver_2",
+     "act_whale_shiver_3"
+    ],
+    "spin": [
+     "act_whale_spin_0",
+     "act_whale_spin_1",
+     "act_whale_spin_2",
+     "act_whale_spin_3",
+     "act_whale_spin_4",
+     "act_whale_spin_5",
+     "act_whale_spin_6",
+     "act_whale_spin_7"
+    ],
+    "surprise": [
+     "act_whale_surprise_0",
+     "act_whale_surprise_1",
+     "act_whale_surprise_2",
+     "act_whale_surprise_3",
+     "act_whale_surprise_4",
+     "act_whale_surprise_5"
+    ],
+    "sway": [
+     "act_whale_sway_0",
+     "act_whale_sway_1",
+     "act_whale_sway_2",
+     "act_whale_sway_3",
+     "act_whale_sway_4",
+     "act_whale_sway_5",
+     "act_whale_sway_6",
+     "act_whale_sway_7"
+    ],
+    "wave": [
+     "act_whale_wave_0",
+     "act_whale_wave_1",
+     "act_whale_wave_2",
+     "act_whale_wave_3",
+     "act_whale_wave_4",
+     "act_whale_wave_5",
+     "act_whale_wave_6",
+     "act_whale_wave_7"
+    ]
+   }
+  },
+  "q版/gpt.png": {
+   "cell": [
+    154,
+    192
+   ],
+   "cols": 8,
+   "rows": 8,
+   "pad": 2,
+   "margin": 2,
+   "frames": [
+    {
+     "name": "act_gpt_bow_0",
+     "row": 0,
+     "col": 0,
+     "sheet": [
+      10,
+      16,
+      138,
+      178
+     ],
+     "atlas": [
+      778,
+      1102,
+      138,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_bow_1",
+     "row": 0,
+     "col": 1,
+     "sheet": [
+      166,
+      16,
+      138,
+      178
+     ],
+     "atlas": [
+      918,
+      1102,
+      138,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_bow_2",
+     "row": 0,
+     "col": 2,
+     "sheet": [
+      322,
+      16,
+      138,
+      178
+     ],
+     "atlas": [
+      1058,
+      1102,
+      138,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_bow_3",
+     "row": 0,
+     "col": 3,
+     "sheet": [
+      478,
+      16,
+      138,
+      178
+     ],
+     "atlas": [
+      1198,
+      1102,
+      138,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_bow_4",
+     "row": 0,
+     "col": 4,
+     "sheet": [
+      634,
+      16,
+      138,
+      178
+     ],
+     "atlas": [
+      1338,
+      1102,
+      138,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_bow_5",
+     "row": 0,
+     "col": 5,
+     "sheet": [
+      790,
+      16,
+      138,
+      178
+     ],
+     "atlas": [
+      1478,
+      1102,
+      138,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_bow_6",
+     "row": 0,
+     "col": 6,
+     "sheet": [
+      946,
+      16,
+      138,
+      178
+     ],
+     "atlas": [
+      1618,
+      1102,
+      138,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_bow_7",
+     "row": 0,
+     "col": 7,
+     "sheet": [
+      1102,
+      16,
+      138,
+      178
+     ],
+     "atlas": [
+      1758,
+      1102,
+      138,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_cast_0",
+     "row": 1,
+     "col": 0,
+     "sheet": [
+      6,
+      206,
+      145,
+      182
+     ],
+     "atlas": [
+      1854,
+      372,
+      145,
+      182
+     ]
+    },
+    {
+     "name": "act_gpt_cast_1",
+     "row": 1,
+     "col": 1,
+     "sheet": [
+      162,
+      206,
+      145,
+      182
+     ],
+     "atlas": [
+      1014,
+      374,
+      145,
+      182
+     ]
+    },
+    {
+     "name": "act_gpt_cast_2",
+     "row": 1,
+     "col": 2,
+     "sheet": [
+      318,
+      206,
+      145,
+      182
+     ],
+     "atlas": [
+      1161,
+      374,
+      145,
+      182
+     ]
+    },
+    {
+     "name": "act_gpt_cast_3",
+     "row": 1,
+     "col": 3,
+     "sheet": [
+      474,
+      206,
+      145,
+      182
+     ],
+     "atlas": [
+      1308,
+      374,
+      145,
+      182
+     ]
+    },
+    {
+     "name": "act_gpt_cast_4",
+     "row": 1,
+     "col": 4,
+     "sheet": [
+      630,
+      206,
+      145,
+      182
+     ],
+     "atlas": [
+      1455,
+      374,
+      145,
+      182
+     ]
+    },
+    {
+     "name": "act_gpt_cast_5",
+     "row": 1,
+     "col": 5,
+     "sheet": [
+      786,
+      206,
+      145,
+      182
+     ],
+     "atlas": [
+      1602,
+      374,
+      145,
+      182
+     ]
+    },
+    {
+     "name": "act_gpt_cast_6",
+     "row": 1,
+     "col": 6,
+     "sheet": [
+      942,
+      206,
+      145,
+      182
+     ],
+     "atlas": [
+      1749,
+      556,
+      145,
+      182
+     ]
+    },
+    {
+     "name": "act_gpt_cast_7",
+     "row": 1,
+     "col": 7,
+     "sheet": [
+      1098,
+      206,
+      145,
+      182
+     ],
+     "atlas": [
+      1896,
+      556,
+      145,
+      182
+     ]
+    },
+    {
+     "name": "act_gpt_float_0",
+     "row": 2,
+     "col": 0,
+     "sheet": [
+      10,
+      398,
+      138,
+      184
+     ],
+     "atlas": [
+      1866,
+      0,
+      138,
+      184
+     ]
+    },
+    {
+     "name": "act_gpt_float_1",
+     "row": 2,
+     "col": 1,
+     "sheet": [
+      166,
+      398,
+      138,
+      184
+     ],
+     "atlas": [
+      1866,
+      186,
+      138,
+      184
+     ]
+    },
+    {
+     "name": "act_gpt_float_2",
+     "row": 2,
+     "col": 2,
+     "sheet": [
+      322,
+      398,
+      138,
+      184
+     ],
+     "atlas": [
+      1014,
+      188,
+      138,
+      184
+     ]
+    },
+    {
+     "name": "act_gpt_float_3",
+     "row": 2,
+     "col": 3,
+     "sheet": [
+      478,
+      398,
+      138,
+      184
+     ],
+     "atlas": [
+      1154,
+      188,
+      138,
+      184
+     ]
+    },
+    {
+     "name": "act_gpt_float_4",
+     "row": 2,
+     "col": 4,
+     "sheet": [
+      634,
+      398,
+      138,
+      184
+     ],
+     "atlas": [
+      1294,
+      188,
+      138,
+      184
+     ]
+    },
+    {
+     "name": "act_gpt_float_5",
+     "row": 2,
+     "col": 5,
+     "sheet": [
+      790,
+      398,
+      138,
+      184
+     ],
+     "atlas": [
+      1434,
+      188,
+      138,
+      184
+     ]
+    },
+    {
+     "name": "act_gpt_float_6",
+     "row": 2,
+     "col": 6,
+     "sheet": [
+      946,
+      398,
+      138,
+      184
+     ],
+     "atlas": [
+      1574,
+      188,
+      138,
+      184
+     ]
+    },
+    {
+     "name": "act_gpt_float_7",
+     "row": 2,
+     "col": 7,
+     "sheet": [
+      1102,
+      398,
+      138,
+      184
+     ],
+     "atlas": [
+      1714,
+      188,
+      138,
+      184
+     ]
+    },
+    {
+     "name": "act_gpt_hover_0",
+     "row": 3,
+     "col": 0,
+     "sheet": [
+      41,
+      672,
+      75,
+      104
+     ],
+     "atlas": [
+      926,
+      1282,
+      75,
+      104
+     ]
+    },
+    {
+     "name": "act_gpt_hover_1",
+     "row": 3,
+     "col": 1,
+     "sheet": [
+      197,
+      672,
+      75,
+      104
+     ],
+     "atlas": [
+      1003,
+      1282,
+      75,
+      104
+     ]
+    },
+    {
+     "name": "act_gpt_hover_2",
+     "row": 3,
+     "col": 2,
+     "sheet": [
+      353,
+      672,
+      75,
+      104
+     ],
+     "atlas": [
+      1080,
+      1282,
+      75,
+      104
+     ]
+    },
+    {
+     "name": "act_gpt_hover_3",
+     "row": 3,
+     "col": 3,
+     "sheet": [
+      509,
+      672,
+      75,
+      104
+     ],
+     "atlas": [
+      1157,
+      1282,
+      75,
+      104
+     ]
+    },
+    {
+     "name": "act_gpt_hover_4",
+     "row": 3,
+     "col": 4,
+     "sheet": [
+      665,
+      672,
+      75,
+      104
+     ],
+     "atlas": [
+      1234,
+      1282,
+      75,
+      104
+     ]
+    },
+    {
+     "name": "act_gpt_hover_5",
+     "row": 3,
+     "col": 5,
+     "sheet": [
+      821,
+      672,
+      75,
+      104
+     ],
+     "atlas": [
+      1311,
+      1282,
+      75,
+      104
+     ]
+    },
+    {
+     "name": "act_gpt_hover_6",
+     "row": 3,
+     "col": 6,
+     "sheet": [
+      977,
+      672,
+      75,
+      104
+     ],
+     "atlas": [
+      1388,
+      1282,
+      75,
+      104
+     ]
+    },
+    {
+     "name": "act_gpt_hover_7",
+     "row": 3,
+     "col": 7,
+     "sheet": [
+      1133,
+      672,
+      75,
+      104
+     ],
+     "atlas": [
+      1465,
+      1282,
+      75,
+      104
+     ]
+    },
+    {
+     "name": "act_gpt_nod_0",
+     "row": 4,
+     "col": 0,
+     "sheet": [
+      10,
+      792,
+      138,
+      178
+     ],
+     "atlas": [
+      1666,
+      922,
+      138,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_nod_1",
+     "row": 4,
+     "col": 1,
+     "sheet": [
+      166,
+      792,
+      138,
+      178
+     ],
+     "atlas": [
+      1806,
+      922,
+      138,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_nod_2",
+     "row": 4,
+     "col": 2,
+     "sheet": [
+      322,
+      792,
+      138,
+      178
+     ],
+     "atlas": [
+      2,
+      1008,
+      138,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_nod_3",
+     "row": 4,
+     "col": 3,
+     "sheet": [
+      478,
+      792,
+      138,
+      178
+     ],
+     "atlas": [
+      142,
+      1008,
+      138,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_nod_4",
+     "row": 4,
+     "col": 4,
+     "sheet": [
+      634,
+      792,
+      138,
+      178
+     ],
+     "atlas": [
+      498,
+      1102,
+      138,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_nod_5",
+     "row": 4,
+     "col": 5,
+     "sheet": [
+      790,
+      792,
+      138,
+      178
+     ],
+     "atlas": [
+      638,
+      1102,
+      138,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_rage_0",
+     "row": 4,
+     "col": 6,
+     "sheet": [
+      944,
+      790,
+      142,
+      180
+     ],
+     "atlas": [
+      1314,
+      740,
+      142,
+      180
+     ]
+    },
+    {
+     "name": "act_gpt_rage_1",
+     "row": 4,
+     "col": 7,
+     "sheet": [
+      1100,
+      790,
+      142,
+      180
+     ],
+     "atlas": [
+      1458,
+      740,
+      142,
+      180
+     ]
+    },
+    {
+     "name": "act_gpt_rage_2",
+     "row": 5,
+     "col": 0,
+     "sheet": [
+      8,
+      984,
+      142,
+      180
+     ],
+     "atlas": [
+      1602,
+      740,
+      142,
+      180
+     ]
+    },
+    {
+     "name": "act_gpt_rage_3",
+     "row": 5,
+     "col": 1,
+     "sheet": [
+      164,
+      984,
+      142,
+      180
+     ],
+     "atlas": [
+      1746,
+      740,
+      142,
+      180
+     ]
+    },
+    {
+     "name": "act_gpt_rage_4",
+     "row": 5,
+     "col": 2,
+     "sheet": [
+      320,
+      984,
+      142,
+      180
+     ],
+     "atlas": [
+      1890,
+      740,
+      142,
+      180
+     ]
+    },
+    {
+     "name": "act_gpt_rage_5",
+     "row": 5,
+     "col": 3,
+     "sheet": [
+      476,
+      984,
+      142,
+      180
+     ],
+     "atlas": [
+      354,
+      922,
+      142,
+      180
+     ]
+    },
+    {
+     "name": "act_gpt_shake_0",
+     "row": 5,
+     "col": 4,
+     "sheet": [
+      631,
+      986,
+      144,
+      178
+     ],
+     "atlas": [
+      498,
+      922,
+      144,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_shake_1",
+     "row": 5,
+     "col": 5,
+     "sheet": [
+      787,
+      986,
+      144,
+      178
+     ],
+     "atlas": [
+      644,
+      922,
+      144,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_shake_2",
+     "row": 5,
+     "col": 6,
+     "sheet": [
+      943,
+      986,
+      144,
+      178
+     ],
+     "atlas": [
+      790,
+      922,
+      144,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_shake_3",
+     "row": 5,
+     "col": 7,
+     "sheet": [
+      1099,
+      986,
+      144,
+      178
+     ],
+     "atlas": [
+      936,
+      922,
+      144,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_shake_4",
+     "row": 6,
+     "col": 0,
+     "sheet": [
+      7,
+      1180,
+      144,
+      178
+     ],
+     "atlas": [
+      1082,
+      922,
+      144,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_shake_5",
+     "row": 6,
+     "col": 1,
+     "sheet": [
+      163,
+      1180,
+      144,
+      178
+     ],
+     "atlas": [
+      1228,
+      922,
+      144,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_shake_6",
+     "row": 6,
+     "col": 2,
+     "sheet": [
+      319,
+      1180,
+      144,
+      178
+     ],
+     "atlas": [
+      1374,
+      922,
+      144,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_shake_7",
+     "row": 6,
+     "col": 3,
+     "sheet": [
+      475,
+      1180,
+      144,
+      178
+     ],
+     "atlas": [
+      1520,
+      922,
+      144,
+      178
+     ]
+    },
+    {
+     "name": "act_gpt_surprise_0",
+     "row": 6,
+     "col": 4,
+     "sheet": [
+      633,
+      1172,
+      140,
+      186
+     ],
+     "atlas": [
+      1014,
+      0,
+      140,
+      186
+     ]
+    },
+    {
+     "name": "act_gpt_surprise_1",
+     "row": 6,
+     "col": 5,
+     "sheet": [
+      789,
+      1172,
+      140,
+      186
+     ],
+     "atlas": [
+      1156,
+      0,
+      140,
+      186
+     ]
+    },
+    {
+     "name": "act_gpt_surprise_2",
+     "row": 6,
+     "col": 6,
+     "sheet": [
+      945,
+      1172,
+      140,
+      186
+     ],
+     "atlas": [
+      1298,
+      0,
+      140,
+      186
+     ]
+    },
+    {
+     "name": "act_gpt_surprise_3",
+     "row": 6,
+     "col": 7,
+     "sheet": [
+      1101,
+      1172,
+      140,
+      186
+     ],
+     "atlas": [
+      1440,
+      0,
+      140,
+      186
+     ]
+    },
+    {
+     "name": "act_gpt_surprise_4",
+     "row": 7,
+     "col": 0,
+     "sheet": [
+      9,
+      1366,
+      140,
+      186
+     ],
+     "atlas": [
+      1582,
+      0,
+      140,
+      186
+     ]
+    },
+    {
+     "name": "act_gpt_surprise_5",
+     "row": 7,
+     "col": 1,
+     "sheet": [
+      165,
+      1366,
+      140,
+      186
+     ],
+     "atlas": [
+      1724,
+      0,
+      140,
+      186
+     ]
+    },
+    {
+     "name": "act_gpt_tilt_0",
+     "row": 7,
+     "col": 2,
+     "sheet": [
+      317,
+      1372,
+      148,
+      180
+     ],
+     "atlas": [
+      1014,
+      558,
+      148,
+      180
+     ]
+    },
+    {
+     "name": "act_gpt_tilt_1",
+     "row": 7,
+     "col": 3,
+     "sheet": [
+      473,
+      1372,
+      148,
+      180
+     ],
+     "atlas": [
+      1164,
+      558,
+      148,
+      180
+     ]
+    },
+    {
+     "name": "act_gpt_tilt_2",
+     "row": 7,
+     "col": 4,
+     "sheet": [
+      629,
+      1372,
+      148,
+      180
+     ],
+     "atlas": [
+      1314,
+      558,
+      148,
+      180
+     ]
+    },
+    {
+     "name": "act_gpt_tilt_3",
+     "row": 7,
+     "col": 5,
+     "sheet": [
+      785,
+      1372,
+      148,
+      180
+     ],
+     "atlas": [
+      1464,
+      558,
+      148,
+      180
+     ]
+    },
+    {
+     "name": "act_gpt_tilt_4",
+     "row": 7,
+     "col": 6,
+     "sheet": [
+      941,
+      1372,
+      148,
+      180
+     ],
+     "atlas": [
+      1014,
+      740,
+      148,
+      180
+     ]
+    },
+    {
+     "name": "act_gpt_tilt_5",
+     "row": 7,
+     "col": 7,
+     "sheet": [
+      1097,
+      1372,
+      148,
+      180
+     ],
+     "atlas": [
+      1164,
+      740,
+      148,
+      180
+     ]
+    }
+   ],
+   "actions": {
+    "bow": [
+     "act_gpt_bow_0",
+     "act_gpt_bow_1",
+     "act_gpt_bow_2",
+     "act_gpt_bow_3",
+     "act_gpt_bow_4",
+     "act_gpt_bow_5",
+     "act_gpt_bow_6",
+     "act_gpt_bow_7"
+    ],
+    "cast": [
+     "act_gpt_cast_0",
+     "act_gpt_cast_1",
+     "act_gpt_cast_2",
+     "act_gpt_cast_3",
+     "act_gpt_cast_4",
+     "act_gpt_cast_5",
+     "act_gpt_cast_6",
+     "act_gpt_cast_7"
+    ],
+    "float": [
+     "act_gpt_float_0",
+     "act_gpt_float_1",
+     "act_gpt_float_2",
+     "act_gpt_float_3",
+     "act_gpt_float_4",
+     "act_gpt_float_5",
+     "act_gpt_float_6",
+     "act_gpt_float_7"
+    ],
+    "hover": [
+     "act_gpt_hover_0",
+     "act_gpt_hover_1",
+     "act_gpt_hover_2",
+     "act_gpt_hover_3",
+     "act_gpt_hover_4",
+     "act_gpt_hover_5",
+     "act_gpt_hover_6",
+     "act_gpt_hover_7"
+    ],
+    "nod": [
+     "act_gpt_nod_0",
+     "act_gpt_nod_1",
+     "act_gpt_nod_2",
+     "act_gpt_nod_3",
+     "act_gpt_nod_4",
+     "act_gpt_nod_5"
+    ],
+    "rage": [
+     "act_gpt_rage_0",
+     "act_gpt_rage_1",
+     "act_gpt_rage_2",
+     "act_gpt_rage_3",
+     "act_gpt_rage_4",
+     "act_gpt_rage_5"
+    ],
+    "shake": [
+     "act_gpt_shake_0",
+     "act_gpt_shake_1",
+     "act_gpt_shake_2",
+     "act_gpt_shake_3",
+     "act_gpt_shake_4",
+     "act_gpt_shake_5",
+     "act_gpt_shake_6",
+     "act_gpt_shake_7"
+    ],
+    "surprise": [
+     "act_gpt_surprise_0",
+     "act_gpt_surprise_1",
+     "act_gpt_surprise_2",
+     "act_gpt_surprise_3",
+     "act_gpt_surprise_4",
+     "act_gpt_surprise_5"
+    ],
+    "tilt": [
+     "act_gpt_tilt_0",
+     "act_gpt_tilt_1",
+     "act_gpt_tilt_2",
+     "act_gpt_tilt_3",
+     "act_gpt_tilt_4",
+     "act_gpt_tilt_5"
+    ]
+   }
+  },
+  "q版/claude.png": {
+   "cell": [
+    108,
+    112
+   ],
+   "cols": 8,
+   "rows": 9,
+   "pad": 2,
+   "margin": 2,
+   "frames": [
+    {
+     "name": "act_claude_curtsy_0",
+     "row": 0,
+     "col": 0,
+     "sheet": [
+      9,
+      22,
+      94,
+      92
+     ],
+     "atlas": [
+      101,
+      1620,
+      94,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_curtsy_1",
+     "row": 0,
+     "col": 1,
+     "sheet": [
+      119,
+      22,
+      94,
+      92
+     ],
+     "atlas": [
+      1847,
+      1652,
+      94,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_curtsy_2",
+     "row": 0,
+     "col": 2,
+     "sheet": [
+      229,
+      22,
+      94,
+      92
+     ],
+     "atlas": [
+      1943,
+      1652,
+      94,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_curtsy_3",
+     "row": 0,
+     "col": 3,
+     "sheet": [
+      339,
+      22,
+      94,
+      92
+     ],
+     "atlas": [
+      1586,
+      1680,
+      94,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_curtsy_4",
+     "row": 0,
+     "col": 4,
+     "sheet": [
+      449,
+      22,
+      94,
+      92
+     ],
+     "atlas": [
+      660,
+      1682,
+      94,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_curtsy_5",
+     "row": 0,
+     "col": 5,
+     "sheet": [
+      559,
+      22,
+      94,
+      92
+     ],
+     "atlas": [
+      756,
+      1682,
+      94,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_curtsy_6",
+     "row": 0,
+     "col": 6,
+     "sheet": [
+      669,
+      22,
+      94,
+      92
+     ],
+     "atlas": [
+      852,
+      1682,
+      94,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_curtsy_7",
+     "row": 0,
+     "col": 7,
+     "sheet": [
+      779,
+      22,
+      94,
+      92
+     ],
+     "atlas": [
+      948,
+      1682,
+      94,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_hop_0",
+     "row": 1,
+     "col": 0,
+     "sheet": [
+      8,
+      122,
+      96,
+      106
+     ],
+     "atlas": [
+      1946,
+      922,
+      96,
+      106
+     ]
+    },
+    {
+     "name": "act_claude_hop_1",
+     "row": 1,
+     "col": 1,
+     "sheet": [
+      118,
+      122,
+      96,
+      106
+     ],
+     "atlas": [
+      1946,
+      1030,
+      96,
+      106
+     ]
+    },
+    {
+     "name": "act_claude_hop_2",
+     "row": 1,
+     "col": 2,
+     "sheet": [
+      228,
+      122,
+      96,
+      106
+     ],
+     "atlas": [
+      282,
+      1104,
+      96,
+      106
+     ]
+    },
+    {
+     "name": "act_claude_hop_3",
+     "row": 1,
+     "col": 3,
+     "sheet": [
+      338,
+      122,
+      96,
+      106
+     ],
+     "atlas": [
+      380,
+      1104,
+      96,
+      106
+     ]
+    },
+    {
+     "name": "act_claude_hop_4",
+     "row": 1,
+     "col": 4,
+     "sheet": [
+      448,
+      122,
+      96,
+      106
+     ],
+     "atlas": [
+      1898,
+      1138,
+      96,
+      106
+     ]
+    },
+    {
+     "name": "act_claude_hop_5",
+     "row": 1,
+     "col": 5,
+     "sheet": [
+      558,
+      122,
+      96,
+      106
+     ],
+     "atlas": [
+      2,
+      1188,
+      96,
+      106
+     ]
+    },
+    {
+     "name": "act_claude_hop_6",
+     "row": 1,
+     "col": 6,
+     "sheet": [
+      668,
+      122,
+      96,
+      106
+     ],
+     "atlas": [
+      100,
+      1188,
+      96,
+      106
+     ]
+    },
+    {
+     "name": "act_claude_hop_7",
+     "row": 1,
+     "col": 7,
+     "sheet": [
+      778,
+      122,
+      96,
+      106
+     ],
+     "atlas": [
+      198,
+      1212,
+      96,
+      106
+     ]
+    },
+    {
+     "name": "act_claude_idle_0",
+     "row": 2,
+     "col": 0,
+     "sheet": [
+      10,
+      250,
+      92,
+      92
+     ],
+     "atlas": [
+      1777,
+      1746,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_idle_1",
+     "row": 2,
+     "col": 1,
+     "sheet": [
+      120,
+      250,
+      92,
+      92
+     ],
+     "atlas": [
+      1871,
+      1746,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_idle_2",
+     "row": 2,
+     "col": 2,
+     "sheet": [
+      230,
+      250,
+      92,
+      92
+     ],
+     "atlas": [
+      1524,
+      1774,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_idle_3",
+     "row": 2,
+     "col": 3,
+     "sheet": [
+      340,
+      250,
+      92,
+      92
+     ],
+     "atlas": [
+      583,
+      1776,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_idle_4",
+     "row": 2,
+     "col": 4,
+     "sheet": [
+      450,
+      250,
+      92,
+      92
+     ],
+     "atlas": [
+      677,
+      1776,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_idle_5",
+     "row": 2,
+     "col": 5,
+     "sheet": [
+      560,
+      250,
+      92,
+      92
+     ],
+     "atlas": [
+      771,
+      1776,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_idle_6",
+     "row": 2,
+     "col": 6,
+     "sheet": [
+      670,
+      250,
+      92,
+      92
+     ],
+     "atlas": [
+      865,
+      1776,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_idle_7",
+     "row": 2,
+     "col": 7,
+     "sheet": [
+      780,
+      250,
+      92,
+      92
+     ],
+     "atlas": [
+      959,
+      1776,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_lookaround_0",
+     "row": 3,
+     "col": 0,
+     "sheet": [
+      10,
+      364,
+      92,
+      92
+     ],
+     "atlas": [
+      1712,
+      1840,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_lookaround_1",
+     "row": 3,
+     "col": 1,
+     "sheet": [
+      120,
+      364,
+      92,
+      92
+     ],
+     "atlas": [
+      1806,
+      1840,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_lookaround_2",
+     "row": 3,
+     "col": 2,
+     "sheet": [
+      230,
+      364,
+      92,
+      92
+     ],
+     "atlas": [
+      1900,
+      1840,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_lookaround_3",
+     "row": 3,
+     "col": 3,
+     "sheet": [
+      340,
+      364,
+      92,
+      92
+     ],
+     "atlas": [
+      1523,
+      1868,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_lookaround_4",
+     "row": 3,
+     "col": 4,
+     "sheet": [
+      450,
+      364,
+      92,
+      92
+     ],
+     "atlas": [
+      574,
+      1870,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_lookaround_5",
+     "row": 3,
+     "col": 5,
+     "sheet": [
+      560,
+      364,
+      92,
+      92
+     ],
+     "atlas": [
+      668,
+      1870,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_lookaround_6",
+     "row": 3,
+     "col": 6,
+     "sheet": [
+      670,
+      364,
+      92,
+      92
+     ],
+     "atlas": [
+      762,
+      1870,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_lookaround_7",
+     "row": 3,
+     "col": 7,
+     "sheet": [
+      780,
+      364,
+      92,
+      92
+     ],
+     "atlas": [
+      856,
+      1870,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_nod_0",
+     "row": 4,
+     "col": 0,
+     "sheet": [
+      10,
+      478,
+      92,
+      92
+     ],
+     "atlas": [
+      386,
+      1778,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_nod_1",
+     "row": 4,
+     "col": 1,
+     "sheet": [
+      120,
+      478,
+      92,
+      92
+     ],
+     "atlas": [
+      480,
+      1778,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_nod_2",
+     "row": 4,
+     "col": 2,
+     "sheet": [
+      230,
+      478,
+      92,
+      92
+     ],
+     "atlas": [
+      192,
+      1806,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_nod_3",
+     "row": 4,
+     "col": 3,
+     "sheet": [
+      340,
+      478,
+      92,
+      92
+     ],
+     "atlas": [
+      2,
+      1808,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_nod_4",
+     "row": 4,
+     "col": 4,
+     "sheet": [
+      450,
+      478,
+      92,
+      92
+     ],
+     "atlas": [
+      96,
+      1808,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_nod_5",
+     "row": 4,
+     "col": 5,
+     "sheet": [
+      560,
+      478,
+      92,
+      92
+     ],
+     "atlas": [
+      1618,
+      1840,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_petri_0",
+     "row": 4,
+     "col": 6,
+     "sheet": [
+      669,
+      478,
+      93,
+      92
+     ],
+     "atlas": [
+      393,
+      1684,
+      93,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_petri_1",
+     "row": 4,
+     "col": 7,
+     "sheet": [
+      779,
+      478,
+      93,
+      92
+     ],
+     "atlas": [
+      488,
+      1684,
+      93,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_petri_2",
+     "row": 5,
+     "col": 0,
+     "sheet": [
+      9,
+      592,
+      93,
+      92
+     ],
+     "atlas": [
+      197,
+      1712,
+      93,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_petri_3",
+     "row": 5,
+     "col": 1,
+     "sheet": [
+      119,
+      592,
+      93,
+      92
+     ],
+     "atlas": [
+      2,
+      1714,
+      93,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_petri_4",
+     "row": 5,
+     "col": 2,
+     "sheet": [
+      229,
+      592,
+      93,
+      92
+     ],
+     "atlas": [
+      97,
+      1714,
+      93,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_petri_5",
+     "row": 5,
+     "col": 3,
+     "sheet": [
+      339,
+      592,
+      93,
+      92
+     ],
+     "atlas": [
+      1682,
+      1746,
+      93,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_read_0",
+     "row": 5,
+     "col": 4,
+     "sheet": [
+      450,
+      592,
+      92,
+      92
+     ],
+     "atlas": [
+      1053,
+      1776,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_read_1",
+     "row": 5,
+     "col": 5,
+     "sheet": [
+      560,
+      592,
+      92,
+      92
+     ],
+     "atlas": [
+      1147,
+      1776,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_read_2",
+     "row": 5,
+     "col": 6,
+     "sheet": [
+      670,
+      592,
+      92,
+      92
+     ],
+     "atlas": [
+      1241,
+      1776,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_read_3",
+     "row": 5,
+     "col": 7,
+     "sheet": [
+      780,
+      592,
+      92,
+      92
+     ],
+     "atlas": [
+      1335,
+      1776,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_read_4",
+     "row": 6,
+     "col": 0,
+     "sheet": [
+      10,
+      706,
+      92,
+      92
+     ],
+     "atlas": [
+      1429,
+      1776,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_read_5",
+     "row": 6,
+     "col": 1,
+     "sheet": [
+      120,
+      706,
+      92,
+      92
+     ],
+     "atlas": [
+      292,
+      1778,
+      92,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_sad_0",
+     "row": 6,
+     "col": 2,
+     "sheet": [
+      229,
+      706,
+      94,
+      92
+     ],
+     "atlas": [
+      1044,
+      1682,
+      94,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_sad_1",
+     "row": 6,
+     "col": 3,
+     "sheet": [
+      339,
+      706,
+      94,
+      92
+     ],
+     "atlas": [
+      1140,
+      1682,
+      94,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_sad_2",
+     "row": 6,
+     "col": 4,
+     "sheet": [
+      449,
+      706,
+      94,
+      92
+     ],
+     "atlas": [
+      1236,
+      1682,
+      94,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_sad_3",
+     "row": 6,
+     "col": 5,
+     "sheet": [
+      559,
+      706,
+      94,
+      92
+     ],
+     "atlas": [
+      1332,
+      1682,
+      94,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_sad_4",
+     "row": 6,
+     "col": 6,
+     "sheet": [
+      669,
+      706,
+      94,
+      92
+     ],
+     "atlas": [
+      1428,
+      1682,
+      94,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_sad_5",
+     "row": 6,
+     "col": 7,
+     "sheet": [
+      779,
+      706,
+      94,
+      92
+     ],
+     "atlas": [
+      297,
+      1684,
+      94,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_shake_0",
+     "row": 7,
+     "col": 0,
+     "sheet": [
+      7,
+      820,
+      97,
+      92
+     ],
+     "atlas": [
+      1649,
+      1586,
+      97,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_shake_1",
+     "row": 7,
+     "col": 1,
+     "sheet": [
+      117,
+      820,
+      97,
+      92
+     ],
+     "atlas": [
+      1487,
+      1588,
+      97,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_shake_2",
+     "row": 7,
+     "col": 2,
+     "sheet": [
+      227,
+      820,
+      97,
+      92
+     ],
+     "atlas": [
+      363,
+      1590,
+      97,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_shake_3",
+     "row": 7,
+     "col": 3,
+     "sheet": [
+      337,
+      820,
+      97,
+      92
+     ],
+     "atlas": [
+      462,
+      1590,
+      97,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_shake_4",
+     "row": 7,
+     "col": 4,
+     "sheet": [
+      447,
+      820,
+      97,
+      92
+     ],
+     "atlas": [
+      561,
+      1590,
+      97,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_shake_5",
+     "row": 7,
+     "col": 5,
+     "sheet": [
+      557,
+      820,
+      97,
+      92
+     ],
+     "atlas": [
+      198,
+      1618,
+      97,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_shake_6",
+     "row": 7,
+     "col": 6,
+     "sheet": [
+      667,
+      820,
+      97,
+      92
+     ],
+     "atlas": [
+      2,
+      1620,
+      97,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_shake_7",
+     "row": 7,
+     "col": 7,
+     "sheet": [
+      777,
+      820,
+      97,
+      92
+     ],
+     "atlas": [
+      1748,
+      1652,
+      97,
+      92
+     ]
+    },
+    {
+     "name": "act_claude_tilt_0",
+     "row": 8,
+     "col": 0,
+     "sheet": [
+      5,
+      932,
+      102,
+      94
+     ],
+     "atlas": [
+      731,
+      1490,
+      102,
+      94
+     ]
+    },
+    {
+     "name": "act_claude_tilt_1",
+     "row": 8,
+     "col": 1,
+     "sheet": [
+      115,
+      932,
+      102,
+      94
+     ],
+     "atlas": [
+      835,
+      1490,
+      102,
+      94
+     ]
+    },
+    {
+     "name": "act_claude_tilt_2",
+     "row": 8,
+     "col": 2,
+     "sheet": [
+      225,
+      932,
+      102,
+      94
+     ],
+     "atlas": [
+      939,
+      1490,
+      102,
+      94
+     ]
+    },
+    {
+     "name": "act_claude_tilt_3",
+     "row": 8,
+     "col": 3,
+     "sheet": [
+      335,
+      932,
+      102,
+      94
+     ],
+     "atlas": [
+      1043,
+      1490,
+      102,
+      94
+     ]
+    },
+    {
+     "name": "act_claude_tilt_4",
+     "row": 8,
+     "col": 4,
+     "sheet": [
+      445,
+      932,
+      102,
+      94
+     ],
+     "atlas": [
+      1147,
+      1490,
+      102,
+      94
+     ]
+    },
+    {
+     "name": "act_claude_tilt_5",
+     "row": 8,
+     "col": 5,
+     "sheet": [
+      555,
+      932,
+      102,
+      94
+     ],
+     "atlas": [
+      1251,
+      1490,
+      102,
+      94
+     ]
+    }
+   ],
+   "actions": {
+    "curtsy": [
+     "act_claude_curtsy_0",
+     "act_claude_curtsy_1",
+     "act_claude_curtsy_2",
+     "act_claude_curtsy_3",
+     "act_claude_curtsy_4",
+     "act_claude_curtsy_5",
+     "act_claude_curtsy_6",
+     "act_claude_curtsy_7"
+    ],
+    "hop": [
+     "act_claude_hop_0",
+     "act_claude_hop_1",
+     "act_claude_hop_2",
+     "act_claude_hop_3",
+     "act_claude_hop_4",
+     "act_claude_hop_5",
+     "act_claude_hop_6",
+     "act_claude_hop_7"
+    ],
+    "idle": [
+     "act_claude_idle_0",
+     "act_claude_idle_1",
+     "act_claude_idle_2",
+     "act_claude_idle_3",
+     "act_claude_idle_4",
+     "act_claude_idle_5",
+     "act_claude_idle_6",
+     "act_claude_idle_7"
+    ],
+    "lookaround": [
+     "act_claude_lookaround_0",
+     "act_claude_lookaround_1",
+     "act_claude_lookaround_2",
+     "act_claude_lookaround_3",
+     "act_claude_lookaround_4",
+     "act_claude_lookaround_5",
+     "act_claude_lookaround_6",
+     "act_claude_lookaround_7"
+    ],
+    "nod": [
+     "act_claude_nod_0",
+     "act_claude_nod_1",
+     "act_claude_nod_2",
+     "act_claude_nod_3",
+     "act_claude_nod_4",
+     "act_claude_nod_5"
+    ],
+    "petri": [
+     "act_claude_petri_0",
+     "act_claude_petri_1",
+     "act_claude_petri_2",
+     "act_claude_petri_3",
+     "act_claude_petri_4",
+     "act_claude_petri_5"
+    ],
+    "read": [
+     "act_claude_read_0",
+     "act_claude_read_1",
+     "act_claude_read_2",
+     "act_claude_read_3",
+     "act_claude_read_4",
+     "act_claude_read_5"
+    ],
+    "sad": [
+     "act_claude_sad_0",
+     "act_claude_sad_1",
+     "act_claude_sad_2",
+     "act_claude_sad_3",
+     "act_claude_sad_4",
+     "act_claude_sad_5"
+    ],
+    "shake": [
+     "act_claude_shake_0",
+     "act_claude_shake_1",
+     "act_claude_shake_2",
+     "act_claude_shake_3",
+     "act_claude_shake_4",
+     "act_claude_shake_5",
+     "act_claude_shake_6",
+     "act_claude_shake_7"
+    ],
+    "tilt": [
+     "act_claude_tilt_0",
+     "act_claude_tilt_1",
+     "act_claude_tilt_2",
+     "act_claude_tilt_3",
+     "act_claude_tilt_4",
+     "act_claude_tilt_5"
+    ]
+   }
+  },
+  "q版/doubao.png": {
+   "cell": [
+    57,
+    106
+   ],
+   "cols": 8,
+   "rows": 9,
+   "pad": 2,
+   "margin": 2,
+   "frames": [
+    {
+     "name": "act_doubao_bow_0",
+     "row": 0,
+     "col": 0,
+     "sheet": [
+      10,
+      22,
+      41,
+      86
+     ],
+     "atlas": [
+      1370,
+      3011,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_bow_1",
+     "row": 0,
+     "col": 1,
+     "sheet": [
+      69,
+      22,
+      41,
+      86
+     ],
+     "atlas": [
+      1413,
+      3011,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_bow_2",
+     "row": 0,
+     "col": 2,
+     "sheet": [
+      128,
+      22,
+      41,
+      86
+     ],
+     "atlas": [
+      540,
+      3036,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_bow_3",
+     "row": 0,
+     "col": 3,
+     "sheet": [
+      187,
+      22,
+      41,
+      86
+     ],
+     "atlas": [
+      583,
+      3036,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_bow_4",
+     "row": 0,
+     "col": 4,
+     "sheet": [
+      246,
+      22,
+      41,
+      86
+     ],
+     "atlas": [
+      626,
+      3036,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_bow_5",
+     "row": 0,
+     "col": 5,
+     "sheet": [
+      305,
+      22,
+      41,
+      86
+     ],
+     "atlas": [
+      669,
+      3036,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_bow_6",
+     "row": 0,
+     "col": 6,
+     "sheet": [
+      364,
+      22,
+      41,
+      86
+     ],
+     "atlas": [
+      712,
+      3036,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_bow_7",
+     "row": 0,
+     "col": 7,
+     "sheet": [
+      423,
+      22,
+      41,
+      86
+     ],
+     "atlas": [
+      755,
+      3036,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_hop_0",
+     "row": 1,
+     "col": 0,
+     "sheet": [
+      8,
+      116,
+      45,
+      100
+     ],
+     "atlas": [
+      173,
+      1422,
+      45,
+      100
+     ]
+    },
+    {
+     "name": "act_doubao_hop_1",
+     "row": 1,
+     "col": 1,
+     "sheet": [
+      67,
+      116,
+      45,
+      100
+     ],
+     "atlas": [
+      1842,
+      1454,
+      45,
+      100
+     ]
+    },
+    {
+     "name": "act_doubao_hop_2",
+     "row": 1,
+     "col": 2,
+     "sheet": [
+      126,
+      116,
+      45,
+      100
+     ],
+     "atlas": [
+      1889,
+      1454,
+      45,
+      100
+     ]
+    },
+    {
+     "name": "act_doubao_hop_3",
+     "row": 1,
+     "col": 3,
+     "sheet": [
+      185,
+      116,
+      45,
+      100
+     ],
+     "atlas": [
+      1936,
+      1454,
+      45,
+      100
+     ]
+    },
+    {
+     "name": "act_doubao_hop_4",
+     "row": 1,
+     "col": 4,
+     "sheet": [
+      244,
+      116,
+      45,
+      100
+     ],
+     "atlas": [
+      1983,
+      1454,
+      45,
+      100
+     ]
+    },
+    {
+     "name": "act_doubao_hop_5",
+     "row": 1,
+     "col": 5,
+     "sheet": [
+      303,
+      116,
+      45,
+      100
+     ],
+     "atlas": [
+      1508,
+      1486,
+      45,
+      100
+     ]
+    },
+    {
+     "name": "act_doubao_hop_6",
+     "row": 1,
+     "col": 6,
+     "sheet": [
+      362,
+      116,
+      45,
+      100
+     ],
+     "atlas": [
+      1555,
+      1486,
+      45,
+      100
+     ]
+    },
+    {
+     "name": "act_doubao_hop_7",
+     "row": 1,
+     "col": 7,
+     "sheet": [
+      421,
+      116,
+      45,
+      100
+     ],
+     "atlas": [
+      1602,
+      1486,
+      45,
+      100
+     ]
+    },
+    {
+     "name": "act_doubao_idle_0",
+     "row": 2,
+     "col": 0,
+     "sheet": [
+      10,
+      238,
+      41,
+      86
+     ],
+     "atlas": [
+      1498,
+      3010,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_idle_1",
+     "row": 2,
+     "col": 1,
+     "sheet": [
+      69,
+      238,
+      41,
+      86
+     ],
+     "atlas": [
+      1541,
+      3010,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_idle_2",
+     "row": 2,
+     "col": 2,
+     "sheet": [
+      128,
+      238,
+      41,
+      86
+     ],
+     "atlas": [
+      1584,
+      3010,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_idle_3",
+     "row": 2,
+     "col": 3,
+     "sheet": [
+      187,
+      238,
+      41,
+      86
+     ],
+     "atlas": [
+      1627,
+      3010,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_idle_4",
+     "row": 2,
+     "col": 4,
+     "sheet": [
+      246,
+      238,
+      41,
+      86
+     ],
+     "atlas": [
+      1670,
+      3010,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_idle_5",
+     "row": 2,
+     "col": 5,
+     "sheet": [
+      305,
+      238,
+      41,
+      86
+     ],
+     "atlas": [
+      1713,
+      3010,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_idle_6",
+     "row": 2,
+     "col": 6,
+     "sheet": [
+      364,
+      238,
+      41,
+      86
+     ],
+     "atlas": [
+      1756,
+      3010,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_idle_7",
+     "row": 2,
+     "col": 7,
+     "sheet": [
+      423,
+      238,
+      41,
+      86
+     ],
+     "atlas": [
+      1799,
+      3010,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_nod_0",
+     "row": 3,
+     "col": 0,
+     "sheet": [
+      10,
+      346,
+      41,
+      86
+     ],
+     "atlas": [
+      1842,
+      3010,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_nod_1",
+     "row": 3,
+     "col": 1,
+     "sheet": [
+      69,
+      346,
+      41,
+      86
+     ],
+     "atlas": [
+      1885,
+      3010,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_nod_2",
+     "row": 3,
+     "col": 2,
+     "sheet": [
+      128,
+      346,
+      41,
+      86
+     ],
+     "atlas": [
+      1928,
+      3010,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_nod_3",
+     "row": 3,
+     "col": 3,
+     "sheet": [
+      187,
+      346,
+      41,
+      86
+     ],
+     "atlas": [
+      1971,
+      3010,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_nod_4",
+     "row": 3,
+     "col": 4,
+     "sheet": [
+      246,
+      346,
+      41,
+      86
+     ],
+     "atlas": [
+      1284,
+      3011,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_nod_5",
+     "row": 3,
+     "col": 5,
+     "sheet": [
+      305,
+      346,
+      41,
+      86
+     ],
+     "atlas": [
+      1327,
+      3011,
+      41,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_spin_0",
+     "row": 3,
+     "col": 6,
+     "sheet": [
+      365,
+      346,
+      39,
+      86
+     ],
+     "atlas": [
+      1456,
+      3011,
+      39,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_spin_1",
+     "row": 3,
+     "col": 7,
+     "sheet": [
+      424,
+      346,
+      39,
+      86
+     ],
+     "atlas": [
+      798,
+      3036,
+      39,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_spin_2",
+     "row": 4,
+     "col": 0,
+     "sheet": [
+      11,
+      454,
+      39,
+      86
+     ],
+     "atlas": [
+      839,
+      3036,
+      39,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_spin_3",
+     "row": 4,
+     "col": 1,
+     "sheet": [
+      70,
+      454,
+      39,
+      86
+     ],
+     "atlas": [
+      880,
+      3036,
+      39,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_spin_4",
+     "row": 4,
+     "col": 2,
+     "sheet": [
+      129,
+      454,
+      39,
+      86
+     ],
+     "atlas": [
+      921,
+      3036,
+      39,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_spin_5",
+     "row": 4,
+     "col": 3,
+     "sheet": [
+      188,
+      454,
+      39,
+      86
+     ],
+     "atlas": [
+      962,
+      3036,
+      39,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_spin_6",
+     "row": 4,
+     "col": 4,
+     "sheet": [
+      247,
+      454,
+      39,
+      86
+     ],
+     "atlas": [
+      1003,
+      3036,
+      39,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_spin_7",
+     "row": 4,
+     "col": 5,
+     "sheet": [
+      306,
+      454,
+      39,
+      86
+     ],
+     "atlas": [
+      1044,
+      3036,
+      39,
+      86
+     ]
+    },
+    {
+     "name": "act_doubao_step_0",
+     "row": 4,
+     "col": 6,
+     "sheet": [
+      360,
+      450,
+      49,
+      90
+     ],
+     "atlas": [
+      1716,
+      2211,
+      49,
+      90
+     ]
+    },
+    {
+     "name": "act_doubao_step_1",
+     "row": 4,
+     "col": 7,
+     "sheet": [
+      419,
+      450,
+      49,
+      90
+     ],
+     "atlas": [
+      1767,
+      2211,
+      49,
+      90
+     ]
+    },
+    {
+     "name": "act_doubao_step_2",
+     "row": 5,
+     "col": 0,
+     "sheet": [
+      6,
+      558,
+      49,
+      90
+     ],
+     "atlas": [
+      1818,
+      2211,
+      49,
+      90
+     ]
+    },
+    {
+     "name": "act_doubao_step_3",
+     "row": 5,
+     "col": 1,
+     "sheet": [
+      65,
+      558,
+      49,
+      90
+     ],
+     "atlas": [
+      1869,
+      2211,
+      49,
+      90
+     ]
+    },
+    {
+     "name": "act_doubao_step_4",
+     "row": 5,
+     "col": 2,
+     "sheet": [
+      124,
+      558,
+      49,
+      90
+     ],
+     "atlas": [
+      1920,
+      2211,
+      49,
+      90
+     ]
+    },
+    {
+     "name": "act_doubao_step_5",
+     "row": 5,
+     "col": 3,
+     "sheet": [
+      183,
+      558,
+      49,
+      90
+     ],
+     "atlas": [
+      1971,
+      2211,
+      49,
+      90
+     ]
+    },
+    {
+     "name": "act_doubao_step_6",
+     "row": 5,
+     "col": 4,
+     "sheet": [
+      242,
+      558,
+      49,
+      90
+     ],
+     "atlas": [
+      1416,
+      2238,
+      49,
+      90
+     ]
+    },
+    {
+     "name": "act_doubao_step_7",
+     "row": 5,
+     "col": 5,
+     "sheet": [
+      301,
+      558,
+      49,
+      90
+     ],
+     "atlas": [
+      1467,
+      2238,
+      49,
+      90
+     ]
+    },
+    {
+     "name": "act_doubao_surprise_0",
+     "row": 5,
+     "col": 6,
+     "sheet": [
+      363,
+      554,
+      43,
+      94
+     ],
+     "atlas": [
+      1453,
+      1490,
+      43,
+      94
+     ]
+    },
+    {
+     "name": "act_doubao_surprise_1",
+     "row": 5,
+     "col": 7,
+     "sheet": [
+      422,
+      554,
+      43,
+      94
+     ],
+     "atlas": [
+      318,
+      1522,
+      43,
+      94
+     ]
+    },
+    {
+     "name": "act_doubao_surprise_2",
+     "row": 6,
+     "col": 0,
+     "sheet": [
+      9,
+      662,
+      43,
+      94
+     ],
+     "atlas": [
+      1307,
+      1586,
+      43,
+      94
+     ]
+    },
+    {
+     "name": "act_doubao_surprise_3",
+     "row": 6,
+     "col": 1,
+     "sheet": [
+      68,
+      662,
+      43,
+      94
+     ],
+     "atlas": [
+      1352,
+      1586,
+      43,
+      94
+     ]
+    },
+    {
+     "name": "act_doubao_surprise_4",
+     "row": 6,
+     "col": 2,
+     "sheet": [
+      127,
+      662,
+      43,
+      94
+     ],
+     "atlas": [
+      1397,
+      1586,
+      43,
+      94
+     ]
+    },
+    {
+     "name": "act_doubao_surprise_5",
+     "row": 6,
+     "col": 3,
+     "sheet": [
+      186,
+      662,
+      43,
+      94
+     ],
+     "atlas": [
+      1442,
+      1586,
+      43,
+      94
+     ]
+    },
+    {
+     "name": "act_doubao_sway_0",
+     "row": 6,
+     "col": 4,
+     "sheet": [
+      241,
+      669,
+      51,
+      87
+     ],
+     "atlas": [
+      2,
+      2450,
+      51,
+      87
+     ]
+    },
+    {
+     "name": "act_doubao_sway_1",
+     "row": 6,
+     "col": 5,
+     "sheet": [
+      300,
+      669,
+      51,
+      87
+     ],
+     "atlas": [
+      55,
+      2450,
+      51,
+      87
+     ]
+    },
+    {
+     "name": "act_doubao_sway_2",
+     "row": 6,
+     "col": 6,
+     "sheet": [
+      359,
+      669,
+      51,
+      87
+     ],
+     "atlas": [
+      108,
+      2450,
+      51,
+      87
+     ]
+    },
+    {
+     "name": "act_doubao_sway_3",
+     "row": 6,
+     "col": 7,
+     "sheet": [
+      418,
+      669,
+      51,
+      87
+     ],
+     "atlas": [
+      161,
+      2450,
+      51,
+      87
+     ]
+    },
+    {
+     "name": "act_doubao_sway_4",
+     "row": 7,
+     "col": 0,
+     "sheet": [
+      5,
+      777,
+      51,
+      87
+     ],
+     "atlas": [
+      1487,
+      2482,
+      51,
+      87
+     ]
+    },
+    {
+     "name": "act_doubao_sway_5",
+     "row": 7,
+     "col": 1,
+     "sheet": [
+      64,
+      777,
+      51,
+      87
+     ],
+     "atlas": [
+      1540,
+      2482,
+      51,
+      87
+     ]
+    },
+    {
+     "name": "act_doubao_sway_6",
+     "row": 7,
+     "col": 2,
+     "sheet": [
+      123,
+      777,
+      51,
+      87
+     ],
+     "atlas": [
+      1593,
+      2482,
+      51,
+      87
+     ]
+    },
+    {
+     "name": "act_doubao_sway_7",
+     "row": 7,
+     "col": 3,
+     "sheet": [
+      182,
+      777,
+      51,
+      87
+     ],
+     "atlas": [
+      1646,
+      2482,
+      51,
+      87
+     ]
+    },
+    {
+     "name": "act_doubao_tilt_0",
+     "row": 7,
+     "col": 4,
+     "sheet": [
+      241,
+      776,
+      51,
+      88
+     ],
+     "atlas": [
+      1281,
+      2329,
+      51,
+      88
+     ]
+    },
+    {
+     "name": "act_doubao_tilt_1",
+     "row": 7,
+     "col": 5,
+     "sheet": [
+      300,
+      776,
+      51,
+      88
+     ],
+     "atlas": [
+      1334,
+      2329,
+      51,
+      88
+     ]
+    },
+    {
+     "name": "act_doubao_tilt_2",
+     "row": 7,
+     "col": 6,
+     "sheet": [
+      359,
+      776,
+      51,
+      88
+     ],
+     "atlas": [
+      470,
+      2330,
+      51,
+      88
+     ]
+    },
+    {
+     "name": "act_doubao_tilt_3",
+     "row": 7,
+     "col": 7,
+     "sheet": [
+      418,
+      776,
+      51,
+      88
+     ],
+     "atlas": [
+      523,
+      2330,
+      51,
+      88
+     ]
+    },
+    {
+     "name": "act_doubao_tilt_4",
+     "row": 8,
+     "col": 0,
+     "sheet": [
+      5,
+      884,
+      51,
+      88
+     ],
+     "atlas": [
+      576,
+      2330,
+      51,
+      88
+     ]
+    },
+    {
+     "name": "act_doubao_tilt_5",
+     "row": 8,
+     "col": 1,
+     "sheet": [
+      64,
+      884,
+      51,
+      88
+     ],
+     "atlas": [
+      629,
+      2330,
+      51,
+      88
+     ]
+    }
+   ],
+   "actions": {
+    "bow": [
+     "act_doubao_bow_0",
+     "act_doubao_bow_1",
+     "act_doubao_bow_2",
+     "act_doubao_bow_3",
+     "act_doubao_bow_4",
+     "act_doubao_bow_5",
+     "act_doubao_bow_6",
+     "act_doubao_bow_7"
+    ],
+    "hop": [
+     "act_doubao_hop_0",
+     "act_doubao_hop_1",
+     "act_doubao_hop_2",
+     "act_doubao_hop_3",
+     "act_doubao_hop_4",
+     "act_doubao_hop_5",
+     "act_doubao_hop_6",
+     "act_doubao_hop_7"
+    ],
+    "idle": [
+     "act_doubao_idle_0",
+     "act_doubao_idle_1",
+     "act_doubao_idle_2",
+     "act_doubao_idle_3",
+     "act_doubao_idle_4",
+     "act_doubao_idle_5",
+     "act_doubao_idle_6",
+     "act_doubao_idle_7"
+    ],
+    "nod": [
+     "act_doubao_nod_0",
+     "act_doubao_nod_1",
+     "act_doubao_nod_2",
+     "act_doubao_nod_3",
+     "act_doubao_nod_4",
+     "act_doubao_nod_5"
+    ],
+    "spin": [
+     "act_doubao_spin_0",
+     "act_doubao_spin_1",
+     "act_doubao_spin_2",
+     "act_doubao_spin_3",
+     "act_doubao_spin_4",
+     "act_doubao_spin_5",
+     "act_doubao_spin_6",
+     "act_doubao_spin_7"
+    ],
+    "step": [
+     "act_doubao_step_0",
+     "act_doubao_step_1",
+     "act_doubao_step_2",
+     "act_doubao_step_3",
+     "act_doubao_step_4",
+     "act_doubao_step_5",
+     "act_doubao_step_6",
+     "act_doubao_step_7"
+    ],
+    "surprise": [
+     "act_doubao_surprise_0",
+     "act_doubao_surprise_1",
+     "act_doubao_surprise_2",
+     "act_doubao_surprise_3",
+     "act_doubao_surprise_4",
+     "act_doubao_surprise_5"
+    ],
+    "sway": [
+     "act_doubao_sway_0",
+     "act_doubao_sway_1",
+     "act_doubao_sway_2",
+     "act_doubao_sway_3",
+     "act_doubao_sway_4",
+     "act_doubao_sway_5",
+     "act_doubao_sway_6",
+     "act_doubao_sway_7"
+    ],
+    "tilt": [
+     "act_doubao_tilt_0",
+     "act_doubao_tilt_1",
+     "act_doubao_tilt_2",
+     "act_doubao_tilt_3",
+     "act_doubao_tilt_4",
+     "act_doubao_tilt_5"
+    ]
+   }
+  },
+  "q版/gemini.png": {
+   "cell": [
+    110,
+    106
+   ],
+   "cols": 10,
+   "rows": 7,
+   "pad": 2,
+   "margin": 2,
+   "frames": [
+    {
+     "name": "act_gemini_choose_0",
+     "row": 0,
+     "col": 0,
+     "sheet": [
+      5,
+      21,
+      104,
+      87
+     ],
+     "atlas": [
+      682,
+      2330,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_choose_1",
+     "row": 0,
+     "col": 1,
+     "sheet": [
+      117,
+      21,
+      104,
+      87
+     ],
+     "atlas": [
+      1387,
+      2330,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_choose_2",
+     "row": 0,
+     "col": 2,
+     "sheet": [
+      229,
+      21,
+      104,
+      87
+     ],
+     "atlas": [
+      214,
+      2331,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_choose_3",
+     "row": 0,
+     "col": 3,
+     "sheet": [
+      341,
+      21,
+      104,
+      87
+     ],
+     "atlas": [
+      320,
+      2331,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_choose_4",
+     "row": 0,
+     "col": 4,
+     "sheet": [
+      453,
+      21,
+      104,
+      87
+     ],
+     "atlas": [
+      2,
+      2361,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_choose_5",
+     "row": 0,
+     "col": 5,
+     "sheet": [
+      565,
+      21,
+      104,
+      87
+     ],
+     "atlas": [
+      108,
+      2361,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_choose_6",
+     "row": 0,
+     "col": 6,
+     "sheet": [
+      677,
+      21,
+      104,
+      87
+     ],
+     "atlas": [
+      1493,
+      2393,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_choose_7",
+     "row": 0,
+     "col": 7,
+     "sheet": [
+      789,
+      21,
+      104,
+      87
+     ],
+     "atlas": [
+      1599,
+      2393,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_choose_8",
+     "row": 0,
+     "col": 8,
+     "sheet": [
+      901,
+      21,
+      104,
+      87
+     ],
+     "atlas": [
+      1705,
+      2393,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_choose_9",
+     "row": 0,
+     "col": 9,
+     "sheet": [
+      1013,
+      21,
+      104,
+      87
+     ],
+     "atlas": [
+      1811,
+      2393,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_hop_0",
+     "row": 1,
+     "col": 0,
+     "sheet": [
+      8,
+      116,
+      98,
+      100
+     ],
+     "atlas": [
+      1542,
+      1282,
+      98,
+      100
+     ]
+    },
+    {
+     "name": "act_gemini_hop_1",
+     "row": 1,
+     "col": 1,
+     "sheet": [
+      120,
+      116,
+      98,
+      100
+     ],
+     "atlas": [
+      1642,
+      1282,
+      98,
+      100
+     ]
+    },
+    {
+     "name": "act_gemini_hop_2",
+     "row": 1,
+     "col": 2,
+     "sheet": [
+      232,
+      116,
+      98,
+      100
+     ],
+     "atlas": [
+      1742,
+      1282,
+      98,
+      100
+     ]
+    },
+    {
+     "name": "act_gemini_hop_3",
+     "row": 1,
+     "col": 3,
+     "sheet": [
+      344,
+      116,
+      98,
+      100
+     ],
+     "atlas": [
+      2,
+      1296,
+      98,
+      100
+     ]
+    },
+    {
+     "name": "act_gemini_hop_4",
+     "row": 1,
+     "col": 4,
+     "sheet": [
+      456,
+      116,
+      98,
+      100
+     ],
+     "atlas": [
+      296,
+      1318,
+      98,
+      100
+     ]
+    },
+    {
+     "name": "act_gemini_hop_5",
+     "row": 1,
+     "col": 5,
+     "sheet": [
+      568,
+      116,
+      98,
+      100
+     ],
+     "atlas": [
+      102,
+      1320,
+      98,
+      100
+     ]
+    },
+    {
+     "name": "act_gemini_hop_6",
+     "row": 1,
+     "col": 6,
+     "sheet": [
+      680,
+      116,
+      98,
+      100
+     ],
+     "atlas": [
+      1842,
+      1352,
+      98,
+      100
+     ]
+    },
+    {
+     "name": "act_gemini_hop_7",
+     "row": 1,
+     "col": 7,
+     "sheet": [
+      792,
+      116,
+      98,
+      100
+     ],
+     "atlas": [
+      1942,
+      1352,
+      98,
+      100
+     ]
+    },
+    {
+     "name": "act_gemini_idle_0",
+     "row": 1,
+     "col": 8,
+     "sheet": [
+      906,
+      130,
+      94,
+      86
+     ],
+     "atlas": [
+      102,
+      2539,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_idle_1",
+     "row": 1,
+     "col": 9,
+     "sheet": [
+      1018,
+      130,
+      94,
+      86
+     ],
+     "atlas": [
+      1699,
+      2570,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_idle_2",
+     "row": 2,
+     "col": 0,
+     "sheet": [
+      10,
+      238,
+      94,
+      86
+     ],
+     "atlas": [
+      1795,
+      2570,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_idle_3",
+     "row": 2,
+     "col": 1,
+     "sheet": [
+      122,
+      238,
+      94,
+      86
+     ],
+     "atlas": [
+      1891,
+      2570,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_idle_4",
+     "row": 2,
+     "col": 2,
+     "sheet": [
+      234,
+      238,
+      94,
+      86
+     ],
+     "atlas": [
+      1465,
+      2571,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_idle_5",
+     "row": 2,
+     "col": 3,
+     "sheet": [
+      346,
+      238,
+      94,
+      86
+     ],
+     "atlas": [
+      1561,
+      2571,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_idle_6",
+     "row": 2,
+     "col": 4,
+     "sheet": [
+      458,
+      238,
+      94,
+      86
+     ],
+     "atlas": [
+      614,
+      2596,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_idle_7",
+     "row": 2,
+     "col": 5,
+     "sheet": [
+      570,
+      238,
+      94,
+      86
+     ],
+     "atlas": [
+      710,
+      2596,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_lookaround_0",
+     "row": 2,
+     "col": 6,
+     "sheet": [
+      682,
+      238,
+      94,
+      86
+     ],
+     "atlas": [
+      806,
+      2596,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_lookaround_1",
+     "row": 2,
+     "col": 7,
+     "sheet": [
+      794,
+      238,
+      94,
+      86
+     ],
+     "atlas": [
+      902,
+      2596,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_lookaround_2",
+     "row": 2,
+     "col": 8,
+     "sheet": [
+      906,
+      238,
+      94,
+      86
+     ],
+     "atlas": [
+      998,
+      2596,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_lookaround_3",
+     "row": 2,
+     "col": 9,
+     "sheet": [
+      1018,
+      238,
+      94,
+      86
+     ],
+     "atlas": [
+      1094,
+      2596,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_lookaround_4",
+     "row": 3,
+     "col": 0,
+     "sheet": [
+      10,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      1190,
+      2596,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_lookaround_5",
+     "row": 3,
+     "col": 1,
+     "sheet": [
+      122,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      1286,
+      2596,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_lookaround_6",
+     "row": 3,
+     "col": 2,
+     "sheet": [
+      234,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      198,
+      2597,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_lookaround_7",
+     "row": 3,
+     "col": 3,
+     "sheet": [
+      346,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      294,
+      2597,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_nod_0",
+     "row": 3,
+     "col": 4,
+     "sheet": [
+      458,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      390,
+      2597,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_nod_1",
+     "row": 3,
+     "col": 5,
+     "sheet": [
+      570,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      486,
+      2597,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_nod_2",
+     "row": 3,
+     "col": 6,
+     "sheet": [
+      682,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      2,
+      2627,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_nod_3",
+     "row": 3,
+     "col": 7,
+     "sheet": [
+      794,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      98,
+      2627,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_nod_4",
+     "row": 3,
+     "col": 8,
+     "sheet": [
+      906,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      1657,
+      2658,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_nod_5",
+     "row": 3,
+     "col": 9,
+     "sheet": [
+      1018,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      1753,
+      2658,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_spin_0",
+     "row": 4,
+     "col": 0,
+     "sheet": [
+      11,
+      454,
+      92,
+      86
+     ],
+     "atlas": [
+      1350,
+      2747,
+      92,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_spin_1",
+     "row": 4,
+     "col": 1,
+     "sheet": [
+      123,
+      454,
+      92,
+      86
+     ],
+     "atlas": [
+      1444,
+      2747,
+      92,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_spin_2",
+     "row": 4,
+     "col": 2,
+     "sheet": [
+      235,
+      454,
+      92,
+      86
+     ],
+     "atlas": [
+      578,
+      2772,
+      92,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_spin_3",
+     "row": 4,
+     "col": 3,
+     "sheet": [
+      347,
+      454,
+      92,
+      86
+     ],
+     "atlas": [
+      672,
+      2772,
+      92,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_spin_4",
+     "row": 4,
+     "col": 4,
+     "sheet": [
+      459,
+      454,
+      92,
+      86
+     ],
+     "atlas": [
+      766,
+      2772,
+      92,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_spin_5",
+     "row": 4,
+     "col": 5,
+     "sheet": [
+      571,
+      454,
+      92,
+      86
+     ],
+     "atlas": [
+      860,
+      2772,
+      92,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_spin_6",
+     "row": 4,
+     "col": 6,
+     "sheet": [
+      683,
+      454,
+      92,
+      86
+     ],
+     "atlas": [
+      954,
+      2772,
+      92,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_spin_7",
+     "row": 4,
+     "col": 7,
+     "sheet": [
+      795,
+      454,
+      92,
+      86
+     ],
+     "atlas": [
+      1048,
+      2772,
+      92,
+      86
+     ]
+    },
+    {
+     "name": "act_gemini_surprise_0",
+     "row": 4,
+     "col": 8,
+     "sheet": [
+      905,
+      446,
+      96,
+      94
+     ],
+     "atlas": [
+      1355,
+      1490,
+      96,
+      94
+     ]
+    },
+    {
+     "name": "act_gemini_surprise_1",
+     "row": 4,
+     "col": 9,
+     "sheet": [
+      1017,
+      446,
+      96,
+      94
+     ],
+     "atlas": [
+      220,
+      1522,
+      96,
+      94
+     ]
+    },
+    {
+     "name": "act_gemini_surprise_2",
+     "row": 5,
+     "col": 0,
+     "sheet": [
+      9,
+      554,
+      96,
+      94
+     ],
+     "atlas": [
+      2,
+      1524,
+      96,
+      94
+     ]
+    },
+    {
+     "name": "act_gemini_surprise_3",
+     "row": 5,
+     "col": 1,
+     "sheet": [
+      121,
+      554,
+      96,
+      94
+     ],
+     "atlas": [
+      100,
+      1524,
+      96,
+      94
+     ]
+    },
+    {
+     "name": "act_gemini_surprise_4",
+     "row": 5,
+     "col": 2,
+     "sheet": [
+      233,
+      554,
+      96,
+      94
+     ],
+     "atlas": [
+      1825,
+      1556,
+      96,
+      94
+     ]
+    },
+    {
+     "name": "act_gemini_surprise_5",
+     "row": 5,
+     "col": 3,
+     "sheet": [
+      345,
+      554,
+      96,
+      94
+     ],
+     "atlas": [
+      1923,
+      1556,
+      96,
+      94
+     ]
+    },
+    {
+     "name": "act_gemini_sway_0",
+     "row": 5,
+     "col": 4,
+     "sheet": [
+      453,
+      561,
+      104,
+      87
+     ],
+     "atlas": [
+      1917,
+      2393,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_sway_1",
+     "row": 5,
+     "col": 5,
+     "sheet": [
+      565,
+      561,
+      104,
+      87
+     ],
+     "atlas": [
+      682,
+      2419,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_sway_2",
+     "row": 5,
+     "col": 6,
+     "sheet": [
+      677,
+      561,
+      104,
+      87
+     ],
+     "atlas": [
+      788,
+      2419,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_sway_3",
+     "row": 5,
+     "col": 7,
+     "sheet": [
+      789,
+      561,
+      104,
+      87
+     ],
+     "atlas": [
+      894,
+      2419,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_sway_4",
+     "row": 5,
+     "col": 8,
+     "sheet": [
+      901,
+      561,
+      104,
+      87
+     ],
+     "atlas": [
+      1000,
+      2419,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_sway_5",
+     "row": 5,
+     "col": 9,
+     "sheet": [
+      1013,
+      561,
+      104,
+      87
+     ],
+     "atlas": [
+      1106,
+      2419,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_sway_6",
+     "row": 6,
+     "col": 0,
+     "sheet": [
+      5,
+      669,
+      104,
+      87
+     ],
+     "atlas": [
+      1212,
+      2419,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_sway_7",
+     "row": 6,
+     "col": 1,
+     "sheet": [
+      117,
+      669,
+      104,
+      87
+     ],
+     "atlas": [
+      1318,
+      2419,
+      104,
+      87
+     ]
+    },
+    {
+     "name": "act_gemini_tilt_0",
+     "row": 6,
+     "col": 2,
+     "sheet": [
+      229,
+      668,
+      104,
+      88
+     ],
+     "atlas": [
+      876,
+      2239,
+      104,
+      88
+     ]
+    },
+    {
+     "name": "act_gemini_tilt_1",
+     "row": 6,
+     "col": 3,
+     "sheet": [
+      341,
+      668,
+      104,
+      88
+     ],
+     "atlas": [
+      982,
+      2239,
+      104,
+      88
+     ]
+    },
+    {
+     "name": "act_gemini_tilt_2",
+     "row": 6,
+     "col": 4,
+     "sheet": [
+      453,
+      668,
+      104,
+      88
+     ],
+     "atlas": [
+      1088,
+      2239,
+      104,
+      88
+     ]
+    },
+    {
+     "name": "act_gemini_tilt_3",
+     "row": 6,
+     "col": 5,
+     "sheet": [
+      565,
+      668,
+      104,
+      88
+     ],
+     "atlas": [
+      1194,
+      2239,
+      104,
+      88
+     ]
+    },
+    {
+     "name": "act_gemini_tilt_4",
+     "row": 6,
+     "col": 6,
+     "sheet": [
+      677,
+      668,
+      104,
+      88
+     ],
+     "atlas": [
+      1300,
+      2239,
+      104,
+      88
+     ]
+    },
+    {
+     "name": "act_gemini_tilt_5",
+     "row": 6,
+     "col": 7,
+     "sheet": [
+      789,
+      668,
+      104,
+      88
+     ],
+     "atlas": [
+      516,
+      2240,
+      104,
+      88
+     ]
+    }
+   ],
+   "actions": {
+    "choose": [
+     "act_gemini_choose_0",
+     "act_gemini_choose_1",
+     "act_gemini_choose_2",
+     "act_gemini_choose_3",
+     "act_gemini_choose_4",
+     "act_gemini_choose_5",
+     "act_gemini_choose_6",
+     "act_gemini_choose_7",
+     "act_gemini_choose_8",
+     "act_gemini_choose_9"
+    ],
+    "hop": [
+     "act_gemini_hop_0",
+     "act_gemini_hop_1",
+     "act_gemini_hop_2",
+     "act_gemini_hop_3",
+     "act_gemini_hop_4",
+     "act_gemini_hop_5",
+     "act_gemini_hop_6",
+     "act_gemini_hop_7"
+    ],
+    "idle": [
+     "act_gemini_idle_0",
+     "act_gemini_idle_1",
+     "act_gemini_idle_2",
+     "act_gemini_idle_3",
+     "act_gemini_idle_4",
+     "act_gemini_idle_5",
+     "act_gemini_idle_6",
+     "act_gemini_idle_7"
+    ],
+    "lookaround": [
+     "act_gemini_lookaround_0",
+     "act_gemini_lookaround_1",
+     "act_gemini_lookaround_2",
+     "act_gemini_lookaround_3",
+     "act_gemini_lookaround_4",
+     "act_gemini_lookaround_5",
+     "act_gemini_lookaround_6",
+     "act_gemini_lookaround_7"
+    ],
+    "nod": [
+     "act_gemini_nod_0",
+     "act_gemini_nod_1",
+     "act_gemini_nod_2",
+     "act_gemini_nod_3",
+     "act_gemini_nod_4",
+     "act_gemini_nod_5"
+    ],
+    "spin": [
+     "act_gemini_spin_0",
+     "act_gemini_spin_1",
+     "act_gemini_spin_2",
+     "act_gemini_spin_3",
+     "act_gemini_spin_4",
+     "act_gemini_spin_5",
+     "act_gemini_spin_6",
+     "act_gemini_spin_7"
+    ],
+    "surprise": [
+     "act_gemini_surprise_0",
+     "act_gemini_surprise_1",
+     "act_gemini_surprise_2",
+     "act_gemini_surprise_3",
+     "act_gemini_surprise_4",
+     "act_gemini_surprise_5"
+    ],
+    "sway": [
+     "act_gemini_sway_0",
+     "act_gemini_sway_1",
+     "act_gemini_sway_2",
+     "act_gemini_sway_3",
+     "act_gemini_sway_4",
+     "act_gemini_sway_5",
+     "act_gemini_sway_6",
+     "act_gemini_sway_7"
+    ],
+    "tilt": [
+     "act_gemini_tilt_0",
+     "act_gemini_tilt_1",
+     "act_gemini_tilt_2",
+     "act_gemini_tilt_3",
+     "act_gemini_tilt_4",
+     "act_gemini_tilt_5"
+    ]
+   }
+  },
+  "q版/kimi.png": {
+   "cell": [
+    73,
+    106
+   ],
+   "cols": 8,
+   "rows": 8,
+   "pad": 2,
+   "margin": 2,
+   "frames": [
+    {
+     "name": "act_kimi_bow_0",
+     "row": 0,
+     "col": 0,
+     "sheet": [
+      10,
+      22,
+      57,
+      86
+     ],
+     "atlas": [
+      188,
+      2861,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_bow_1",
+     "row": 0,
+     "col": 1,
+     "sheet": [
+      85,
+      22,
+      57,
+      86
+     ],
+     "atlas": [
+      247,
+      2861,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_bow_2",
+     "row": 0,
+     "col": 2,
+     "sheet": [
+      160,
+      22,
+      57,
+      86
+     ],
+     "atlas": [
+      306,
+      2861,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_bow_3",
+     "row": 0,
+     "col": 3,
+     "sheet": [
+      235,
+      22,
+      57,
+      86
+     ],
+     "atlas": [
+      365,
+      2861,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_bow_4",
+     "row": 0,
+     "col": 4,
+     "sheet": [
+      310,
+      22,
+      57,
+      86
+     ],
+     "atlas": [
+      424,
+      2861,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_bow_5",
+     "row": 0,
+     "col": 5,
+     "sheet": [
+      385,
+      22,
+      57,
+      86
+     ],
+     "atlas": [
+      483,
+      2861,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_bow_6",
+     "row": 0,
+     "col": 6,
+     "sheet": [
+      460,
+      22,
+      57,
+      86
+     ],
+     "atlas": [
+      2,
+      2891,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_bow_7",
+     "row": 0,
+     "col": 7,
+     "sheet": [
+      535,
+      22,
+      57,
+      86
+     ],
+     "atlas": [
+      61,
+      2891,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_hop_0",
+     "row": 1,
+     "col": 0,
+     "sheet": [
+      8,
+      116,
+      61,
+      100
+     ],
+     "atlas": [
+      202,
+      1320,
+      61,
+      100
+     ]
+    },
+    {
+     "name": "act_kimi_hop_1",
+     "row": 1,
+     "col": 1,
+     "sheet": [
+      83,
+      116,
+      61,
+      100
+     ],
+     "atlas": [
+      896,
+      1388,
+      61,
+      100
+     ]
+    },
+    {
+     "name": "act_kimi_hop_2",
+     "row": 1,
+     "col": 2,
+     "sheet": [
+      158,
+      116,
+      61,
+      100
+     ],
+     "atlas": [
+      959,
+      1388,
+      61,
+      100
+     ]
+    },
+    {
+     "name": "act_kimi_hop_3",
+     "row": 1,
+     "col": 3,
+     "sheet": [
+      233,
+      116,
+      61,
+      100
+     ],
+     "atlas": [
+      1022,
+      1388,
+      61,
+      100
+     ]
+    },
+    {
+     "name": "act_kimi_hop_4",
+     "row": 1,
+     "col": 4,
+     "sheet": [
+      308,
+      116,
+      61,
+      100
+     ],
+     "atlas": [
+      1085,
+      1388,
+      61,
+      100
+     ]
+    },
+    {
+     "name": "act_kimi_hop_5",
+     "row": 1,
+     "col": 5,
+     "sheet": [
+      383,
+      116,
+      61,
+      100
+     ],
+     "atlas": [
+      1148,
+      1388,
+      61,
+      100
+     ]
+    },
+    {
+     "name": "act_kimi_hop_6",
+     "row": 1,
+     "col": 6,
+     "sheet": [
+      458,
+      116,
+      61,
+      100
+     ],
+     "atlas": [
+      1211,
+      1388,
+      61,
+      100
+     ]
+    },
+    {
+     "name": "act_kimi_hop_7",
+     "row": 1,
+     "col": 7,
+     "sheet": [
+      533,
+      116,
+      61,
+      100
+     ],
+     "atlas": [
+      1274,
+      1388,
+      61,
+      100
+     ]
+    },
+    {
+     "name": "act_kimi_idle_0",
+     "row": 2,
+     "col": 0,
+     "sheet": [
+      10,
+      238,
+      57,
+      86
+     ],
+     "atlas": [
+      1398,
+      2835,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_idle_1",
+     "row": 2,
+     "col": 1,
+     "sheet": [
+      85,
+      238,
+      57,
+      86
+     ],
+     "atlas": [
+      1457,
+      2835,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_idle_2",
+     "row": 2,
+     "col": 2,
+     "sheet": [
+      160,
+      238,
+      57,
+      86
+     ],
+     "atlas": [
+      578,
+      2860,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_idle_3",
+     "row": 2,
+     "col": 3,
+     "sheet": [
+      235,
+      238,
+      57,
+      86
+     ],
+     "atlas": [
+      637,
+      2860,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_idle_4",
+     "row": 2,
+     "col": 4,
+     "sheet": [
+      310,
+      238,
+      57,
+      86
+     ],
+     "atlas": [
+      696,
+      2860,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_idle_5",
+     "row": 2,
+     "col": 5,
+     "sheet": [
+      385,
+      238,
+      57,
+      86
+     ],
+     "atlas": [
+      755,
+      2860,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_idle_6",
+     "row": 2,
+     "col": 6,
+     "sheet": [
+      460,
+      238,
+      57,
+      86
+     ],
+     "atlas": [
+      814,
+      2860,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_idle_7",
+     "row": 2,
+     "col": 7,
+     "sheet": [
+      535,
+      238,
+      57,
+      86
+     ],
+     "atlas": [
+      873,
+      2860,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_lookaround_0",
+     "row": 3,
+     "col": 0,
+     "sheet": [
+      8,
+      346,
+      60,
+      86
+     ],
+     "atlas": [
+      454,
+      2773,
+      60,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_lookaround_1",
+     "row": 3,
+     "col": 1,
+     "sheet": [
+      83,
+      346,
+      60,
+      86
+     ],
+     "atlas": [
+      516,
+      2773,
+      60,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_lookaround_2",
+     "row": 3,
+     "col": 2,
+     "sheet": [
+      158,
+      346,
+      60,
+      86
+     ],
+     "atlas": [
+      2,
+      2803,
+      60,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_lookaround_3",
+     "row": 3,
+     "col": 3,
+     "sheet": [
+      233,
+      346,
+      60,
+      86
+     ],
+     "atlas": [
+      64,
+      2803,
+      60,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_lookaround_4",
+     "row": 3,
+     "col": 4,
+     "sheet": [
+      308,
+      346,
+      60,
+      86
+     ],
+     "atlas": [
+      126,
+      2803,
+      60,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_lookaround_5",
+     "row": 3,
+     "col": 5,
+     "sheet": [
+      383,
+      346,
+      60,
+      86
+     ],
+     "atlas": [
+      1538,
+      2834,
+      60,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_lookaround_6",
+     "row": 3,
+     "col": 6,
+     "sheet": [
+      458,
+      346,
+      60,
+      86
+     ],
+     "atlas": [
+      1600,
+      2834,
+      60,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_lookaround_7",
+     "row": 3,
+     "col": 7,
+     "sheet": [
+      533,
+      346,
+      60,
+      86
+     ],
+     "atlas": [
+      1662,
+      2834,
+      60,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_nod_0",
+     "row": 4,
+     "col": 0,
+     "sheet": [
+      10,
+      454,
+      57,
+      86
+     ],
+     "atlas": [
+      932,
+      2860,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_nod_1",
+     "row": 4,
+     "col": 1,
+     "sheet": [
+      85,
+      454,
+      57,
+      86
+     ],
+     "atlas": [
+      991,
+      2860,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_nod_2",
+     "row": 4,
+     "col": 2,
+     "sheet": [
+      160,
+      454,
+      57,
+      86
+     ],
+     "atlas": [
+      1050,
+      2860,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_nod_3",
+     "row": 4,
+     "col": 3,
+     "sheet": [
+      235,
+      454,
+      57,
+      86
+     ],
+     "atlas": [
+      1109,
+      2860,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_nod_4",
+     "row": 4,
+     "col": 4,
+     "sheet": [
+      310,
+      454,
+      57,
+      86
+     ],
+     "atlas": [
+      1168,
+      2860,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_nod_5",
+     "row": 4,
+     "col": 5,
+     "sheet": [
+      385,
+      454,
+      57,
+      86
+     ],
+     "atlas": [
+      1227,
+      2860,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_sad_0",
+     "row": 4,
+     "col": 6,
+     "sheet": [
+      459,
+      454,
+      59,
+      86
+     ],
+     "atlas": [
+      1724,
+      2834,
+      59,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_sad_1",
+     "row": 4,
+     "col": 7,
+     "sheet": [
+      534,
+      454,
+      59,
+      86
+     ],
+     "atlas": [
+      1785,
+      2834,
+      59,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_sad_2",
+     "row": 5,
+     "col": 0,
+     "sheet": [
+      9,
+      562,
+      59,
+      86
+     ],
+     "atlas": [
+      1846,
+      2834,
+      59,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_sad_3",
+     "row": 5,
+     "col": 1,
+     "sheet": [
+      84,
+      562,
+      59,
+      86
+     ],
+     "atlas": [
+      1907,
+      2834,
+      59,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_sad_4",
+     "row": 5,
+     "col": 2,
+     "sheet": [
+      159,
+      562,
+      59,
+      86
+     ],
+     "atlas": [
+      1968,
+      2834,
+      59,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_sad_5",
+     "row": 5,
+     "col": 3,
+     "sheet": [
+      234,
+      562,
+      59,
+      86
+     ],
+     "atlas": [
+      1337,
+      2835,
+      59,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_shake_0",
+     "row": 5,
+     "col": 4,
+     "sheet": [
+      307,
+      562,
+      63,
+      86
+     ],
+     "atlas": [
+      1958,
+      2746,
+      63,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_shake_1",
+     "row": 5,
+     "col": 5,
+     "sheet": [
+      382,
+      562,
+      63,
+      86
+     ],
+     "atlas": [
+      1142,
+      2772,
+      63,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_shake_2",
+     "row": 5,
+     "col": 6,
+     "sheet": [
+      457,
+      562,
+      63,
+      86
+     ],
+     "atlas": [
+      1207,
+      2772,
+      63,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_shake_3",
+     "row": 5,
+     "col": 7,
+     "sheet": [
+      532,
+      562,
+      63,
+      86
+     ],
+     "atlas": [
+      1272,
+      2772,
+      63,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_shake_4",
+     "row": 6,
+     "col": 0,
+     "sheet": [
+      7,
+      670,
+      63,
+      86
+     ],
+     "atlas": [
+      194,
+      2773,
+      63,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_shake_5",
+     "row": 6,
+     "col": 1,
+     "sheet": [
+      82,
+      670,
+      63,
+      86
+     ],
+     "atlas": [
+      259,
+      2773,
+      63,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_shake_6",
+     "row": 6,
+     "col": 2,
+     "sheet": [
+      157,
+      670,
+      63,
+      86
+     ],
+     "atlas": [
+      324,
+      2773,
+      63,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_shake_7",
+     "row": 6,
+     "col": 3,
+     "sheet": [
+      232,
+      670,
+      63,
+      86
+     ],
+     "atlas": [
+      389,
+      2773,
+      63,
+      86
+     ]
+    },
+    {
+     "name": "act_kimi_think_0",
+     "row": 6,
+     "col": 4,
+     "sheet": [
+      305,
+      668,
+      67,
+      88
+     ],
+     "atlas": [
+      1518,
+      2303,
+      67,
+      88
+     ]
+    },
+    {
+     "name": "act_kimi_think_1",
+     "row": 6,
+     "col": 5,
+     "sheet": [
+      380,
+      668,
+      67,
+      88
+     ],
+     "atlas": [
+      1587,
+      2303,
+      67,
+      88
+     ]
+    },
+    {
+     "name": "act_kimi_think_2",
+     "row": 6,
+     "col": 6,
+     "sheet": [
+      455,
+      668,
+      67,
+      88
+     ],
+     "atlas": [
+      1656,
+      2303,
+      67,
+      88
+     ]
+    },
+    {
+     "name": "act_kimi_think_3",
+     "row": 6,
+     "col": 7,
+     "sheet": [
+      530,
+      668,
+      67,
+      88
+     ],
+     "atlas": [
+      1725,
+      2303,
+      67,
+      88
+     ]
+    },
+    {
+     "name": "act_kimi_think_4",
+     "row": 7,
+     "col": 0,
+     "sheet": [
+      5,
+      776,
+      67,
+      88
+     ],
+     "atlas": [
+      1794,
+      2303,
+      67,
+      88
+     ]
+    },
+    {
+     "name": "act_kimi_think_5",
+     "row": 7,
+     "col": 1,
+     "sheet": [
+      80,
+      776,
+      67,
+      88
+     ],
+     "atlas": [
+      1863,
+      2303,
+      67,
+      88
+     ]
+    },
+    {
+     "name": "act_kimi_think_6",
+     "row": 7,
+     "col": 2,
+     "sheet": [
+      155,
+      776,
+      67,
+      88
+     ],
+     "atlas": [
+      1932,
+      2303,
+      67,
+      88
+     ]
+    },
+    {
+     "name": "act_kimi_think_7",
+     "row": 7,
+     "col": 3,
+     "sheet": [
+      230,
+      776,
+      67,
+      88
+     ],
+     "atlas": [
+      834,
+      2329,
+      67,
+      88
+     ]
+    }
+   ],
+   "actions": {
+    "bow": [
+     "act_kimi_bow_0",
+     "act_kimi_bow_1",
+     "act_kimi_bow_2",
+     "act_kimi_bow_3",
+     "act_kimi_bow_4",
+     "act_kimi_bow_5",
+     "act_kimi_bow_6",
+     "act_kimi_bow_7"
+    ],
+    "hop": [
+     "act_kimi_hop_0",
+     "act_kimi_hop_1",
+     "act_kimi_hop_2",
+     "act_kimi_hop_3",
+     "act_kimi_hop_4",
+     "act_kimi_hop_5",
+     "act_kimi_hop_6",
+     "act_kimi_hop_7"
+    ],
+    "idle": [
+     "act_kimi_idle_0",
+     "act_kimi_idle_1",
+     "act_kimi_idle_2",
+     "act_kimi_idle_3",
+     "act_kimi_idle_4",
+     "act_kimi_idle_5",
+     "act_kimi_idle_6",
+     "act_kimi_idle_7"
+    ],
+    "lookaround": [
+     "act_kimi_lookaround_0",
+     "act_kimi_lookaround_1",
+     "act_kimi_lookaround_2",
+     "act_kimi_lookaround_3",
+     "act_kimi_lookaround_4",
+     "act_kimi_lookaround_5",
+     "act_kimi_lookaround_6",
+     "act_kimi_lookaround_7"
+    ],
+    "nod": [
+     "act_kimi_nod_0",
+     "act_kimi_nod_1",
+     "act_kimi_nod_2",
+     "act_kimi_nod_3",
+     "act_kimi_nod_4",
+     "act_kimi_nod_5"
+    ],
+    "sad": [
+     "act_kimi_sad_0",
+     "act_kimi_sad_1",
+     "act_kimi_sad_2",
+     "act_kimi_sad_3",
+     "act_kimi_sad_4",
+     "act_kimi_sad_5"
+    ],
+    "shake": [
+     "act_kimi_shake_0",
+     "act_kimi_shake_1",
+     "act_kimi_shake_2",
+     "act_kimi_shake_3",
+     "act_kimi_shake_4",
+     "act_kimi_shake_5",
+     "act_kimi_shake_6",
+     "act_kimi_shake_7"
+    ],
+    "think": [
+     "act_kimi_think_0",
+     "act_kimi_think_1",
+     "act_kimi_think_2",
+     "act_kimi_think_3",
+     "act_kimi_think_4",
+     "act_kimi_think_5",
+     "act_kimi_think_6",
+     "act_kimi_think_7"
+    ]
+   }
+  },
+  "q版/qwen.png": {
+   "cell": [
+    67,
+    106
+   ],
+   "cols": 8,
+   "rows": 8,
+   "pad": 2,
+   "margin": 2,
+   "frames": [
+    {
+     "name": "act_qwen_bow_0",
+     "row": 0,
+     "col": 0,
+     "sheet": [
+      10,
+      22,
+      51,
+      86
+     ],
+     "atlas": [
+      648,
+      2948,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_bow_1",
+     "row": 0,
+     "col": 1,
+     "sheet": [
+      79,
+      22,
+      51,
+      86
+     ],
+     "atlas": [
+      701,
+      2948,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_bow_2",
+     "row": 0,
+     "col": 2,
+     "sheet": [
+      148,
+      22,
+      51,
+      86
+     ],
+     "atlas": [
+      754,
+      2948,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_bow_3",
+     "row": 0,
+     "col": 3,
+     "sheet": [
+      217,
+      22,
+      51,
+      86
+     ],
+     "atlas": [
+      807,
+      2948,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_bow_4",
+     "row": 0,
+     "col": 4,
+     "sheet": [
+      286,
+      22,
+      51,
+      86
+     ],
+     "atlas": [
+      860,
+      2948,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_bow_5",
+     "row": 0,
+     "col": 5,
+     "sheet": [
+      355,
+      22,
+      51,
+      86
+     ],
+     "atlas": [
+      913,
+      2948,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_bow_6",
+     "row": 0,
+     "col": 6,
+     "sheet": [
+      424,
+      22,
+      51,
+      86
+     ],
+     "atlas": [
+      966,
+      2948,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_bow_7",
+     "row": 0,
+     "col": 7,
+     "sheet": [
+      493,
+      22,
+      51,
+      86
+     ],
+     "atlas": [
+      1019,
+      2948,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_hop_0",
+     "row": 1,
+     "col": 0,
+     "sheet": [
+      8,
+      116,
+      55,
+      100
+     ],
+     "atlas": [
+      1337,
+      1388,
+      55,
+      100
+     ]
+    },
+    {
+     "name": "act_qwen_hop_1",
+     "row": 1,
+     "col": 1,
+     "sheet": [
+      77,
+      116,
+      55,
+      100
+     ],
+     "atlas": [
+      1394,
+      1388,
+      55,
+      100
+     ]
+    },
+    {
+     "name": "act_qwen_hop_2",
+     "row": 1,
+     "col": 2,
+     "sheet": [
+      146,
+      116,
+      55,
+      100
+     ],
+     "atlas": [
+      1451,
+      1388,
+      55,
+      100
+     ]
+    },
+    {
+     "name": "act_qwen_hop_3",
+     "row": 1,
+     "col": 3,
+     "sheet": [
+      215,
+      116,
+      55,
+      100
+     ],
+     "atlas": [
+      2,
+      1398,
+      55,
+      100
+     ]
+    },
+    {
+     "name": "act_qwen_hop_4",
+     "row": 1,
+     "col": 4,
+     "sheet": [
+      284,
+      116,
+      55,
+      100
+     ],
+     "atlas": [
+      265,
+      1420,
+      55,
+      100
+     ]
+    },
+    {
+     "name": "act_qwen_hop_5",
+     "row": 1,
+     "col": 5,
+     "sheet": [
+      353,
+      116,
+      55,
+      100
+     ],
+     "atlas": [
+      322,
+      1420,
+      55,
+      100
+     ]
+    },
+    {
+     "name": "act_qwen_hop_6",
+     "row": 1,
+     "col": 6,
+     "sheet": [
+      422,
+      116,
+      55,
+      100
+     ],
+     "atlas": [
+      59,
+      1422,
+      55,
+      100
+     ]
+    },
+    {
+     "name": "act_qwen_hop_7",
+     "row": 1,
+     "col": 7,
+     "sheet": [
+      491,
+      116,
+      55,
+      100
+     ],
+     "atlas": [
+      116,
+      1422,
+      55,
+      100
+     ]
+    },
+    {
+     "name": "act_qwen_idle_0",
+     "row": 2,
+     "col": 0,
+     "sheet": [
+      10,
+      238,
+      51,
+      86
+     ],
+     "atlas": [
+      1929,
+      2922,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_idle_1",
+     "row": 2,
+     "col": 1,
+     "sheet": [
+      79,
+      238,
+      51,
+      86
+     ],
+     "atlas": [
+      1982,
+      2922,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_idle_2",
+     "row": 2,
+     "col": 2,
+     "sheet": [
+      148,
+      238,
+      51,
+      86
+     ],
+     "atlas": [
+      1286,
+      2923,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_idle_3",
+     "row": 2,
+     "col": 3,
+     "sheet": [
+      217,
+      238,
+      51,
+      86
+     ],
+     "atlas": [
+      1339,
+      2923,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_idle_4",
+     "row": 2,
+     "col": 4,
+     "sheet": [
+      286,
+      238,
+      51,
+      86
+     ],
+     "atlas": [
+      1392,
+      2923,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_idle_5",
+     "row": 2,
+     "col": 5,
+     "sheet": [
+      355,
+      238,
+      51,
+      86
+     ],
+     "atlas": [
+      1445,
+      2923,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_idle_6",
+     "row": 2,
+     "col": 6,
+     "sheet": [
+      424,
+      238,
+      51,
+      86
+     ],
+     "atlas": [
+      542,
+      2948,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_idle_7",
+     "row": 2,
+     "col": 7,
+     "sheet": [
+      493,
+      238,
+      51,
+      86
+     ],
+     "atlas": [
+      595,
+      2948,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_nod_0",
+     "row": 3,
+     "col": 0,
+     "sheet": [
+      10,
+      346,
+      51,
+      86
+     ],
+     "atlas": [
+      1072,
+      2948,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_nod_1",
+     "row": 3,
+     "col": 1,
+     "sheet": [
+      79,
+      346,
+      51,
+      86
+     ],
+     "atlas": [
+      1125,
+      2948,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_nod_2",
+     "row": 3,
+     "col": 2,
+     "sheet": [
+      148,
+      346,
+      51,
+      86
+     ],
+     "atlas": [
+      1178,
+      2948,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_nod_3",
+     "row": 3,
+     "col": 3,
+     "sheet": [
+      217,
+      346,
+      51,
+      86
+     ],
+     "atlas": [
+      1231,
+      2948,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_nod_4",
+     "row": 3,
+     "col": 4,
+     "sheet": [
+      286,
+      346,
+      51,
+      86
+     ],
+     "atlas": [
+      179,
+      2949,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_nod_5",
+     "row": 3,
+     "col": 5,
+     "sheet": [
+      355,
+      346,
+      51,
+      86
+     ],
+     "atlas": [
+      232,
+      2949,
+      51,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_shake_0",
+     "row": 3,
+     "col": 6,
+     "sheet": [
+      421,
+      346,
+      57,
+      86
+     ],
+     "atlas": [
+      120,
+      2891,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_shake_1",
+     "row": 3,
+     "col": 7,
+     "sheet": [
+      490,
+      346,
+      57,
+      86
+     ],
+     "atlas": [
+      1516,
+      2922,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_shake_2",
+     "row": 4,
+     "col": 0,
+     "sheet": [
+      7,
+      454,
+      57,
+      86
+     ],
+     "atlas": [
+      1575,
+      2922,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_shake_3",
+     "row": 4,
+     "col": 1,
+     "sheet": [
+      76,
+      454,
+      57,
+      86
+     ],
+     "atlas": [
+      1634,
+      2922,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_shake_4",
+     "row": 4,
+     "col": 2,
+     "sheet": [
+      145,
+      454,
+      57,
+      86
+     ],
+     "atlas": [
+      1693,
+      2922,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_shake_5",
+     "row": 4,
+     "col": 3,
+     "sheet": [
+      214,
+      454,
+      57,
+      86
+     ],
+     "atlas": [
+      1752,
+      2922,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_shake_6",
+     "row": 4,
+     "col": 4,
+     "sheet": [
+      283,
+      454,
+      57,
+      86
+     ],
+     "atlas": [
+      1811,
+      2922,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_shake_7",
+     "row": 4,
+     "col": 5,
+     "sheet": [
+      352,
+      454,
+      57,
+      86
+     ],
+     "atlas": [
+      1870,
+      2922,
+      57,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_spin_0",
+     "row": 4,
+     "col": 6,
+     "sheet": [
+      425,
+      454,
+      49,
+      86
+     ],
+     "atlas": [
+      285,
+      2949,
+      49,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_spin_1",
+     "row": 4,
+     "col": 7,
+     "sheet": [
+      494,
+      454,
+      49,
+      86
+     ],
+     "atlas": [
+      336,
+      2949,
+      49,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_spin_2",
+     "row": 5,
+     "col": 0,
+     "sheet": [
+      11,
+      562,
+      49,
+      86
+     ],
+     "atlas": [
+      387,
+      2949,
+      49,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_spin_3",
+     "row": 5,
+     "col": 1,
+     "sheet": [
+      80,
+      562,
+      49,
+      86
+     ],
+     "atlas": [
+      438,
+      2949,
+      49,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_spin_4",
+     "row": 5,
+     "col": 2,
+     "sheet": [
+      149,
+      562,
+      49,
+      86
+     ],
+     "atlas": [
+      489,
+      2949,
+      49,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_spin_5",
+     "row": 5,
+     "col": 3,
+     "sheet": [
+      218,
+      562,
+      49,
+      86
+     ],
+     "atlas": [
+      2,
+      2979,
+      49,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_spin_6",
+     "row": 5,
+     "col": 4,
+     "sheet": [
+      287,
+      562,
+      49,
+      86
+     ],
+     "atlas": [
+      53,
+      2979,
+      49,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_spin_7",
+     "row": 5,
+     "col": 5,
+     "sheet": [
+      356,
+      562,
+      49,
+      86
+     ],
+     "atlas": [
+      104,
+      2979,
+      49,
+      86
+     ]
+    },
+    {
+     "name": "act_qwen_sway_0",
+     "row": 5,
+     "col": 6,
+     "sheet": [
+      419,
+      561,
+      61,
+      87
+     ],
+     "atlas": [
+      1424,
+      2419,
+      61,
+      87
+     ]
+    },
+    {
+     "name": "act_qwen_sway_1",
+     "row": 5,
+     "col": 7,
+     "sheet": [
+      488,
+      561,
+      61,
+      87
+     ],
+     "atlas": [
+      214,
+      2420,
+      61,
+      87
+     ]
+    },
+    {
+     "name": "act_qwen_sway_2",
+     "row": 6,
+     "col": 0,
+     "sheet": [
+      5,
+      669,
+      61,
+      87
+     ],
+     "atlas": [
+      277,
+      2420,
+      61,
+      87
+     ]
+    },
+    {
+     "name": "act_qwen_sway_3",
+     "row": 6,
+     "col": 1,
+     "sheet": [
+      74,
+      669,
+      61,
+      87
+     ],
+     "atlas": [
+      340,
+      2420,
+      61,
+      87
+     ]
+    },
+    {
+     "name": "act_qwen_sway_4",
+     "row": 6,
+     "col": 2,
+     "sheet": [
+      143,
+      669,
+      61,
+      87
+     ],
+     "atlas": [
+      403,
+      2420,
+      61,
+      87
+     ]
+    },
+    {
+     "name": "act_qwen_sway_5",
+     "row": 6,
+     "col": 3,
+     "sheet": [
+      212,
+      669,
+      61,
+      87
+     ],
+     "atlas": [
+      466,
+      2420,
+      61,
+      87
+     ]
+    },
+    {
+     "name": "act_qwen_sway_6",
+     "row": 6,
+     "col": 4,
+     "sheet": [
+      281,
+      669,
+      61,
+      87
+     ],
+     "atlas": [
+      529,
+      2420,
+      61,
+      87
+     ]
+    },
+    {
+     "name": "act_qwen_sway_7",
+     "row": 6,
+     "col": 5,
+     "sheet": [
+      350,
+      669,
+      61,
+      87
+     ],
+     "atlas": [
+      592,
+      2420,
+      61,
+      87
+     ]
+    },
+    {
+     "name": "act_qwen_tilt_0",
+     "row": 6,
+     "col": 6,
+     "sheet": [
+      419,
+      668,
+      61,
+      88
+     ],
+     "atlas": [
+      903,
+      2329,
+      61,
+      88
+     ]
+    },
+    {
+     "name": "act_qwen_tilt_1",
+     "row": 6,
+     "col": 7,
+     "sheet": [
+      488,
+      668,
+      61,
+      88
+     ],
+     "atlas": [
+      966,
+      2329,
+      61,
+      88
+     ]
+    },
+    {
+     "name": "act_qwen_tilt_2",
+     "row": 7,
+     "col": 0,
+     "sheet": [
+      5,
+      776,
+      61,
+      88
+     ],
+     "atlas": [
+      1029,
+      2329,
+      61,
+      88
+     ]
+    },
+    {
+     "name": "act_qwen_tilt_3",
+     "row": 7,
+     "col": 1,
+     "sheet": [
+      74,
+      776,
+      61,
+      88
+     ],
+     "atlas": [
+      1092,
+      2329,
+      61,
+      88
+     ]
+    },
+    {
+     "name": "act_qwen_tilt_4",
+     "row": 7,
+     "col": 2,
+     "sheet": [
+      143,
+      776,
+      61,
+      88
+     ],
+     "atlas": [
+      1155,
+      2329,
+      61,
+      88
+     ]
+    },
+    {
+     "name": "act_qwen_tilt_5",
+     "row": 7,
+     "col": 3,
+     "sheet": [
+      212,
+      776,
+      61,
+      88
+     ],
+     "atlas": [
+      1218,
+      2329,
+      61,
+      88
+     ]
+    }
+   ],
+   "actions": {
+    "bow": [
+     "act_qwen_bow_0",
+     "act_qwen_bow_1",
+     "act_qwen_bow_2",
+     "act_qwen_bow_3",
+     "act_qwen_bow_4",
+     "act_qwen_bow_5",
+     "act_qwen_bow_6",
+     "act_qwen_bow_7"
+    ],
+    "hop": [
+     "act_qwen_hop_0",
+     "act_qwen_hop_1",
+     "act_qwen_hop_2",
+     "act_qwen_hop_3",
+     "act_qwen_hop_4",
+     "act_qwen_hop_5",
+     "act_qwen_hop_6",
+     "act_qwen_hop_7"
+    ],
+    "idle": [
+     "act_qwen_idle_0",
+     "act_qwen_idle_1",
+     "act_qwen_idle_2",
+     "act_qwen_idle_3",
+     "act_qwen_idle_4",
+     "act_qwen_idle_5",
+     "act_qwen_idle_6",
+     "act_qwen_idle_7"
+    ],
+    "nod": [
+     "act_qwen_nod_0",
+     "act_qwen_nod_1",
+     "act_qwen_nod_2",
+     "act_qwen_nod_3",
+     "act_qwen_nod_4",
+     "act_qwen_nod_5"
+    ],
+    "shake": [
+     "act_qwen_shake_0",
+     "act_qwen_shake_1",
+     "act_qwen_shake_2",
+     "act_qwen_shake_3",
+     "act_qwen_shake_4",
+     "act_qwen_shake_5",
+     "act_qwen_shake_6",
+     "act_qwen_shake_7"
+    ],
+    "spin": [
+     "act_qwen_spin_0",
+     "act_qwen_spin_1",
+     "act_qwen_spin_2",
+     "act_qwen_spin_3",
+     "act_qwen_spin_4",
+     "act_qwen_spin_5",
+     "act_qwen_spin_6",
+     "act_qwen_spin_7"
+    ],
+    "sway": [
+     "act_qwen_sway_0",
+     "act_qwen_sway_1",
+     "act_qwen_sway_2",
+     "act_qwen_sway_3",
+     "act_qwen_sway_4",
+     "act_qwen_sway_5",
+     "act_qwen_sway_6",
+     "act_qwen_sway_7"
+    ],
+    "tilt": [
+     "act_qwen_tilt_0",
+     "act_qwen_tilt_1",
+     "act_qwen_tilt_2",
+     "act_qwen_tilt_3",
+     "act_qwen_tilt_4",
+     "act_qwen_tilt_5"
+    ]
+   }
+  },
+  "q版/zai.png": {
+   "cell": [
+    110,
+    106
+   ],
+   "cols": 8,
+   "rows": 8,
+   "pad": 2,
+   "margin": 2,
+   "frames": [
+    {
+     "name": "act_zai_alert_0",
+     "row": 0,
+     "col": 0,
+     "sheet": [
+      10,
+      14,
+      94,
+      94
+     ],
+     "atlas": [
+      731,
+      1586,
+      94,
+      94
+     ]
+    },
+    {
+     "name": "act_zai_alert_1",
+     "row": 0,
+     "col": 1,
+     "sheet": [
+      122,
+      14,
+      94,
+      94
+     ],
+     "atlas": [
+      827,
+      1586,
+      94,
+      94
+     ]
+    },
+    {
+     "name": "act_zai_alert_2",
+     "row": 0,
+     "col": 2,
+     "sheet": [
+      234,
+      14,
+      94,
+      94
+     ],
+     "atlas": [
+      923,
+      1586,
+      94,
+      94
+     ]
+    },
+    {
+     "name": "act_zai_alert_3",
+     "row": 0,
+     "col": 3,
+     "sheet": [
+      346,
+      14,
+      94,
+      94
+     ],
+     "atlas": [
+      1019,
+      1586,
+      94,
+      94
+     ]
+    },
+    {
+     "name": "act_zai_alert_4",
+     "row": 0,
+     "col": 4,
+     "sheet": [
+      458,
+      14,
+      94,
+      94
+     ],
+     "atlas": [
+      1115,
+      1586,
+      94,
+      94
+     ]
+    },
+    {
+     "name": "act_zai_alert_5",
+     "row": 0,
+     "col": 5,
+     "sheet": [
+      570,
+      14,
+      94,
+      94
+     ],
+     "atlas": [
+      1211,
+      1586,
+      94,
+      94
+     ]
+    },
+    {
+     "name": "act_zai_doze_0",
+     "row": 0,
+     "col": 6,
+     "sheet": [
+      680,
+      22,
+      98,
+      86
+     ],
+     "atlas": [
+      1165,
+      2508,
+      98,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_doze_1",
+     "row": 0,
+     "col": 7,
+     "sheet": [
+      792,
+      22,
+      98,
+      86
+     ],
+     "atlas": [
+      1265,
+      2508,
+      98,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_doze_2",
+     "row": 1,
+     "col": 0,
+     "sheet": [
+      8,
+      130,
+      98,
+      86
+     ],
+     "atlas": [
+      1365,
+      2508,
+      98,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_doze_3",
+     "row": 1,
+     "col": 1,
+     "sheet": [
+      120,
+      130,
+      98,
+      86
+     ],
+     "atlas": [
+      214,
+      2509,
+      98,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_doze_4",
+     "row": 1,
+     "col": 2,
+     "sheet": [
+      232,
+      130,
+      98,
+      86
+     ],
+     "atlas": [
+      314,
+      2509,
+      98,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_doze_5",
+     "row": 1,
+     "col": 3,
+     "sheet": [
+      344,
+      130,
+      98,
+      86
+     ],
+     "atlas": [
+      414,
+      2509,
+      98,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_doze_6",
+     "row": 1,
+     "col": 4,
+     "sheet": [
+      456,
+      130,
+      98,
+      86
+     ],
+     "atlas": [
+      514,
+      2509,
+      98,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_doze_7",
+     "row": 1,
+     "col": 5,
+     "sheet": [
+      568,
+      130,
+      98,
+      86
+     ],
+     "atlas": [
+      2,
+      2539,
+      98,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_hop_0",
+     "row": 1,
+     "col": 6,
+     "sheet": [
+      680,
+      116,
+      98,
+      100
+     ],
+     "atlas": [
+      1542,
+      1384,
+      98,
+      100
+     ]
+    },
+    {
+     "name": "act_zai_hop_1",
+     "row": 1,
+     "col": 7,
+     "sheet": [
+      792,
+      116,
+      98,
+      100
+     ],
+     "atlas": [
+      1642,
+      1384,
+      98,
+      100
+     ]
+    },
+    {
+     "name": "act_zai_hop_2",
+     "row": 2,
+     "col": 0,
+     "sheet": [
+      8,
+      224,
+      98,
+      100
+     ],
+     "atlas": [
+      1742,
+      1384,
+      98,
+      100
+     ]
+    },
+    {
+     "name": "act_zai_hop_3",
+     "row": 2,
+     "col": 1,
+     "sheet": [
+      120,
+      224,
+      98,
+      100
+     ],
+     "atlas": [
+      396,
+      1388,
+      98,
+      100
+     ]
+    },
+    {
+     "name": "act_zai_hop_4",
+     "row": 2,
+     "col": 2,
+     "sheet": [
+      232,
+      224,
+      98,
+      100
+     ],
+     "atlas": [
+      496,
+      1388,
+      98,
+      100
+     ]
+    },
+    {
+     "name": "act_zai_hop_5",
+     "row": 2,
+     "col": 3,
+     "sheet": [
+      344,
+      224,
+      98,
+      100
+     ],
+     "atlas": [
+      596,
+      1388,
+      98,
+      100
+     ]
+    },
+    {
+     "name": "act_zai_hop_6",
+     "row": 2,
+     "col": 4,
+     "sheet": [
+      456,
+      224,
+      98,
+      100
+     ],
+     "atlas": [
+      696,
+      1388,
+      98,
+      100
+     ]
+    },
+    {
+     "name": "act_zai_hop_7",
+     "row": 2,
+     "col": 5,
+     "sheet": [
+      568,
+      224,
+      98,
+      100
+     ],
+     "atlas": [
+      796,
+      1388,
+      98,
+      100
+     ]
+    },
+    {
+     "name": "act_zai_idle_0",
+     "row": 2,
+     "col": 6,
+     "sheet": [
+      682,
+      238,
+      94,
+      86
+     ],
+     "atlas": [
+      1849,
+      2658,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_idle_1",
+     "row": 2,
+     "col": 7,
+     "sheet": [
+      794,
+      238,
+      94,
+      86
+     ],
+     "atlas": [
+      1945,
+      2658,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_idle_2",
+     "row": 3,
+     "col": 0,
+     "sheet": [
+      10,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      1382,
+      2659,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_idle_3",
+     "row": 3,
+     "col": 1,
+     "sheet": [
+      122,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      1478,
+      2659,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_idle_4",
+     "row": 3,
+     "col": 2,
+     "sheet": [
+      234,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      582,
+      2684,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_idle_5",
+     "row": 3,
+     "col": 3,
+     "sheet": [
+      346,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      678,
+      2684,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_idle_6",
+     "row": 3,
+     "col": 4,
+     "sheet": [
+      458,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      774,
+      2684,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_idle_7",
+     "row": 3,
+     "col": 5,
+     "sheet": [
+      570,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      870,
+      2684,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_lookaround_0",
+     "row": 3,
+     "col": 6,
+     "sheet": [
+      682,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      386,
+      2685,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_lookaround_1",
+     "row": 3,
+     "col": 7,
+     "sheet": [
+      794,
+      346,
+      94,
+      86
+     ],
+     "atlas": [
+      482,
+      2685,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_lookaround_2",
+     "row": 4,
+     "col": 0,
+     "sheet": [
+      10,
+      454,
+      94,
+      86
+     ],
+     "atlas": [
+      2,
+      2715,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_lookaround_3",
+     "row": 4,
+     "col": 1,
+     "sheet": [
+      122,
+      454,
+      94,
+      86
+     ],
+     "atlas": [
+      98,
+      2715,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_lookaround_4",
+     "row": 4,
+     "col": 2,
+     "sheet": [
+      234,
+      454,
+      94,
+      86
+     ],
+     "atlas": [
+      1574,
+      2746,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_lookaround_5",
+     "row": 4,
+     "col": 3,
+     "sheet": [
+      346,
+      454,
+      94,
+      86
+     ],
+     "atlas": [
+      1670,
+      2746,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_lookaround_6",
+     "row": 4,
+     "col": 4,
+     "sheet": [
+      458,
+      454,
+      94,
+      86
+     ],
+     "atlas": [
+      1766,
+      2746,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_lookaround_7",
+     "row": 4,
+     "col": 5,
+     "sheet": [
+      570,
+      454,
+      94,
+      86
+     ],
+     "atlas": [
+      1862,
+      2746,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_nod_0",
+     "row": 4,
+     "col": 6,
+     "sheet": [
+      682,
+      454,
+      94,
+      86
+     ],
+     "atlas": [
+      966,
+      2684,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_nod_1",
+     "row": 4,
+     "col": 7,
+     "sheet": [
+      794,
+      454,
+      94,
+      86
+     ],
+     "atlas": [
+      1062,
+      2684,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_nod_2",
+     "row": 5,
+     "col": 0,
+     "sheet": [
+      10,
+      562,
+      94,
+      86
+     ],
+     "atlas": [
+      1158,
+      2684,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_nod_3",
+     "row": 5,
+     "col": 1,
+     "sheet": [
+      122,
+      562,
+      94,
+      86
+     ],
+     "atlas": [
+      1254,
+      2684,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_nod_4",
+     "row": 5,
+     "col": 2,
+     "sheet": [
+      234,
+      562,
+      94,
+      86
+     ],
+     "atlas": [
+      194,
+      2685,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_nod_5",
+     "row": 5,
+     "col": 3,
+     "sheet": [
+      346,
+      562,
+      94,
+      86
+     ],
+     "atlas": [
+      290,
+      2685,
+      94,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_shake_0",
+     "row": 5,
+     "col": 4,
+     "sheet": [
+      455,
+      562,
+      100,
+      86
+     ],
+     "atlas": [
+      1699,
+      2482,
+      100,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_shake_1",
+     "row": 5,
+     "col": 5,
+     "sheet": [
+      567,
+      562,
+      100,
+      86
+     ],
+     "atlas": [
+      1801,
+      2482,
+      100,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_shake_2",
+     "row": 5,
+     "col": 6,
+     "sheet": [
+      679,
+      562,
+      100,
+      86
+     ],
+     "atlas": [
+      1903,
+      2482,
+      100,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_shake_3",
+     "row": 5,
+     "col": 7,
+     "sheet": [
+      791,
+      562,
+      100,
+      86
+     ],
+     "atlas": [
+      655,
+      2508,
+      100,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_shake_4",
+     "row": 6,
+     "col": 0,
+     "sheet": [
+      7,
+      670,
+      100,
+      86
+     ],
+     "atlas": [
+      757,
+      2508,
+      100,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_shake_5",
+     "row": 6,
+     "col": 1,
+     "sheet": [
+      119,
+      670,
+      100,
+      86
+     ],
+     "atlas": [
+      859,
+      2508,
+      100,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_shake_6",
+     "row": 6,
+     "col": 2,
+     "sheet": [
+      231,
+      670,
+      100,
+      86
+     ],
+     "atlas": [
+      961,
+      2508,
+      100,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_shake_7",
+     "row": 6,
+     "col": 3,
+     "sheet": [
+      343,
+      670,
+      100,
+      86
+     ],
+     "atlas": [
+      1063,
+      2508,
+      100,
+      86
+     ]
+    },
+    {
+     "name": "act_zai_tilt_0",
+     "row": 6,
+     "col": 4,
+     "sheet": [
+      453,
+      668,
+      104,
+      88
+     ],
+     "atlas": [
+      622,
+      2240,
+      104,
+      88
+     ]
+    },
+    {
+     "name": "act_zai_tilt_1",
+     "row": 6,
+     "col": 5,
+     "sheet": [
+      565,
+      668,
+      104,
+      88
+     ],
+     "atlas": [
+      728,
+      2240,
+      104,
+      88
+     ]
+    },
+    {
+     "name": "act_zai_tilt_2",
+     "row": 6,
+     "col": 6,
+     "sheet": [
+      677,
+      668,
+      104,
+      88
+     ],
+     "atlas": [
+      258,
+      2241,
+      104,
+      88
+     ]
+    },
+    {
+     "name": "act_zai_tilt_3",
+     "row": 6,
+     "col": 7,
+     "sheet": [
+      789,
+      668,
+      104,
+      88
+     ],
+     "atlas": [
+      364,
+      2241,
+      104,
+      88
+     ]
+    },
+    {
+     "name": "act_zai_tilt_4",
+     "row": 7,
+     "col": 0,
+     "sheet": [
+      5,
+      776,
+      104,
+      88
+     ],
+     "atlas": [
+      2,
+      2271,
+      104,
+      88
+     ]
+    },
+    {
+     "name": "act_zai_tilt_5",
+     "row": 7,
+     "col": 1,
+     "sheet": [
+      117,
+      776,
+      104,
+      88
+     ],
+     "atlas": [
+      108,
+      2271,
+      104,
+      88
+     ]
+    }
+   ],
+   "actions": {
+    "alert": [
+     "act_zai_alert_0",
+     "act_zai_alert_1",
+     "act_zai_alert_2",
+     "act_zai_alert_3",
+     "act_zai_alert_4",
+     "act_zai_alert_5"
+    ],
+    "doze": [
+     "act_zai_doze_0",
+     "act_zai_doze_1",
+     "act_zai_doze_2",
+     "act_zai_doze_3",
+     "act_zai_doze_4",
+     "act_zai_doze_5",
+     "act_zai_doze_6",
+     "act_zai_doze_7"
+    ],
+    "hop": [
+     "act_zai_hop_0",
+     "act_zai_hop_1",
+     "act_zai_hop_2",
+     "act_zai_hop_3",
+     "act_zai_hop_4",
+     "act_zai_hop_5",
+     "act_zai_hop_6",
+     "act_zai_hop_7"
+    ],
+    "idle": [
+     "act_zai_idle_0",
+     "act_zai_idle_1",
+     "act_zai_idle_2",
+     "act_zai_idle_3",
+     "act_zai_idle_4",
+     "act_zai_idle_5",
+     "act_zai_idle_6",
+     "act_zai_idle_7"
+    ],
+    "lookaround": [
+     "act_zai_lookaround_0",
+     "act_zai_lookaround_1",
+     "act_zai_lookaround_2",
+     "act_zai_lookaround_3",
+     "act_zai_lookaround_4",
+     "act_zai_lookaround_5",
+     "act_zai_lookaround_6",
+     "act_zai_lookaround_7"
+    ],
+    "nod": [
+     "act_zai_nod_0",
+     "act_zai_nod_1",
+     "act_zai_nod_2",
+     "act_zai_nod_3",
+     "act_zai_nod_4",
+     "act_zai_nod_5"
+    ],
+    "shake": [
+     "act_zai_shake_0",
+     "act_zai_shake_1",
+     "act_zai_shake_2",
+     "act_zai_shake_3",
+     "act_zai_shake_4",
+     "act_zai_shake_5",
+     "act_zai_shake_6",
+     "act_zai_shake_7"
+    ],
+    "tilt": [
+     "act_zai_tilt_0",
+     "act_zai_tilt_1",
+     "act_zai_tilt_2",
+     "act_zai_tilt_3",
+     "act_zai_tilt_4",
+     "act_zai_tilt_5"
+    ]
+   }
+  },
+  "行走/walk.png": {
+   "cell": [
+    98,
+    96
+   ],
+   "cols": 8,
+   "rows": 7,
+   "pad": 2,
+   "margin": 2,
+   "frames": [
+    {
+     "name": "walk_whale_0",
+     "row": 0,
+     "col": 0,
+     "sheet": [
+      6,
+      10,
+      90,
+      88
+     ],
+     "atlas": [
+      791,
+      330,
+      90,
+      88
+     ]
+    },
+    {
+     "name": "walk_whale_1",
+     "row": 0,
+     "col": 1,
+     "sheet": [
+      106,
+      10,
+      90,
+      88
+     ],
+     "atlas": [
+      883,
+      330,
+      90,
+      88
+     ]
+    },
+    {
+     "name": "walk_whale_2",
+     "row": 0,
+     "col": 2,
+     "sheet": [
+      206,
+      10,
+      90,
+      88
+     ],
+     "atlas": [
+      2,
+      422,
+      90,
+      88
+     ]
+    },
+    {
+     "name": "walk_whale_3",
+     "row": 0,
+     "col": 3,
+     "sheet": [
+      306,
+      10,
+      90,
+      88
+     ],
+     "atlas": [
+      94,
+      422,
+      90,
+      88
+     ]
+    },
+    {
+     "name": "walk_whale_4",
+     "row": 0,
+     "col": 4,
+     "sheet": [
+      406,
+      10,
+      90,
+      88
+     ],
+     "atlas": [
+      186,
+      422,
+      90,
+      88
+     ]
+    },
+    {
+     "name": "walk_whale_5",
+     "row": 0,
+     "col": 5,
+     "sheet": [
+      506,
+      10,
+      90,
+      88
+     ],
+     "atlas": [
+      278,
+      422,
+      90,
+      88
+     ]
+    },
+    {
+     "name": "walk_whale_6",
+     "row": 0,
+     "col": 6,
+     "sheet": [
+      606,
+      10,
+      90,
+      88
+     ],
+     "atlas": [
+      370,
+      422,
+      90,
+      88
+     ]
+    },
+    {
+     "name": "walk_whale_7",
+     "row": 0,
+     "col": 7,
+     "sheet": [
+      706,
+      10,
+      90,
+      88
+     ],
+     "atlas": [
+      462,
+      422,
+      90,
+      88
+     ]
+    },
+    {
+     "name": "walk_claude_0",
+     "row": 1,
+     "col": 0,
+     "sheet": [
+      5,
+      106,
+      92,
+      90
+     ],
+     "atlas": [
+      707,
+      180,
+      92,
+      90
+     ]
+    },
+    {
+     "name": "walk_claude_1",
+     "row": 1,
+     "col": 1,
+     "sheet": [
+      105,
+      106,
+      92,
+      90
+     ],
+     "atlas": [
+      801,
+      180,
+      92,
+      90
+     ]
+    },
+    {
+     "name": "walk_claude_2",
+     "row": 1,
+     "col": 2,
+     "sheet": [
+      205,
+      106,
+      92,
+      90
+     ],
+     "atlas": [
+      895,
+      180,
+      92,
+      90
+     ]
+    },
+    {
+     "name": "walk_claude_3",
+     "row": 1,
+     "col": 3,
+     "sheet": [
+      305,
+      106,
+      92,
+      90
+     ],
+     "atlas": [
+      2,
+      330,
+      92,
+      90
+     ]
+    },
+    {
+     "name": "walk_claude_4",
+     "row": 1,
+     "col": 4,
+     "sheet": [
+      405,
+      106,
+      92,
+      90
+     ],
+     "atlas": [
+      96,
+      330,
+      92,
+      90
+     ]
+    },
+    {
+     "name": "walk_claude_5",
+     "row": 1,
+     "col": 5,
+     "sheet": [
+      505,
+      106,
+      92,
+      90
+     ],
+     "atlas": [
+      190,
+      330,
+      92,
+      90
+     ]
+    },
+    {
+     "name": "walk_claude_6",
+     "row": 1,
+     "col": 6,
+     "sheet": [
+      605,
+      106,
+      92,
+      90
+     ],
+     "atlas": [
+      284,
+      330,
+      92,
+      90
+     ]
+    },
+    {
+     "name": "walk_claude_7",
+     "row": 1,
+     "col": 7,
+     "sheet": [
+      705,
+      106,
+      92,
+      90
+     ],
+     "atlas": [
+      378,
+      330,
+      92,
+      90
+     ]
+    },
+    {
+     "name": "walk_gemini_0",
+     "row": 2,
+     "col": 0,
+     "sheet": [
+      8,
+      210,
+      86,
+      84
+     ],
+     "atlas": [
+      442,
+      598,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_gemini_1",
+     "row": 2,
+     "col": 1,
+     "sheet": [
+      108,
+      210,
+      86,
+      84
+     ],
+     "atlas": [
+      530,
+      598,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_gemini_2",
+     "row": 2,
+     "col": 2,
+     "sheet": [
+      208,
+      210,
+      86,
+      84
+     ],
+     "atlas": [
+      618,
+      598,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_gemini_3",
+     "row": 2,
+     "col": 3,
+     "sheet": [
+      308,
+      210,
+      86,
+      84
+     ],
+     "atlas": [
+      706,
+      598,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_gemini_4",
+     "row": 2,
+     "col": 4,
+     "sheet": [
+      408,
+      210,
+      86,
+      84
+     ],
+     "atlas": [
+      794,
+      598,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_gemini_5",
+     "row": 2,
+     "col": 5,
+     "sheet": [
+      508,
+      210,
+      86,
+      84
+     ],
+     "atlas": [
+      882,
+      598,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_gemini_6",
+     "row": 2,
+     "col": 6,
+     "sheet": [
+      608,
+      210,
+      86,
+      84
+     ],
+     "atlas": [
+      2,
+      684,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_gemini_7",
+     "row": 2,
+     "col": 7,
+     "sheet": [
+      708,
+      210,
+      86,
+      84
+     ],
+     "atlas": [
+      90,
+      684,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_kimi_0",
+     "row": 3,
+     "col": 0,
+     "sheet": [
+      8,
+      308,
+      86,
+      84
+     ],
+     "atlas": [
+      683,
+      512,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_kimi_1",
+     "row": 3,
+     "col": 1,
+     "sheet": [
+      108,
+      308,
+      86,
+      84
+     ],
+     "atlas": [
+      771,
+      512,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_kimi_2",
+     "row": 3,
+     "col": 2,
+     "sheet": [
+      208,
+      308,
+      86,
+      84
+     ],
+     "atlas": [
+      859,
+      512,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_kimi_3",
+     "row": 3,
+     "col": 3,
+     "sheet": [
+      308,
+      308,
+      86,
+      84
+     ],
+     "atlas": [
+      2,
+      598,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_kimi_4",
+     "row": 3,
+     "col": 4,
+     "sheet": [
+      408,
+      308,
+      86,
+      84
+     ],
+     "atlas": [
+      90,
+      598,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_kimi_5",
+     "row": 3,
+     "col": 5,
+     "sheet": [
+      508,
+      308,
+      86,
+      84
+     ],
+     "atlas": [
+      178,
+      598,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_kimi_6",
+     "row": 3,
+     "col": 6,
+     "sheet": [
+      608,
+      308,
+      86,
+      84
+     ],
+     "atlas": [
+      266,
+      598,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_kimi_7",
+     "row": 3,
+     "col": 7,
+     "sheet": [
+      708,
+      308,
+      86,
+      84
+     ],
+     "atlas": [
+      354,
+      598,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_qwen_0",
+     "row": 4,
+     "col": 0,
+     "sheet": [
+      8,
+      406,
+      86,
+      84
+     ],
+     "atlas": [
+      178,
+      684,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_qwen_1",
+     "row": 4,
+     "col": 1,
+     "sheet": [
+      108,
+      406,
+      86,
+      84
+     ],
+     "atlas": [
+      266,
+      684,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_qwen_2",
+     "row": 4,
+     "col": 2,
+     "sheet": [
+      208,
+      406,
+      86,
+      84
+     ],
+     "atlas": [
+      354,
+      684,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_qwen_3",
+     "row": 4,
+     "col": 3,
+     "sheet": [
+      308,
+      406,
+      86,
+      84
+     ],
+     "atlas": [
+      442,
+      684,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_qwen_4",
+     "row": 4,
+     "col": 4,
+     "sheet": [
+      408,
+      406,
+      86,
+      84
+     ],
+     "atlas": [
+      530,
+      684,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_qwen_5",
+     "row": 4,
+     "col": 5,
+     "sheet": [
+      508,
+      406,
+      86,
+      84
+     ],
+     "atlas": [
+      618,
+      684,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_qwen_6",
+     "row": 4,
+     "col": 6,
+     "sheet": [
+      608,
+      406,
+      86,
+      84
+     ],
+     "atlas": [
+      706,
+      684,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_qwen_7",
+     "row": 4,
+     "col": 7,
+     "sheet": [
+      708,
+      406,
+      86,
+      84
+     ],
+     "atlas": [
+      794,
+      684,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_zai_0",
+     "row": 5,
+     "col": 0,
+     "sheet": [
+      8,
+      504,
+      86,
+      84
+     ],
+     "atlas": [
+      882,
+      684,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_zai_1",
+     "row": 5,
+     "col": 1,
+     "sheet": [
+      108,
+      504,
+      86,
+      84
+     ],
+     "atlas": [
+      2,
+      770,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_zai_2",
+     "row": 5,
+     "col": 2,
+     "sheet": [
+      208,
+      504,
+      86,
+      84
+     ],
+     "atlas": [
+      90,
+      770,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_zai_3",
+     "row": 5,
+     "col": 3,
+     "sheet": [
+      308,
+      504,
+      86,
+      84
+     ],
+     "atlas": [
+      178,
+      770,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_zai_4",
+     "row": 5,
+     "col": 4,
+     "sheet": [
+      408,
+      504,
+      86,
+      84
+     ],
+     "atlas": [
+      266,
+      770,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_zai_5",
+     "row": 5,
+     "col": 5,
+     "sheet": [
+      508,
+      504,
+      86,
+      84
+     ],
+     "atlas": [
+      354,
+      770,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_zai_6",
+     "row": 5,
+     "col": 6,
+     "sheet": [
+      608,
+      504,
+      86,
+      84
+     ],
+     "atlas": [
+      442,
+      770,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_zai_7",
+     "row": 5,
+     "col": 7,
+     "sheet": [
+      708,
+      504,
+      86,
+      84
+     ],
+     "atlas": [
+      530,
+      770,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_doubao_big_0",
+     "row": 6,
+     "col": 0,
+     "sheet": [
+      8,
+      602,
+      86,
+      84
+     ],
+     "atlas": [
+      618,
+      770,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_doubao_big_1",
+     "row": 6,
+     "col": 1,
+     "sheet": [
+      108,
+      602,
+      86,
+      84
+     ],
+     "atlas": [
+      706,
+      770,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_doubao_big_2",
+     "row": 6,
+     "col": 2,
+     "sheet": [
+      208,
+      602,
+      86,
+      84
+     ],
+     "atlas": [
+      794,
+      770,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_doubao_big_3",
+     "row": 6,
+     "col": 3,
+     "sheet": [
+      308,
+      602,
+      86,
+      84
+     ],
+     "atlas": [
+      882,
+      770,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_doubao_big_4",
+     "row": 6,
+     "col": 4,
+     "sheet": [
+      408,
+      602,
+      86,
+      84
+     ],
+     "atlas": [
+      2,
+      856,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_doubao_big_5",
+     "row": 6,
+     "col": 5,
+     "sheet": [
+      508,
+      602,
+      86,
+      84
+     ],
+     "atlas": [
+      90,
+      856,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_doubao_big_6",
+     "row": 6,
+     "col": 6,
+     "sheet": [
+      608,
+      602,
+      86,
+      84
+     ],
+     "atlas": [
+      178,
+      856,
+      86,
+      84
+     ]
+    },
+    {
+     "name": "walk_doubao_big_7",
+     "row": 6,
+     "col": 7,
+     "sheet": [
+      708,
+      602,
+      86,
+      84
+     ],
+     "atlas": [
+      266,
+      856,
+      86,
+      84
+     ]
+    }
+   ]
+  },
+  "头像/portraits.png": {
+   "cell": [
+    70,
+    70
+   ],
+   "cols": 10,
+   "rows": 2,
+   "pad": 2,
+   "margin": 2,
+   "frames": [
+    {
+     "name": "p_claude_dizzy",
+     "row": 0,
+     "col": 0,
+     "sheet": [
+      5,
+      8,
+      64,
+      64
+     ],
+     "atlas": [
+      948,
+      856,
+      64,
+      64
+     ]
+    },
+    {
+     "name": "p_claude_neutral",
+     "row": 0,
+     "col": 1,
+     "sheet": [
+      77,
+      8,
+      64,
+      64
+     ],
+     "atlas": [
+      882,
+      856,
+      64,
+      64
+     ]
+    },
+    {
+     "name": "p_claude_petri",
+     "row": 0,
+     "col": 2,
+     "sheet": [
+      149,
+      8,
+      64,
+      64
+     ],
+     "atlas": [
+      2,
+      942,
+      64,
+      64
+     ]
+    },
+    {
+     "name": "p_doubao_blink",
+     "row": 0,
+     "col": 3,
+     "sheet": [
+      221,
+      8,
+      64,
+      64
+     ],
+     "atlas": [
+      618,
+      856,
+      64,
+      64
+     ]
+    },
+    {
+     "name": "p_doubao_neutral",
+     "row": 0,
+     "col": 4,
+     "sheet": [
+      293,
+      8,
+      64,
+      64
+     ],
+     "atlas": [
+      552,
+      856,
+      64,
+      64
+     ]
+    },
+    {
+     "name": "p_gemini",
+     "row": 0,
+     "col": 5,
+     "sheet": [
+      365,
+      8,
+      64,
+      64
+     ],
+     "atlas": [
+      134,
+      942,
+      64,
+      64
+     ]
+    },
+    {
+     "name": "p_gpt_haughty",
+     "row": 0,
+     "col": 6,
+     "sheet": [
+      437,
+      8,
+      64,
+      64
+     ],
+     "atlas": [
+      750,
+      856,
+      64,
+      64
+     ]
+    },
+    {
+     "name": "p_gpt_neutral",
+     "row": 0,
+     "col": 7,
+     "sheet": [
+      509,
+      8,
+      64,
+      64
+     ],
+     "atlas": [
+      684,
+      856,
+      64,
+      64
+     ]
+    },
+    {
+     "name": "p_gpt_rage",
+     "row": 0,
+     "col": 8,
+     "sheet": [
+      581,
+      8,
+      64,
+      64
+     ],
+     "atlas": [
+      816,
+      856,
+      64,
+      64
+     ]
+    },
+    {
+     "name": "p_kimi",
+     "row": 0,
+     "col": 9,
+     "sheet": [
+      653,
+      8,
+      64,
+      64
+     ],
+     "atlas": [
+      68,
+      942,
+      64,
+      64
+     ]
+    },
+    {
+     "name": "p_qwen",
+     "row": 1,
+     "col": 0,
+     "sheet": [
+      5,
+      80,
+      64,
+      64
+     ],
+     "atlas": [
+      266,
+      942,
+      64,
+      64
+     ]
+    },
+    {
+     "name": "p_whale_neutral",
+     "row": 1,
+     "col": 1,
+     "sheet": [
+      77,
+      80,
+      64,
+      64
+     ],
+     "atlas": [
+      354,
+      856,
+      64,
+      64
+     ]
+    },
+    {
+     "name": "p_whale_shout",
+     "row": 1,
+     "col": 2,
+     "sheet": [
+      149,
+      80,
+      64,
+      64
+     ],
+     "atlas": [
+      420,
+      856,
+      64,
+      64
+     ]
+    },
+    {
+     "name": "p_whale_think",
+     "row": 1,
+     "col": 3,
+     "sheet": [
+      221,
+      80,
+      64,
+      64
+     ],
+     "atlas": [
+      486,
+      856,
+      64,
+      64
+     ]
+    },
+    {
+     "name": "p_zai",
+     "row": 1,
+     "col": 4,
+     "sheet": [
+      293,
+      80,
+      64,
+      64
+     ],
+     "atlas": [
+      200,
+      942,
+      64,
+      64
+     ]
+    }
+   ]
+  },
+  "变体/variants.png": {
+   "cell": [
+    143,
+    182
+   ],
+   "cols": 10,
+   "rows": 4,
+   "pad": 2,
+   "margin": 2,
+   "frames": [
+    {
+     "name": "claude_front_0",
+     "row": 0,
+     "col": 0,
+     "sheet": [
+      31,
+      94,
+      85,
+      90
+     ],
+     "atlas": [
+      404,
+      180,
+      85,
+      90
+     ]
+    },
+    {
+     "name": "claude_front_1",
+     "row": 0,
+     "col": 1,
+     "sheet": [
+      175,
+      94,
+      86,
+      90
+     ],
+     "atlas": [
+      491,
+      180,
+      86,
+      90
+     ]
+    },
+    {
+     "name": "claude_side_0",
+     "row": 0,
+     "col": 2,
+     "sheet": [
+      332,
+      94,
+      62,
+      90
+     ],
+     "atlas": [
+      579,
+      180,
+      62,
+      90
+     ]
+    },
+    {
+     "name": "claude_side_1",
+     "row": 0,
+     "col": 3,
+     "sheet": [
+      477,
+      94,
+      62,
+      90
+     ],
+     "atlas": [
+      643,
+      180,
+      62,
+      90
+     ]
+    },
+    {
+     "name": "doubao_cage_0",
+     "row": 0,
+     "col": 4,
+     "sheet": [
+      636,
+      100,
+      35,
+      84
+     ],
+     "atlas": [
+      554,
+      422,
+      35,
+      84
+     ]
+    },
+    {
+     "name": "doubao_cage_1",
+     "row": 0,
+     "col": 5,
+     "sheet": [
+      781,
+      100,
+      35,
+      84
+     ],
+     "atlas": [
+      591,
+      422,
+      35,
+      84
+     ]
+    },
+    {
+     "name": "gemini_front_0",
+     "row": 0,
+     "col": 6,
+     "sheet": [
+      899,
+      100,
+      88,
+      84
+     ],
+     "atlas": [
+      846,
+      422,
+      88,
+      84
+     ]
+    },
+    {
+     "name": "gemini_front_1",
+     "row": 0,
+     "col": 7,
+     "sheet": [
+      1044,
+      100,
+      88,
+      84
+     ],
+     "atlas": [
+      2,
+      512,
+      88,
+      84
+     ]
+    },
+    {
+     "name": "gemini_side_0",
+     "row": 0,
+     "col": 8,
+     "sheet": [
+      1203,
+      100,
+      61,
+      84
+     ],
+     "atlas": [
+      92,
+      512,
+      61,
+      84
+     ]
+    },
+    {
+     "name": "gemini_side_1",
+     "row": 0,
+     "col": 9,
+     "sheet": [
+      1350,
+      100,
+      56,
+      84
+     ],
+     "atlas": [
+      155,
+      512,
+      56,
+      84
+     ]
+    },
+    {
+     "name": "gpt_boss_blink",
+     "row": 1,
+     "col": 0,
+     "sheet": [
+      7,
+      192,
+      132,
+      176
+     ],
+     "atlas": [
+      136,
+      2,
+      132,
+      176
+     ]
+    },
+    {
+     "name": "gpt_boss_cast0",
+     "row": 1,
+     "col": 1,
+     "sheet": [
+      150,
+      192,
+      137,
+      176
+     ],
+     "atlas": [
+      404,
+      2,
+      137,
+      176
+     ]
+    },
+    {
+     "name": "gpt_boss_cast1",
+     "row": 1,
+     "col": 2,
+     "sheet": [
+      300,
+      192,
+      127,
+      176
+     ],
+     "atlas": [
+      543,
+      2,
+      127,
+      176
+     ]
+    },
+    {
+     "name": "gpt_boss_idle",
+     "row": 1,
+     "col": 3,
+     "sheet": [
+      442,
+      192,
+      132,
+      176
+     ],
+     "atlas": [
+      2,
+      2,
+      132,
+      176
+     ]
+    },
+    {
+     "name": "gpt_boss_rage",
+     "row": 1,
+     "col": 4,
+     "sheet": [
+      587,
+      192,
+      132,
+      176
+     ],
+     "atlas": [
+      270,
+      2,
+      132,
+      176
+     ]
+    },
+    {
+     "name": "gpt_fly_0",
+     "row": 1,
+     "col": 5,
+     "sheet": [
+      764,
+      272,
+      69,
+      96
+     ],
+     "atlas": [
+      267,
+      180,
+      69,
+      96
+     ]
+    },
+    {
+     "name": "gpt_fly_1",
+     "row": 1,
+     "col": 6,
+     "sheet": [
+      911,
+      272,
+      64,
+      96
+     ],
+     "atlas": [
+      338,
+      180,
+      64,
+      96
+     ]
+    },
+    {
+     "name": "kimi_front_0",
+     "row": 1,
+     "col": 7,
+     "sheet": [
+      1063,
+      284,
+      51,
+      84
+     ],
+     "atlas": [
+      628,
+      422,
+      51,
+      84
+     ]
+    },
+    {
+     "name": "kimi_front_1",
+     "row": 1,
+     "col": 8,
+     "sheet": [
+      1208,
+      284,
+      51,
+      84
+     ],
+     "atlas": [
+      681,
+      422,
+      51,
+      84
+     ]
+    },
+    {
+     "name": "kimi_side_0",
+     "row": 1,
+     "col": 9,
+     "sheet": [
+      1351,
+      284,
+      54,
+      84
+     ],
+     "atlas": [
+      734,
+      422,
+      54,
+      84
+     ]
+    },
+    {
+     "name": "kimi_side_1",
+     "row": 2,
+     "col": 0,
+     "sheet": [
+      46,
+      468,
+      54,
+      84
+     ],
+     "atlas": [
+      790,
+      422,
+      54,
+      84
+     ]
+    },
+    {
+     "name": "qwen_front_0",
+     "row": 2,
+     "col": 1,
+     "sheet": [
+      196,
+      468,
+      45,
+      84
+     ],
+     "atlas": [
+      506,
+      512,
+      45,
+      84
+     ]
+    },
+    {
+     "name": "qwen_front_1",
+     "row": 2,
+     "col": 2,
+     "sheet": [
+      341,
+      468,
+      45,
+      84
+     ],
+     "atlas": [
+      553,
+      512,
+      45,
+      84
+     ]
+    },
+    {
+     "name": "qwen_side_0",
+     "row": 2,
+     "col": 3,
+     "sheet": [
+      489,
+      468,
+      39,
+      84
+     ],
+     "atlas": [
+      600,
+      512,
+      39,
+      84
+     ]
+    },
+    {
+     "name": "qwen_side_1",
+     "row": 2,
+     "col": 4,
+     "sheet": [
+      633,
+      468,
+      40,
+      84
+     ],
+     "atlas": [
+      641,
+      512,
+      40,
+      84
+     ]
+    },
+    {
+     "name": "whale_big_blink",
+     "row": 2,
+     "col": 5,
+     "sheet": [
+      733,
+      404,
+      131,
+      148
+     ],
+     "atlas": [
+      805,
+      2,
+      131,
+      148
+     ]
+    },
+    {
+     "name": "whale_big_idle",
+     "row": 2,
+     "col": 6,
+     "sheet": [
+      878,
+      404,
+      131,
+      148
+     ],
+     "atlas": [
+      672,
+      2,
+      131,
+      148
+     ]
+    },
+    {
+     "name": "whale_big_point",
+     "row": 2,
+     "col": 7,
+     "sheet": [
+      1023,
+      404,
+      130,
+      148
+     ],
+     "atlas": [
+      135,
+      180,
+      130,
+      148
+     ]
+    },
+    {
+     "name": "whale_big_wave",
+     "row": 2,
+     "col": 8,
+     "sheet": [
+      1168,
+      404,
+      131,
+      148
+     ],
+     "atlas": [
+      2,
+      180,
+      131,
+      148
+     ]
+    },
+    {
+     "name": "whale_blink",
+     "row": 2,
+     "col": 9,
+     "sheet": [
+      1339,
+      464,
+      78,
+      88
+     ],
+     "atlas": [
+      552,
+      330,
+      78,
+      88
+     ]
+    },
+    {
+     "name": "whale_idle",
+     "row": 3,
+     "col": 0,
+     "sheet": [
+      34,
+      648,
+      78,
+      88
+     ],
+     "atlas": [
+      472,
+      330,
+      78,
+      88
+     ]
+    },
+    {
+     "name": "whale_point",
+     "row": 3,
+     "col": 1,
+     "sheet": [
+      180,
+      648,
+      77,
+      88
+     ],
+     "atlas": [
+      712,
+      330,
+      77,
+      88
+     ]
+    },
+    {
+     "name": "whale_wave",
+     "row": 3,
+     "col": 2,
+     "sheet": [
+      324,
+      648,
+      78,
+      88
+     ],
+     "atlas": [
+      632,
+      330,
+      78,
+      88
+     ]
+    },
+    {
+     "name": "zai_front_0",
+     "row": 3,
+     "col": 3,
+     "sheet": [
+      464,
+      652,
+      88,
+      84
+     ],
+     "atlas": [
+      213,
+      512,
+      88,
+      84
+     ]
+    },
+    {
+     "name": "zai_front_1",
+     "row": 3,
+     "col": 4,
+     "sheet": [
+      609,
+      652,
+      88,
+      84
+     ],
+     "atlas": [
+      303,
+      512,
+      88,
+      84
+     ]
+    },
+    {
+     "name": "zai_side_0",
+     "row": 3,
+     "col": 5,
+     "sheet": [
+      769,
+      652,
+      59,
+      84
+     ],
+     "atlas": [
+      393,
+      512,
+      59,
+      84
+     ]
+    },
+    {
+     "name": "zai_side_1",
+     "row": 3,
+     "col": 6,
+     "sheet": [
+      918,
+      652,
+      50,
+      84
+     ],
+     "atlas": [
+      454,
+      512,
+      50,
+      84
+     ]
+    }
+   ]
+  },
+  "道具/props.png": {
+   "cell": [
+    29,
+    26
+   ],
+   "cols": 10,
+   "rows": 2,
+   "pad": 2,
+   "margin": 2,
+   "frames": [
+    {
+     "name": "prop_abacus",
+     "row": 0,
+     "col": 0,
+     "sheet": [
+      5,
+      14,
+      22,
+      14
+     ],
+     "atlas": [
+      197,
+      3037,
+      22,
+      14
+     ]
+    },
+    {
+     "name": "prop_basket",
+     "row": 0,
+     "col": 1,
+     "sheet": [
+      37,
+      11,
+      20,
+      17
+     ],
+     "atlas": [
+      1105,
+      3036,
+      20,
+      17
+     ]
+    },
+    {
+     "name": "prop_book",
+     "row": 0,
+     "col": 2,
+     "sheet": [
+      69,
+      13,
+      18,
+      15
+     ],
+     "atlas": [
+      1254,
+      3036,
+      18,
+      15
+     ]
+    },
+    {
+     "name": "prop_bowl",
+     "row": 0,
+     "col": 3,
+     "sheet": [
+      98,
+      12,
+      22,
+      16
+     ],
+     "atlas": [
+      1142,
+      3036,
+      22,
+      16
+     ]
+    },
+    {
+     "name": "prop_brush",
+     "row": 0,
+     "col": 4,
+     "sheet": [
+      130,
+      16,
+      20,
+      12
+     ],
+     "atlas": [
+      356,
+      3037,
+      20,
+      12
+     ]
+    },
+    {
+     "name": "prop_card",
+     "row": 0,
+     "col": 5,
+     "sheet": [
+      162,
+      15,
+      18,
+      13
+     ],
+     "atlas": [
+      280,
+      3037,
+      18,
+      13
+     ]
+    },
+    {
+     "name": "prop_catclock",
+     "row": 0,
+     "col": 6,
+     "sheet": [
+      193,
+      9,
+      18,
+      19
+     ],
+     "atlas": [
+      2014,
+      3032,
+      18,
+      19
+     ]
+    },
+    {
+     "name": "prop_eyemask",
+     "row": 0,
+     "col": 7,
+     "sheet": [
+      222,
+      19,
+      22,
+      9
+     ],
+     "atlas": [
+      417,
+      3049,
+      22,
+      9
+     ]
+    },
+    {
+     "name": "prop_fan",
+     "row": 0,
+     "col": 8,
+     "sheet": [
+      253,
+      14,
+      23,
+      14
+     ],
+     "atlas": [
+      172,
+      3037,
+      23,
+      14
+     ]
+    },
+    {
+     "name": "prop_hourglass",
+     "row": 0,
+     "col": 9,
+     "sheet": [
+      288,
+      8,
+      15,
+      20
+     ],
+     "atlas": [
+      155,
+      3023,
+      15,
+      20
+     ]
+    },
+    {
+     "name": "prop_magnifier",
+     "row": 1,
+     "col": 0,
+     "sheet": [
+      7,
+      38,
+      18,
+      18
+     ],
+     "atlas": [
+      1085,
+      3036,
+      18,
+      18
+     ]
+    },
+    {
+     "name": "prop_phone",
+     "row": 1,
+     "col": 1,
+     "sheet": [
+      42,
+      38,
+      11,
+      18
+     ],
+     "atlas": [
+      2034,
+      3032,
+      11,
+      18
+     ]
+    },
+    {
+     "name": "prop_redshoes",
+     "row": 1,
+     "col": 2,
+     "sheet": [
+      67,
+      46,
+      22,
+      10
+     ],
+     "atlas": [
+      393,
+      3049,
+      22,
+      10
+     ]
+    },
+    {
+     "name": "prop_scroll",
+     "row": 1,
+     "col": 3,
+     "sheet": [
+      98,
+      41,
+      22,
+      15
+     ],
+     "atlas": [
+      1230,
+      3036,
+      22,
+      15
+     ]
+    },
+    {
+     "name": "prop_teacup",
+     "row": 1,
+     "col": 4,
+     "sheet": [
+      131,
+      42,
+      19,
+      14
+     ],
+     "atlas": [
+      243,
+      3037,
+      19,
+      14
+     ]
+    }
+   ]
+  },
+  "特效/fx.png": {
+   "cell": [
+    32,
+    26
+   ],
+   "cols": 10,
+   "rows": 3,
+   "pad": 2,
+   "margin": 2,
+   "frames": [
+    {
+     "name": "fx_anger",
+     "row": 0,
+     "col": 0,
+     "sheet": [
+      11,
+      14,
+      14,
+      14
+     ],
+     "atlas": [
+      264,
+      3037,
+      14,
+      14
+     ]
+    },
+    {
+     "name": "fx_bulb",
+     "row": 0,
+     "col": 1,
+     "sheet": [
+      45,
+      11,
+      13,
+      17
+     ],
+     "atlas": [
+      1127,
+      3036,
+      13,
+      17
+     ]
+    },
+    {
+     "name": "fx_dizzy_0",
+     "row": 0,
+     "col": 2,
+     "sheet": [
+      73,
+      18,
+      26,
+      10
+     ],
+     "atlas": [
+      393,
+      3037,
+      26,
+      10
+     ]
+    },
+    {
+     "name": "fx_dizzy_1",
+     "row": 0,
+     "col": 3,
+     "sheet": [
+      107,
+      18,
+      26,
+      10
+     ],
+     "atlas": [
+      421,
+      3037,
+      26,
+      10
+     ]
+    },
+    {
+     "name": "fx_dizzy_2",
+     "row": 0,
+     "col": 4,
+     "sheet": [
+      141,
+      18,
+      26,
+      10
+     ],
+     "atlas": [
+      449,
+      3037,
+      26,
+      10
+     ]
+    },
+    {
+     "name": "fx_dizzy_3",
+     "row": 0,
+     "col": 5,
+     "sheet": [
+      175,
+      18,
+      26,
+      10
+     ],
+     "atlas": [
+      477,
+      3037,
+      26,
+      10
+     ]
+    },
+    {
+     "name": "fx_exclaim",
+     "row": 0,
+     "col": 6,
+     "sheet": [
+      218,
+      12,
+      7,
+      16
+     ],
+     "atlas": [
+      1221,
+      3036,
+      7,
+      16
+     ]
+    },
+    {
+     "name": "fx_gloom",
+     "row": 0,
+     "col": 7,
+     "sheet": [
+      246,
+      14,
+      20,
+      14
+     ],
+     "atlas": [
+      221,
+      3037,
+      20,
+      14
+     ]
+    },
+    {
+     "name": "fx_heart",
+     "row": 0,
+     "col": 8,
+     "sheet": [
+      283,
+      16,
+      13,
+      12
+     ],
+     "atlas": [
+      378,
+      3037,
+      13,
+      12
+     ]
+    },
+    {
+     "name": "fx_question",
+     "row": 0,
+     "col": 9,
+     "sheet": [
+      318,
+      12,
+      11,
+      16
+     ],
+     "atlas": [
+      1208,
+      3036,
+      11,
+      16
+     ]
+    },
+    {
+     "name": "fx_shine",
+     "row": 1,
+     "col": 0,
+     "sheet": [
+      6,
+      46,
+      24,
+      10
+     ],
+     "atlas": [
+      505,
+      3037,
+      24,
+      10
+     ]
+    },
+    {
+     "name": "fx_sparkle_0",
+     "row": 1,
+     "col": 1,
+     "sheet": [
+      45,
+      43,
+      13,
+      13
+     ],
+     "atlas": [
+      300,
+      3037,
+      13,
+      13
+     ]
+    },
+    {
+     "name": "fx_sparkle_1",
+     "row": 1,
+     "col": 2,
+     "sheet": [
+      79,
+      43,
+      13,
+      13
+     ],
+     "atlas": [
+      315,
+      3037,
+      13,
+      13
+     ]
+    },
+    {
+     "name": "fx_sparkle_2",
+     "row": 1,
+     "col": 3,
+     "sheet": [
+      113,
+      43,
+      13,
+      13
+     ],
+     "atlas": [
+      330,
+      3037,
+      13,
+      13
+     ]
+    },
+    {
+     "name": "fx_steam_0",
+     "row": 1,
+     "col": 4,
+     "sheet": [
+      148,
+      40,
+      12,
+      16
+     ],
+     "atlas": [
+      1166,
+      3036,
+      12,
+      16
+     ]
+    },
+    {
+     "name": "fx_steam_1",
+     "row": 1,
+     "col": 5,
+     "sheet": [
+      182,
+      40,
+      12,
+      16
+     ],
+     "atlas": [
+      1180,
+      3036,
+      12,
+      16
+     ]
+    },
+    {
+     "name": "fx_steam_2",
+     "row": 1,
+     "col": 6,
+     "sheet": [
+      216,
+      40,
+      12,
+      16
+     ],
+     "atlas": [
+      1194,
+      3036,
+      12,
+      16
+     ]
+    },
+    {
+     "name": "fx_sweat",
+     "row": 1,
+     "col": 7,
+     "sheet": [
+      251,
+      43,
+      9,
+      13
+     ],
+     "atlas": [
+      345,
+      3037,
+      9,
+      13
+     ]
+    },
+    {
+     "name": "fx_zzz_0",
+     "row": 1,
+     "col": 8,
+     "sheet": [
+      279,
+      36,
+      22,
+      20
+     ],
+     "atlas": [
+      155,
+      2979,
+      22,
+      20
+     ]
+    },
+    {
+     "name": "fx_zzz_1",
+     "row": 1,
+     "col": 9,
+     "sheet": [
+      313,
+      36,
+      22,
+      20
+     ],
+     "atlas": [
+      155,
+      3001,
+      22,
+      20
+     ]
+    },
+    {
+     "name": "fx_zzz_2",
+     "row": 2,
+     "col": 0,
+     "sheet": [
+      7,
+      64,
+      22,
+      20
+     ],
+     "atlas": [
+      2014,
+      3010,
+      22,
+      20
+     ]
+    }
+   ]
+  }
+ }
+}

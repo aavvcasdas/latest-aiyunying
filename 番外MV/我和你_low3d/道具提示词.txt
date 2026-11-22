@@ -1,0 +1,15 @@
+《我和你》新增道具 · 绿幕生图提示词（口径同 00_通用规则.txt：纯绿 #00FF00 平涂、无阴影无地面、全物入画、居中）
+画风统一：像素风游戏道具，粗像素块 + 干净深色描边，可爱 Q 版游戏素材感，不要文字、水印。
+出图后：绿幕抠图 → 裁边 → LANCZOS 缩到最长边 72~96px → alpha 阈值 110 二值化。
+
+[toys] Pixel art game prop, 64x64 style chunky pixels with clean dark outline, a small pile of childhood toys: a brown teddy bear sitting slightly tilted, a red-and-white tin toy rocket, a wooden toy block with letter A, slightly dusty and lonely. Front view, centered, full object visible. Flat pure green #00FF00 background, no shadow, no ground, no text, no watermark. Cute chibi game asset style matching blue maid whale-girl palette.
+
+[tv] Pixel art game prop, chunky pixels with clean dark outline, a retro 1990s CRT television set on short legs with two rabbit-ear antennas, wooden brown casing, screen showing grey static noise snow, front view, centered, full object visible. Flat pure green #00FF00 background, no shadow, no ground, no text, no watermark. Cute chibi game asset style.
+
+[sneakers] Pixel art game prop, chunky pixels with clean dark outline, a pair of small children's sneakers, white with sky-blue stripes and red laces, side view, slightly worn, centered, both shoes fully visible. Flat pure green #00FF00 background, no shadow, no ground, no text, no watermark. Cute chibi game asset style.
+
+[wateringcan] Pixel art game prop, chunky pixels with clean dark outline, a small orange-and-cream children's watering can with a little flower sticker, side view, spout pointing right, a tiny seed packet with a sunflower picture leaning beside it, centered, fully visible. Flat pure green #00FF00 background, no shadow, no ground, no text letters, no watermark. Cute chibi game asset style, warm orange palette.
+
+[backpack] Pixel art game prop, chunky pixels with clean dark outline, a child's adventure kit: a small sky-blue backpack with a rolled treasure map sticking out, a brass compass hanging from the strap, front view, centered, fully visible. Flat pure green #00FF00 background, no shadow, no ground, no text, no watermark. Cute chibi game asset style, blue and white palette.
+
+[paperplane] Pixel art game prop, chunky pixels with clean dark outline, a white folded paper airplane with a light blue stripe, flying toward the right, three-quarter view, centered, fully visible. Flat pure green #00FF00 background, no shadow, no ground, no text, no watermark. Cute chibi game asset style.

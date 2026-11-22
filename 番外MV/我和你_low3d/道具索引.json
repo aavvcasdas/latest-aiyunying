@@ -1,0 +1,12 @@
+{
+  "source": "番外MV/我和你_low3d/素材/generate_props.py",
+  "format": "PNG RGBA pixel-art sprites",
+  "frames": [
+    { "name": "prop_toys", "file": "toys.png", "w": 96, "h": 72, "anchor": "bottom-center", "lyric": "玩具 丢在旁边" },
+    { "name": "prop_tv", "file": "tv.png", "w": 96, "h": 72, "anchor": "bottom-center", "lyric": "电视 里没有新鲜" },
+    { "name": "prop_sneakers", "file": "sneakers.png", "w": 96, "h": 72, "anchor": "bottom-center", "lyric": "球鞋 跑不过时间" },
+    { "name": "prop_backpack", "file": "backpack.png", "w": 96, "h": 72, "anchor": "bottom-center", "lyric": "装满 不同的探险" },
+    { "name": "prop_paperplane", "file": "paperplane.png", "w": 96, "h": 72, "anchor": "bottom-center", "lyric": "我和你 飞到蓝蓝的天边" },
+    { "name": "prop_wateringcan", "file": "wateringcan.png", "w": 96, "h": 72, "anchor": "bottom-center", "lyric": "我和你 种下满满的花园" }
+  ]
+}
