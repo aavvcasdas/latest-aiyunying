@@ -116,9 +116,6 @@ export default function App() {
           <h1 className="text-4xl tracking-widest text-[#f3d691]" style={{ fontFamily: `${FONT}, serif` }}>
             浪人琵琶 · 字字分镜
           </h1>
-          <p className="mt-1 text-sm text-[#b8a88d]">
-            番外 MV 重制 · 十句歌词 · 三十四个词拍 · 十一镜 · 八位像素 AI 娘出演 · 1280×720 / 30.1 秒
-          </p>
         </div>
         <div className="flex gap-2">
           <button
@@ -252,10 +249,6 @@ export default function App() {
           ))}
         </div>
 
-        <p className="mt-10 text-xs leading-6 text-[#7d6e57]">
-          人物：鲸鱼娘（浪人小生）、Claude（你）、GPT 龙娘（施雨）、千问、Gemini、智谱阔耳狐，全部取自分支 人物/atlas.png，像素原样。背景与道具（花伞、铜钟、黄历、水袖、茶壶、玻璃杯、琵琶、拼图）全部代码绘制，未生成任何图片。
-          音轨：仓库根 浪人琵琶.WAV。字体：马善政楷书（OFL，已裁子集）。形象源头 ZipZipPipe《大AI和小AI们》CC BY-NC-SA 4.0。
-        </p>
       </main>
     </div>
   );
