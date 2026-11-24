@@ -2,7 +2,7 @@
   "status": "ok",
   "source": "canonical atlas walk-cycle demo",
   "frames": 24,
-  "meanFrameDifference": 1.997,
+  "meanFrameDifference": 2.221,
   "blankFrames": [],
   "frozenFrameIndices": [],
   "problems": [],

@@ -94,8 +94,8 @@
     for (let i = 0; i < PANELS.length; i++) drawPanel(i, st);
     const s = similarity;
     const summary = s
-      ? `Not pixel-identical: 111-cell silhouette IoU ${s.v1.meanSilhouetteIoU} -> ${s.v2.meanSilhouetteIoU}; final closer in ${s.closerSilhouetteCells}/111 cells. Wave and point are rolled back to the pre-clothes-freeze cells (original arm poses, their own skirt); the other 11 actions keep the linked-fix look; rice bowl baked into eat frames; pre-redraw lower-body art with linked head/body motion and a new walk rhythm.`
-      : 'Not pixel-identical; wave/point are rolled back to the pre-clothes-freeze art, a rice bowl is baked into eat frames, and the other actions keep pre-redraw lower-body art with linked head/body motion.';
+      ? `Not pixel-identical: ${s.cells}-cell silhouette IoU ${s.v1.meanSilhouetteIoU} -> ${s.v2.meanSilhouetteIoU}; final closer in ${s.closerSilhouetteCells}/${s.cells} cells. Wave and point are rolled back to the pre-clothes-freeze cells (original arm poses, their own skirt); the other 11 actions keep the linked-fix look; rice bowl baked into eat frames; pre-redraw lower-body art with linked head/body motion. The 8-frame walk is rolled back to the pre-redraw gait as well.`
+      : 'Not pixel-identical; wave/point are rolled back to the pre-clothes-freeze art, a rice bowl is baked into eat frames, the walk is rolled back to the pre-redraw gait, and the other actions keep pre-redraw lower-body art with linked head/body motion.';
     text(summary, 18, H - 22, 13, '#cbd5e1');
   }
 

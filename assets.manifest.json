@@ -7,8 +7,8 @@
       "path": "通用模板/engine/assets/cast_atlas.png",
       "role": "canonical-atlas",
       "source": "通用模板/engine/assets/cast_atlas.png",
-      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
-      "bytes": 1712686
+      "sha256": "16681c7b253e194556e97043e44b83069c05ed9ea1eb9eaf8ffaa4d832535793",
+      "bytes": 1730639
     },
     {
       "path": "通用模板/engine/assets/cast_atlas.json",
@@ -32,8 +32,8 @@
       "path": "人物/atlas.png",
       "role": "atlas-mirror",
       "source": "通用模板/engine/assets/cast_atlas.png",
-      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
-      "bytes": 1712686
+      "sha256": "16681c7b253e194556e97043e44b83069c05ed9ea1eb9eaf8ffaa4d832535793",
+      "bytes": 1730639
     },
     {
       "path": "人物/index.json",
@@ -63,57 +63,57 @@
       "path": "番外MV/不小心惹了上帝/源码/src/assets/cast_atlas.png",
       "role": "atlas-mirror",
       "source": "通用模板/engine/assets/cast_atlas.png",
-      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
-      "bytes": 1712686
+      "sha256": "16681c7b253e194556e97043e44b83069c05ed9ea1eb9eaf8ffaa4d832535793",
+      "bytes": 1730639
     },
     {
       "path": "番外MV/告白气球_opus5.5_笨鱼发/src/assets/atlas.png",
       "role": "atlas-mirror",
       "source": "通用模板/engine/assets/cast_atlas.png",
-      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
-      "bytes": 1712686
+      "sha256": "16681c7b253e194556e97043e44b83069c05ed9ea1eb9eaf8ffaa4d832535793",
+      "bytes": 1730639
     },
     {
       "path": "番外MV/情歌_opus5.5max/源码/src/assets/atlas.png",
       "role": "atlas-mirror",
       "source": "通用模板/engine/assets/cast_atlas.png",
-      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
-      "bytes": 1712686
+      "sha256": "16681c7b253e194556e97043e44b83069c05ed9ea1eb9eaf8ffaa4d832535793",
+      "bytes": 1730639
     },
     {
       "path": "番外MV/情歌_opus5.5max-gpt6max开头/源码/src/assets/atlas.png",
       "role": "atlas-mirror",
       "source": "通用模板/engine/assets/cast_atlas.png",
-      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
-      "bytes": 1712686
+      "sha256": "16681c7b253e194556e97043e44b83069c05ed9ea1eb9eaf8ffaa4d832535793",
+      "bytes": 1730639
     },
     {
       "path": "番外MV/若是月亮fable5.2high/源码/src/assets/atlas.png",
       "role": "atlas-mirror",
       "source": "通用模板/engine/assets/cast_atlas.png",
-      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
-      "bytes": 1712686
+      "sha256": "16681c7b253e194556e97043e44b83069c05ed9ea1eb9eaf8ffaa4d832535793",
+      "bytes": 1730639
     },
     {
       "path": "番外MV/若是月亮还没来/源码/src/assets/atlas.png",
       "role": "atlas-mirror",
       "source": "通用模板/engine/assets/cast_atlas.png",
-      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
-      "bytes": 1712686
+      "sha256": "16681c7b253e194556e97043e44b83069c05ed9ea1eb9eaf8ffaa4d832535793",
+      "bytes": 1730639
     },
     {
       "path": "番外MV/譬如我/src/assets/atlas.png",
       "role": "atlas-mirror",
       "source": "通用模板/engine/assets/cast_atlas.png",
-      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
-      "bytes": 1712686
+      "sha256": "16681c7b253e194556e97043e44b83069c05ed9ea1eb9eaf8ffaa4d832535793",
+      "bytes": 1730639
     },
     {
       "path": "番外MV/超级棒棒糖_童年治愈3D/源码/public/mv/atlas.png",
       "role": "atlas-mirror",
       "source": "通用模板/engine/assets/cast_atlas.png",
-      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
-      "bytes": 1712686
+      "sha256": "16681c7b253e194556e97043e44b83069c05ed9ea1eb9eaf8ffaa4d832535793",
+      "bytes": 1730639
     },
     {
       "path": "番外MV/把回忆拼好_opus5.5max/源码/src/mv/assets/atlas.png",

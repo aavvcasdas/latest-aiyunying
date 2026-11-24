@@ -41,11 +41,17 @@
   ],
   "eatBowlFramesChecked": 8,
   "maxEatBowlDifference": 0.0,
+  "walkRollback": {
+    "frames": 8,
+    "framesEqualToPreRedraw": 8,
+    "baseline": "cast_atlas.before.png",
+    "allowedDelta": "master_soft 1px coverage band only"
+  },
   "walkRhythm": {
     "frames": 8,
     "uniqueLowerBodies": 8,
-    "meanConsecutiveFrameDifference": 9.5642,
-    "meanTailRegionDifference": 4.6585
+    "meanConsecutiveFrameDifference": 8.5792,
+    "meanTailRegionDifference": 13.8012
   },
   "spinPerspectiveException": {
     "frames": 8,

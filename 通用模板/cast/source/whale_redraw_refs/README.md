@@ -19,6 +19,7 @@
 - `whale_{front,blink,wave,point,side}_clean.png`：当前正式输入。`wave`（`312×352`）/ `point`（`308×352`）现为 `whale_{wave,point}_ref.png` 的副本（回滚到加裙子固定之前：原始手臂姿势 + 该稿自己的裙摆，不贴旧补丁）；只有 `front` / `blink` 的 `[0.18,0.58,0.82,1.0]` 下半身仍由 `cast_atlas.before.png` 的旧版围裙 / 裙摆 / 靴子补丁统一。`whale_{wave,point}_v3_clean.png` 与当前 clean 稿保持同步（也是 ref 副本）；`whale_{wave,point}_v2_fixed_clean.png` 是已弃用的单手稿备份；`*_oldclothes_before.png` / `*_static_hand_before.png` 是补丁前备份。**RGB 棋盘格原稿不要直接烘进图集。**
 - `new_base_contact.png` / `docs/quality_comparison/whale_redraw/new_base_walk_preview.png`：基础格与 8 帧步态预览。
 - `whale_sprites.json`：`encode_whale_sprites.py` 生成的 29 条索引色精灵记录（其中 8 条写入 `walk_cycle_data.js`）。`whale_side` 是当前蓝发侧面基础格，用于派生步态与转圈；它不是图集里的独立格子。
+- `walk_legacy.json`：重画**之前**那套步态的逐字节备份（`walk_whale_0–7` 八帧 + `whale_walk_0–3` / `whale_map_0–3` / `whale_map_pt`），取自 commit `7217fde`。2026-11-24 用户要求「本鲸的走路回退到本次项目改动之前」，`encode_whale_sprites.py` 现在直接从这里取步态记录，不再从 `whale_side_clean.png` 派生；`whale_side` 仍用于转圈，但不是图集格子。
 - `clean_whale_raw.py`、`hide_extra_hands.py`、`fix_whale_clothes.py`、`encode_whale_sprites.py`、`apply_whale_sprites.mjs`、`apply_whale_walk.py`：从 alpha 原稿重建 `sprites_data.js` / `walk_cycle_data.js` 的确定性脚本。`hide_extra_hands.py` 是上一轮单手稿的工具，现已不参与构建（仅留档）。`fix_whale_clothes.py` 的 `TARGETS = ('front','blink')`；`encode_whale_sprites.py` 对 `front` / `blink` 在 fit 之后精确贴回旧图集补丁，对 `wave` / `point` 直接用回滚后的 clean 稿（plain `fit()`）。
 - `restore_original_pose_refs.py`、`fix_whale_arms.py`：**已停用**，只保留历史记录；它们就是产生三只手静态稿的路径。
 
@@ -29,7 +30,7 @@
 - `encode_whale_sprites.py` 输出的索引色精灵仍是硬 alpha；`master_soft` 只在 `通用模板/cast/bake_atlas.mjs` 给 111 个本鲸格添加一层调色板内的 1px 半透明边缘（alpha `184`，由 `tools/render_defaults.json` 的 `pixelSmoothing: 0.28` 决定）。其他 7 位角色仍是 0 / 255 两档硬 alpha。
 - `通用模板/engine/actors.ts` 的 `pixelMat` 对本鲸卡片使用同值 `0.28` 的十字邻域 RGB 轻微混合，并保留边缘 alpha；其他角色卡片仍为 `0`。`atlasFilter` 仍为 `nearest`，没有改成整体糊化或高分辨率母版。
 - 基础格按 `cast_atlas.json` 原有尺寸重采样，保留透明留边；`front` / `blink` 的下半身仍是旧版补丁，挥手 / 递出去用自己的新裙摆（用户已明确不要固定），并且**不再在动作烘焙后锁死**。`motion_core.mjs` 的 `pose()` 新增可选 `link` 系数，把 `headDx/Dy` 的一部分从脖子平滑传到躯干、裙摆和腿，脚底仍锚定；`bake_actions.mjs` 的 `WHALE_LINK` / `WHALE_MOTION` 只覆盖本鲸，其他 7 位角色逐像素不变。
-- 8 帧侧视步态仍以当前 `whale_side_clean.png` 为唯一像素来源：头 / 发 / 脸 / 围裙 / 上身不变；旧 `walk_whale_*` 只借用手臂 / 双腿 / 鱼尾的相位与轮廓，再用当前侧面稿的颜色重新填充，解决「整张图左右滑」和断帧，不是逐像素回退旧步态，也没有调用新生成图片。
+- 8 帧侧视步态**已按用户 2026-11-24 的指令整体回退到本次项目改动之前**：`walk_legacy.json` 里保存的原始记录逐字节写回 `walk_cycle_data.js` / `sprites_data.js`，因此手臂 / 双腿 / 鱼尾节奏、裙摆形状都是重画前的样子（`encode_whale_sprites.py` 的 `walk_variant()` 不再用于生成步态，仅留代码给未来重画参考）。`tools/fix_whale_walk_bleed.mjs` 的清像素补丁本来就已经应用在这份数据上，`--check` 通过；转圈仍用 `whale_side_clean.png`。
 - `bake_actions.mjs` 仍在 8 张 `act_whale_eat_*` 帧里盖入既有 `prop_bowl`；`tools/check_whale_redraw.py` 现在按 `rolledBackGestureCells` 校验 `whale_wave` / `whale_point` / `whale_big_wave` / `whale_big_point` 与 `cast_atlas.clothes_before.png`（f23…）逐像素一致，并要求 clean 源等于对应 `_ref.png`；上一轮的 `singleGestureHandCells` 单手断言已按本次指令撤销。
 - `spin` 仅对本鲸改用真实侧面格，并把 V1 的 `0.72` / `0.78` 横向压缩放宽到 `0.88` / `0.94`，替换原先把正脸压到 `sx: 0.34` 的细面条帧；其他 7 位角色的动作数据逐像素未变。
 - `cast_atlas.json` 的 682 个矩形坐标保持不动；图集仍是 2048×3126，不属于新增高分辨率母版。

@@ -12,8 +12,9 @@ rectangles and 92 derived action frames are unchanged. The 2026-11-24
 band to 本鲸 silhouettes only; non-whale cells remain hard alpha. The active
 correction restores that baseline's plainer lower-body clothes on front-facing
 base cells while removing the rejected post-pose clothes freeze: `pose()` now
-links head, torso, skirt and legs for 本鲸, and the eight side-view walk frames
-get independent arm / leg / tail rhythm.
+links head, torso, skirt and legs for 本鲸. A later same-day instruction rolled the
+eight side-view walk frames back to the pre-redraw gait, so they are now checked
+for byte-equality with the baseline instead of a new rhythm.
 """
 from __future__ import annotations
 
@@ -549,10 +550,14 @@ def main() -> int:
     if len(bowl_diffs) != 8 or any(d > 1.0 for d in bowl_diffs):
         clothes_errors.append(f'eat frames missing a visible rice bowl: {[round(d,2) for d in bowl_diffs]}')
 
-    # Walk rhythm: eight distinct side-view frames, with lower-body / tail
-    # differences rather than one rigid sprite sliding back and forth.
+    # Walk rollback (user request, 2026-11-24): the eight side-view walk frames
+    # must be the pre-redraw gait again. They are compared against the
+    # pre-redraw baseline (`cast_atlas.before.png`) byte for byte, allowing only
+    # the shared 1px `master_soft` coverage band every 本鲸 cell now has. Motion
+    # statistics are still reported so the frames are not a frozen still.
     walk_keys = [f'walk_whale_{i}' for i in range(8)]
     walk_cells = [crop(after, rects[k]) for k in walk_keys]
+    walk_before = [crop(before, rects[k]) for k in walk_keys]
     walk_diffs = [float(np.abs(rgb_array(walk_cells[i]) - rgb_array(walk_cells[i - 1])).mean())
                   for i in range(1, 8)]
     lower_hashes = {
@@ -564,8 +569,19 @@ def main() -> int:
         box = (int(w * 0.58), int(h * 0.48), w, int(h * 0.95))
         tail_diffs.append(float(np.abs(
             rgb_array(walk_cells[i].crop(box)) - rgb_array(walk_cells[i - 1].crop(box))).mean()))
-    if len(lower_hashes) < 7 or sum(walk_diffs) / 7 < 0.5 or sum(tail_diffs) / 7 < 0.5:
-        clothes_errors.append(f'walk rhythm too static: unique lower bodies {len(lower_hashes)}, mean full diff {sum(walk_diffs)/7:.2f}, mean tail diff {sum(tail_diffs)/7:.2f}')
+    rollback_walk_ok = 0
+    for key, cur, old in zip(walk_keys, walk_cells, walk_before):
+        a = np.asarray(cur).astype(int)
+        b = np.asarray(old).astype(int)
+        differs = (a != b).any(axis=2)
+        soft_band = (b[:, :, 3] == 0) & (a[:, :, 3] > 0)
+        if (differs & ~soft_band).sum() == 0:
+            rollback_walk_ok += 1
+        else:
+            clothes_errors.append(
+                f'{key}: 走路没有回退到重画前（有 {int((differs & ~soft_band).sum())} px 落在柔边之外仍不同）')
+    if len(lower_hashes) < 7 or sum(walk_diffs) / 7 < 0.5:
+        clothes_errors.append(f'walk frames too static: unique lower bodies {len(lower_hashes)}, mean full diff {sum(walk_diffs)/7:.2f}')
 
     clothes_report = {
         'canonicalLowerBodyBox': list(LOWER_BOX),
@@ -586,6 +602,12 @@ def main() -> int:
         'headBodyLinkageEnabledActions': sorted(k for k, v in link_map.items() if v > 0),
         'eatBowlFramesChecked': len(bowl_diffs),
         'maxEatBowlDifference': round(max(bowl_diffs), 4) if bowl_diffs else None,
+        'walkRollback': {
+            'frames': len(walk_keys),
+            'framesEqualToPreRedraw': rollback_walk_ok,
+            'baseline': 'cast_atlas.before.png',
+            'allowedDelta': 'master_soft 1px coverage band only',
+        },
         'walkRhythm': {
             'frames': len(walk_keys),
             'uniqueLowerBodies': len(lower_hashes),

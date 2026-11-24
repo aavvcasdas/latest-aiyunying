@@ -7,8 +7,8 @@
   },
   "master": {
     "file": "通用模板/engine/assets/cast_atlas.png",
-    "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
-    "bytes": 1712686,
+    "sha256": "16681c7b253e194556e97043e44b83069c05ed9ea1eb9eaf8ffaa4d832535793",
+    "bytes": 1730639,
     "w": 2048,
     "h": 3126,
     "cells": 682
@@ -27,7 +27,7 @@
   "visual": {
     "masterSoft": true,
     "softEdgeAlpha": 184,
-    "softEdgePixels": 29593,
+    "softEdgePixels": 29714,
     "hardAlphaNonWhale": true,
     "transparentCorners": true,
     "disconnectedBorderFragments": 0,
@@ -36,8 +36,8 @@
     "uniquePaletteColors": 246,
     "opaqueColorsOutsidePalette": 0,
     "medianBboxRatio": 0.8776,
-    "minBboxRatio": 0.6047,
-    "minBboxRatioKey": "walk_whale_4",
+    "minBboxRatio": 0.6628,
+    "minBboxRatioKey": "act_whale_spin_3",
     "thinSpinBefore": [
       "act_whale_spin_2",
       "act_whale_spin_6"
@@ -64,7 +64,7 @@
       "act_whale_spin_7": 0.8736
     },
     "outer2pxOpaqueBefore": 4248,
-    "outer2pxOpaqueAfter": 2567,
+    "outer2pxOpaqueAfter": 2609,
     "cellsTouchingOuter2pxAfter": [
       {
         "key": "act_whale_bow_0",
@@ -439,42 +439,42 @@
       {
         "key": "walk_whale_0",
         "before": 43,
-        "after": 39
+        "after": 43
       },
       {
         "key": "walk_whale_1",
         "before": 41,
-        "after": 36
+        "after": 41
       },
       {
         "key": "walk_whale_2",
         "before": 43,
-        "after": 33
+        "after": 43
       },
       {
         "key": "walk_whale_3",
         "before": 29,
-        "after": 37
+        "after": 29
       },
       {
         "key": "walk_whale_4",
         "before": 44,
-        "after": 28
+        "after": 44
       },
       {
         "key": "walk_whale_5",
         "before": 43,
-        "after": 40
+        "after": 43
       },
       {
         "key": "walk_whale_6",
         "before": 42,
-        "after": 34
+        "after": 42
       },
       {
         "key": "walk_whale_7",
         "before": 38,
-        "after": 34
+        "after": 38
       },
       {
         "key": "whale_big_blink",
@@ -542,11 +542,17 @@
     ],
     "eatBowlFramesChecked": 8,
     "maxEatBowlDifference": 0.0,
+    "walkRollback": {
+      "frames": 8,
+      "framesEqualToPreRedraw": 8,
+      "baseline": "cast_atlas.before.png",
+      "allowedDelta": "master_soft 1px coverage band only"
+    },
     "walkRhythm": {
       "frames": 8,
       "uniqueLowerBodies": 8,
-      "meanConsecutiveFrameDifference": 9.5642,
-      "meanTailRegionDifference": 4.6585
+      "meanConsecutiveFrameDifference": 8.5792,
+      "meanTailRegionDifference": 13.8012
     },
     "spinPerspectiveException": {
       "frames": 8,

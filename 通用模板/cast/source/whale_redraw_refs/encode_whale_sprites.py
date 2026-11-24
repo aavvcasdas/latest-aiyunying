@@ -411,24 +411,16 @@ add('p_whale_neutral', portrait(front,'neutral'), 64,64)
 add('p_whale_shout', portrait(front,'shout'), 64,64)
 add('p_whale_think', portrait(blink,'think'), 64,64)
 
-# legacy helper sprites (not in atlas, but still whale "images")
-walk_sizes = [(77,88),(84,88),(76,88),(84,88)]
-map_sizes  = [(49,56),(54,56),(48,56),(53,56)]
-for i,(w,h) in enumerate(walk_sizes):
-    add(f'whale_walk_{i}', walk_variant(side,i,w,h), w,h)
-for i,(w,h) in enumerate(map_sizes):
-    base = front if i%2==0 else side
-    im = fit_with_old_clothes(base,w,h,pad=1) if i%2==0 else fit(base,w,h,pad=1)
-    add(f'whale_map_{i}', im, w,h)
-add('whale_map_pt', fit(point,49,56,pad=1), 49,56)
-
-# eight atlas walk frames
-walk_frames = {}
-for i in range(8):
-    key=f'walk_whale_{i}'
-    im=walk_variant(side,i,90,88)
-    walk_frames[key]=record(im,90,88)
-    sprites[key]=walk_frames[key]
+# 2026-11-24 用户要求：本鲸的走路回退到本次项目改动之前的样子，其余不变。
+# 步态 8 帧（walk_whale_0–7）与配套的 whale_walk_0–3 / whale_map_* 直接取
+# walk_legacy.json 里逐字节保存的重画前记录，不再从 whale_side_clean.png 派生，
+# 也不再借旧轮廓重新填色。挥手 / 递出去 / idle / blink 等其它格子仍走本次重画流程。
+LEGACY = json.loads((Path(__file__).resolve().parent / 'walk_legacy.json').read_text(encoding='utf-8'))
+sprites.update(LEGACY['sprites'])
+walk_frames = dict(LEGACY['walk'])
+for key, rec in walk_frames.items():
+    sprites[key] = rec
+assert len(walk_frames) == 8 and all(k in sprites for k in [f'whale_walk_{i}' for i in range(4)])
 
 OUT.write_text(json.dumps({'sprites':sprites,'walk':walk_frames},ensure_ascii=False,indent=1)+'\n',encoding='utf-8')
 print('sprites',len(sprites),'walk',len(walk_frames),'->',OUT)
