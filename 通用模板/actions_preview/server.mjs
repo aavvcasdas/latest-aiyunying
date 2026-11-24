@@ -61,6 +61,31 @@ function serveFile(res, file) {
   }
 }
 
+// 步态序列前缀，必须和 engine/actors.ts 的 CAST_SETS 一致。
+// 帧数不写死：从 0 连着数，数到图集里缺号为止（同 actors.ts 的 framesIn）。
+const WALK_PREFIX = {
+  whale: 'walk_whale_',
+  claude: 'walk_claude_',
+  kimi: 'walk_kimi_',
+  gemini: 'walk_gemini_',
+  qwen: 'walk_qwen_',
+  zai: 'walk_zai_',
+  doubao: 'walk_doubao_big_',
+  gpt: 'gpt_fly_',
+};
+
+function walkSets(cells) {
+  const out = {};
+  for (const [who, prefix] of Object.entries(WALK_PREFIX)) {
+    const frames = [];
+    while (cells[`${prefix}${frames.length}`]) frames.push(`${prefix}${frames.length}`);
+    if (!frames.length) continue;
+    const [w, h] = [cells[frames[0]][2], cells[frames[0]][3]];
+    out[who] = { prefix, frames, size: [w, h], fps: 10, loop: true };
+  }
+  return out;
+}
+
 function castPayload() {
   const rects = JSON.parse(fs.readFileSync(ATLAS_JSON, 'utf8'));
   const actions = JSON.parse(fs.readFileSync(ACTIONS_JSON, 'utf8'));
@@ -77,6 +102,7 @@ function castPayload() {
     },
     rects: rects.s,
     actions: actions.actions,
+    walk: walkSets(rects.s),
     props: actions.props,
     propsOf: actions.propsOf,
     fx: actions.fx,

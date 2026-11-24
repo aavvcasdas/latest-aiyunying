@@ -21,6 +21,7 @@
         <span>内容</span>
         <div class="tabs" id="mode-tabs">
           <button class="tab active" data-mode="actions">动作</button>
+          <button class="tab" data-mode="walk">走路</button>
           <button class="tab" data-mode="props">道具</button>
           <button class="tab" data-mode="fx">表情贴</button>
         </div>
@@ -40,6 +41,7 @@
         </select>
       </label>
       <button class="btn quick" id="whale-only">只看本鲸 13 动作</button>
+      <button class="btn quick" id="walk-only">只看本鲸走路</button>
       <button class="btn" id="play-toggle">暂停</button>
       <button class="btn" id="step">逐帧 +1</button>
       <button class="btn" id="reset">回到第 0 帧</button>
@@ -59,7 +61,7 @@
     <section class="film-banner">
       <div class="film-copy">
         <h2>本鲸修复短片对照 · 6.5 秒</h2>
-        <p>原版 / V1 重构 / 当前修正版逐帧同屏，覆盖 13 个动作；挥手与递出去已重画成单手稿并附手臂局部放大，干饭标出可见饭碗，正面基础格恢复重画前旧版围裙 / 裙摆 / 靴子，发抖、摇摆舞、吃惊等动作改为头身裙摆联动，走路重做手臂 / 双腿 / 鱼尾节奏，转圈仍单独标注细面条修复。</p>
+        <p>原版 / V1 重构 / 当前修正版逐帧同屏，覆盖 13 个动作；挥手与递出去按指令回退到「加裙子固定之前」的原始参考格，干饭标出可见饭碗，正面基础格恢复重画前旧版围裙 / 裙摆 / 靴子，发抖、摇摆舞、吃惊等动作改为头身裙摆联动；8 帧走路也已整体回退到重画前。走路单帧可在上方「走路」标签里按真实帧率查看。</p>
         <a class="film-link" href="/film/">打开全屏短片对照 →</a>
       </div>
       <video class="film-video" controls muted loop playsinline poster="/film/contact.png" src="/film/compare.mp4"></video>

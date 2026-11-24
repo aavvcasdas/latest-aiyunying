@@ -172,6 +172,30 @@ function buildCards() {
     }
     return out;
   }
+  if (state.mode === 'walk') {
+    // 步态序列来自母版里真实存在的 walk_* 格子（server 端按 actors.ts 的前缀数出来的），
+    // 不写死 8 帧；已回退到重画前的本鲸步态也走同一条路径。
+    const chars = state.character === 'all' ? ORDER : [state.character];
+    const out = [];
+    for (const who of chars) {
+      const set = d.walk?.[who];
+      if (!set) continue;
+      out.push({
+        kind: 'walk',
+        who,
+        whoLabel: NAMES[who] || who,
+        name: set.prefix,
+        label: '走路',
+        frames: set.frames,
+        fps: set.fps || 10,
+        loop: true,
+        size: set.size || null,
+        fx: null,
+        note: '步态循环 · 点击胶片定位某一步',
+      });
+    }
+    return out;
+  }
   if (state.mode === 'props') {
     const owners = ownersByProp();
     let keys = d.props || [];
@@ -235,7 +259,9 @@ function makeCard(card, index) {
   const label = document.createElement('strong');
   label.textContent = card.label;
   const key = document.createElement('code');
-  key.textContent = `${card.who && card.kind === 'action' ? `${card.who}.` : ''}${card.name}`;
+  key.textContent = card.kind === 'walk'
+    ? `${card.name}0…${card.frames.length - 1}（${card.frames.length} 帧）`
+    : `${card.who && card.kind === 'action' ? `${card.who}.` : ''}${card.name}`;
   head.append(who, label, key);
 
   const stage = document.createElement('canvas');
@@ -301,7 +327,7 @@ function updateStats() {
   const shown = state.cards.length;
   const shownFrames = state.cards.reduce((n, c) => n + c.frames.length, 0);
   const charLabel = state.character === 'all' ? '全部角色' : (NAMES[state.character] || state.character);
-  const modeLabel = { actions: '动作', props: '道具', fx: '表情贴' }[state.mode];
+  const modeLabel = { actions: '动作', walk: '步态', props: '道具', fx: '表情贴' }[state.mode];
   stats.innerHTML = [
     `<b>${shown}</b> 个${modeLabel}`,
     `<b>${shownFrames}</b> 帧`,
@@ -357,6 +383,15 @@ $('#whale-only').addEventListener('click', () => {
   state.character = 'whale';
   characterSelect.value = 'whale';
   document.querySelectorAll('.tab').forEach((b) => b.classList.toggle('active', b.dataset.mode === 'actions'));
+  state.clock = 0;
+  renderGrid();
+});
+
+$('#walk-only').addEventListener('click', () => {
+  state.mode = 'walk';
+  state.character = 'whale';
+  characterSelect.value = 'whale';
+  document.querySelectorAll('.tab').forEach((b) => b.classList.toggle('active', b.dataset.mode === 'walk'));
   state.clock = 0;
   renderGrid();
 });

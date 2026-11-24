@@ -148,6 +148,8 @@ main { padding: 20px 22px 32px; }
 }
 .card[data-kind="prop"] { border-color: #3f3f46; }
 .card[data-kind="fx"] { border-color: #4c3f69; }
+.card[data-kind="walk"] { border-color: #2f6f5a; }
+.card[data-kind="walk"] .who { background: #14532d; color: #bbf7d0; }
 
 .card-head {
   display: flex;
