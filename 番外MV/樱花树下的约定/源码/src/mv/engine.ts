@@ -167,7 +167,7 @@ export class MvEngine {
     this.scene.add(sky.mesh, starField.points, hemi, sun, rim);
 
     const grade: GradeState = {
-      vig: 0.38, grain: 0.022, warm: 0.25, cool: 0, sat: 1.06,
+      vig: 0.38, grain: 0, warm: 0.25, cool: 0, sat: 1.06,
       flash: 0, flashCol: 0xffffff, black: 0, ca: 0, bloom: 1.0,
     };
     this.env = { scene: this.scene, cam: this.cam, sky, stars: starField.points, hemi, sun, rim, fog, grade };
@@ -202,13 +202,13 @@ export class MvEngine {
     // 后期管线：场景渲染 → 柔和泛光 → 古风电影调色 → 色彩空间输出
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(new RenderPass(this.scene, this.cam));
-    this.bloom = new UnrealBloomPass(new THREE.Vector2(this.width, this.height), 0.17, 0.42, 0.88);
+    this.bloom = new UnrealBloomPass(new THREE.Vector2(this.width, this.height), 0.08, 0.42, 0.95);
     this.composer.addPass(this.bloom);
     this.gradePass = new ShaderPass({
       uniforms: {
         tDiffuse: { value: null },
         uVig: { value: 0.38 },
-        uGrain: { value: 0.022 },
+        uGrain: { value: 0 },
         uWarm: { value: 0.25 },
         uCool: { value: 0 },
         uSat: { value: 1.06 },
@@ -273,7 +273,7 @@ export class MvEngine {
 
     // 重置本帧默认调色参数（保证任意跳转 100% 确定性）
     const g = this.env.grade;
-    g.vig = 0.36; g.grain = 0.02; g.warm = 0.2; g.cool = 0; g.sat = 1.06;
+    g.vig = 0.36; g.grain = 0; g.warm = 0.2; g.cool = 0; g.sat = 1.06;
     g.flash = 0; g.flashCol = 0xffffff; g.black = 0; g.ca = 0; g.bloom = 1.0;
 
     // 先求值歌词以获取本帧关键词落拍的相机推力 kick
@@ -298,7 +298,7 @@ export class MvEngine {
     this.lyrics.update(t, this.cam.fov);
 
     // 应用后期调色与泛光（丝滑电影柔光，保留人物五官锐度）
-    this.bloom.strength = 0.16 * g.bloom;
+    this.bloom.strength = 0.07 * g.bloom; // 0.16 × shared bloomScale 0.45
     const gu = this.gradePass.uniforms;
     gu.uVig.value = g.vig;
     gu.uGrain.value = g.grain;
@@ -325,8 +325,8 @@ export class MvEngine {
     return shot;
   }
 
-  /** 离线确定性出帧钩子（兼容 shoot_opus_mv.mjs / shoot_vite_mv.mjs 与剧照下载） */
-  captureFrame(t: number, clean = false, targetWidth?: number, mime: 'image/jpeg' | 'image/png' = 'image/jpeg'): string {
+  /** 离线确定性出帧钩子（默认 PNG；兼容 shoot_opus_mv.mjs / shoot_vite_mv.mjs 与剧照下载） */
+  captureFrame(t: number, clean = false, targetWidth?: number, mime: 'image/jpeg' | 'image/png' = 'image/png'): string {
     const prevHidden = this.lyrics?.hidden ?? false;
     const prevW = this.width, prevH = this.height;
     if (targetWidth && Math.abs(targetWidth - prevW) > 2) {
@@ -334,7 +334,7 @@ export class MvEngine {
     }
     if (this.lyrics) this.lyrics.hidden = clean;
     this.renderAt(t);
-    const dataUrl = this.canvas.toDataURL(mime, 0.92);
+    const dataUrl = this.canvas.toDataURL(mime);
     if (this.lyrics) this.lyrics.hidden = prevHidden;
     if (targetWidth && Math.abs(targetWidth - prevW) > 2) {
       this.resize(prevW, prevH);

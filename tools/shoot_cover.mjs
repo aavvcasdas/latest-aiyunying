@@ -11,6 +11,15 @@ import path from 'node:path';
 import http from 'node:http';
 import puppeteer from 'puppeteer-core';
 import chromium from '@sparticuz/chromium';
+import {
+  DEFAULT_JPEG_QUALITY,
+  captureFrame,
+  frameExtension,
+  freezePageLoop,
+  imageFormatFromArgv,
+  installCaptureClock,
+  prepareCaptureStage,
+} from './capture_quality.mjs';
 
 const argv = process.argv.slice(2);
 const opt = (n, d) => { const i = argv.indexOf(n); return i >= 0 ? argv[i + 1] : d; };
@@ -18,6 +27,9 @@ const dist = path.resolve(opt('--dist', ''));
 const outDir = path.resolve(opt('--out', '/tmp/covers'));
 const W = Number(opt('--w', 1920));
 const H = Number(opt('--h', 1080));
+const format = imageFormatFromArgv(argv);
+const ext = frameExtension(format);
+const quality = Number(opt('--quality', DEFAULT_JPEG_QUALITY));
 const times = String(opt('--times', '17.6')).split(',').map(Number);
 if (!opt('--dist')) { console.error('用法：node tools/shoot_cover.mjs --dist <构建目录> --out <目录> --times 17.6,26'); process.exit(2); }
 fs.mkdirSync(outDir, { recursive: true });
@@ -57,29 +69,18 @@ const HOOK = await page.waitForFunction(() => {
 }, { timeout: 300000, polling: 250 }).then((h) => h.jsonValue());
 console.log('封面钩子：', HOOK);
 
-await page.evaluate(() => {
-  const c = document.querySelector('canvas');
-  const st = c.parentElement;
-  document.documentElement.style.background = '#000';
-  document.body.style.visibility = 'hidden'; document.body.style.overflow = 'hidden';
-  Object.assign(st.style, {
-    visibility: 'visible', position: 'fixed', left: '0', top: '0',
-    width: '100vw', height: '100vh', aspectRatio: 'auto', borderRadius: '0',
-    margin: '0', boxShadow: 'none', outline: 'none',
-  });
-  document.querySelectorAll('audio,video').forEach((el) => { el.pause(); el.muted = true; });
-  window.requestAnimationFrame = () => 0; // 冻住页面自播，别抢 CPU
-});
+await installCaptureClock(page);
+await prepareCaptureStage(page);
+await freezePageLoop(page);
 
 for (const t of times) {
-  const url = await page.evaluate((h, tt) => {
-    const r = h === '__mvCover' ? window.__mvCover(tt)
-      : h === '__mvRender' ? window.__mvRender(tt, true)
-      : window.__mv.cover(tt);
-    return typeof r === 'string' ? r : r.url;
+  await page.evaluate((h, tt) => {
+    if (h === '__mvCover') window.__mvCover(tt);
+    else if (h === '__mvRender') window.__mvRender(tt, true);
+    else window.__mv.cover(tt);
   }, HOOK, t);
-  const file = path.join(outDir, `c${t.toFixed(2)}.jpg`);
-  fs.writeFileSync(file, Buffer.from(url.slice(url.indexOf(',') + 1), 'base64'));
+  const file = path.join(outDir, `c${t.toFixed(2)}.${ext}`);
+  await captureFrame(page, { file, format, quality });
   console.log('✓', file);
 }
 await browser.close();

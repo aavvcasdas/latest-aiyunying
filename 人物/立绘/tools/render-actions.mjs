@@ -5,7 +5,7 @@
 //   node tools/render-actions.mjs whale wave 16   # 指定动作与帧数
 //
 // 依赖：@napi-rs/canvas、esbuild（把 src/mv 里的 TS 直接打包，不另抄一份逻辑）
-// 产物：../番外MV/立绘/预览/<角色>_<动作>.gif  ＋ ../番外MV/立绘/立绘_动作总览.jpg
+// 产物：/tmp/tachie_preview/<角色>_<动作>.gif ＋ /tmp/tachie_preview/立绘_动作总览.png
 import { buildSync } from "esbuild";
 import { createCanvas, loadImage, GlobalFonts } from "@napi-rs/canvas";
 import fs from "node:fs";
@@ -14,7 +14,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { execFileSync } from "node:child_process";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
-const OUT_DIR = path.join(ROOT, "..", "番外MV", "立绘");
+const OUT_DIR = "/tmp/tachie_preview";
 const FRAME_DIR = "/tmp/tachie_frames";
 
 /* ------------------------------ 1. 打包 TS ------------------------------ */
@@ -34,7 +34,7 @@ const { drawTachie, drawEmote, buildMips, pickMip, ACTIONS, poseOf, CAST } = awa
 );
 
 /* 字体：仓库自带站酷快乐体（OFL），总览图上的角色名要用它 */
-for (const f of [path.join(ROOT, "../通用模板/engine/assets/fonts/ZCOOLKuaiLe-Regular.ttf")]) {
+for (const f of [path.join(ROOT, "../../../通用模板/engine/assets/fonts/ZCOOLKuaiLe-Regular.ttf")]) {
   if (fs.existsSync(f)) { GlobalFonts.registerFromPath(f, "ZCOOL KuaiLe"); break; }
 }
 
@@ -69,10 +69,8 @@ function paintBg(ctx) {
 }
 
 /* ------------------------------ 3. 渲一帧 ------------------------------ */
-let T = 0; // 全局时间，呼吸叠加用它
-
-function renderFrame(ctx, img, mips, m, action, t) {
-  T += 1 / 30;
+// 不再用全局累加器：同一 t 无论前面渲过多少帧都给出同一张。
+function renderFrame(ctx, img, mips, m, action, t, T) {
   const pose = poseOf(action, t, t * 1.5, T, m.cx * 9);
   paintBg(ctx);
   // 影子
@@ -149,7 +147,7 @@ for (const id of pick) {
     const ctx = c.getContext("2d");
     for (let i = 0; i < NF; i++) {
       const t = def.loop ? (i / NF) * dur : (i / (NF - 1)) * def.dur;
-      renderFrame(ctx, img, mips, meta, action, t);
+      renderFrame(ctx, img, mips, meta, action, t, t);
       frames.push(await c.encode("png"));
     }
     const f = path.join(OUT_DIR, "预览", `${id}_${action}.gif`);
@@ -164,7 +162,8 @@ for (const id of pick) {
   const row = [];
   for (const action of acts) {
     const def = ACTIONS[action] ?? ACTIONS.idle;
-    renderFrame(ctx, img, mips, meta, action, def.loop ? (def.dur ?? 2.4) * 0.55 : (def.dur ?? 2.4) * 0.85);
+    const t = def.loop ? (def.dur ?? 2.4) * 0.55 : (def.dur ?? 2.4) * 0.85;
+    renderFrame(ctx, img, mips, meta, action, t, t);
     row.push({ buf: await c.encode("png"), label: def.label ?? action });
   }
   sheetRows.push({ id, row });
@@ -203,5 +202,5 @@ if (sheetRows.length) {
     s.fillText(CAST[id].alias, 16, 56 + r * CH + CH / 2 + 16);
   }
   fs.writeFileSync(path.join(OUT_DIR, "立绘_动作总览.png"), sheet.encodeSync("png"));
-  console.log(`总览 → 番外MV/立绘/立绘_动作总览.png`);
+  console.log(`总览 → ${path.join(OUT_DIR, '立绘_动作总览.png')}`);
 }

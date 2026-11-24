@@ -11,8 +11,8 @@
 - `/` —— MV 播放台：62 个镜头、41 句歌词卡拍；逐镜可改编排（谁上场、做什么动作、背景、特效、运镜、景别），改动存进 PostgreSQL。
 - `/cast` —— 立绘动作库：八位角色 × 8–13 个动作 × 12 种头顶表情贴，点一下实时预览。
 
-**这里只用它的动作引擎，不重渲整支成片**：`tools/render-actions.mjs` 离线把「立绘 + 动作」渲成 gif 和总览图，
-产物在 `预览/`（脚本现产，不入库）——总览图一张、八个角色各三个动作的 gif 共 24 个。
+**这里只用它的动作引擎，不重渲整支成片**：`npm run actions:render` 离线把「立绘 + 动作」渲成 gif 和总览图，
+产物在系统临时目录 `/tmp/tachie_preview/`（脚本现产，不入库）——总览图一张、八个角色各三个动作的 gif 共 24 个。
 
 ## 立绘怎么动起来的
 
@@ -37,33 +37,34 @@
 | `src/mv/timeline.ts` | 85 BPM 的拍点与 41 句歌词 |
 | `src/components/` | 播放台、动作库页面（`/cast`）、素材加载 |
 | `src/db/schema.ts` | `shot_overrides`：只存被改过的镜头 |
-| `tools/render-actions.mjs` | **离线渲染**：不进浏览器，直接出 gif / 总览图 |
-| `tools/key-tachie.mjs` | 绿幕 → 透明底（这批图已经是透明 PNG，只有换绿幕新图时才用） |
-| `tools/key-tachie.cjs` | 原包的抠图脚本（走 sharp，出 `public/tachie/*.webp`），本仓库没用上，留作对照 |
+| `tools/render-actions.mjs` | **离线渲染**：不进浏览器，直接出 gif / 总览图；逐帧纯函数，不再用全局累加 `T` |
+| `tools/key-tachie.mjs` | 默认检查八张透明底 + 骨架锚点；`--write` 只刷新 `art/tachie/metrics.json`，不生成新图 |
+| `tools/key-tachie.cjs` | 旧版绿幕抠图脚本，默认 check-only；`--write` 也只对真正的绿幕原图生效，输出 `public/tachie/*.png` |
 
 ## 离线渲一套动作（不需要浏览器、不需要数据库）
 
 ```bash
-cd 立绘 && npm i --no-save @napi-rs/canvas esbuild   # 只装这两个，不装整套 Next 依赖
+cd 人物/立绘 && npm install       # @napi-rs/canvas / esbuild / sharp 已写进 devDependencies
 
-node tools/render-actions.mjs                   # 八个角色 × 招牌三个动作 + 总览图
-node tools/render-actions.mjs whale gpt         # 只渲这两位
-node tools/render-actions.mjs whale wave 18     # 指定动作、指定帧数
+npm run actions:render                   # 八个角色 × 招牌三个动作 + 总览图
+npm run tachie:check                     # 检查透明底、尺寸与骨架锚点
+npm run assets:mirror                    # 逐字节复制现有立绘 / 字体 / 音轨到 public/
 ```
 
-产物：
+产物都在 `/tmp/tachie_preview/`：
 
-- `预览/立绘_动作总览.png` —— 八行，一行一位角色，六列是她的六个动作（各取一遍里最开的那一帧）
-- `预览/<角色>_<动作>.gif` —— 360 宽，15fps，动作循环
+- `/tmp/tachie_preview/立绘_动作总览.png` —— 八行，一行一位角色，六列是她的六个动作（各取一遍里最开的那一帧）
+- `/tmp/tachie_preview/<角色>_<动作>.gif` —— 360 宽，15fps，动作循环
 
 脚本会把 `src/mv` 里的 TS 用 esbuild 现场打包（不另抄一份逻辑），再用 `@napi-rs/canvas` 逐帧画。
-`rig.ts` / `actions.ts` 改了，重跑一遍就是新的。
+`rig.ts` / `actions.ts` 改了，重跑一遍就是新的。网页播放台还通过 `window.__FILM__` 暴露纯函数逐帧接口，
+可用 `npm run capture:film` 从仓库根出 lossless PNG 帧，不再依赖浏览器实时录屏。
 
 ## 换立绘
 
-1. 新图要求：**透明底**（或纯绿底走 `key-tachie.mjs`）、全身、正面站立、统一 1280 高。放进 `art/raw/` 覆盖同名文件，再拷一份到 `art/tachie/`。
-2. 量三个数填回 `src/mv/cast.ts`：`neck`（下巴占全高的比例，这批七头身是 0.18–0.21）、`cx`（两脚中点）、`hx`（头部中心）——都是占图宽的横向比例。
-3. `node tools/render-actions.mjs <角色>` 看动作对不对；不对就是这三个数填错了。
+1. **本次修复没有换图、没有新增生图**。`art/tachie/*.png` 保持原样；`public/tachie/*.png` 只是逐字节副本，`assets.manifest.json` 会核对两边哈希。
+2. 骨架参数只读 `通用模板/engine/assets/tachie_anchors.json`；网页 `cast.ts`、模板 `tachie.ts` 和离线工具共用这一份，不再各写一套数字。当前 `layerStatus` 是 `single-layer`，没有独立眼睛 / 嘴 / 手图层。
+3. 真要换图（需要用户明确批准）：新图必须透明底、全身、正面站立、统一 1280 高；更新锚点 JSON、`npm run assets:mirror` 与 `assets.manifest.json`，再 `npm run tachie:check` 和 `npm run actions:render` 验证。不要覆盖历史原图。
 
 ## 发布前要自己确认的
 
@@ -72,4 +73,4 @@ node tools/render-actions.mjs whale wave 18     # 指定动作、指定帧数
   这也是它**默认不用**的原因之一。
 - **音乐**：《勾指起誓》的音轨原仓库自己写着没有授权记录，公开前要核。
 - 字体是站酷快乐体（OFL），许可文件在 `public/fonts/`。
-- 网页版的导出是浏览器实时录屏（WebM），不是逐帧渲染：机器卡的时候会掉帧。要逐帧出片就走上面的 `render-actions.mjs`（单角色、单动作）。
+- 网页上的「录制整片」仍是浏览器实时录屏（WebM），机器卡的时候会掉帧；**成片 / QA 请用 `npm run capture:film` 的纯函数逐帧 PNG**。上面的 `render-actions.mjs` 只用于单角色、单动作预览。

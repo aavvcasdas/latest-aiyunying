@@ -1,12 +1,16 @@
 {
   "name": "nextjs-postgresql-template",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "assets:mirror": "node ../../tools/copy_standing_assets.mjs",
+    "actions:render": "node tools/render-actions.mjs",
+    "tachie:check": "node tools/key-tachie.mjs --check"
   },
   "dependencies": {
     "dotenv": "17.3.1",
@@ -17,15 +21,18 @@
     "react-dom": "19.2.6"
   },
   "devDependencies": {
+    "@napi-rs/canvas": "^0.1.80",
     "@tailwindcss/postcss": "4.1.17",
     "@types/node": "22.19.15",
     "@types/pg": "8.18.0",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
     "drizzle-kit": "0.31.10",
+    "esbuild": "^0.25.0",
     "eslint": "9.39.4",
     "eslint-config-next": "16.4.2",
     "postcss": "8.5.23",
+    "sharp": "^0.34.0",
     "tailwindcss": "4.1.17",
     "typescript": "5.9.3"
   }

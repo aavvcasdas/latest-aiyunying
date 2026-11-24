@@ -61,7 +61,7 @@ export class Engine {
   w = 1280; h = 720;
   constructor(canvas: HTMLCanvasElement) {
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance', preserveDrawingBuffer: true });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75)); this.renderer.toneMapping = THREE.NoToneMapping;
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); // shared quality profile: 2x supersample this.renderer.toneMapping = THREE.NoToneMapping;
     this.scene.add(this.cam);
   }
   async load(onP: (p: number) => void) {
@@ -73,7 +73,7 @@ export class Engine {
     const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 0.8); const sun = new THREE.DirectionalLight(0xffffff, 1.2);
     const fog = new THREE.Fog(0x000000, 20, 100); this.scene.fog = fog;
     this.scene.add(sky.mesh, st.points, hemi, sun);
-    const grade: Grade = { sepia: 0, bw: 0, vig: 0.4, grain: 0.035, flash: 0, flashCol: 0xffffff, black: 0, warm: 0, flick: 0, ca: 0, bloom: 1 };
+    const grade: Grade = { sepia: 0, bw: 0, vig: 0.4, grain: 0, flash: 0, flashCol: 0xffffff, black: 0, warm: 0, flick: 0, ca: 0, bloom: 1 };
     this.env = { scene: this.scene, cam: this.cam, sky, stars: st, hemi, sun, fog, grade };
     onP(0.55);
     this.scenes = { planet: new PlanetScene(), amber: new AmberScene(), hourglass: new HourglassScene(), river: new RiverScene(), fate: new FateScene(), cosmos: new CosmosScene(), cage: new CageScene(), film: new FilmScene(), concert: new ConcertScene(), piano: new PianoScene() };
@@ -85,7 +85,7 @@ export class Engine {
     ly.card('谢谢收听', 257.2, 0.18, 260.6, { style: 'flip', size: 0.42, y: -1.45, hi: 0xffd6a0, key: 0xffd6a0 });
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(new RenderPass(this.scene, this.cam));
-    this.bloom = new UnrealBloomPass(new THREE.Vector2(this.w, this.h), 0.5, 0.55, 0.8); this.composer.addPass(this.bloom);
+    this.bloom = new UnrealBloomPass(new THREE.Vector2(this.w, this.h), 0.225, 0.55, 0.95); this.composer.addPass(this.bloom);
     this.composer.addPass(new OutputPass());
     this.grade = new ShaderPass({
       uniforms: { tDiffuse: { value: null }, uSepia: { value: 0 }, uBW: { value: 0 }, uVig: { value: 0.4 }, uGrain: { value: 0.03 }, uFlash: { value: 0 }, uFlashCol: { value: new THREE.Color(1, 1, 1) }, uBlack: { value: 0 }, uTime: { value: 0 }, uWarm: { value: 0 }, uFlick: { value: 0 }, uCA: { value: 0 }, uAsp: { value: 16 / 9 } },
@@ -112,7 +112,7 @@ export class Engine {
     const sc = this.scenes[sh.scene];
     if (this.cur !== sc) { if (this.cur) this.scene.remove(this.cur.group); this.scene.add(sc.group); this.cur = sc; }
     this.shotIndex = i;
-    const g = this.env.grade; Object.assign(g, { sepia: 0, bw: 0, vig: 0.4, grain: 0.035, flash: 0, flashCol: 0xffffff, black: 0, warm: 0, flick: 0, ca: 0, bloom: 1 });
+    const g = this.env.grade; Object.assign(g, { sepia: 0, bw: 0, vig: 0.4, grain: 0, flash: 0, flashCol: 0xffffff, black: 0, warm: 0, flick: 0, ca: 0, bloom: 1 });
     this.env.hemi.intensity = 0.8;
     const ctx: Ctx = { t, lt: t - sh.a, p: clamp((t - sh.a) / (sh.b - sh.a)), dur: sh.b - sh.a, v: sh.v, e: this.env, a: sh.a, b: sh.b };
     sc.frame(ctx);
@@ -126,7 +126,7 @@ export class Engine {
     const gu = this.grade!.uniforms;
     gu.uSepia.value = g.sepia; gu.uBW.value = g.bw; gu.uVig.value = g.vig; gu.uGrain.value = g.grain; gu.uFlash.value = g.flash; (gu.uFlashCol.value as THREE.Color).setHex(g.flashCol);
     gu.uBlack.value = g.black; gu.uTime.value = t; gu.uWarm.value = g.warm; gu.uFlick.value = g.flick; gu.uCA.value = g.ca;
-    this.bloom!.strength = 0.42 * g.bloom;
+    this.bloom!.strength = 0.19 * g.bloom; // 0.42 × shared bloomScale 0.45
     PUNI.uH.value = (this.renderer.domElement.height) / (2 * Math.tan((this.cam.fov * Math.PI) / 360));
     this.composer.render();
   }

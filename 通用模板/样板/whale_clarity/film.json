@@ -1,0 +1,12 @@
+{
+  "id": "whale-clarity",
+  "kind": "day",
+  "title": "本鲸清晰度",
+  "script": "台词.txt",
+  "speaker": "whale",
+  "output": "成片/本鲸清晰度",
+  "video": {
+    "bitrate": "1500k",
+    "preset": "medium"
+  }
+}

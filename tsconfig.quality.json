@@ -1,0 +1,26 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "paths": {
+      "@tpl/*": ["通用模板/engine/*"],
+      "@/*": ["人物/立绘/src/*"]
+    }
+  },
+  "include": [
+    "通用模板/engine/**/*.ts",
+    "通用模板/preview/**/*.ts",
+    "通用模板/样板/**/*.ts",
+    "人物/立绘/src/mv/**/*.ts",
+    "人物/立绘/src/components/MvPlayer.tsx",
+    "人物/立绘/src/components/assets.ts",
+    "番外MV/情歌_opus5.5max/源码/src/mv/engine.ts",
+    "番外MV/情歌_opus5.5max/源码/src/mv/core.ts",
+    "番外MV/情歌_opus5.5max-gpt6max开头/源码/src/mv/engine.ts",
+    "番外MV/情歌_opus5.5max-gpt6max开头/源码/src/mv/core.ts",
+    "番外MV/樱花树下的约定/源码/src/mv/engine.ts",
+    "番外MV/超级棒棒糖_童年治愈3D/源码/src/mv/engine.ts"
+  ],
+  "exclude": ["存档", "node_modules"]
+}

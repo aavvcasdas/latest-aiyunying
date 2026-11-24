@@ -1,0 +1,28 @@
+{
+  "source": {
+    "atlas": "通用模板/engine/assets/cast_atlas.png",
+    "key": "act_whale_idle_0",
+    "rect": [
+      1118,
+      2055,
+      84,
+      90
+    ],
+    "scale": 3
+  },
+  "before": {
+    "pipeline": "bicubic upscale → bloom → chromatic offset → JPEG Q92 → JPEG Q85",
+    "psnrVsLosslessReference": 18.21,
+    "edgeEnergy": 6.78
+  },
+  "after": {
+    "pipeline": "2x nearest supersample → box downsample → no bloom/chroma → lossless PNG",
+    "psnrVsLosslessReference": 65.52,
+    "edgeEnergy": 21.42
+  },
+  "improvement": {
+    "psnrDb": 47.31,
+    "edgeEnergyDelta": 14.64
+  },
+  "image": "docs/quality_comparison/character_quality_comparison.png"
+}

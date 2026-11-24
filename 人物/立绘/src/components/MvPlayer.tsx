@@ -131,6 +131,36 @@ export default function MvPlayer({ initialPatches, dbOk }: { initialPatches: Rec
     };
   }, []);
 
+  // 逐帧出片契约：render(t) 只依赖 t，不读 rAF / performance.now / 音频播放头。
+  // tools/shoot_film_adapter.mjs 会先冻住页面自播循环，再按固定时间取 PNG 帧。
+  useEffect(() => {
+    if (!ready) return;
+    const w = window as typeof window & {
+      __FILM__?: {
+        ready: () => boolean;
+        duration: number;
+        fps: number;
+        render: (t: number) => void;
+      };
+    };
+    w.__FILM__ = {
+      ready: () => ready && !!envRef.current,
+      duration: DURATION,
+      fps: 30,
+      render: (t: number) => {
+        const canvas = canvasRef.current;
+        const env = envRef.current;
+        if (!canvas || !env) return;
+        const ctx = canvas.getContext("2d") as Ctx2D;
+        ctx.imageSmoothingQuality = "high";
+        renderMv(ctx, env, shotsRef.current, Math.max(0, Math.min(DURATION - 0.001, t)), true);
+      },
+    };
+    return () => {
+      delete w.__FILM__;
+    };
+  }, [ready]);
+
   /* -------------------------------- 渲染循环 -------------------------------- */
 
   useEffect(() => {

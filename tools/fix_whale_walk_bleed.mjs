@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 // 修本鲸（whale）八帧步态的“多出来的鱼尾”。
 //
-// 通用模板/cast/source/walk_cycle_data.js 由 tools/remotion-engine/bake_tonghuazhen_walk_cycles.py 生成
-// （该生成脚本不在本仓库，步态条带是按 90 px 定距切格的），切格时把隔壁实例的边角一起切了进来：
+// 这是一次性历史补丁，只清下面写死的坐标。新帧 / 新角色的同类溢色请跑
+// `npm run walk:check`（通用模板/cast/check_walk_frames.mjs）：它按连通域
+// 检查所有 walk_* / gpt_fly_* 格子的边缘碎片，不再按角色 / 坐标写死。
+//
+// 2026-11-24 用户授权重画本鲸后，步态数据已由新的侧面基础格确定性派生；本脚本检测到
+// 新数据会直接 SKIP，真正的溢色检查统一走 `npm run walk:check`。下面写死的坐标只适用于
+// 2026-11-13 那版由 tools/remotion-engine/bake_tonghuazhen_walk_cycles.py 生成、按 90 px 定距切格的旧数据。
 //   · E1  x ≥ 66, y 60..76 —— 腰侧裙摆右前方一片淡蓝色的“鱼尾尖”，与身体没有连接，
 //         就是观众看到的那条“前面多出的鱼尾”）；
 //   · E2  x ≥ 69, y 77..88 —— 右下角另一只靴子的边缘，同样越界。
@@ -67,6 +72,10 @@ function encode(d) {
 }
 
 const text = fs.readFileSync(DATA_PATH, 'utf8');
+if (text.includes('2026-11-24 用户授权重画本鲸')) {
+  console.log('SKIP 历史补丁不适用于重画后的步态数据；请用 npm run walk:check');
+  process.exit(0);
+}
 const check = process.argv.includes('--check');
 let out = text;
 let total = 0;

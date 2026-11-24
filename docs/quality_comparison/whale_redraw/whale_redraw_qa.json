@@ -1,0 +1,561 @@
+{
+  "status": "ok",
+  "generatedBy": "tools/check_whale_redraw.py",
+  "baseline": {
+    "file": "docs/quality_comparison/whale_redraw/cast_atlas.before.png",
+    "sha256": "5f9894b6ad38c26a62ec55a030aeb49bce8360c3d67ef99d1f581430d7ec81da"
+  },
+  "master": {
+    "file": "通用模板/engine/assets/cast_atlas.png",
+    "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
+    "bytes": 1712686,
+    "w": 2048,
+    "h": 3126,
+    "cells": 682
+  },
+  "scope": {
+    "whaleCells": 111,
+    "changedWhaleCells": 111,
+    "unchangedWhaleCells": 0,
+    "changedNonWhaleCells": 0,
+    "actions": 13,
+    "actionFrames": 92,
+    "derivedWhaleFrames": 92,
+    "allDerivedSheetFramesChecked": 682,
+    "mirrors": 9
+  },
+  "visual": {
+    "masterSoft": true,
+    "softEdgeAlpha": 184,
+    "softEdgePixels": 29593,
+    "hardAlphaNonWhale": true,
+    "transparentCorners": true,
+    "disconnectedBorderFragments": 0,
+    "flaggedFrames": 0,
+    "paletteEntries": 248,
+    "uniquePaletteColors": 246,
+    "opaqueColorsOutsidePalette": 0,
+    "medianBboxRatio": 0.8776,
+    "minBboxRatio": 0.6047,
+    "minBboxRatioKey": "walk_whale_4",
+    "thinSpinBefore": [
+      "act_whale_spin_2",
+      "act_whale_spin_6"
+    ],
+    "thinSpinAfter": [],
+    "spinRatiosBefore": {
+      "act_whale_spin_0": 0.8864,
+      "act_whale_spin_1": 0.5909,
+      "act_whale_spin_2": 0.2955,
+      "act_whale_spin_3": 0.5909,
+      "act_whale_spin_4": 0.8864,
+      "act_whale_spin_5": 0.5909,
+      "act_whale_spin_6": 0.2955,
+      "act_whale_spin_7": 0.5909
+    },
+    "spinRatiosAfter": {
+      "act_whale_spin_0": 0.8736,
+      "act_whale_spin_1": 0.7816,
+      "act_whale_spin_2": 0.7093,
+      "act_whale_spin_3": 0.6628,
+      "act_whale_spin_4": 0.6628,
+      "act_whale_spin_5": 0.7093,
+      "act_whale_spin_6": 0.7816,
+      "act_whale_spin_7": 0.8736
+    },
+    "outer2pxOpaqueBefore": 4248,
+    "outer2pxOpaqueAfter": 2567,
+    "cellsTouchingOuter2pxAfter": [
+      {
+        "key": "act_whale_bow_0",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_bow_1",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_bow_2",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_bow_3",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_bow_4",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_bow_5",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_bow_6",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_bow_7",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_eat_0",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_eat_1",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_eat_2",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_eat_3",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_eat_4",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_eat_5",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_eat_6",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_eat_7",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_hop_0",
+        "before": 32,
+        "after": 32
+      },
+      {
+        "key": "act_whale_hop_6",
+        "before": 32,
+        "after": 32
+      },
+      {
+        "key": "act_whale_hop_7",
+        "before": 30,
+        "after": 30
+      },
+      {
+        "key": "act_whale_idle_0",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_idle_1",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_idle_2",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_idle_3",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_idle_4",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_idle_5",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_idle_6",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_idle_7",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_nod_0",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_nod_1",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_nod_2",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_nod_3",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_nod_4",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_nod_5",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_point_0",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_point_1",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_sad_0",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_sad_1",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_sad_2",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_sad_3",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_sad_4",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_sad_5",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_shake_0",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_shake_1",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_shake_2",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_shake_3",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_shake_4",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_shake_5",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_shake_6",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_shake_7",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_shiver_0",
+        "before": 31,
+        "after": 29
+      },
+      {
+        "key": "act_whale_shiver_1",
+        "before": 31,
+        "after": 29
+      },
+      {
+        "key": "act_whale_shiver_2",
+        "before": 31,
+        "after": 29
+      },
+      {
+        "key": "act_whale_shiver_3",
+        "before": 31,
+        "after": 29
+      },
+      {
+        "key": "act_whale_spin_0",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_spin_1",
+        "before": 18,
+        "after": 23
+      },
+      {
+        "key": "act_whale_spin_6",
+        "before": 9,
+        "after": 23
+      },
+      {
+        "key": "act_whale_spin_7",
+        "before": 18,
+        "after": 29
+      },
+      {
+        "key": "act_whale_surprise_0",
+        "before": 33,
+        "after": 33
+      },
+      {
+        "key": "act_whale_surprise_1",
+        "before": 24,
+        "after": 15
+      },
+      {
+        "key": "act_whale_surprise_3",
+        "before": 12,
+        "after": 12
+      },
+      {
+        "key": "act_whale_surprise_4",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_surprise_5",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_sway_0",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_sway_1",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_sway_2",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_sway_3",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_sway_4",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_sway_5",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_sway_6",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_sway_7",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "act_whale_wave_0",
+        "before": 29,
+        "after": 29
+      },
+      {
+        "key": "p_whale_neutral",
+        "before": 315,
+        "after": 39
+      },
+      {
+        "key": "p_whale_shout",
+        "before": 324,
+        "after": 39
+      },
+      {
+        "key": "p_whale_think",
+        "before": 322,
+        "after": 39
+      },
+      {
+        "key": "walk_whale_0",
+        "before": 43,
+        "after": 39
+      },
+      {
+        "key": "walk_whale_1",
+        "before": 41,
+        "after": 36
+      },
+      {
+        "key": "walk_whale_2",
+        "before": 43,
+        "after": 33
+      },
+      {
+        "key": "walk_whale_3",
+        "before": 29,
+        "after": 37
+      },
+      {
+        "key": "walk_whale_4",
+        "before": 44,
+        "after": 28
+      },
+      {
+        "key": "walk_whale_5",
+        "before": 43,
+        "after": 40
+      },
+      {
+        "key": "walk_whale_6",
+        "before": 42,
+        "after": 34
+      },
+      {
+        "key": "walk_whale_7",
+        "before": 38,
+        "after": 34
+      },
+      {
+        "key": "whale_big_blink",
+        "before": 91,
+        "after": 42
+      },
+      {
+        "key": "whale_big_idle",
+        "before": 91,
+        "after": 42
+      },
+      {
+        "key": "whale_blink",
+        "before": 67,
+        "after": 29
+      },
+      {
+        "key": "whale_idle",
+        "before": 67,
+        "after": 29
+      }
+    ]
+  },
+  "actionProblems": [],
+  "clothesStability": {
+    "canonicalLowerBodyBox": [
+      0.18,
+      0.58,
+      0.82,
+      1.0
+    ],
+    "oldLowerBodySource": "cast_atlas.before.png",
+    "rolledBackGestureCells": [
+      "whale_wave",
+      "whale_point",
+      "whale_big_wave",
+      "whale_big_point"
+    ],
+    "rollbackTargets": [
+      "wave",
+      "point"
+    ],
+    "rollbackBaseline": "cast_atlas.clothes_before.png (f23…, pre-clothes-freeze)",
+    "otherActionsUnchanged": true,
+    "frontBaseCellsWithExactOldLowerBody": 4,
+    "frontBaseCellsChecked": 4,
+    "frontActionFramesChecked": 84,
+    "exactCanonicalHemFrames": 21,
+    "maxCanonicalHemDifference": 25.9539,
+    "lowerBodyMotionTransitions": 72,
+    "lowerBodyMotionFrames": 60,
+    "meanLowerBodyMotion": 15.999,
+    "motionLockRemoved": true,
+    "headBodyLinkageEnabledActions": [
+      "bow",
+      "eat",
+      "hop",
+      "idle",
+      "nod",
+      "sad",
+      "shake",
+      "shiver",
+      "surprise",
+      "sway"
+    ],
+    "eatBowlFramesChecked": 8,
+    "maxEatBowlDifference": 0.0,
+    "walkRhythm": {
+      "frames": 8,
+      "uniqueLowerBodies": 8,
+      "meanConsecutiveFrameDifference": 9.5642,
+      "meanTailRegionDifference": 4.6585
+    },
+    "spinPerspectiveException": {
+      "frames": 8,
+      "sideFramesChecked": 4,
+      "sideTemplateMaxDifference": 8.6334,
+      "frontFramesUseScaledCanonicalFrontView": true
+    },
+    "errors": []
+  },
+  "derivedSheetProblems": [],
+  "errors": []
+}

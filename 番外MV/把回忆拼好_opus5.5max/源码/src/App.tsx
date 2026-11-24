@@ -72,7 +72,7 @@ export default function App() {
     (window as unknown as { __mv: unknown }).__mv = {
       seek: (t: number) => { player.seek(t); setStarted(true); dirty.current = true; },
       ready: () => eng.ready,
-      // 截帧用：给时间就给一帧（离屏合成闪白 / 黑场后导 JPEG），tools/shoot_opus_mv.mjs 走这条路
+      // 截帧用：给时间就给一帧（离屏合成闪白 / 黑场后导 PNG），tools/shoot_opus_mv.mjs 走这条路
       render: (t: number) => {
         player.seek(t); eng.render(t);
         if (whiteRef.current) whiteRef.current.style.opacity = String(eng.fx.white);
@@ -85,7 +85,7 @@ export default function App() {
         g.drawImage(src, 0, 0);
         if (eng.fx.white > 0) { g.fillStyle = `rgba(255,255,255,${eng.fx.white})`; g.fillRect(0, 0, off.width, off.height); }
         if (eng.fx.black > 0) { g.fillStyle = `rgba(0,0,0,${eng.fx.black})`; g.fillRect(0, 0, off.width, off.height); }
-        return off.toDataURL('image/jpeg', 0.93);
+        return off.toDataURL('image/png');
       },
       // 出封面用：不画歌词条（封面只要主题，不要字幕碎片），tools/shoot_cover.mjs 走这条路
       cover: (t: number) => {
@@ -101,7 +101,7 @@ export default function App() {
         if (eng.fx.white > 0) { g.fillStyle = `rgba(255,255,255,${eng.fx.white})`; g.fillRect(0, 0, off.width, off.height); }
         if (eng.fx.black > 0) { g.fillStyle = `rgba(0,0,0,${eng.fx.black})`; g.fillRect(0, 0, off.width, off.height); }
         if (ly) ly.root.visible = true;
-        return off.toDataURL('image/jpeg', 0.95);
+        return off.toDataURL('image/png');
       },
     };
     let raf = 0, lastQ = -1, lastShot = -1;

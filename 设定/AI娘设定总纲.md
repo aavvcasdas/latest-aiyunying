@@ -214,7 +214,7 @@ C 级的具体名单见 `参考资料/项目调研/Agent-Reach研究/ai-girls-re
 | 局部 | 眨眼、嘴、发梢、衣摆、鲸尾、龙翼 | 分格驱动，按帧号确定性求值 |
 | 关键姿势 | 转身、奔跑、近距离手势 | 补画的关键帧序列，**不用缩放假装** |
 
-本仓库不新增生图：动作只能在图集已有的格里做（可用造型见 [`通用模板/README.md`](../通用模板/README.md)），要更多动作先往 `通用模板/cast/source/` 加像素数据再重建。
+本仓库不新增生图：动作只能在图集已有的格里做（可用造型见 [`通用模板/README.md`](../通用模板/README.md)），要更多动作先往 `通用模板/cast/source/` 加像素数据再重建。唯一例外是 2026-11-24 用户明确授权的本鲸母版重画，仍沿用原有 682 个格坐标，详见 [`docs/quality_comparison/whale_redraw/whale_redraw_report.md`](../docs/quality_comparison/whale_redraw/whale_redraw_report.md)。
 
 ### 镜头语言
 

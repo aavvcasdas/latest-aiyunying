@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "assets:gen": "node tools/process_generated.cjs",
+    "assets:gen:check": "node tools/process_generated.cjs --check"
   },
   "dependencies": {
     "clsx": "2.1.1",

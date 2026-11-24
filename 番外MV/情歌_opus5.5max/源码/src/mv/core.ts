@@ -62,7 +62,7 @@ export let ATLAS_IMG: HTMLImageElement | null = null;
 export async function loadAtlas() {
   const img = new Image(); img.src = atlasUrl; await img.decode();
   const tex = new THREE.Texture(img);
-  tex.colorSpace = THREE.SRGBColorSpace; tex.magFilter = THREE.NearestFilter; tex.minFilter = THREE.LinearFilter; tex.generateMipmaps = false; tex.needsUpdate = true;
+  tex.colorSpace = THREE.SRGBColorSpace; tex.magFilter = THREE.NearestFilter; tex.minFilter = THREE.NearestFilter; tex.generateMipmaps = false; tex.needsUpdate = true;
   ATLAS = tex; ATLAS_IMG = img;
 }
 const PX = 1 / 88;
@@ -82,7 +82,7 @@ export class Actor {
   constructor(ch: string, size = 1) {
     this.ch = ch; this.size = size;
     const g = new THREE.PlaneGeometry(1, 1); g.translate(0, 0.5, 0);
-    const m = new THREE.MeshBasicMaterial({ map: ATLAS, transparent: true, alphaTest: 0.06, side: THREE.DoubleSide, depthWrite: true, fog: false });
+    const m = new THREE.MeshBasicMaterial({ map: ATLAS, transparent: true, alphaTest: 0.3, side: THREE.DoubleSide, depthWrite: true, fog: false });
     this.mesh = new THREE.Mesh(g, m); this.mesh.renderOrder = 2;
   }
   play(a: string, t0 = 0) { this.act = a; this.t0 = t0; this.key = null; return this; }

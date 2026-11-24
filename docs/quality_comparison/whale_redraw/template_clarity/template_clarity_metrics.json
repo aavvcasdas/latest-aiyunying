@@ -1,0 +1,107 @@
+{
+  "shots": 13,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "meanLaplacianVariance": 383.54,
+  "minLaplacianVariance": 292.01,
+  "meanGradient": 2.521,
+  "meanConsecutiveFrameDifference": 7.963,
+  "minConsecutiveFrameDifference": 4.357,
+  "allNonBlank": true,
+  "allFramesDistinct": true,
+  "rows": [
+    {
+      "laplacianVariance": 415.89,
+      "meanGradient": 2.676,
+      "stdLuma": 75.52,
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_01_idle.png",
+      "action": "01_idle"
+    },
+    {
+      "laplacianVariance": 370.77,
+      "meanGradient": 2.531,
+      "stdLuma": 74.47,
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_02_wave.png",
+      "action": "02_wave"
+    },
+    {
+      "laplacianVariance": 367.3,
+      "meanGradient": 2.535,
+      "stdLuma": 74.72,
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_03_point.png",
+      "action": "03_point"
+    },
+    {
+      "laplacianVariance": 376.81,
+      "meanGradient": 2.401,
+      "stdLuma": 74.5,
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_04_eat.png",
+      "action": "04_eat"
+    },
+    {
+      "laplacianVariance": 324.46,
+      "meanGradient": 2.263,
+      "stdLuma": 72.81,
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_05_hop.png",
+      "action": "05_hop"
+    },
+    {
+      "laplacianVariance": 339.24,
+      "meanGradient": 2.37,
+      "stdLuma": 74.67,
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_06_nod.png",
+      "action": "06_nod"
+    },
+    {
+      "laplacianVariance": 426.03,
+      "meanGradient": 2.73,
+      "stdLuma": 75.36,
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_07_shake.png",
+      "action": "07_shake"
+    },
+    {
+      "laplacianVariance": 387.79,
+      "meanGradient": 2.506,
+      "stdLuma": 75.99,
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_08_bow.png",
+      "action": "08_bow"
+    },
+    {
+      "laplacianVariance": 424.93,
+      "meanGradient": 2.708,
+      "stdLuma": 75.37,
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_09_sway.png",
+      "action": "09_sway"
+    },
+    {
+      "laplacianVariance": 428.34,
+      "meanGradient": 2.746,
+      "stdLuma": 75.16,
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_10_surprise.png",
+      "action": "10_surprise"
+    },
+    {
+      "laplacianVariance": 419.52,
+      "meanGradient": 2.683,
+      "stdLuma": 75.57,
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_11_sad.png",
+      "action": "11_sad"
+    },
+    {
+      "laplacianVariance": 292.01,
+      "meanGradient": 1.988,
+      "stdLuma": 75.75,
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_12_spin.png",
+      "action": "12_spin"
+    },
+    {
+      "laplacianVariance": 412.87,
+      "meanGradient": 2.636,
+      "stdLuma": 75.38,
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_13_shiver.png",
+      "action": "13_shiver"
+    }
+  ]
+}

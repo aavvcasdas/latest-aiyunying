@@ -69,6 +69,7 @@ export function landmarks(s, ratio = {}) {
  *   headDx/Dy   头部平移（摇头 / 点头），同样往下渐弱
  *   lean        上半身以胯为轴倾斜（弧度）
  *   bow         正面鞠躬：上半身朝胯压缩的比例（0 = 不鞠躬，0.2 = 压掉两成高）
+ *   link        头身联动系数（0 = 只动头，1 = 头与躯干 / 裙摆一起动、脚底锚定）
  *   flip        水平翻转
  */
 export function pose(src, L, p, cell) {
@@ -76,10 +77,14 @@ export function pose(src, L, p, cell) {
   const U = up4(src);
   const out = blank(CW, CH);
   const sx = p.sx ?? 1, sy = p.sy ?? 1, dx = p.dx ?? 0, dy = p.dy ?? 0;
-  const sway = p.sway ?? 0, head = p.head ?? 0, hdx = p.headDx ?? 0, hdy = p.headDy ?? 0;
-  const lean = p.lean ?? 0, bow = p.bow ?? 0;
-  const soft = L.H * 0.12;
+  const rawSway = p.sway ?? 0, head = p.head ?? 0, hdx = p.headDx ?? 0, hdy = p.headDy ?? 0;
+  const rawLean = p.lean ?? 0, bow = p.bow ?? 0;
+  const link = Math.max(0, Math.min(1, p.link ?? 0));
   const { cx, foot, neckY, hipY, H } = L;
+  // 头歪时给肩、胸、裙摆一点同相的剪切 / 倾斜，避免「头飘在身体外」。
+  const sway = rawSway - head * H * 0.22 * link;
+  const lean = rawLean - head * 0.3 * link;
+  const soft = H * 0.12;
   for (let Y = 0; Y < CH; Y++) for (let X = 0; X < CW; X++) {
     // 目标像素中心 → 原格坐标系
     let x = X + 0.5 - ox, y = Y + 0.5 - oy;
@@ -91,6 +96,10 @@ export function pose(src, L, p, cell) {
     // 3. 摇摆（剪切，越高越多，带一点弧度）
     const hgt = Math.max(0, (foot - y) / H);
     x -= sway * Math.pow(hgt, 1.35);
+    // 3b. 头身联动：头位移的一部份从脖子平滑传到躯干和裙摆，脚底仍不动。
+    //     只在显式传入 link 的本鲸动作启用；其他 7 位角色逐像素不变。
+    const bodyW = link * (1 - smooth(neckY - soft, foot, y));
+    if (bodyW) { x -= hdx * bodyW; y -= hdy * bodyW; }
     // 4. 上半身以胯为轴倾斜
     if (lean) {
       const wgt = smooth(hipY + soft, hipY - soft, y);
@@ -104,9 +113,11 @@ export function pose(src, L, p, cell) {
       const torso = hipY - neckY, neck2 = hipY - torso * (1 - bow);
       y = y >= neck2 ? hipY - (hipY - y) / (1 - bow) : y + (neckY - neck2);
     }
-    // 6. 头部平移（点头 / 摇头）
+    // 6. 头部平移（点头 / 摇头）。link 把位移分给身体后，头部保留剩余份额，
+    //    所以头、颈、肩、裙摆都在动，而不是只有头在动。
     const hw = smooth(neckY + soft, neckY - soft * 0.5, y);
-    x -= hdx * hw; y -= hdy * hw;
+    const headW = 1 - link;
+    x -= hdx * headW * hw; y -= hdy * headW * hw;
     // 7. 歪头
     if (head) {
       const a = -head * hw, c = Math.cos(a), s = Math.sin(a);

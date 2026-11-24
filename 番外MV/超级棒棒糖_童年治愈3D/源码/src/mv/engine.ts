@@ -140,10 +140,10 @@ export class MvEngine {
     this.sun.color.copy(p.sun); this.sun.intensity = p.sunI; this.amb.intensity = p.amb; this.S.tint.copy(p.sprite);
   }
 
-  /** 出片钩子用：渲染并返回 JPEG */
-  snapshot(T: number, w = 1280, h = 720, q = 0.94) {
+  /** 出片钩子用：渲染并返回 lossless PNG（q 仅为兼容旧调用保留） */
+  snapshot(T: number, w = 1280, h = 720, _q = 0.94) {
     if (this.W !== w || this.H !== h) this.resize(w, h);
-    this.render(T); return this.out.toDataURL('image/jpeg', q);
+    this.render(T); return this.out.toDataURL('image/png');
   }
 
   dispose() { this.ready = false; try { this.composer?.dispose(); this.gl?.dispose(); this.gl?.forceContextLoss(); } catch { /* 已释放 */ } }

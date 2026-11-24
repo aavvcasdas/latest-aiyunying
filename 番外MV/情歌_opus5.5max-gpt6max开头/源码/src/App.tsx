@@ -334,7 +334,7 @@ export default function App() {
           const { w, h } = sizeRef.current;
           engine.setSize(width, (width * 9) / 16);
           engine.render(t, clean, cover);
-          const url = canvasRef.current!.toDataURL("image/jpeg", 0.94);
+          const url = canvasRef.current!.toDataURL("image/png");
           engine.setSize(w, h);
           current.dirty = true;
           return url;

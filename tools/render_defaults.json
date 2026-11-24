@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "imageFormat": "png",
+  "jpegQuality": 95,
+  "crf": 16,
+  "maxrate": "12000k",
+  "visualQuality": {
+    "bloomScale": 0.45,
+    "bloomThreshold": 0.95,
+    "chromaticBaseline": 0,
+    "grain": 0,
+    "supersample": 2,
+    "atlasFilter": "nearest",
+    "pixelSmoothing": 0.28
+  }
+}

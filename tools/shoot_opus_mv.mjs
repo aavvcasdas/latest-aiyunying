@@ -17,6 +17,16 @@ import path from 'node:path';
 import http from 'node:http';
 import puppeteer from 'puppeteer-core';
 import chromium from '@sparticuz/chromium';
+import {
+  DEFAULT_JPEG_QUALITY,
+  captureFrame,
+  clearFrames,
+  frameExtension,
+  freezePageLoop,
+  imageFormatFromArgv,
+  installCaptureClock,
+  prepareCaptureStage,
+} from './capture_quality.mjs';
 
 const argv = process.argv.slice(2);
 const opt = (n, d) => { const i = argv.indexOf(n); return i >= 0 ? argv[i + 1] : d; };
@@ -27,13 +37,14 @@ const DUR = Number(opt('--dur', 60));
 const NO_LYRICS = process.argv.includes('--no-lyrics');   // 只对《勾指起誓》fable 版的第二参数生效
 const W = Number(opt('--w', 1920));
 const H = Number(opt('--h', 1080));
-const Q = Number(opt('--quality', 92));
+const format = imageFormatFromArgv(argv);
+const ext = frameExtension(format);
+const Q = Number(opt('--quality', DEFAULT_JPEG_QUALITY));
 const from = Number(opt('--from', 0));
 const to = Number(opt('--to', DUR));
 if (!opt('--dist')) { console.error('用法：node tools/shoot_opus_mv.mjs --dist <构建目录> --out <帧目录>'); process.exit(2); }
 
-fs.mkdirSync(outDir, { recursive: true });
-for (const f of fs.readdirSync(outDir)) if (f.endsWith('.jpg')) fs.unlinkSync(path.join(outDir, f));
+await clearFrames(outDir);
 
 const server = http.createServer((req, res) => {
   const rel = decodeURIComponent(req.url.split('?')[0]).replace(/^\/+/, '');
@@ -69,20 +80,9 @@ await page.waitForFunction(() => {
   return !!window.__seek || !!(hook && typeof hook.seek === 'function');
 }, { timeout: 300000, polling: 250 });
 
-// 只留舞台：隐藏页面外框（标题、播放条、分镜表），把舞台铺满 1920×1080
-await page.evaluate(() => {
-  const c = [...document.querySelectorAll('canvas')].sort((a, b) => b.width * b.height - a.width * a.height)[0];
-  const st = c.parentElement;
-  document.documentElement.style.background = '#000';
-  document.body.style.visibility = 'hidden';
-  document.body.style.overflow = 'hidden';
-  Object.assign(st.style, {
-    visibility: 'visible', position: 'fixed', left: '0', top: '0',
-    width: '100vw', height: '100vh', aspectRatio: 'auto', borderRadius: '0',
-    margin: '0', boxShadow: 'none', outline: 'none',
-  });
-  document.querySelectorAll('audio,video').forEach((el) => { el.pause(); el.muted = true; });
-});
+// 只留舞台：隐藏页面外框（标题、播放条、分镜表），把舞台铺满视口
+await installCaptureClock(page);
+await prepareCaptureStage(page);
 
 // 取「最大的那块 canvas」（页面里常还有小尺寸的角色头像 canvas）
 await page.waitForFunction((w, h) => {
@@ -98,28 +98,22 @@ const hookPre = await page.evaluate(() => {
   if (window.__mv && typeof window.__mv.render === 'function') return 'mv.render';
   return '';
 });
-// 有渲染钩子时把页面自己的 requestAnimationFrame 循环停掉：它每帧也在渲，
-// 会和截帧抢 CPU（软件光栅下这是 3 倍差距）
-if (hookPre) await page.evaluate(() => { window.requestAnimationFrame = () => 0; });
+// 页面自己的 rAF 循环会和截帧抢 CPU（软件光栅下这是 3 倍差距）
+await freezePageLoop(page);
 const hook = hookPre;
 
 const total = Math.round((to - from) * FPS);
 const t0 = Date.now();
 for (let i = 0; i < total; i++) {
   const t = from + i / FPS;
-  const file = path.join(outDir, `f${String(i).padStart(5, '0')}.jpg`);
-  if (hook) {
-    // __mvRender 可能直接返回 dataURL，也可能返回 { url }（早期那版工程这么写）
-    const url = await page.evaluate((h, tt, nl) => { const r = h === 'mvRender' ? window.__mvRender(tt, nl) : window.__mv.render(tt); return typeof r === 'string' ? r : r.url; }, hook, t, NO_LYRICS);
-    fs.writeFileSync(file, Buffer.from(url.slice(url.indexOf(',') + 1), 'base64'));
-  } else {
-    await page.evaluate((tt) => {
-      if (window.__seek) window.__seek(tt);
-      else window.__mv.seek(tt);
-      return new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
-    }, t);
-    await page.screenshot({ type: 'jpeg', quality: Q, captureBeyondViewport: false, optimizeForSpeed: true, path: file });
-  }
+  const file = path.join(outDir, `f${String(i).padStart(5, '0')}.${ext}`);
+  await page.evaluate((h, tt, nl) => {
+    if (h === 'mvRender') window.__mvRender(tt, nl);
+    else if (h === 'mv.render') window.__mv.render(tt);
+    else if (window.__seek) window.__seek(tt);
+    else window.__mv.seek(tt);
+  }, hook, t, NO_LYRICS);
+  await captureFrame(page, { file, format, quality: Q });
   if (i % 100 === 0 && i > 0) {
     const sec = (Date.now() - t0) / 1000;
     console.log(`${i}/${total} 张 · ${(i / sec).toFixed(2)} fps · 预计还需 ${Math.round((sec / i) * (total - i))}s`);

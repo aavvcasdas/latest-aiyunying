@@ -1,0 +1,280 @@
+{
+  "schema": 1,
+  "generatedBy": "tools/check_asset_hashes.mjs --write",
+  "note": "Commit this file after an intentional asset rebuild. Mirrors must match their source hash.",
+  "files": [
+    {
+      "path": "通用模板/engine/assets/cast_atlas.png",
+      "role": "canonical-atlas",
+      "source": "通用模板/engine/assets/cast_atlas.png",
+      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
+      "bytes": 1712686
+    },
+    {
+      "path": "通用模板/engine/assets/cast_atlas.json",
+      "role": "canonical-rects",
+      "sha256": "61b84ecd35261000d34987dbce52b49660376aec757f4fc271643fae25714236",
+      "bytes": 30477
+    },
+    {
+      "path": "通用模板/engine/assets/cast_actions.json",
+      "role": "canonical-actions",
+      "sha256": "251bbaba0400247fe731f99c477c888aa11098ccb7eca4d862a1ecddf2db36d4",
+      "bytes": 26752
+    },
+    {
+      "path": "通用模板/engine/assets/tachie_anchors.json",
+      "role": "canonical-rig-anchors",
+      "sha256": "6fdb645e06d51f852ca863a928563a1d7bfcd37578ab60cd3ef482875ec4dae0",
+      "bytes": 1753
+    },
+    {
+      "path": "人物/atlas.png",
+      "role": "atlas-mirror",
+      "source": "通用模板/engine/assets/cast_atlas.png",
+      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
+      "bytes": 1712686
+    },
+    {
+      "path": "人物/index.json",
+      "role": "derived-index",
+      "sha256": "7818a8ff3856dd964b850fb8140bd72847aa241236ad18e941189a047f7737e5",
+      "bytes": 157361
+    },
+    {
+      "path": "人物/生成/满月篇/assets.manifest.json",
+      "role": "generated-asset-manifest",
+      "sha256": "bcad463d2cdf5c1b03198b59a0630ca51b5ef0b4609ec4014a29a7c54395330e",
+      "bytes": 47743
+    },
+    {
+      "path": "番外MV/若是月亮还没来/源码/src/assets/gen/manifest.json",
+      "role": "generated-postprocess-manifest",
+      "sha256": "530f2752cd3f7171216ee39b8ff320a993db8c6bff55145d93ecdb689a4efd55",
+      "bytes": 3258
+    },
+    {
+      "path": "番外MV/若是月亮fable5.2high/源码/src/assets/gen/manifest.json",
+      "role": "generated-postprocess-manifest",
+      "sha256": "d7e22f881df03654f0b4ec3b4899985ab40609a0c080e426832e755e6ee85643",
+      "bytes": 3261
+    },
+    {
+      "path": "番外MV/不小心惹了上帝/源码/src/assets/cast_atlas.png",
+      "role": "atlas-mirror",
+      "source": "通用模板/engine/assets/cast_atlas.png",
+      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
+      "bytes": 1712686
+    },
+    {
+      "path": "番外MV/告白气球_opus5.5_笨鱼发/src/assets/atlas.png",
+      "role": "atlas-mirror",
+      "source": "通用模板/engine/assets/cast_atlas.png",
+      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
+      "bytes": 1712686
+    },
+    {
+      "path": "番外MV/情歌_opus5.5max/源码/src/assets/atlas.png",
+      "role": "atlas-mirror",
+      "source": "通用模板/engine/assets/cast_atlas.png",
+      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
+      "bytes": 1712686
+    },
+    {
+      "path": "番外MV/情歌_opus5.5max-gpt6max开头/源码/src/assets/atlas.png",
+      "role": "atlas-mirror",
+      "source": "通用模板/engine/assets/cast_atlas.png",
+      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
+      "bytes": 1712686
+    },
+    {
+      "path": "番外MV/若是月亮fable5.2high/源码/src/assets/atlas.png",
+      "role": "atlas-mirror",
+      "source": "通用模板/engine/assets/cast_atlas.png",
+      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
+      "bytes": 1712686
+    },
+    {
+      "path": "番外MV/若是月亮还没来/源码/src/assets/atlas.png",
+      "role": "atlas-mirror",
+      "source": "通用模板/engine/assets/cast_atlas.png",
+      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
+      "bytes": 1712686
+    },
+    {
+      "path": "番外MV/譬如我/src/assets/atlas.png",
+      "role": "atlas-mirror",
+      "source": "通用模板/engine/assets/cast_atlas.png",
+      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
+      "bytes": 1712686
+    },
+    {
+      "path": "番外MV/超级棒棒糖_童年治愈3D/源码/public/mv/atlas.png",
+      "role": "atlas-mirror",
+      "source": "通用模板/engine/assets/cast_atlas.png",
+      "sha256": "fd02a0b7fa77242dd957fef337826262015ac8fb257b1217ee5f138393c81f7a",
+      "bytes": 1712686
+    },
+    {
+      "path": "番外MV/把回忆拼好_opus5.5max/源码/src/mv/assets/atlas.png",
+      "role": "repacked-atlas-variant",
+      "note": "1024×1922 repack for the opus engine",
+      "sha256": "e2cbe6264921026b200be11e8c88037bb2f0dc281d1d3572196af2e765d5631a",
+      "bytes": 909039
+    },
+    {
+      "path": "通用模板/engine/assets/fonts/ZCOOLKuaiLe-Regular.ttf",
+      "role": "canonical-font",
+      "sha256": "812a6fc1fe54b6d73a419245c32dfeba8aa33104d5be90d1cf6af082007cb71d",
+      "bytes": 1514968
+    },
+    {
+      "path": "人物/立绘/public/fonts/ZCOOLKuaiLe-Regular.ttf",
+      "role": "font-mirror",
+      "source": "通用模板/engine/assets/fonts/ZCOOLKuaiLe-Regular.ttf",
+      "sha256": "812a6fc1fe54b6d73a419245c32dfeba8aa33104d5be90d1cf6af082007cb71d",
+      "bytes": 1514968
+    },
+    {
+      "path": "人物/立绘/public/audio/goujiqishi.mp3",
+      "role": "audio-copy",
+      "source": "《勾指起誓》.mp3",
+      "sha256": "0a998fcd98ecebcc875a406b57b7e9beb9f5617c55e9704ca4bdb850b1a240ab",
+      "bytes": 2940552
+    },
+    {
+      "path": "《勾指起誓》.mp3",
+      "role": "canonical-audio",
+      "sha256": "0a998fcd98ecebcc875a406b57b7e9beb9f5617c55e9704ca4bdb850b1a240ab",
+      "bytes": 2940552
+    },
+    {
+      "path": "人物/立绘/art/tachie/metrics.json",
+      "role": "standing-art-metrics",
+      "sha256": "3fedaaaad639552aed778d671c189ae5e6986a95d5d73e986bdecc4ed32c82f7",
+      "bytes": 3058
+    },
+    {
+      "path": "tools/render_defaults.json",
+      "role": "render-quality-defaults",
+      "sha256": "ecfe667ffe3361a4511be77fca267830e90837a81df2e5e7918d026d4da64baa",
+      "bytes": 300
+    },
+    {
+      "path": "requirements.txt",
+      "role": "python-bootstrap",
+      "sha256": "dde651356aee93624d9cc643bd73ee14ff13a8e5f0c1577dc3ae0aed8098d651",
+      "bytes": 72
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "role": "ci-workflow",
+      "sha256": "936cc36652c4cfabd63ea5c0bf10a8d7d1055c167e99349c52ae242f8d825617",
+      "bytes": 539
+    },
+    {
+      "path": "人物/立绘/art/tachie/whale.png",
+      "role": "canonical-tachie",
+      "sha256": "58a561cab42a6e19ae17604c77e2d810b063b69b0d243791c875fde4d5d81119",
+      "bytes": 918231
+    },
+    {
+      "path": "人物/立绘/public/tachie/whale.png",
+      "role": "tachie-mirror",
+      "source": "人物/立绘/art/tachie/whale.png",
+      "sha256": "58a561cab42a6e19ae17604c77e2d810b063b69b0d243791c875fde4d5d81119",
+      "bytes": 918231
+    },
+    {
+      "path": "人物/立绘/art/tachie/gpt.png",
+      "role": "canonical-tachie",
+      "sha256": "3299a396258ec8970ca53dda7943b12e7d0a647ea13e2ef34772c8f5e926881b",
+      "bytes": 1039068
+    },
+    {
+      "path": "人物/立绘/public/tachie/gpt.png",
+      "role": "tachie-mirror",
+      "source": "人物/立绘/art/tachie/gpt.png",
+      "sha256": "3299a396258ec8970ca53dda7943b12e7d0a647ea13e2ef34772c8f5e926881b",
+      "bytes": 1039068
+    },
+    {
+      "path": "人物/立绘/art/tachie/claude.png",
+      "role": "canonical-tachie",
+      "sha256": "197dd0bd81fd282e9dbf482b26e17715285db2d243b3cdc229b32932ee6d0ef9",
+      "bytes": 1041887
+    },
+    {
+      "path": "人物/立绘/public/tachie/claude.png",
+      "role": "tachie-mirror",
+      "source": "人物/立绘/art/tachie/claude.png",
+      "sha256": "197dd0bd81fd282e9dbf482b26e17715285db2d243b3cdc229b32932ee6d0ef9",
+      "bytes": 1041887
+    },
+    {
+      "path": "人物/立绘/art/tachie/doubao.png",
+      "role": "canonical-tachie",
+      "sha256": "cba9b85387626d87a6d3cf1161effa2a49152f460313d10cb5ec220e657fffd2",
+      "bytes": 784377
+    },
+    {
+      "path": "人物/立绘/public/tachie/doubao.png",
+      "role": "tachie-mirror",
+      "source": "人物/立绘/art/tachie/doubao.png",
+      "sha256": "cba9b85387626d87a6d3cf1161effa2a49152f460313d10cb5ec220e657fffd2",
+      "bytes": 784377
+    },
+    {
+      "path": "人物/立绘/art/tachie/gemini.png",
+      "role": "canonical-tachie",
+      "sha256": "957f19e76c89ea9fef016e773b94d2f6111125fb85e18ecbfd0373116156472b",
+      "bytes": 838735
+    },
+    {
+      "path": "人物/立绘/public/tachie/gemini.png",
+      "role": "tachie-mirror",
+      "source": "人物/立绘/art/tachie/gemini.png",
+      "sha256": "957f19e76c89ea9fef016e773b94d2f6111125fb85e18ecbfd0373116156472b",
+      "bytes": 838735
+    },
+    {
+      "path": "人物/立绘/art/tachie/kimi.png",
+      "role": "canonical-tachie",
+      "sha256": "38d3b40167b94012b3321ca26dc052341e48cdb2ec6a6794484ffe5a0f704023",
+      "bytes": 716502
+    },
+    {
+      "path": "人物/立绘/public/tachie/kimi.png",
+      "role": "tachie-mirror",
+      "source": "人物/立绘/art/tachie/kimi.png",
+      "sha256": "38d3b40167b94012b3321ca26dc052341e48cdb2ec6a6794484ffe5a0f704023",
+      "bytes": 716502
+    },
+    {
+      "path": "人物/立绘/art/tachie/qwen.png",
+      "role": "canonical-tachie",
+      "sha256": "7d9c78c3eb3788868526000004812e0edfd05cc2e7cbe74aee40dd648bd5f5e4",
+      "bytes": 905374
+    },
+    {
+      "path": "人物/立绘/public/tachie/qwen.png",
+      "role": "tachie-mirror",
+      "source": "人物/立绘/art/tachie/qwen.png",
+      "sha256": "7d9c78c3eb3788868526000004812e0edfd05cc2e7cbe74aee40dd648bd5f5e4",
+      "bytes": 905374
+    },
+    {
+      "path": "人物/立绘/art/tachie/zai.png",
+      "role": "canonical-tachie",
+      "sha256": "1863c8847c879801a724cb57804774ee14a4b2ab5d67209a8c12bf350ff1fd13",
+      "bytes": 738071
+    },
+    {
+      "path": "人物/立绘/public/tachie/zai.png",
+      "role": "tachie-mirror",
+      "source": "人物/立绘/art/tachie/zai.png",
+      "sha256": "1863c8847c879801a724cb57804774ee14a4b2ab5d67209a8c12bf350ff1fd13",
+      "bytes": 738071
+    }
+  ]
+}

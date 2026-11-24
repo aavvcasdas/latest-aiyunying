@@ -1,0 +1,13 @@
+idle
+wave
+point
+eat
+hop
+nod
+shake
+bow
+sway
+surprise
+sad
+spin
+shiver

@@ -45,13 +45,13 @@ export const SHOTS: ShotDef[] = [
       const q = k.actor('whale');
       const g = k.tachie('whale');
       const A = cam([0, 1.9, 6.4], [0, 0.9, 0.6], 35), B = cam([0.4, 1.7, 5.2], [0, 1.1, 0.4], 33);
-      return ({ u, T }) => {
-        const p = seg(u, 0.52, 0.60); // 交换压在闪白那 0.2 秒里（fx.flash: [0.55]），不露重影
-        q.idle(T).at(0, 0, 0.4);
-        g.act('idle', T).at(0, 0, 0.4);
+      return (f) => {
+        const p = seg(f.u, 0.52, 0.60); // 交换压在闪白那 0.2 秒里（fx.flash: [0.55]），不露重影
+        q.idle(f.T).at(0, 0, 0.4);
+        g.actFrame('idle', f).at(0, 0, 0.4);
         growInto(q, g, p);
         g.lift(0.06 * (1 - p));   // 浮上来一点点，像站起来
-        return glide(A, B, u);
+        return glide(A, B, f.u);
       };
     },
   },
@@ -67,11 +67,11 @@ export const SHOTS: ShotDef[] = [
       const q = k.actor('whale');
       const g = k.tachie('whale');
       const A = cam([0.2, 1.5, 6.2], [0.4, 1.0, 0.3], 34), B = cam([0.6, 1.4, 5.0], [0.5, 1.05, 0.3], 32);
-      return ({ u, T }) => {
+      return (f) => {
         // 小时候：矮一点、往下压一点，像蹲着；长大版：站着，头微微低下来
-        q.idle(T).at(-0.75, 0, 0.5).size(0.68);
-        g.act('tilt', T).at(0.85, 0, 0.2).size(1.0).flip();
-        return glide(A, B, u, lerp(0.4, 0.7, u));
+        q.idle(f.T).at(-0.75, 0, 0.5).size(0.68);
+        g.actFrame('tilt', f).at(0.85, 0, 0.2).size(1.0).flip();
+        return glide(A, B, f.u, lerp(0.4, 0.7, f.u));
       };
     },
   },

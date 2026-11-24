@@ -25,7 +25,7 @@
 
 | 路径 | 是什么 |
 | --- | --- |
-| `人物/atlas.png` | 母版图集副本：2048×3126 / 682 帧 / 八位，单帧约 84×90，`NearestFilter` 硬边 |
+| `人物/atlas.png` | 母版图集副本：2048×3126 / 682 帧 / 八位，单帧约 84×90；`NearestFilter`，本鲸格按 `master_soft` 多一层 1px 半透明边缘，其他角色仍为硬边 |
 | `人物/q版/<角色>.png` | 一位角色一张，一行动作，等格网格（538 帧） |
 | `人物/行走/walk.png`（56）、`头像/portraits.png`（15）、`变体/variants.png`（37）、`道具/props.png`（15）、`特效/fx.png`（21） | 按用途拆开的分组图 |
 | `人物/index.json` | 每张分组图里每帧的 `{row, col}` + 母版里的 `{x, y, w, h}` + `actions` 分组 |
@@ -43,9 +43,10 @@
 
 ```bash
 npm ci
-pip install --user numpy pillow
+python3 -m pip install -r requirements.txt   # CI / 普通环境
+# 本机 PEP 668：python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 
-python3 tools/split_cast.py                # 母版 → 人物/（六组图集 + index.json）
+python3 tools/split_cast.py                # 默认只检查；加 --write 才重建 人物/
 npm run film -- info 番外MV/童话镇         # 看时间轴
 npm run film -- sheet 番外MV/童话镇        # 分镜总览图
 npm run film -- full  番外MV/童话镇        # 整片：逐帧渲染 → 编码 → 混音 → 自检
@@ -58,7 +59,7 @@ Vite 单页那类（`番外MV/<歌名>/源码`）：
 
 ```bash
 cd 番外MV/<歌名>/源码 && npx tsc --noEmit && npx vite build
-node tools/shoot_vite_mv.mjs --dist dist --out /tmp/fs --dur 2 --w 1280 --h 720 --fps 24
+node tools/shoot_vite_mv.mjs --dist dist --out /tmp/fs --dur 2 --w 1280 --h 720 --fps 24 --format png
 ```
 
 ## 规矩
@@ -68,7 +69,7 @@ node tools/shoot_vite_mv.mjs --dist dist --out /tmp/fs --dur 2 --w 1280 --h 720 
 - 缺素材直接报错，不拿别的造型顶替。
 - 自检（`qa.json`）只能证明「没坏」；好不好看、听着对不对，要人从头到尾过一遍。
 - 只用 Q 版立绘；七头身立绘默认不用。
-- 人物形象提示词只是**参考**：出的图不进图集、不进成片。
+- 人物形象提示词只是**参考**：从此不新增生图、不把新图烘进图集或成片。**唯一例外**是 2026-11-24 用户明确授权的本鲸母版全量重画：新基础图只作为 `通用模板/cast/source/whale_redraw_refs/` 的重建来源，量化到既有调色板后烘进原有本鲸格，对照与 QA 在 `docs/quality_comparison/whale_redraw/`；其他角色和满月篇历史素材仍不新增、不烘进成片。已在库的满月篇历史素材按 `人物/生成/满月篇/assets.manifest.json` 锁定哈希，只按原用途使用。
 
 ## 人物图集：在哪、坐标怎么读、为什么看着糊
 
@@ -78,9 +79,9 @@ node tools/shoot_vite_mv.mjs --dist dist --out /tmp/fs --dur 2 --w 1280 --h 720 
 - **贴图换算**（`src/mv/engine.ts` 的 `Actor`）：`e = 0.4` 防相邻帧溢出内缩，`v` 要上下翻；材质 `MeshBasicMaterial`（`alphaTest 0.3`，不受光，靠 `color` 乘出「夜 / 昼 / 黎明」）；
   帧号 `floor((T - t0) × fps × speed)`，`loop` 取模否则夹末帧；纸片人每帧 `rotation.y` 转朝镜头。
 - **坑**：走路帧在母版里叫 `walk_whale_0..7`，**不带 `act_` 前缀**，按 `act_` 扫会漏帧；单帧约 84×90，近景放大 2.8 倍，**像素块是设计如此**。
-- **为什么角色看着糊**（不是「挤一张图」的锅，打包效率 75%，拆开也一样）：① 源头单帧中位 90×90，1280 宽近景要放大 2.8 倍、脸只有 30×30 的信息量（根本原因）；
-  ② bloom 0.5 + 色差基线 0.0012 每帧带红蓝边、白围裙烧穿（观感上最像糊）；③ `toDataURL` jpeg 0.94 + h264 crf23 二次损失。
-  改法：后期先调（bloom ×0.45、阈值 0.95、色差基线归零）+ 2× 超采样降采样；真要变清楚只能提高母版分辨率（按角色拆多张 ≤4096）。
+- **为什么角色看着糊**（不是「挤一张图」的锅，打包效率 75%，拆开也一样）：① 源头单帧中位 90×90，1280 宽近景要放大 2.8 倍、脸只有 30×30 的信息量（根本原因，不能靠换编码补回）；
+  ② 旧 bloom 0.5 + 色差基线让白围裙烧穿；③ 旧 `toDataURL` jpeg 0.94 + h264 crf23 是二次损失。
+  2026-11-24 已落地：统一 `tools/render_defaults.json`，逐帧默认 lossless PNG、CRF 16 / 12000k，关键 3D 引擎 bloom ×0.45、阈值 0.95、色差基线归零、2× 超采样，像素贴图 nearest + `alphaTest 0.3`。该轮未重画母版；同一天后续任务中用户明确授权在现有格内重画本鲸（不是新增高分辨率母版），见 [`docs/quality_comparison/whale_redraw/whale_redraw_report.md`](docs/quality_comparison/whale_redraw/whale_redraw_report.md)，其余七位角色仍沿用原图像素数据。
 
 ## 其它文档
 
@@ -89,6 +90,17 @@ node tools/shoot_vite_mv.mjs --dist dist --out /tmp/fs --dur 2 --w 1280 --h 720 
 - 逐项许可与来源链：[`素材许可与来源.md`](素材许可与来源.md)
 - 人物设定：[`设定/README.md`](设定/README.md)；长大立绘规则：[`设定/立绘.md`](设定/立绘.md)
 - 写镜头与角色用法：[`通用模板/README.md`](通用模板/README.md)
+
+## 质量自检与逐帧导出
+
+```bash
+npm run qa:all
+npm run capture:film -- --dist <构建目录> --out /tmp/frames --dur 30 --format png
+```
+
+`npm run qa:all` 串起模板测试、共享源码类型检查（`tsconfig.quality.json`）、图集重建、本鲸重画专项检查（`npm run whale:qa`）、通用步态溢色检查、立绘锚点 / 透明底检查、资产哈希、生成素材溯源、确定性后处理检查与可复现画质对照；各历史 MV 子工程仍需各自安装依赖后单独 typecheck。统一默认值在 `tools/render_defaults.json`，逐帧契约见 `tools/capture_contract.md`；母版 / 镜像 / 立绘 / 字体 / 音轨的 SHA256 在 `assets.manifest.json`，满月篇历史生图的哈希链在 `人物/生成/满月篇/assets.manifest.json`。
+
+`npm run qa:visual` 会重算 `docs/quality_comparison/character_quality_comparison.png` 与指标；`npm run qa:motion` 用于给一次真实帧序列做抽帧 / 冻帧扫描，参数见 `docs/quality_comparison/fix_comparison.md`。机器检查只证明「没坏」，整片观感与听感仍要在 `docs/quality_comparison/human_sign_off.md` 人工签收。
 
 ## 公开发布前要自己确认的事
 

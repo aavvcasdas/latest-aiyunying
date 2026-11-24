@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "note": "Single source of truth for standing-art rig anchors. Existing art is one transparent full-body PNG per character; eyes/mouth/hands are not separate layers yet. Do not invent new character art.",
+  "layerStatus": "single-layer",
+  "anchors": {
+    "whale": { "name": "本鲸", "w": 721, "h": 1280, "neck": 0.2, "cx": 0.411, "hx": 0.406, "base": "art/tachie/whale.png", "layers": { "eyes": null, "mouth": null, "hands": null } },
+    "gpt": { "name": "龙娘", "w": 581, "h": 1280, "neck": 0.2, "cx": 0.458, "hx": 0.468, "base": "art/tachie/gpt.png", "layers": { "eyes": null, "mouth": null, "hands": null } },
+    "claude": { "name": "小克", "w": 657, "h": 1280, "neck": 0.195, "cx": 0.5, "hx": 0.536, "base": "art/tachie/claude.png", "layers": { "eyes": null, "mouth": null, "hands": null } },
+    "gemini": { "name": "猫", "w": 502, "h": 1280, "neck": 0.21, "cx": 0.419, "hx": 0.395, "base": "art/tachie/gemini.png", "layers": { "eyes": null, "mouth": null, "hands": null } },
+    "kimi": { "name": "Kimi", "w": 446, "h": 1280, "neck": 0.18, "cx": 0.423, "hx": 0.477, "base": "art/tachie/kimi.png", "layers": { "eyes": null, "mouth": null, "hands": null } },
+    "doubao": { "name": "豆包", "w": 576, "h": 1280, "neck": 0.185, "cx": 0.471, "hx": 0.468, "base": "art/tachie/doubao.png", "layers": { "eyes": null, "mouth": null, "hands": null } },
+    "qwen": { "name": "千问", "w": 489, "h": 1280, "neck": 0.195, "cx": 0.463, "hx": 0.453, "base": "art/tachie/qwen.png", "layers": { "eyes": null, "mouth": null, "hands": null } },
+    "zai": { "name": "狐狸", "w": 491, "h": 1280, "neck": 0.205, "cx": 0.525, "hx": 0.525, "base": "art/tachie/zai.png", "layers": { "eyes": null, "mouth": null, "hands": null } }
+  }
+}

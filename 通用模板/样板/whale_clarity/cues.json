@@ -1,0 +1,76 @@
+{
+ "measured": false,
+ "method": "模板清晰度检查用规划轴：每个动作一句占位台词、一个全屏镜头；没有配音，不作为成片卡点。",
+ "source": {
+  "script": "台词.txt",
+  "script_sha256": "f8870ab741ddf4c8ff52681f8684f2c83fb00709d1b41c767a5f8d8237603f91"
+ },
+ "beat": null,
+ "lines": [
+  {
+   "text": "idle",
+   "start": 0.0,
+   "end": 0.42
+  },
+  {
+   "text": "wave",
+   "start": 0.5,
+   "end": 0.92
+  },
+  {
+   "text": "point",
+   "start": 1.0,
+   "end": 1.42
+  },
+  {
+   "text": "eat",
+   "start": 1.5,
+   "end": 1.92
+  },
+  {
+   "text": "hop",
+   "start": 2.0,
+   "end": 2.42
+  },
+  {
+   "text": "nod",
+   "start": 2.5,
+   "end": 2.92
+  },
+  {
+   "text": "shake",
+   "start": 3.0,
+   "end": 3.42
+  },
+  {
+   "text": "bow",
+   "start": 3.5,
+   "end": 3.92
+  },
+  {
+   "text": "sway",
+   "start": 4.0,
+   "end": 4.42
+  },
+  {
+   "text": "surprise",
+   "start": 4.5,
+   "end": 4.92
+  },
+  {
+   "text": "sad",
+   "start": 5.0,
+   "end": 5.42
+  },
+  {
+   "text": "spin",
+   "start": 5.5,
+   "end": 5.92
+  },
+  {
+   "text": "shiver",
+   "start": 6.0,
+   "end": 6.42
+  }
+ ]
+}

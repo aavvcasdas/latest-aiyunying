@@ -86,7 +86,7 @@ export default function App() {
       render: (t: number, noLyric = false, width = 0) => {
         if (width) { eng.setSize(width, Math.round((width * 9) / 16)); }
         player.seek(t); eng.render(t, noLyric);
-        return canvasRef.current!.toDataURL('image/jpeg', 0.92);
+        return canvasRef.current!.toDataURL('image/png');
       },
     };
     let raf = 0, lastQ = -1, lastLine = -2, lastChar = -2, lastShot = -1;

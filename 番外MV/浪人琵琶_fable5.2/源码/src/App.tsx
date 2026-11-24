@@ -149,7 +149,7 @@ export default function App() {
         const g = off.getContext("2d")!;
         g.setTransform(k, 0, 0, k, 0, 0);
         render(g, t, noLyrics);
-        return off.toDataURL("image/jpeg", 0.92);
+        return off.toDataURL("image/png");
       },
     };
     w.__seek = (t: number) => seek(t);

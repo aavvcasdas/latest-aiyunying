@@ -81,10 +81,10 @@ import { growInto } from '@tpl/tachie';
 build: (k) => {
   const q = k.actor('whale');        // 默认：Q 版
   const g = k.tachie('whale');       // 长大版；动作名来自 立绘/src/mv/actions.ts
-  return ({ u, T }) => {
-    const p = seg(u, 0.52, 0.60);    // 交换压在闪白那 0.2 秒里
-    q.idle(T).at(0, 0, 0.4);
-    g.act('idle', T).at(0, 0, 0.4);
+  return (f) => {
+    const p = seg(f.u, 0.52, 0.60); // 交换压在闪白那 0.2 秒里
+    q.idle(f.T).at(0, 0, 0.4);
+    g.actFrame('idle', f).at(0, 0, 0.4); // f.t=动作局部时间，f.T=全片呼吸，f.bt=实测拍位
     growInto(q, g, p);               // 同镜渐变长大；想同框就各摆各的，不调它
     ...
   };
@@ -92,7 +92,7 @@ build: (k) => {
 ```
 
 - 立绘要在 `project.tsx` 的 `preloads` 里预载：`() => preloadImage(TACHIE[id].url)`，没预载会当场报错。
-- 动作能做的：点头、歪头、鞠躬、摇摆、起跳、转身、悬浮……**没有抬手、眨眼、口型**（单张图没有分层）。
+- 动作能做的：点头、歪头、鞠躬、摇摆、起跳、转身、悬浮……**没有抬手、眨眼、口型**（单张图没有分层）。骨架锚点与图层状态以 `通用模板/engine/assets/tachie_anchors.json` 为准；`blend()` 可以做动作交叉淡入，但变不出不存在的独立五官 / 手部图层。
 - 立绘吃引擎的镜头调色（`cardTint`），别自己上色；要半透明用 `.alpha()`。
 - 全片预检把立绘也算进去：会不会算成 NaN、会不会悄悄不见、倒着走一不一样，都会在开渲前报。
 - 三个镜头的样板：`通用模板/样板/tachie/`（G1 小时候 → G2 动态长大 → G3 同框对话）。
@@ -375,19 +375,23 @@ track([[0, A], [0.5, B], [1, C]], u) // 多段运镜；每段起止机位要不�
 | `qwen` | 千问 | `qwen_front_0/1` `qwen_side_0/1`；步态 `walk_qwen_0–7` | `p_qwen` |
 | `zai` | 智谱 | `zai_front_0/1` `zai_side_0/1`；步态 `walk_zai_0–7` | `p_zai` |
 
-上面是原有的造型格。图集来自项目自己的像素角色数据（`cast/source/`），没有新增生图。
+上面是原有的造型格。图集来自项目自己的像素角色数据（`cast/source/`）；除 2026-11-24 用户明确授权、在既有坐标与调色板内重画本鲸外，没有新增生图，详见 `docs/quality_comparison/whale_redraw/whale_redraw_report.md`。
 
-步态数据 `cast/source/walk_cycle_data.js` 由旧工程脚本按 90 px 定距切格生成，原图不在仓库里。2026-11-13 修掉了本鲸八帧步态里切进来的边角料：裙摆右前方原本多出一条与身体不相连的鱼尾（观众看到的“前面多出的鱼尾”），右下角还带进另一只靴子的边沿。修补脚本是 `tools/fix_whale_walk_bleed.mjs`（只把越界像素置透明，不动真正的鲸尾；`node tools/fix_whale_walk_bleed.mjs --check` 可复验，改完照例 `npm run atlas`）。
+步态数据 `cast/source/walk_cycle_data.js` 原先由旧工程脚本按 90 px 定距切格生成，原图不在仓库里。2026-11-13 曾用 `tools/fix_whale_walk_bleed.mjs` 按写死坐标清掉本鲸旧八帧里切进来的鱼尾与靴沿；`node tools/fix_whale_walk_bleed.mjs --check` 仍可追溯那次补丁。2026-11-24 用户授权重画本鲸后，`walk_whale_0–7` 已由新的侧面基础格确定性派生，新数据统一用 `npm run walk:check` 的连通域检查把关，历史补丁检测到新数据会跳过，不再按旧坐标清像素。
 
 ### 派生动作、道具与表情贴（2026-11 新增）
 
-`npm run actions` 运行 `通用模板/cast/source/bake_actions.mjs`：只对上表的原格做形变（`motion_core.mjs`：两次 Scale2x 放大后反向映射取最近邻，**每个像素都是原图里已有的调色板号，不新增颜色**），派生出下面这些动作；道具与表情贴由 `pixel_things.mjs` 用几何笔画 + 自动墨线画出，颜色只取 `px.js` 调色板。产物：`cast/source/actions_data.js`、`engine/assets/cast_actions.json`，并把新格子追加进 `cast_atlas.json`（原有 108 格坐标不动），然后 `npm run atlas` 重烘图集。`npm run actions -- --gif <目录>` 另出每个动作的 GIF 预览（放系统临时目录，不进仓库）。细节见 [`人物动作替换.md`](../人物动作替换.md)。
+`npm run actions` 运行 `通用模板/cast/source/bake_actions.mjs`：只对上表的原格做形变（`motion_core.mjs`：两次 Scale2x 放大后反向映射取最近邻，**每个像素都是原图里已有的调色板号，不新增颜色**），派生出下面这些动作；道具与表情贴由 `pixel_things.mjs` 用几何笔画 + 自动墨线画出，颜色只取 `px.js` 调色板。产物：`cast/source/actions_data.js`、`engine/assets/cast_actions.json`；默认保留 `cast_atlas.json` 已有格子的坐标（原有 108 格坐标不动），只给新键装箱，确需重排全部派生格时显式 `npm run actions -- --repack`，然后 `npm run atlas` 重烘图集。2026-11-24 本鲸 `spin` 改用重画侧面基础格，其他角色的动作数据逐像素未变。`npm run actions -- --gif <目录>` 另出每个动作的 GIF 预览（放系统临时目录，不进仓库）。细节见 [`人物动作替换.md`](../人物动作替换.md)。
 
 动作名与道具取自 [`番外MV/人物设定.md`](../番外MV/人物设定.md) 第 2 节（习性 / 道具 / MV 用法）。
 
+### 动作预览台（浏览器）
+
+`npm run actions:preview` 启动 [`通用模板/actions_preview/README.md`](actions_preview/README.md) 里的零依赖预览服务，默认监听 `0.0.0.0:4173`；根路径直接按 `通用模板/engine/assets/cast_atlas.png` / `cast_atlas.json` / `cast_actions.json` 取帧，展示全部 74 个动作 / 538 帧，也可一键切到本鲸 13 个动作 / 92 帧，或查看 15 件道具、12 组表情贴。首页内嵌 6.5 秒本鲸「原版 / V1 / 最终修复版」渲染对照，`/film/` 是全屏版，`通用模板/actions_preview/film_compare/compare.mp4` 是模板捕获链输出的无声短片。另有 `npm run preview` 的真实模板预览台；`通用模板/样板/whale_clarity/` 是 13 个本鲸动作的全屏清晰度检查工程，先启动预览服务，再执行 `npm run clarity:shoot`，原生 1920×1080 截图与总览写入 `docs/quality_comparison/whale_redraw/template_clarity/`。预览只读资产，不生成 GIF、不写盘、不改母版；服务脚本是 `通用模板/actions_preview/server.mjs`。
+
 | id | 角色 | 派生动作（`.act(…)`） | 推荐道具（`k.thing(…)`） |
 |---|---|---|---|
-| `whale` | 鲸鱼娘 | `idle`呼吸待机 `wave`挥手打招呼 `point`递出去（让位） `eat`干饭 `hop`开心跳 `nod`点头 `shake`摇头 `bow`鞠躬 `sway`摇摆舞 `surprise`吃惊 `sad`低落 `spin`转圈 `shiver`发抖 | `prop_bowl` `prop_basket` |
+| `whale` | 鲸鱼娘 | `idle`呼吸待机 `wave`挥手打招呼 `point`递出去（让位） `eat`干饭（8 帧已烘入可见饭碗） `hop`开心跳 `nod`点头 `shake`摇头 `bow`鞠躬 `sway`摇摆舞 `surprise`吃惊 `sad`低落 `spin`转圈 `shiver`发抖 | `prop_bowl` `prop_basket` |
 | `gpt` | GPT 龙娘 | `float`悬浮待机 `hover`振翅飞行 `cast`施法 `rage`生气 `nod`点头 `tilt`歪头（疑问） `bow`鞠躬 `surprise`吃惊 `shake`摇头 | `prop_hourglass` |
 | `claude` | Claude 大小姐 | `idle`呼吸待机 `curtsy`提裙行礼 `read`低头看书 `tilt`歪头（疑问） `nod`点头 `shake`摇头 `petri`石化 `lookaround`左右张望 `sad`低落 `hop`开心跳 | `prop_teacup` `prop_book` `prop_hourglass` |
 | `doubao` | 豆包 | `idle`呼吸待机 `step`踩拍 `sway`摇摆舞 `hop`开心跳 `nod`点头 `bow`鞠躬 `tilt`歪头（疑问） `surprise`吃惊 `spin`转圈 | `prop_basket` `prop_redshoes` |
@@ -457,7 +461,7 @@ track([[0, A], [0.5, B], [1, C]], u) // 多段运镜；每段起止机位要不�
 - **不出现运营数字**：粉丝数、播放量、目标值、进度条、余额条、数据曲线、账本表格，一律不进画面。沙漏只画沙子，钟只画指针。
 - **不伪造接触**：角色是纸片，不给道具画一只假手。
 - **不加片尾卡**：最后一句唱完就结束。
-- **不新增生图、不换画风**：角色只用图集里的像素造型。
+- **不新增生图、不换画风**：角色只用图集里的像素造型；2026-11-24 用户明确授权的本鲸母版重画是唯一例外，且只在既有格坐标与 `px.js` 调色板内重建。
 - **缺素材就失败**：不允许静默回退。
 - **时间只认实测**：`measured=false` 的东西只能叫样片。
 

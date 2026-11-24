@@ -16,6 +16,16 @@ import path from 'node:path';
 import http from 'node:http';
 import puppeteer from 'puppeteer-core';
 import chromium, { inflate } from '@sparticuz/chromium';
+import {
+  DEFAULT_JPEG_QUALITY,
+  captureFrame,
+  clearFrames,
+  frameExtension,
+  freezePageLoop,
+  imageFormatFromArgv,
+  installCaptureClock,
+  prepareCaptureStage,
+} from './capture_quality.mjs';
 
 const argv = process.argv.slice(2);
 const opt = (n, d) => { const i = argv.indexOf(n); return i >= 0 ? argv[i + 1] : d; };
@@ -26,7 +36,9 @@ const FPS = Number(opt('--fps', 30));
 const DUR = Number(opt('--dur', 60));
 const W = Number(opt('--w', 1920));
 const H = Number(opt('--h', 1080));
-const Q = Number(opt('--quality', 92));
+const format = imageFormatFromArgv(argv);
+const ext = frameExtension(format);
+const Q = Number(opt('--quality', DEFAULT_JPEG_QUALITY));
 const from = Number(opt('--from', 0));
 const to = Number(opt('--to', DUR));
 const still = opt('--still', null);
@@ -37,15 +49,14 @@ const hide = (opt('--hide', '') || '').split(',').map((x) => x.trim()).filter(Bo
 const libRoot = await inflate(path.join(process.cwd(), 'node_modules/@sparticuz/chromium/bin/al2023.tar.br'));
 process.env.LD_LIBRARY_PATH = `${libRoot}/lib:${process.env.LD_LIBRARY_PATH || ''}`;
 
-fs.mkdirSync(outDir, { recursive: true });
-if (!still) for (const f of fs.readdirSync(outDir)) if (f.endsWith('.jpg')) fs.unlinkSync(path.join(outDir, f));
+await clearFrames(outDir);
 
-const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png', '.jpg': 'image/jpeg', '.mp3': 'audio/mpeg', '.wav': 'audio/wav', '.woff2': 'font/woff2', '.ttf': 'font/ttf', '.otf': 'font/otf' };
+const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.css': 'text/css', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.json': 'application/json', '.mp3': 'audio/mpeg', '.m4a': 'audio/mp4', '.wav': 'audio/wav', '.mp4': 'video/mp4', '.woff2': 'font/woff2', '.woff': 'font/woff', '.ttf': 'font/ttf', '.otf': 'font/otf' };
 const server = http.createServer((req, res) => {
   const rel = decodeURIComponent(req.url.split('?')[0]).replace(/^\/+/, '');
   const file = path.join(dist, rel === '' ? 'index.html' : rel);
   if (!file.startsWith(dist) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) { res.writeHead(404); res.end(); return; }
-  res.writeHead(200, { 'content-type': MIME[path.extname(file)] || 'application/octet-stream' });
+  res.writeHead(200, { 'content-type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream' });
   fs.createReadStream(file).pipe(res);
 });
 await new Promise((r) => server.listen(0, '127.0.0.1', r));
@@ -74,6 +85,9 @@ await page.waitForFunction(() => {
 // 页面字号：等字体（ZCOOL 子集）解码完再开始，否则前几帧的字会掉回系统字体
 await page.evaluate(() => document.fonts.ready);
 await new Promise((r) => setTimeout(r, 600));
+await installCaptureClock(page);
+await prepareCaptureStage(page);
+await freezePageLoop(page);
 
 const mode = await page.evaluate(() => (window.__mv && typeof window.__mv.render === 'function') ? 'render' : 'seek');
 console.log(`[mode] ${mode}`);
@@ -107,36 +121,29 @@ if (hide.length) {
 
 if (still !== null) {
   const t = Number(still);
-  let buf;
-  if (mode === 'render') {
-    const url = await page.evaluate((tt, w) => { const r = window.__mv.render(tt, false, w); return typeof r === 'string' ? r : r.url; }, t, W);
-    buf = Buffer.from(url.slice(url.indexOf(',') + 1), 'base64');
-  } else {
-    await page.evaluate((tt) => { const s = window.__seek || (window.__mv && window.__mv.seek); s(tt); return new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))); }, t);
-    buf = await page.screenshot({ type: 'jpeg', quality: Q, optimizeForSpeed: true });
-  }
-  const file = path.join(outDir, `still_${t.toFixed(2)}.jpg`);
-  fs.writeFileSync(file, buf);
+  await page.evaluate((tt, w, m) => {
+    if (m === 'render') window.__mv.render(tt, false, w);
+    else { const s = window.__seek || (window.__mv && window.__mv.seek); s(tt); }
+  }, t, W, mode);
+  const file = path.join(outDir, `still_${t.toFixed(2)}.${ext}`);
+  await captureFrame(page, { file, format, quality: Q });
   console.log(`STILL ${file}`);
   await browser.close(); server.close();
   process.exit(0);
 }
 
-// 有渲染钩子时把页面自己的 rAF 循环停掉，免得和截帧抢 CPU
-if (mode === 'render') await page.evaluate(() => { window.requestAnimationFrame = () => 0; });
+// 页面自己的 rAF 已经在上面冻住；这里只负责按固定时间逐帧渲染。
 
 const total = Math.round((to - from) * FPS);
 const t0 = Date.now();
 for (let i = 0; i < total; i++) {
   const t = from + i / FPS;
-  const file = path.join(outDir, `f${String(i).padStart(5, '0')}.jpg`);
-  if (mode === 'render') {
-    const url = await page.evaluate((tt, w) => { const r = window.__mv.render(tt, false, w); return typeof r === 'string' ? r : r.url; }, t, W);
-    fs.writeFileSync(file, Buffer.from(url.slice(url.indexOf(',') + 1), 'base64'));
-  } else {
-    await page.evaluate((tt) => { const s = window.__seek || (window.__mv && window.__mv.seek); s(tt); return new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))); }, t);
-    await page.screenshot({ type: 'jpeg', quality: Q, optimizeForSpeed: true, path: file });
-  }
+  const file = path.join(outDir, `f${String(i).padStart(5, '0')}.${ext}`);
+  await page.evaluate((tt, w, m) => {
+    if (m === 'render') window.__mv.render(tt, false, w);
+    else { const s = window.__seek || (window.__mv && window.__mv.seek); s(tt); }
+  }, t, W, mode);
+  await captureFrame(page, { file, format, quality: Q });
   if (i % 150 === 0 && i > 0) {
     const sec = (Date.now() - t0) / 1000;
     console.log(`${i}/${total} 张 · ${(i / sec).toFixed(2)} fps · 预计还需 ${Math.round((sec / i) * (total - i))}s`);

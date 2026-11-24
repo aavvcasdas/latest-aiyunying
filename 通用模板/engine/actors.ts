@@ -75,6 +75,10 @@ export function cycleIndex(i: number, n: number, what = '帧号'): number {
   return ((Math.floor(i) % n) + n) % n;
 }
 
+// Mirrors tools/render_defaults.json → visualQuality.pixelSmoothing. Only the
+// user-authorized 本鲸 cards use it; all other cast cards stay on hard pixels.
+const WHALE_PIXEL_SMOOTHING = 0.28;
+
 let atlasPromise: Promise<AtlasData> | null = null;
 export function loadAtlas(): Promise<AtlasData> {
   if (!atlasPromise) {
@@ -100,7 +104,7 @@ export function loadAtlas(): Promise<AtlasData> {
         }
         const tex = new THREE.Texture(img);
         // 像素角色：放大时用最近邻，别让显卡把它插值糊掉（缩小时仍然线性，远景不闪）
-        tex.flipY = false; tex.generateMipmaps = false;
+        tex.flipY = false; tex.generateMipmaps = false; tex.premultiplyAlpha = false;
         tex.minFilter = THREE.LinearFilter; tex.magFilter = THREE.NearestFilter; tex.needsUpdate = true;
         resolve({ tex, w: img.width, h: img.height, rects: ATLAS_META.s, anchors, url: atlasUrl });
       };
@@ -112,13 +116,14 @@ export function loadAtlas(): Promise<AtlasData> {
 }
 
 // 抗锯齿像素采样：任意缩放下像素边缘保持锐利且不闪烁（纹理本身用线性过滤）
-export function pixelMat(tex: THREE.Texture, tw: number, th: number): THREE.ShaderMaterial {
+/** `soft` is the canonical `visualQuality.pixelSmoothing` value; 0 keeps legacy hard pixels. */
+export function pixelMat(tex: THREE.Texture, tw: number, th: number, soft = 0): THREE.ShaderMaterial {
   const m = new THREE.ShaderMaterial({
-    fog: true, side: THREE.DoubleSide,
+    fog: true, side: THREE.DoubleSide, transparent: true, depthWrite: true,
     uniforms: {
       map: { value: tex }, texSize: { value: new THREE.Vector2(tw, th) }, rect: { value: new THREE.Vector4(0, 0, tw, th) },
       flip: { value: 0 }, tint: { value: new THREE.Vector3(1, 1, 1) }, sil: { value: 0 }, silColor: { value: rgb(0x120e1f) },
-      flash: { value: 0 }, alpha: { value: 1 }, cut: { value: 2 },
+      flash: { value: 0 }, alpha: { value: 1 }, cut: { value: 2 }, soft: { value: soft },
       fogColor: { value: new THREE.Color() }, fogNear: { value: 1 }, fogFar: { value: 1000 },
     },
     vertexShader: `varying vec2 vUv;
@@ -127,7 +132,7 @@ void main(){ vUv = uv; vec4 mvPosition = modelViewMatrix * vec4(position,1.0); g
 #include <fog_vertex>
 }`,
     fragmentShader: `uniform sampler2D map; uniform vec2 texSize; uniform vec4 rect; uniform float flip; uniform vec3 tint;
-uniform float sil; uniform vec3 silColor; uniform float flash; uniform float alpha; uniform float cut; varying vec2 vUv;
+uniform float sil; uniform vec3 silColor; uniform float flash; uniform float alpha; uniform float cut; uniform float soft; varying vec2 vUv;
 #include <fog_pars_fragment>
 void main(){
   if (1.0 - vUv.y > cut) discard;
@@ -139,13 +144,26 @@ void main(){
   pix = clamp(pix, rect.xy + 0.5, rect.xy + rect.zw - 0.5);
   vec4 c = texture2D(map, pix / texSize);
   if (c.a < 0.5) discard;
+  // master_soft: blend a tiny cross of neighboring RGB values without bleeding
+  // outside the current atlas cell. Alpha stays sharp enough to reject empty texels.
+  if (soft > 0.001) {
+    vec2 one = vec2(1.0 / texSize.x, 1.0 / texSize.y);
+    vec2 lo = rect.xy + 0.5, hi = rect.xy + rect.zw - 0.5;
+    vec4 l = texture2D(map, clamp(pix + vec2(-1.0, 0.0), lo, hi) / texSize);
+    vec4 r = texture2D(map, clamp(pix + vec2( 1.0, 0.0), lo, hi) / texSize);
+    vec4 u = texture2D(map, clamp(pix + vec2(0.0, -1.0), lo, hi) / texSize);
+    vec4 d = texture2D(map, clamp(pix + vec2(0.0,  1.0), lo, hi) / texSize);
+    c.rgb = mix(c.rgb, (c.rgb * 2.0 + l.rgb + r.rgb + u.rgb + d.rgb) / 6.0, soft);
+  }
+  float outA = c.a * alpha;
+  if (outA < 0.004) discard;
   if (alpha < 0.999) { float n = fract(sin(dot(floor(gl_FragCoord.xy), vec2(12.9898, 78.233))) * 43758.5453); if (n > alpha) discard; }
-  vec3 col = c.rgb / max(c.a, 0.001);
+  vec3 col = c.rgb;
   float eye = step(0.62, col.r) * step(col.g, 0.4) * step(col.b, 0.5);
   col *= tint;
   col = mix(col, mix(silColor, vec3(1.0, 0.16, 0.22), eye), sil);
   col = mix(col, vec3(1.0), flash);
-  gl_FragColor = vec4(col, 1.0);
+  gl_FragColor = vec4(col, outA);
 #include <fog_fragment>
 }`,
   });
@@ -313,7 +331,7 @@ export class Actor {
   height = 1.6;
 
   constructor(private atlas: AtlasData, public id: CharId, private baseSize = 1) {
-    this.mat = pixelMat(atlas.tex, atlas.w, atlas.h);
+    this.mat = pixelMat(atlas.tex, atlas.w, atlas.h, id === 'whale' ? WHALE_PIXEL_SMOOTHING : 0);
     this.card = new THREE.Mesh(cardGeo, this.mat);
     this.shadow = new THREE.Mesh(shadowGeo, new THREE.MeshBasicMaterial({ color: 0x0b0a16, transparent: true, opacity: 0.3, depthWrite: false }));
     this.shadow.position.y = 0.025;
@@ -324,7 +342,7 @@ export class Actor {
 
   wear(w: Wear): this {
     const tex = overlayTex(this.atlas, w, this.key);
-    const mat = pixelMat(tex, tex.image.width, tex.image.height);
+    const mat = pixelMat(tex, tex.image.width, tex.image.height, this.id === 'whale' ? WHALE_PIXEL_SMOOTHING : 0);
     const mesh = new THREE.Mesh(cardGeo, mat);
     mesh.position.z = WEAR[w].back ? -0.012 : 0.012;
     this.inner.add(mesh);

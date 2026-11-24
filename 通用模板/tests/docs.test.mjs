@@ -32,21 +32,64 @@ const DOCS = currentDocs();
 
 const CLI_DIR = '通用模板/cli';
 const FILM = read(`${CLI_DIR}/film.mjs`);
-// 所有命令行的源码：选项、输出标记、环境变量都得在这里面找得到
-// 除了模板自己的命令行，还有仓库根 tools/ 里那两支出片脚本（《坏女孩》3D / Fable 两版用；不是模板的一部分，但文档里写的选项得真在）
+
+/** 读一棵目录里的脚本文本：选项 / 输出标记 / 环境变量要在真实源码里找得到 */
+function walkSource(rel, pattern) {
+  const out = [];
+  for (const e of fs.readdirSync(path.join(REPO, rel), { withFileTypes: true })) {
+    const child = `${rel}/${e.name}`;
+    if (e.isDirectory()) out.push(...walkSource(child, pattern));
+    else if (pattern.test(e.name)) out.push(read(child));
+  }
+  return out;
+}
+// 模板 CLI、图集烘焙、以及 tools/ 下所有 JS / Python / JSON 质量工具都算命令行源码。
 const CLI_SRC = [
-  ...fs.readdirSync(path.join(REPO, CLI_DIR)).filter((f) => /\.(mjs|py)$/.test(f)).map((f) => read(`${CLI_DIR}/${f}`)),
+  ...walkSource(CLI_DIR, /\.(mjs|py)$/),
   read('通用模板/cast/bake_atlas.mjs'),
   read('通用模板/cast/source/bake_actions.mjs'),   // 派生动作烘焙（npm run actions，选项 --gif）
-  ...(exists('tools') ? fs.readdirSync(path.join(REPO, 'tools')).filter((f) => f.endsWith('.mjs')).map((f) => read(`tools/${f}`)) : []),
+  ...(exists('tools') ? walkSource('tools', /\.(mjs|cjs|py|json)$/) : []),
 ].join('\n');
 const SCRIPTS = Object.keys(JSON.parse(read('package.json')).scripts);
+/** 子工程 README 里的 npm 脚本查它自己的 package.json；同时允许引用仓库根脚本 */
+function scriptsFor(doc) {
+  let dir = path.join(REPO, path.dirname(doc));
+  const found = new Set(SCRIPTS);
+  const addPkg = (pkg) => {
+    if (!fs.existsSync(pkg)) return false;
+    for (const name of Object.keys(JSON.parse(fs.readFileSync(pkg, 'utf8')).scripts || {})) found.add(name);
+    return true;
+  };
+  // 很多作品的 README 在工程根、package.json 在 源码/ 子目录里。
+  addPkg(path.join(dir, 'package.json')) || addPkg(path.join(dir, '源码/package.json'));
+  while (dir.startsWith(REPO)) {
+    if (addPkg(path.join(dir, 'package.json'))) break;
+    if (dir === REPO) break;
+    dir = path.dirname(dir);
+  }
+  return found;
+}
 const MODES = /<((?:[a-z]+\|)+[a-z]+)>/.exec(FILM)[1].split('|');
 const TOP = new Set(fs.readdirSync(REPO));
 // 不是本仓库命令行的选项（npm / pip / git / node / tsc / gh 自己的）
 const FOREIGN_FLAGS = new Set(['--user', '--break-system-packages', '--depth', '--hard', '--no-save', '--experimental-transform-types', '--test', '--config', '--noEmit', '--ff-only',
+  // Vite dev server / Next.js / npm 自己的选项
+  '--host',
   // 不是 film.mjs 的选项：封面脚本 tools/cover.py 自己的参数
   '--still', '--title', '--out', '--name', '--punch']);
+// 外部程序读取的环境变量，不是本仓库 CLI 定义的标记。
+const FOREIGN_ENVS = new Set(['DATABASE_URL']);
+// 文档明确说明「上传包 / 未跟踪工具包不在仓库里」的外部路径，不按缺失路径报错。
+const EXTERNAL_PATHS = new Set([
+  '来源/remotion-fix-and-mv-recreation.zip',
+  '通用模板/来源/remotion-fix-and-mv-recreation.zip',
+  '番外MV/雨爱/来源/雨爱-mv.zip',
+  '人物/q版HD_工具包',
+]);
+function isExternalPath(tok) {
+  const p = tok.replace(/\/$/, '');
+  return p.startsWith('/') || EXTERNAL_PATHS.has(p);
+}
 
 /** 行内代码 `…` 和代码块里的每一行 */
 function codeSpans(text) {
@@ -66,7 +109,8 @@ test('文档里的命令都敲得出来：npm 脚本、film 的子命令、new �
   const bad = [];
   for (const d of DOCS) {
     const text = read(d);
-    for (const m of text.matchAll(/npm run ([a-z][a-z:-]*)/g)) if (!SCRIPTS.includes(m[1])) bad.push(`${d}：npm run ${m[1]}（package.json 里没有这个脚本）`);
+    const scripts = scriptsFor(d);
+    for (const m of text.matchAll(/npm run ([a-z][a-z:-]*)/g)) if (!scripts.has(m[1])) bad.push(`${d}：npm run ${m[1]}（package.json 里没有这个脚本）`);
     for (const m of text.matchAll(/(?:npm run film --|film\.mjs)[ \t]+([a-z]+)\b/g)) if (!MODES.includes(m[1])) bad.push(`${d}：film ${m[1]}（没有这个子命令）`);
     for (const m of text.matchAll(/npm run new --[ \t]+([^\s`]+)/g)) if (!['mv', 'day', '<mv|day>'].includes(m[1])) bad.push(`${d}：npm run new -- ${m[1]}（类型只有 mv / day）`);
   }
@@ -78,7 +122,7 @@ test('文档里提到的命令行选项、输出标记、环境变量，命令�
   for (const d of DOCS) {
     for (const span of codeSpans(read(d)).all) {
       for (const m of span.matchAll(/(?<![\w-])(--[a-z][a-z-]+)/g)) if (!CLI_SRC.includes(m[1]) && !FOREIGN_FLAGS.has(m[1])) bad.push(`${d}：选项 ${m[1]}`);
-      for (const m of span.matchAll(/\b([A-Z][A-Z0-9]*_[A-Z0-9_]+)\b/g)) if (!CLI_SRC.includes(m[1])) bad.push(`${d}：${m[1]}`);
+      for (const m of span.matchAll(/\b([A-Z][A-Z0-9]*_[A-Z0-9_]+)\b/g)) if (!CLI_SRC.includes(m[1]) && !FOREIGN_ENVS.has(m[1])) bad.push(`${d}：${m[1]}`);
     }
   }
   assert.deepEqual([...new Set(bad)], []);
@@ -92,7 +136,7 @@ test('文档里写的路径都在：从仓库根写起的、相对文档所在�
     for (const raw of codeSpans(read(d)).inline) {
       const tok = raw.trim();
       // 带占位符、通配符、省略号的不是具体路径；Day15 / 某首歌 是「新开一部作品」的示例名
-      if (/[<>*…{}$|=\s]|NN|DayN|Day1[5-9]|某首歌|\/X\//.test(tok)) continue;
+      if (/[<>*…{}$|=\s]|NN|DayN|Day1[5-9]|某首歌|\/X\//.test(tok) || isExternalPath(tok)) continue;
       const p = tok.replace(/\/$/, ''), first = p.split('/')[0];
       if (!p.includes('/') && !TOP.has(first)) continue; // 单独一个文件名（cues.json、台词.txt）是泛指，不查
       if (TOP.has(first)) { checked++; if (!exists(p)) bad.push(`${d}：${tok}`); continue; }
@@ -181,7 +225,7 @@ test('这个测试自己查得出问题：编一份带错的文档，四类错�
   const { all, inline } = codeSpans(text);
   assert.deepEqual([...text.matchAll(/npm run ([a-z][a-z:-]*)/g)].map((m) => m[1]).filter((s) => !SCRIPTS.includes(s)), ['filmm']);
   assert.deepEqual([...text.matchAll(/(?:npm run film --|film\.mjs)[ \t]+([a-z]+)\b/g)].map((m) => m[1]).filter((s) => !MODES.includes(s)), ['render']);
-  assert.deepEqual(all.flatMap((s) => [...s.matchAll(/(?<![\w-])(--[a-z][a-z-]+)/g)].map((m) => m[1])).filter((f) => !CLI_SRC.includes(f)), ['--allow-everything']);
-  assert.deepEqual(all.flatMap((s) => [...s.matchAll(/\b([A-Z][A-Z0-9]*_[A-Z0-9_]+)\b/g)].map((m) => m[1])).filter((f) => !CLI_SRC.includes(f)), ['QA_PERFECT']);
-  assert.deepEqual(inline.filter((t) => t.includes('/') && !/\s/.test(t) && !exists(t)), ['通用模板/engine/nope.ts']);
+  assert.deepEqual(all.flatMap((s) => [...s.matchAll(/(?<![\w-])(--[a-z][a-z-]+)/g)].map((m) => m[1])).filter((f) => !CLI_SRC.includes(f) && !FOREIGN_FLAGS.has(f)), ['--allow-everything']);
+  assert.deepEqual(all.flatMap((s) => [...s.matchAll(/\b([A-Z][A-Z0-9]*_[A-Z0-9_]+)\b/g)].map((m) => m[1])).filter((f) => !CLI_SRC.includes(f) && !FOREIGN_ENVS.has(f)), ['QA_PERFECT']);
+  assert.deepEqual(inline.filter((t) => t.includes('/') && !/\s/.test(t) && !isExternalPath(t) && !exists(t)), ['通用模板/engine/nope.ts']);
 });

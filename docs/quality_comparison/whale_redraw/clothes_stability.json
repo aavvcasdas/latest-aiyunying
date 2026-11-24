@@ -1,0 +1,57 @@
+{
+  "canonicalLowerBodyBox": [
+    0.18,
+    0.58,
+    0.82,
+    1.0
+  ],
+  "oldLowerBodySource": "cast_atlas.before.png",
+  "rolledBackGestureCells": [
+    "whale_wave",
+    "whale_point",
+    "whale_big_wave",
+    "whale_big_point"
+  ],
+  "rollbackTargets": [
+    "wave",
+    "point"
+  ],
+  "rollbackBaseline": "cast_atlas.clothes_before.png (f23…, pre-clothes-freeze)",
+  "otherActionsUnchanged": true,
+  "frontBaseCellsWithExactOldLowerBody": 4,
+  "frontBaseCellsChecked": 4,
+  "frontActionFramesChecked": 84,
+  "exactCanonicalHemFrames": 21,
+  "maxCanonicalHemDifference": 25.9539,
+  "lowerBodyMotionTransitions": 72,
+  "lowerBodyMotionFrames": 60,
+  "meanLowerBodyMotion": 15.999,
+  "motionLockRemoved": true,
+  "headBodyLinkageEnabledActions": [
+    "bow",
+    "eat",
+    "hop",
+    "idle",
+    "nod",
+    "sad",
+    "shake",
+    "shiver",
+    "surprise",
+    "sway"
+  ],
+  "eatBowlFramesChecked": 8,
+  "maxEatBowlDifference": 0.0,
+  "walkRhythm": {
+    "frames": 8,
+    "uniqueLowerBodies": 8,
+    "meanConsecutiveFrameDifference": 9.5642,
+    "meanTailRegionDifference": 4.6585
+  },
+  "spinPerspectiveException": {
+    "frames": 8,
+    "sideFramesChecked": 4,
+    "sideTemplateMaxDifference": 8.6334,
+    "frontFramesUseScaledCanonicalFrontView": true
+  },
+  "errors": []
+}

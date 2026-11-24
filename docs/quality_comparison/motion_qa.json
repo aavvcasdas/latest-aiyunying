@@ -1,0 +1,10 @@
+{
+  "status": "ok",
+  "source": "canonical atlas walk-cycle demo",
+  "frames": 24,
+  "meanFrameDifference": 1.997,
+  "blankFrames": [],
+  "frozenFrameIndices": [],
+  "problems": [],
+  "contactSheet": "docs/quality_comparison/motion_contact_sheet.png"
+}

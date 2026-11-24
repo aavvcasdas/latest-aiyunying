@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """把母版图集拆成「按组」的人物图集，放进项目自己的 人物/ 目录。
 
-为什么要有这个脚本：母版 `通用模板/engine/assets/cast_atlas.png`（2048×3439，747 帧，9 位角色）是
+为什么要有这个脚本：母版 `通用模板/engine/assets/cast_atlas.png`（2048×3126，682 帧，8 位角色）是
 一张大拼图，人看不了、也没法单独复用。这里按用途拆成几张：一组 Q 版动作、一组行走、
 一组头像、一组变体（boss / big / front / side / fly / 道具 / 特效），并生成坐标表。
 
@@ -16,9 +16,13 @@
     index.json             每张图里的行列坐标 + 原图坐标
     立绘/                   七头身（art/raw 原图、art/tachie 抠图、rig 引擎），脚本不覆盖
 
+默认是 check-only：只读母版与坐标表，不删也不写任何文件（日常用 `npm run assets:check`）。
+确实要重建派生图时显式加 --write；写之前请确认 assets.manifest.json 会跟着更新。
+
 用法：
-    python3 tools/split_cast.py                     # 写进仓库根 人物/
-    python3 tools/split_cast.py --out /tmp/cast     # 写到别处
+    python3 tools/split_cast.py                     # 只检查，不写盘
+    python3 tools/split_cast.py --write             # 重建到仓库根 人物/
+    python3 tools/split_cast.py --write --out /tmp/cast  # 写到别处
 """
 import argparse
 import json
@@ -59,16 +63,20 @@ def grid_sheet(frames, atlas, cell_w, cell_h, cols):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--out', default=DEFAULT_OUT)
+    ap.add_argument('--write', action='store_true', help='显式写盘；默认只检查，避免误删 人物/ 派生目录')
     a = ap.parse_args()
     out = os.path.abspath(a.out)
 
     meta = json.load(open(SRC_JSON, encoding='utf-8'))
+    if not a.write:
+        print(f'CHECK_ONLY 母版 {meta["w"]}×{meta["h"]} / {len(meta["s"])} 格；加 --write 才会重建 {out}')
+        return
     rects = meta['s']
     atlas = Image.open(SRC_PNG).convert('RGBA')
     assert atlas.size == (meta['w'], meta['h']), (atlas.size, meta)
 
     groups = {'q版': {}, '行走': {}, '头像': {}, '变体': {}, '道具': {}, '特效': {}}
-    # 角色顺序以动作表为准（grok 是后加的，排最后）
+    # 角色顺序以动作表为准（当前 8 位；Grok 已删）
     act_path = os.path.join(ROOT, '通用模板/engine/assets/cast_actions.json')
     cast = list(json.load(open(act_path, encoding='utf-8'))['actions']) if os.path.exists(act_path) \
         else ['whale', 'gpt', 'claude', 'doubao', 'gemini', 'kimi', 'qwen', 'zai']

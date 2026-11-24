@@ -166,7 +166,7 @@ export class Engine {
       powerPreference: "high-performance",
       preserveDrawingBuffer: true,
     });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); // shared quality profile: 2x supersample
     this.renderer.toneMapping = THREE.NoToneMapping;
     this.scene.add(this.cam);
     this.overlayScene.add(this.overlayCam);
@@ -201,7 +201,7 @@ export class Engine {
       sepia: 0,
       bw: 0,
       vig: 0.4,
-      grain: 0.035,
+      grain: 0,
       flash: 0,
       flashCol: 0xffffff,
       black: 0,
@@ -275,9 +275,9 @@ export class Engine {
     this.composer.addPass(new RenderPass(this.scene, this.cam));
     this.bloom = new UnrealBloomPass(
       new THREE.Vector2(this.w, this.h),
-      0.33,
+      0.15,
       0.4,
-      0.88,
+      0.95,
     );
     this.composer.addPass(this.bloom);
     // Composite lyrics after bloom so bright scenery never dissolves their outlines.
@@ -360,7 +360,7 @@ export class Engine {
       sepia: 0,
       bw: 0,
       vig: 0.4,
-      grain: 0.035,
+      grain: 0,
       flash: 0,
       flashCol: 0xffffff,
       black: 0,
@@ -416,7 +416,7 @@ export class Engine {
     gu.uWarm.value = g.warm;
     gu.uFlick.value = g.flick;
     gu.uCA.value = g.ca;
-    this.bloom!.strength = 0.29 * g.bloom;
+    this.bloom!.strength = 0.13 * g.bloom; // 0.29 × shared bloomScale 0.45
     PUNI.uH.value =
       this.renderer.domElement.height /
       (2 * Math.tan((this.cam.fov * Math.PI) / 360));

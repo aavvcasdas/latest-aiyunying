@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 // 派生动作烘焙：从八位角色已有的像素格派生新动作（act_*）、道具（prop_*）、表情贴（fx_*）。
 //
-//   npm run actions                    → 重写 cast/source/actions_data.js、engine/assets/cast_actions.json，
-//                                        并把新格子追加进 engine/assets/cast_atlas.json（原有 121 格坐标一格不动）
+//   npm run actions                    → 重写 cast/source/actions_data.js、engine/assets/cast_actions.json；
+//                                        默认保留 cast_atlas.json 里已有格子的坐标与图集高度，只给新键装箱
+//   npm run actions -- --repack        → 需要重排全部派生格时显式加 --repack
 //   npm run actions -- --gif <目录>     → 另外把每个动作出一张 GIF 预览（×3 放大，带表情贴）+ manifest.json
 //   之后 npm run atlas 重烘 cast_atlas.png。
 //
@@ -35,9 +36,9 @@ if (RGB.length > 254) throw new Error('调色板超过 254 色，RLE 编码会�
 
 const spr = (k) => { const s = getBakedSprite(k); if (!s) throw new Error(`精灵数据里没有「${k}」`); return s; };
 
-// ---------------- 九位角色：用到的原格与身体比例 ----------------
+// ---------------- 八位角色：用到的原格与身体比例 ----------------
 const CHARS = {
-  whale:  { name: '本鲸', front: 'whale_idle', blink: 'whale_blink', wave: 'whale_wave', point: 'whale_point', ratio: { neck: 0.47, hip: 0.72 } },
+  whale:  { name: '本鲸', front: 'whale_idle', blink: 'whale_blink', wave: 'whale_wave', point: 'whale_point', side: 'whale_side', ratio: { neck: 0.47, hip: 0.72 } },
   gpt:    { name: '龙娘', front: 'gpt_boss_idle', blink: 'gpt_boss_blink', rage: 'gpt_boss_rage', cast: ['gpt_boss_cast0', 'gpt_boss_cast1'], fly: ['gpt_fly_0', 'gpt_fly_1'], ratio: { neck: 0.36, hip: 0.6 } },
   claude: { name: '小克', front: 'claude_front_0', blink: 'claude_front_1', side: 'claude_side_0', petri: 'claude_petri', ratio: { neck: 0.45, hip: 0.7 } },
   doubao: { name: '豆包', front: 'doubao_cage_0', blink: 'doubao_cage_1', ratio: { neck: 0.33, hip: 0.62 } },
@@ -81,9 +82,13 @@ const LIB = {
   sad:      { label: '低落', fps: 6, loop: false, fx: 'fx_gloom', padX: 4, padTop: 2,
     frames: (c) => [0, 0.3, 0.6, 0.85, 1, 1].map((v, i) => ({ k: i >= 4 ? c.blink : c.front, headDy: v * 3, bow: v * 0.05, sy: 1 - v * 0.02, head: v * 0.05 })) },
   spin:     { label: '转圈', fps: 12, loop: true, padX: 2, padTop: 2,
-    frames: (c) => c.side
-      ? [{ k: c.front }, { k: c.front, sx: 0.62 }, { k: c.side }, { k: c.side, sx: 0.72 }, { k: c.side, sx: 0.72, flip: true }, { k: c.side, flip: true }, { k: c.front, sx: 0.62, flip: true }, { k: c.front }]
-      : [1, 0.66, 0.34, 0.66, 1, 0.66, 0.34, 0.66].map((v, i) => ({ k: c.front, sx: v, flip: i >= 3 && i <= 6 })) },
+    // 2026-11-24 v2：本鲸只做「正面 → 微收 → 侧面 → 侧面 → 反面 → 侧面 → 微收 → 正面」，
+    // 不再把侧面压到 0.78 / 0.72 造成窄肩断身；其他角色的动作保持逐像素不变。
+    frames: (c) => c.side === 'whale_side'
+      ? [{ k: c.front }, { k: c.front, sx: 0.88 }, { k: c.side }, { k: c.side, sx: 0.94 }, { k: c.side, sx: 0.94, flip: true }, { k: c.side, flip: true }, { k: c.front, sx: 0.88, flip: true }, { k: c.front }]
+      : c.side
+        ? [{ k: c.front }, { k: c.front, sx: 0.62 }, { k: c.side }, { k: c.side, sx: 0.72 }, { k: c.side, sx: 0.72, flip: true }, { k: c.side, flip: true }, { k: c.front, sx: 0.62, flip: true }, { k: c.front }]
+        : [1, 0.66, 0.34, 0.66, 1, 0.66, 0.34, 0.66].map((v, i) => ({ k: c.front, sx: v, flip: i >= 3 && i <= 6 })) },
   lookaround: { label: '左右张望', fps: 6, loop: true, padX: 3, padTop: 2,
     frames: (c) => [{ k: c.front }, { k: c.side }, { k: c.side, head: -0.04 }, { k: c.front }, { k: c.side, flip: true }, { k: c.side, flip: true, head: 0.04 }, { k: c.front }, { k: c.blink }] },
   // —— 专属动作 ——
@@ -116,6 +121,58 @@ const LIB = {
     frames: (c) => [0, -0.04, -0.08, -0.1, -0.1, -0.1].map((v, i) => ({ k: i === 1 ? c.blink : c.front, head: v, sway: v * 22, headDx: v * 10 })) },
 };
 
+// 本鲸专用头身联动参数。只覆盖本鲸，其他 7 位角色的同一动作仍逐像素不变。
+// 衣服不再在姿态后锁死；headDy / headDx 收小，用 sway / dx / sy 让头、肩、
+// 躯干、裙摆和腿一起动，避免发抖 / 摇摆舞 / 吃惊时出现「头动身不动」。
+const WHALE_MOTION = {
+  // 2026-11-24 回退：用户要求挥手 / 递出去回到「加裙子固定之前」的 f23… 状态。
+  // 这两段回到原来的「正面格起手 → 手势格」混剪，动作帧数 / 顺序与坐标都不变。
+  wave: (c) => [{ k: c.front }, { k: c.wave }, { k: c.wave, head: 0.05, sway: 1 },
+    { k: c.wave, head: 0.08, sway: 2 }, { k: c.wave, head: 0.05, sway: 1 },
+    { k: c.wave }, { k: c.wave, head: -0.03, sway: -1 }, { k: c.wave }],
+  point: (c) => [{ k: c.front }, { k: c.front, lean: 0.03 },
+    { k: c.point, lean: 0.06 }, { k: c.point, lean: 0.08, headDy: 1 },
+    { k: c.point, lean: 0.08, headDy: 1 }, { k: c.point, lean: 0.05 }],
+  nod: (c) => [0, 0.8, 1.4, 1.0, 0.3, 0].map((v, i) => ({
+    k: i === 2 ? c.blink : c.front, headDy: v, bow: v * 0.02, sy: 1 - v * 0.004,
+  })),
+  shake: (c) => [0, -1.4, -2, -0.8, 1.0, 2, 1.4, 0].map((v) => ({
+    k: c.front, headDx: v, head: -v * 0.008, sway: v * 0.6,
+  })),
+  bow: (c) => [0, 0.06, 0.12, 0.17, 0.2, 0.2, 0.12, 0.04].map((v) => ({
+    k: v > 0.15 ? c.blink : c.front, bow: v * 1.6, headDy: v * 2, sy: 1 - v * 0.01,
+  })),
+  sway: (c) => rep(8, (i, t) => ({
+    k: c.front, sway: 5 * S(t * PI2), head: -0.04 * S(t * PI2),
+    sy: 1 - 0.02 * Math.abs(S(t * PI2 * 2)),
+  })),
+  shiver: (c) => [1, -1, 1, -1].map((v, i) => ({
+    k: c.front, dx: v * 0.9, sway: -v * 1.6, sy: 0.98, sx: 1.01,
+    head: v * 0.018, headDx: v * 0.7, headDy: 0.35 + (i % 2) * 0.15,
+  })),
+  surprise: (c) => [
+    { sy: 0.93, sx: 1.04 }, { sy: 1.1, sx: 0.95, dy: -4 }, { sy: 1.07, dy: -2 },
+    { sy: 1.04, dy: -1 }, { sy: 1.03 }, { sy: 1.03 },
+  ].map((p, i) => ({ k: c.front, head: i === 0 ? 0.04 : i === 1 ? 0.02 : 0, ...p })),
+  sad: (c) => [0, 0.3, 0.6, 0.85, 1, 1].map((v, i) => ({
+    k: i >= 4 ? c.blink : c.front, headDy: v * 1.2, bow: v * 0.05,
+    sy: 1 - v * 0.02, head: v * 0.03,
+  })),
+  eat: (c) => [0, 3, 1, 3, 0, 3, 1, 0].map((v) => ({
+    k: v >= 3 ? c.blink : c.front, headDy: v * 0.45, bow: v * 0.012, sy: 1 - v * 0.006,
+  })),
+};
+
+// pose() 的头身联动系数：0 = 旧行为（只动头），1 = 躯干 / 裙摆完全跟随头。
+// 转圈是视角切换，不参与；其余本鲸动作都有轻微联动，其他角色仍为 0。
+const WHALE_LINK = {
+  // 2026-11-24 回退：挥手 / 递出去回到「加裙子固定之前」的 f23… 状态，
+  // 那时 pose() 还没有 link 系数，所以这两段仍为 0；其余动作保持当前值。
+  idle: 0.45, wave: 0, point: 0, eat: 0.55, hop: 0.2,
+  nod: 0.6, shake: 0.6, bow: 0.55, sway: 0.65, surprise: 0.6,
+  sad: 0.6, spin: 0, shiver: 0.7,
+};
+
 const ROSTER = {
   whale:  ['idle', 'wave', 'point', 'eat', 'hop', 'nod', 'shake', 'bow', 'sway', 'surprise', 'sad', 'spin', 'shiver'],
   gpt:    ['float', 'hover', 'cast', 'rage', 'nod', 'tilt', 'bow', 'surprise', 'shake'],
@@ -137,13 +194,18 @@ const PROPS_OF = {
 const cells = {};      // key -> Spr
 const actions = {};    // id -> name -> meta
 const gifJobs = [];
+// Needed while baking 本鲸「干饭」: the bowl and steam are existing prop / fx cells
+// in px.js palette, stamped into the action frames so the meal is visible in
+// every preview and in the template engine without relying on a separate prop.
+const THINGS = makeThings(H);
 
 for (const [id, c] of Object.entries(CHARS)) {
   actions[id] = {};
   const base = spr(c.front);
   const L0 = landmarks(base, c.ratio);
   for (const name of ROSTER[id]) {
-    const A = LIB[name];
+    const A0 = LIB[name];
+    const A = id === 'whale' && WHALE_MOTION[name] ? { ...A0, frames: WHALE_MOTION[name] } : A0;
     const list = A.frames(c);
     const srcs = list.map((f) => spr(f.k));
     const maxW = Math.max(...srcs.map((s) => s.w)), maxH = Math.max(...srcs.map((s) => s.h));
@@ -154,8 +216,20 @@ for (const [id, c] of Object.entries(CHARS)) {
       // 换了原格（侧身、施法…）就重新量一次身体基准点，但脖子 / 胯的高度沿用正面格，免得头一跳一跳
       const L = f.k === c.front ? L0 : { ...landmarks(s, c.ratio), neckY: L0.neckY - (base.h - s.h), hipY: L0.hipY - (base.h - s.h) };
       const cell = { w: CW, h: CH, ox: Math.round(CW / 2 - L.cx), oy: CH - s.h };
-      let out = pose(s, L, f, cell);
+      const pf = id === 'whale' && WHALE_LINK[name] ? { ...f, link: WHALE_LINK[name] } : f;
+      let out = pose(s, L, pf, cell);
+      // 2026-11-24 follow-up: 用户要求「不要一直定着」。基础稿已统一为旧版
+      // 旧版下身，这里不再锁裙摆；pose() 让头、肩、躯干、裙摆和腿自然联动。
       out = despeckle(out);
+      // 2026-11-24 follow-up: 本鲸「干饭」之前只有闭眼咀嚼，画面里没有饭。
+      // 把仓库已有的满满一碗 prop_bowl 盖到胸前；颜色只来自 px.js 调色板。
+      if (id === 'whale' && name === 'eat') {
+        const bowl = THINGS.prop_bowl;
+        const bx = Math.round(CW / 2 - bowl.w / 2);
+        const by = Math.round(CH * 0.60);
+        stamp(out, bowl, bx, by);
+        out = despeckle(out);
+      }
       const key = `act_${id}_${name}_${i}`;
       cells[key] = out; keys.push(key);
     });
@@ -164,7 +238,6 @@ for (const [id, c] of Object.entries(CHARS)) {
   }
 }
 
-const THINGS = makeThings(H);
 for (const [k, s] of Object.entries(THINGS)) cells[k] = s;
 
 // ---------------- 写 actions_data.js ----------------
@@ -187,16 +260,36 @@ fs.writeFileSync(ACTIONS_JSON, JSON.stringify({
   actions, props: Object.keys(THINGS).filter((k) => k.startsWith('prop_')), propsOf: PROPS_OF, fx: fxSeq,
 }, null, 1) + '\n');
 
-// ---------------- 追加进 cast_atlas.json（天际线装箱；原有格子不动） ----------------
+// ---------------- 写 cast_atlas.json（默认保留已有坐标，只给新键装箱） ----------------
 const meta = JSON.parse(fs.readFileSync(META_PATH, 'utf8'));
 const NEW = /^(act_|prop_|fx_)/;
 const keep = Object.fromEntries(Object.entries(meta.s).filter(([k]) => !NEW.test(k)));
+const repack = process.argv.includes('--repack');
 const AW = 2048, GAP = 2;
-const sky = new Int32Array(AW);
-for (const [x0, y0, w, h] of Object.values(keep)) for (let x = Math.max(0, x0 - GAP); x < Math.min(AW, x0 + w + GAP); x++) sky[x] = Math.max(sky[x], y0 + h + GAP);
-const order = Object.entries(cells).sort((a, b) => b[1].h - a[1].h || b[1].w - a[1].w);
 const placed = {};
-for (const [k, s] of order) {
+const problems = [];
+
+if (!repack) {
+  // 已有派生格：坐标和尺寸都沿用，避免只改一位角色就重排整张图集。
+  for (const [k, s] of Object.entries(cells)) {
+    const old = meta.s[k];
+    if (old && old[2] === s.w && old[3] === s.h) placed[k] = old;
+    else if (old) problems.push(`${k}: 尺寸从 ${old[2]}×${old[3]} 变成 ${s.w}×${s.h}，需要 --repack`);
+  }
+  if (problems.length) {
+    console.error('CAST_ATLAS_SIZE_FAIL\n  - ' + problems.join('\n  - '));
+    process.exit(1);
+  }
+}
+
+// 天际线从所有已经定位的格子建起；只给尚未定位的新键找位置。
+const sky = new Int32Array(AW);
+for (const r of [...Object.values(keep), ...Object.values(placed)]) {
+  const [x0, y0, w, h] = r;
+  for (let x = Math.max(0, x0 - GAP); x < Math.min(AW, x0 + w + GAP); x++) sky[x] = Math.max(sky[x], y0 + h + GAP);
+}
+const pending = Object.entries(cells).filter(([k]) => !placed[k]).sort((a, b) => b[1].h - a[1].h || b[1].w - a[1].w);
+for (const [k, s] of pending) {
   const w = s.w + GAP; let best = -1, bestY = 1e9;
   for (let x = GAP; x + w <= AW; x++) {
     let y = 0; for (let i = x; i < x + w; i++) if (sky[i] > y) y = sky[i];
@@ -205,7 +298,9 @@ for (const [k, s] of order) {
   placed[k] = [best, bestY, s.w, s.h];
   for (let i = best; i < best + w; i++) sky[i] = bestY + s.h + GAP;
 }
-const AH = Math.max(...sky) + GAP;
+const computedH = Math.max(...sky, ...Object.values(placed).map((r) => r[1] + r[3] + GAP));
+// 保留模式下不要因为天际线口径差 2 px 就改图集高度；只有真的加了新格才允许长高。
+const AH = repack ? computedH : Math.max(meta.h, computedH);
 const ordered = { ...keep };
 for (const k of Object.keys(cells)) ordered[k] = placed[k];
 const json = '{\n  "w": ' + AW + ',\n  "h": ' + AH + ',\n  "s": {\n' + Object.entries(ordered).map(([k, r]) => `    "${k}": [${r.join(', ')}]`).join(',\n') + '\n  }\n}\n';

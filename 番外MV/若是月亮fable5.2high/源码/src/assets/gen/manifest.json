@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "generatedBy": "tools/generated_assets/process_generated.cjs",
+  "provenance": "legacy_unknown: model/version/seed were not recorded when these five images were generated",
+  "projectRoot": "番外MV/若是月亮fable5.2high/源码",
+  "inputs": [
+    {
+      "name": "whale_sit_lookup.png",
+      "sha256": "8d2d1674fb495872234110f11f3686c0ec476bf85dcaecccd6c6cea3d820bfb4",
+      "bytes": 1440857
+    },
+    {
+      "name": "whale_hug_benyu.png",
+      "sha256": "928cdacbaa1a94ee59ebf971752492c6376fbd0703a3c17c7ee0ab2686914021",
+      "bytes": 1413928
+    },
+    {
+      "name": "whale_hold_camellia.png",
+      "sha256": "5de8db74c28225911fbd485c22167434833d0c26600cbb60d92c71ebda1de7b5",
+      "bytes": 1692486
+    },
+    {
+      "name": "prop_streetlamp.png",
+      "sha256": "ecc33d29bba4d88626d398e306821b98ca04aaf0370863b93043a6ad573b83ea",
+      "bytes": 658938
+    },
+    {
+      "name": "prop_camellia_stages.png",
+      "sha256": "1130ba1d08081477236c193dbe2690682f37599753b22f963e06fda266dcebf7",
+      "bytes": 837421
+    },
+    {
+      "name": "人物/q版/笨鱼.png",
+      "sha256": "b27a19db77b222c1b621c41d79e4ef7e4abcb0ce6ffb2e4809ec0ae08212eb57",
+      "bytes": 103100
+    }
+  ],
+  "outputs": [
+    {
+      "name": "whale_lookup.png",
+      "w": 64,
+      "h": 98,
+      "bytes": 10650,
+      "sha256": "0da6f024776e0209de9591b1b03c622df36220e2c7d273c9a356af166008ffb1"
+    },
+    {
+      "name": "whale_hug_benyu.png",
+      "w": 53,
+      "h": 98,
+      "bytes": 10168,
+      "sha256": "80fbca89d5b01b6a5e42fbd07c71715e55e6bde299530510e5b126716270987e"
+    },
+    {
+      "name": "whale_hold_camellia.png",
+      "w": 59,
+      "h": 98,
+      "bytes": 11526,
+      "sha256": "4804bf5a8ba3a0f6fe0543a07312820a1891f5e35db9d430ca57dc336005b8c6"
+    },
+    {
+      "name": "streetlamp.png",
+      "w": 41,
+      "h": 162,
+      "bytes": 7127,
+      "sha256": "bbaca7772e6a0b1d631dd8c5d7a43b4d9e29ceea84021e7576721fc4fb1439f0"
+    },
+    {
+      "name": "camellia_bud.png",
+      "w": 30,
+      "h": 30,
+      "bytes": 1644,
+      "sha256": "e6a13a8d1fb00f855169004d76219f146c5397d80c4b9b38fcaf32008cb2ed34"
+    },
+    {
+      "name": "camellia_bud_hd.png",
+      "w": 97,
+      "h": 98,
+      "bytes": 13422,
+      "sha256": "9b7d59790c6d4df666c83151965dbbc9a3b4c93c024fe112350a32ec238167f5"
+    },
+    {
+      "name": "camellia_half.png",
+      "w": 30,
+      "h": 30,
+      "bytes": 1845,
+      "sha256": "094df0a723761450022e288c57fb97084aa3a09a552c0cbc0921a3cadf670b8d"
+    },
+    {
+      "name": "camellia_half_hd.png",
+      "w": 99,
+      "h": 98,
+      "bytes": 14912,
+      "sha256": "77cd4ceb02acd1e8cd584b0d3b3706f260460d3af5977b075cccb34cb75fe5db"
+    },
+    {
+      "name": "camellia_bloom.png",
+      "w": 32,
+      "h": 30,
+      "bytes": 2251,
+      "sha256": "7a55f9ab040a75cee5646ffd10cd6af9860eef9e910d1cbbaaf0abf86950df7a"
+    },
+    {
+      "name": "camellia_bloom_hd.png",
+      "w": 105,
+      "h": 98,
+      "bytes": 18344,
+      "sha256": "119ad8d9ab83a0b1cb5c1768e4e73b4f948d06373eefaef1e379b150aa3ec68a"
+    },
+    {
+      "name": "benyu_px.png",
+      "w": 60,
+      "h": 46,
+      "bytes": 2241,
+      "sha256": "9145f5089a4135210513fb2668cab99a8b4f1f6f1dea2a7feb4b82d22cf6fd70"
+    }
+  ]
+}

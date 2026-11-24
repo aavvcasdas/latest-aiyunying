@@ -32,14 +32,14 @@ export default function App() {
         const mv = await createMV(canvas.current!, Math.round(box.width), Math.round(box.height));
         if (dead) return;
         mvRef.current = mv;
-        // 出片钩子（tools/shoot_vite_mv.mjs 认 render）：只读时间、只画自己的 canvas，返回 JPEG dataURL
+        // 出片钩子（tools/shoot_vite_mv.mjs 认 render）：只读时间、只画自己的 canvas，返回 PNG dataURL
         (window as any).__mv = {
           duration: DUR, fps: 24, shots: mv.shots.length, ready: () => true,
           render: (s: number, _clean?: boolean, w = 1280, h = Math.round((w * 9) / 16)) => {
             const c = canvas.current!;
             if (c.width !== w || c.height !== h) mv.resize(w, h);
             T.current = s; mv.render(s);
-            return c.toDataURL("image/jpeg", 0.94);
+            return c.toDataURL("image/png");
           },
         };
         mv.render(0); setReady(true);

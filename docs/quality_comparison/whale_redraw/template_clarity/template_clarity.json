@@ -1,0 +1,88 @@
+{
+  "url": "http://127.0.0.1:5173/#whale-clarity",
+  "selected": "本鲸清晰度口播 · 样板/whale_clarity",
+  "width": 1920,
+  "height": 1080,
+  "shots": [
+    {
+      "id": "A01_idle",
+      "text": "A01_idleidle · 呼吸待机0:00.00 · 第 0 帧 · 0.4 秒第 1 句：idle",
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_01_idle.png",
+      "frame": 0
+    },
+    {
+      "id": "A02_wave",
+      "text": "A02_wavewave · 挥手打招呼0:00.43 · 第 13 帧 · 0.5 秒第 2 句：wave",
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_02_wave.png",
+      "frame": 13
+    },
+    {
+      "id": "A03_point",
+      "text": "A03_pointpoint · 递出去（让位）0:00.93 · 第 28 帧 · 0.5 秒第 3 句：point",
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_03_point.png",
+      "frame": 28
+    },
+    {
+      "id": "A04_eat",
+      "text": "A04_eateat · 干饭0:01.43 · 第 43 帧 · 0.5 秒第 4 句：eat",
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_04_eat.png",
+      "frame": 43
+    },
+    {
+      "id": "A05_hop",
+      "text": "A05_hophop · 开心跳0:01.93 · 第 58 帧 · 0.5 秒第 5 句：hop",
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_05_hop.png",
+      "frame": 58
+    },
+    {
+      "id": "A06_nod",
+      "text": "A06_nodnod · 点头0:02.43 · 第 73 帧 · 0.5 秒第 6 句：nod",
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_06_nod.png",
+      "frame": 73
+    },
+    {
+      "id": "A07_shake",
+      "text": "A07_shakeshake · 摇头0:02.93 · 第 88 帧 · 0.5 秒第 7 句：shake",
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_07_shake.png",
+      "frame": 88
+    },
+    {
+      "id": "A08_bow",
+      "text": "A08_bowbow · 鞠躬0:03.43 · 第 103 帧 · 0.5 秒第 8 句：bow",
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_08_bow.png",
+      "frame": 103
+    },
+    {
+      "id": "A09_sway",
+      "text": "A09_swaysway · 摇摆舞0:03.93 · 第 118 帧 · 0.5 秒第 9 句：sway",
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_09_sway.png",
+      "frame": 118
+    },
+    {
+      "id": "A10_surprise",
+      "text": "A10_surprisesurprise · 吃惊0:04.43 · 第 133 帧 · 0.5 秒第 10 句：surprise",
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_10_surprise.png",
+      "frame": 133
+    },
+    {
+      "id": "A11_sad",
+      "text": "A11_sadsad · 低落0:04.93 · 第 148 帧 · 0.5 秒第 11 句：sad",
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_11_sad.png",
+      "frame": 148
+    },
+    {
+      "id": "A12_spin",
+      "text": "A12_spinspin · 转圈0:05.43 · 第 163 帧 · 0.5 秒第 12 句：spin",
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_12_spin.png",
+      "frame": 163
+    },
+    {
+      "id": "A13_shiver",
+      "text": "A13_shivershiver · 发抖0:05.93 · 第 178 帧 · 1.0 秒第 13 句：shiver",
+      "file": "docs/quality_comparison/whale_redraw/template_clarity/template_13_shiver.png",
+      "frame": 178
+    }
+  ],
+  "errors": [],
+  "status": "ok"
+}

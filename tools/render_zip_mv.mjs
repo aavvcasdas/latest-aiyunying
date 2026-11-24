@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import chromium from '@sparticuz/chromium';
+import { DEFAULT_CRF } from './capture_quality.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const FFDIR = path.join(REPO, 'node_modules/@remotion/compositor-linux-x64-gnu');
@@ -78,9 +79,8 @@ await renderer.renderMedia({
   chromiumOptions,
   concurrency: Number(process.env.CONCURRENCY || 2),
   frameRange,
-  imageFormat: 'jpeg',
-  jpegQuality: 92,
-  crf: 20,
+  imageFormat: 'png',
+  crf: DEFAULT_CRF,
   audioCodec: 'aac',
   audioBitrate: '192k',
   timeoutInMilliseconds: 300000,

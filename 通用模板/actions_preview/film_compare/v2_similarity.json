@@ -1,0 +1,1211 @@
+{
+  "cells": 92,
+  "v1": {
+    "meanSilhouetteIoU": 0.8679,
+    "meanRgbMae": 43.0259
+  },
+  "v2": {
+    "meanSilhouetteIoU": 0.9202,
+    "meanRgbMae": 29.011
+  },
+  "closerSilhouetteCells": 88,
+  "closerColorCells": 83,
+  "rows": [
+    {
+      "key": "act_whale_idle_0",
+      "v1": {
+        "key": "act_whale_idle_0",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_idle_0",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 22.09
+      }
+    },
+    {
+      "key": "act_whale_idle_1",
+      "v1": {
+        "key": "act_whale_idle_1",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_idle_1",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 22.09
+      }
+    },
+    {
+      "key": "act_whale_idle_2",
+      "v1": {
+        "key": "act_whale_idle_2",
+        "silhouetteIoU": 0.8902,
+        "rgbMae": 39.97
+      },
+      "v2": {
+        "key": "act_whale_idle_2",
+        "silhouetteIoU": 0.9471,
+        "rgbMae": 22.69
+      }
+    },
+    {
+      "key": "act_whale_idle_3",
+      "v1": {
+        "key": "act_whale_idle_3",
+        "silhouetteIoU": 0.8892,
+        "rgbMae": 40.29
+      },
+      "v2": {
+        "key": "act_whale_idle_3",
+        "silhouetteIoU": 0.9475,
+        "rgbMae": 25.61
+      }
+    },
+    {
+      "key": "act_whale_idle_4",
+      "v1": {
+        "key": "act_whale_idle_4",
+        "silhouetteIoU": 0.8892,
+        "rgbMae": 40.29
+      },
+      "v2": {
+        "key": "act_whale_idle_4",
+        "silhouetteIoU": 0.9475,
+        "rgbMae": 25.61
+      }
+    },
+    {
+      "key": "act_whale_idle_5",
+      "v1": {
+        "key": "act_whale_idle_5",
+        "silhouetteIoU": 0.8899,
+        "rgbMae": 40.75
+      },
+      "v2": {
+        "key": "act_whale_idle_5",
+        "silhouetteIoU": 0.9491,
+        "rgbMae": 19.22
+      }
+    },
+    {
+      "key": "act_whale_idle_6",
+      "v1": {
+        "key": "act_whale_idle_6",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_idle_6",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 22.09
+      }
+    },
+    {
+      "key": "act_whale_idle_7",
+      "v1": {
+        "key": "act_whale_idle_7",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_idle_7",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 22.09
+      }
+    },
+    {
+      "key": "act_whale_wave_0",
+      "v1": {
+        "key": "act_whale_wave_0",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_wave_0",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 22.09
+      }
+    },
+    {
+      "key": "act_whale_wave_1",
+      "v1": {
+        "key": "act_whale_wave_1",
+        "silhouetteIoU": 0.8987,
+        "rgbMae": 38.28
+      },
+      "v2": {
+        "key": "act_whale_wave_1",
+        "silhouetteIoU": 0.9353,
+        "rgbMae": 39.39
+      }
+    },
+    {
+      "key": "act_whale_wave_2",
+      "v1": {
+        "key": "act_whale_wave_2",
+        "silhouetteIoU": 0.896,
+        "rgbMae": 38.53
+      },
+      "v2": {
+        "key": "act_whale_wave_2",
+        "silhouetteIoU": 0.9319,
+        "rgbMae": 39.53
+      }
+    },
+    {
+      "key": "act_whale_wave_3",
+      "v1": {
+        "key": "act_whale_wave_3",
+        "silhouetteIoU": 0.8929,
+        "rgbMae": 38.24
+      },
+      "v2": {
+        "key": "act_whale_wave_3",
+        "silhouetteIoU": 0.9281,
+        "rgbMae": 39.55
+      }
+    },
+    {
+      "key": "act_whale_wave_4",
+      "v1": {
+        "key": "act_whale_wave_4",
+        "silhouetteIoU": 0.896,
+        "rgbMae": 38.53
+      },
+      "v2": {
+        "key": "act_whale_wave_4",
+        "silhouetteIoU": 0.9319,
+        "rgbMae": 39.53
+      }
+    },
+    {
+      "key": "act_whale_wave_5",
+      "v1": {
+        "key": "act_whale_wave_5",
+        "silhouetteIoU": 0.8987,
+        "rgbMae": 38.28
+      },
+      "v2": {
+        "key": "act_whale_wave_5",
+        "silhouetteIoU": 0.9353,
+        "rgbMae": 39.39
+      }
+    },
+    {
+      "key": "act_whale_wave_6",
+      "v1": {
+        "key": "act_whale_wave_6",
+        "silhouetteIoU": 0.8945,
+        "rgbMae": 38.5
+      },
+      "v2": {
+        "key": "act_whale_wave_6",
+        "silhouetteIoU": 0.9327,
+        "rgbMae": 39.56
+      }
+    },
+    {
+      "key": "act_whale_wave_7",
+      "v1": {
+        "key": "act_whale_wave_7",
+        "silhouetteIoU": 0.8987,
+        "rgbMae": 38.28
+      },
+      "v2": {
+        "key": "act_whale_wave_7",
+        "silhouetteIoU": 0.9353,
+        "rgbMae": 39.39
+      }
+    },
+    {
+      "key": "act_whale_point_0",
+      "v1": {
+        "key": "act_whale_point_0",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_point_0",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 22.09
+      }
+    },
+    {
+      "key": "act_whale_point_1",
+      "v1": {
+        "key": "act_whale_point_1",
+        "silhouetteIoU": 0.885,
+        "rgbMae": 39.76
+      },
+      "v2": {
+        "key": "act_whale_point_1",
+        "silhouetteIoU": 0.9458,
+        "rgbMae": 22.08
+      }
+    },
+    {
+      "key": "act_whale_point_2",
+      "v1": {
+        "key": "act_whale_point_2",
+        "silhouetteIoU": 0.8734,
+        "rgbMae": 50.27
+      },
+      "v2": {
+        "key": "act_whale_point_2",
+        "silhouetteIoU": 0.9304,
+        "rgbMae": 40.37
+      }
+    },
+    {
+      "key": "act_whale_point_3",
+      "v1": {
+        "key": "act_whale_point_3",
+        "silhouetteIoU": 0.8725,
+        "rgbMae": 50.3
+      },
+      "v2": {
+        "key": "act_whale_point_3",
+        "silhouetteIoU": 0.9306,
+        "rgbMae": 40.67
+      }
+    },
+    {
+      "key": "act_whale_point_4",
+      "v1": {
+        "key": "act_whale_point_4",
+        "silhouetteIoU": 0.8725,
+        "rgbMae": 50.3
+      },
+      "v2": {
+        "key": "act_whale_point_4",
+        "silhouetteIoU": 0.9306,
+        "rgbMae": 40.67
+      }
+    },
+    {
+      "key": "act_whale_point_5",
+      "v1": {
+        "key": "act_whale_point_5",
+        "silhouetteIoU": 0.8731,
+        "rgbMae": 50.02
+      },
+      "v2": {
+        "key": "act_whale_point_5",
+        "silhouetteIoU": 0.9305,
+        "rgbMae": 40.65
+      }
+    },
+    {
+      "key": "act_whale_eat_0",
+      "v1": {
+        "key": "act_whale_eat_0",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_eat_0",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 27.74
+      }
+    },
+    {
+      "key": "act_whale_eat_1",
+      "v1": {
+        "key": "act_whale_eat_1",
+        "silhouetteIoU": 0.8849,
+        "rgbMae": 42.2
+      },
+      "v2": {
+        "key": "act_whale_eat_1",
+        "silhouetteIoU": 0.9457,
+        "rgbMae": 26.86
+      }
+    },
+    {
+      "key": "act_whale_eat_2",
+      "v1": {
+        "key": "act_whale_eat_2",
+        "silhouetteIoU": 0.8843,
+        "rgbMae": 40.28
+      },
+      "v2": {
+        "key": "act_whale_eat_2",
+        "silhouetteIoU": 0.9581,
+        "rgbMae": 23.68
+      }
+    },
+    {
+      "key": "act_whale_eat_3",
+      "v1": {
+        "key": "act_whale_eat_3",
+        "silhouetteIoU": 0.8849,
+        "rgbMae": 42.2
+      },
+      "v2": {
+        "key": "act_whale_eat_3",
+        "silhouetteIoU": 0.9457,
+        "rgbMae": 26.86
+      }
+    },
+    {
+      "key": "act_whale_eat_4",
+      "v1": {
+        "key": "act_whale_eat_4",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_eat_4",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 27.74
+      }
+    },
+    {
+      "key": "act_whale_eat_5",
+      "v1": {
+        "key": "act_whale_eat_5",
+        "silhouetteIoU": 0.8849,
+        "rgbMae": 42.2
+      },
+      "v2": {
+        "key": "act_whale_eat_5",
+        "silhouetteIoU": 0.9457,
+        "rgbMae": 26.86
+      }
+    },
+    {
+      "key": "act_whale_eat_6",
+      "v1": {
+        "key": "act_whale_eat_6",
+        "silhouetteIoU": 0.8843,
+        "rgbMae": 40.28
+      },
+      "v2": {
+        "key": "act_whale_eat_6",
+        "silhouetteIoU": 0.9581,
+        "rgbMae": 23.68
+      }
+    },
+    {
+      "key": "act_whale_eat_7",
+      "v1": {
+        "key": "act_whale_eat_7",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_eat_7",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 27.74
+      }
+    },
+    {
+      "key": "act_whale_hop_0",
+      "v1": {
+        "key": "act_whale_hop_0",
+        "silhouetteIoU": 0.8848,
+        "rgbMae": 40.06
+      },
+      "v2": {
+        "key": "act_whale_hop_0",
+        "silhouetteIoU": 0.9453,
+        "rgbMae": 21.71
+      }
+    },
+    {
+      "key": "act_whale_hop_1",
+      "v1": {
+        "key": "act_whale_hop_1",
+        "silhouetteIoU": 0.889,
+        "rgbMae": 39.02
+      },
+      "v2": {
+        "key": "act_whale_hop_1",
+        "silhouetteIoU": 0.9474,
+        "rgbMae": 21.58
+      }
+    },
+    {
+      "key": "act_whale_hop_2",
+      "v1": {
+        "key": "act_whale_hop_2",
+        "silhouetteIoU": 0.8851,
+        "rgbMae": 39.21
+      },
+      "v2": {
+        "key": "act_whale_hop_2",
+        "silhouetteIoU": 0.9431,
+        "rgbMae": 21.77
+      }
+    },
+    {
+      "key": "act_whale_hop_3",
+      "v1": {
+        "key": "act_whale_hop_3",
+        "silhouetteIoU": 0.8921,
+        "rgbMae": 40.3
+      },
+      "v2": {
+        "key": "act_whale_hop_3",
+        "silhouetteIoU": 0.9495,
+        "rgbMae": 19.07
+      }
+    },
+    {
+      "key": "act_whale_hop_4",
+      "v1": {
+        "key": "act_whale_hop_4",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_hop_4",
+        "silhouetteIoU": 0.9484,
+        "rgbMae": 22.11
+      }
+    },
+    {
+      "key": "act_whale_hop_5",
+      "v1": {
+        "key": "act_whale_hop_5",
+        "silhouetteIoU": 0.8834,
+        "rgbMae": 38.6
+      },
+      "v2": {
+        "key": "act_whale_hop_5",
+        "silhouetteIoU": 0.941,
+        "rgbMae": 22.13
+      }
+    },
+    {
+      "key": "act_whale_hop_6",
+      "v1": {
+        "key": "act_whale_hop_6",
+        "silhouetteIoU": 0.8866,
+        "rgbMae": 40.49
+      },
+      "v2": {
+        "key": "act_whale_hop_6",
+        "silhouetteIoU": 0.9468,
+        "rgbMae": 21.93
+      }
+    },
+    {
+      "key": "act_whale_hop_7",
+      "v1": {
+        "key": "act_whale_hop_7",
+        "silhouetteIoU": 0.8849,
+        "rgbMae": 40.7
+      },
+      "v2": {
+        "key": "act_whale_hop_7",
+        "silhouetteIoU": 0.9464,
+        "rgbMae": 21.58
+      }
+    },
+    {
+      "key": "act_whale_nod_0",
+      "v1": {
+        "key": "act_whale_nod_0",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_nod_0",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 22.09
+      }
+    },
+    {
+      "key": "act_whale_nod_1",
+      "v1": {
+        "key": "act_whale_nod_1",
+        "silhouetteIoU": 0.8899,
+        "rgbMae": 40.06
+      },
+      "v2": {
+        "key": "act_whale_nod_1",
+        "silhouetteIoU": 0.9521,
+        "rgbMae": 19.15
+      }
+    },
+    {
+      "key": "act_whale_nod_2",
+      "v1": {
+        "key": "act_whale_nod_2",
+        "silhouetteIoU": 0.8885,
+        "rgbMae": 41.68
+      },
+      "v2": {
+        "key": "act_whale_nod_2",
+        "silhouetteIoU": 0.9508,
+        "rgbMae": 21.88
+      }
+    },
+    {
+      "key": "act_whale_nod_3",
+      "v1": {
+        "key": "act_whale_nod_3",
+        "silhouetteIoU": 0.8868,
+        "rgbMae": 37.86
+      },
+      "v2": {
+        "key": "act_whale_nod_3",
+        "silhouetteIoU": 0.9564,
+        "rgbMae": 20.39
+      }
+    },
+    {
+      "key": "act_whale_nod_4",
+      "v1": {
+        "key": "act_whale_nod_4",
+        "silhouetteIoU": 0.8903,
+        "rgbMae": 39.58
+      },
+      "v2": {
+        "key": "act_whale_nod_4",
+        "silhouetteIoU": 0.9511,
+        "rgbMae": 20.26
+      }
+    },
+    {
+      "key": "act_whale_nod_5",
+      "v1": {
+        "key": "act_whale_nod_5",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_nod_5",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 22.09
+      }
+    },
+    {
+      "key": "act_whale_shake_0",
+      "v1": {
+        "key": "act_whale_shake_0",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_shake_0",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 22.09
+      }
+    },
+    {
+      "key": "act_whale_shake_1",
+      "v1": {
+        "key": "act_whale_shake_1",
+        "silhouetteIoU": 0.8871,
+        "rgbMae": 39.69
+      },
+      "v2": {
+        "key": "act_whale_shake_1",
+        "silhouetteIoU": 0.943,
+        "rgbMae": 27.14
+      }
+    },
+    {
+      "key": "act_whale_shake_2",
+      "v1": {
+        "key": "act_whale_shake_2",
+        "silhouetteIoU": 0.8888,
+        "rgbMae": 39.69
+      },
+      "v2": {
+        "key": "act_whale_shake_2",
+        "silhouetteIoU": 0.941,
+        "rgbMae": 29.63
+      }
+    },
+    {
+      "key": "act_whale_shake_3",
+      "v1": {
+        "key": "act_whale_shake_3",
+        "silhouetteIoU": 0.8857,
+        "rgbMae": 39.44
+      },
+      "v2": {
+        "key": "act_whale_shake_3",
+        "silhouetteIoU": 0.9465,
+        "rgbMae": 23.64
+      }
+    },
+    {
+      "key": "act_whale_shake_4",
+      "v1": {
+        "key": "act_whale_shake_4",
+        "silhouetteIoU": 0.8884,
+        "rgbMae": 39.57
+      },
+      "v2": {
+        "key": "act_whale_shake_4",
+        "silhouetteIoU": 0.9466,
+        "rgbMae": 24.84
+      }
+    },
+    {
+      "key": "act_whale_shake_5",
+      "v1": {
+        "key": "act_whale_shake_5",
+        "silhouetteIoU": 0.8885,
+        "rgbMae": 39.72
+      },
+      "v2": {
+        "key": "act_whale_shake_5",
+        "silhouetteIoU": 0.9482,
+        "rgbMae": 28.93
+      }
+    },
+    {
+      "key": "act_whale_shake_6",
+      "v1": {
+        "key": "act_whale_shake_6",
+        "silhouetteIoU": 0.8872,
+        "rgbMae": 39.56
+      },
+      "v2": {
+        "key": "act_whale_shake_6",
+        "silhouetteIoU": 0.9484,
+        "rgbMae": 26.59
+      }
+    },
+    {
+      "key": "act_whale_shake_7",
+      "v1": {
+        "key": "act_whale_shake_7",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_shake_7",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 22.09
+      }
+    },
+    {
+      "key": "act_whale_bow_0",
+      "v1": {
+        "key": "act_whale_bow_0",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_bow_0",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 22.09
+      }
+    },
+    {
+      "key": "act_whale_bow_1",
+      "v1": {
+        "key": "act_whale_bow_1",
+        "silhouetteIoU": 0.8948,
+        "rgbMae": 39.87
+      },
+      "v2": {
+        "key": "act_whale_bow_1",
+        "silhouetteIoU": 0.9563,
+        "rgbMae": 21.99
+      }
+    },
+    {
+      "key": "act_whale_bow_2",
+      "v1": {
+        "key": "act_whale_bow_2",
+        "silhouetteIoU": 0.8848,
+        "rgbMae": 39.59
+      },
+      "v2": {
+        "key": "act_whale_bow_2",
+        "silhouetteIoU": 0.947,
+        "rgbMae": 17.97
+      }
+    },
+    {
+      "key": "act_whale_bow_3",
+      "v1": {
+        "key": "act_whale_bow_3",
+        "silhouetteIoU": 0.883,
+        "rgbMae": 41.32
+      },
+      "v2": {
+        "key": "act_whale_bow_3",
+        "silhouetteIoU": 0.944,
+        "rgbMae": 19.41
+      }
+    },
+    {
+      "key": "act_whale_bow_4",
+      "v1": {
+        "key": "act_whale_bow_4",
+        "silhouetteIoU": 0.888,
+        "rgbMae": 41.43
+      },
+      "v2": {
+        "key": "act_whale_bow_4",
+        "silhouetteIoU": 0.9481,
+        "rgbMae": 19.14
+      }
+    },
+    {
+      "key": "act_whale_bow_5",
+      "v1": {
+        "key": "act_whale_bow_5",
+        "silhouetteIoU": 0.888,
+        "rgbMae": 41.43
+      },
+      "v2": {
+        "key": "act_whale_bow_5",
+        "silhouetteIoU": 0.9481,
+        "rgbMae": 19.14
+      }
+    },
+    {
+      "key": "act_whale_bow_6",
+      "v1": {
+        "key": "act_whale_bow_6",
+        "silhouetteIoU": 0.8848,
+        "rgbMae": 39.59
+      },
+      "v2": {
+        "key": "act_whale_bow_6",
+        "silhouetteIoU": 0.947,
+        "rgbMae": 17.97
+      }
+    },
+    {
+      "key": "act_whale_bow_7",
+      "v1": {
+        "key": "act_whale_bow_7",
+        "silhouetteIoU": 0.8871,
+        "rgbMae": 38.46
+      },
+      "v2": {
+        "key": "act_whale_bow_7",
+        "silhouetteIoU": 0.9471,
+        "rgbMae": 17.46
+      }
+    },
+    {
+      "key": "act_whale_sway_0",
+      "v1": {
+        "key": "act_whale_sway_0",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_sway_0",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 22.09
+      }
+    },
+    {
+      "key": "act_whale_sway_1",
+      "v1": {
+        "key": "act_whale_sway_1",
+        "silhouetteIoU": 0.8898,
+        "rgbMae": 39.19
+      },
+      "v2": {
+        "key": "act_whale_sway_1",
+        "silhouetteIoU": 0.9454,
+        "rgbMae": 25.4
+      }
+    },
+    {
+      "key": "act_whale_sway_2",
+      "v1": {
+        "key": "act_whale_sway_2",
+        "silhouetteIoU": 0.885,
+        "rgbMae": 39.37
+      },
+      "v2": {
+        "key": "act_whale_sway_2",
+        "silhouetteIoU": 0.9433,
+        "rgbMae": 24.86
+      }
+    },
+    {
+      "key": "act_whale_sway_3",
+      "v1": {
+        "key": "act_whale_sway_3",
+        "silhouetteIoU": 0.8898,
+        "rgbMae": 39.19
+      },
+      "v2": {
+        "key": "act_whale_sway_3",
+        "silhouetteIoU": 0.9454,
+        "rgbMae": 25.4
+      }
+    },
+    {
+      "key": "act_whale_sway_4",
+      "v1": {
+        "key": "act_whale_sway_4",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_sway_4",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 22.09
+      }
+    },
+    {
+      "key": "act_whale_sway_5",
+      "v1": {
+        "key": "act_whale_sway_5",
+        "silhouetteIoU": 0.8887,
+        "rgbMae": 38.84
+      },
+      "v2": {
+        "key": "act_whale_sway_5",
+        "silhouetteIoU": 0.9414,
+        "rgbMae": 25.77
+      }
+    },
+    {
+      "key": "act_whale_sway_6",
+      "v1": {
+        "key": "act_whale_sway_6",
+        "silhouetteIoU": 0.8849,
+        "rgbMae": 39.51
+      },
+      "v2": {
+        "key": "act_whale_sway_6",
+        "silhouetteIoU": 0.9344,
+        "rgbMae": 26.31
+      }
+    },
+    {
+      "key": "act_whale_sway_7",
+      "v1": {
+        "key": "act_whale_sway_7",
+        "silhouetteIoU": 0.8887,
+        "rgbMae": 38.84
+      },
+      "v2": {
+        "key": "act_whale_sway_7",
+        "silhouetteIoU": 0.9414,
+        "rgbMae": 25.77
+      }
+    },
+    {
+      "key": "act_whale_surprise_0",
+      "v1": {
+        "key": "act_whale_surprise_0",
+        "silhouetteIoU": 0.8837,
+        "rgbMae": 40.79
+      },
+      "v2": {
+        "key": "act_whale_surprise_0",
+        "silhouetteIoU": 0.9458,
+        "rgbMae": 23.22
+      }
+    },
+    {
+      "key": "act_whale_surprise_1",
+      "v1": {
+        "key": "act_whale_surprise_1",
+        "silhouetteIoU": 0.8884,
+        "rgbMae": 38.85
+      },
+      "v2": {
+        "key": "act_whale_surprise_1",
+        "silhouetteIoU": 0.945,
+        "rgbMae": 21.87
+      }
+    },
+    {
+      "key": "act_whale_surprise_2",
+      "v1": {
+        "key": "act_whale_surprise_2",
+        "silhouetteIoU": 0.8884,
+        "rgbMae": 39.32
+      },
+      "v2": {
+        "key": "act_whale_surprise_2",
+        "silhouetteIoU": 0.9451,
+        "rgbMae": 21.65
+      }
+    },
+    {
+      "key": "act_whale_surprise_3",
+      "v1": {
+        "key": "act_whale_surprise_3",
+        "silhouetteIoU": 0.8858,
+        "rgbMae": 38.42
+      },
+      "v2": {
+        "key": "act_whale_surprise_3",
+        "silhouetteIoU": 0.9426,
+        "rgbMae": 21.88
+      }
+    },
+    {
+      "key": "act_whale_surprise_4",
+      "v1": {
+        "key": "act_whale_surprise_4",
+        "silhouetteIoU": 0.8851,
+        "rgbMae": 39.21
+      },
+      "v2": {
+        "key": "act_whale_surprise_4",
+        "silhouetteIoU": 0.9456,
+        "rgbMae": 21.75
+      }
+    },
+    {
+      "key": "act_whale_surprise_5",
+      "v1": {
+        "key": "act_whale_surprise_5",
+        "silhouetteIoU": 0.8851,
+        "rgbMae": 39.21
+      },
+      "v2": {
+        "key": "act_whale_surprise_5",
+        "silhouetteIoU": 0.9456,
+        "rgbMae": 21.75
+      }
+    },
+    {
+      "key": "act_whale_sad_0",
+      "v1": {
+        "key": "act_whale_sad_0",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_sad_0",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 22.09
+      }
+    },
+    {
+      "key": "act_whale_sad_1",
+      "v1": {
+        "key": "act_whale_sad_1",
+        "silhouetteIoU": 0.8863,
+        "rgbMae": 39.79
+      },
+      "v2": {
+        "key": "act_whale_sad_1",
+        "silhouetteIoU": 0.9554,
+        "rgbMae": 19.35
+      }
+    },
+    {
+      "key": "act_whale_sad_2",
+      "v1": {
+        "key": "act_whale_sad_2",
+        "silhouetteIoU": 0.8866,
+        "rgbMae": 40.47
+      },
+      "v2": {
+        "key": "act_whale_sad_2",
+        "silhouetteIoU": 0.9547,
+        "rgbMae": 18.33
+      }
+    },
+    {
+      "key": "act_whale_sad_3",
+      "v1": {
+        "key": "act_whale_sad_3",
+        "silhouetteIoU": 0.885,
+        "rgbMae": 40.51
+      },
+      "v2": {
+        "key": "act_whale_sad_3",
+        "silhouetteIoU": 0.9497,
+        "rgbMae": 21.09
+      }
+    },
+    {
+      "key": "act_whale_sad_4",
+      "v1": {
+        "key": "act_whale_sad_4",
+        "silhouetteIoU": 0.884,
+        "rgbMae": 41.79
+      },
+      "v2": {
+        "key": "act_whale_sad_4",
+        "silhouetteIoU": 0.9391,
+        "rgbMae": 23.31
+      }
+    },
+    {
+      "key": "act_whale_sad_5",
+      "v1": {
+        "key": "act_whale_sad_5",
+        "silhouetteIoU": 0.884,
+        "rgbMae": 41.79
+      },
+      "v2": {
+        "key": "act_whale_sad_5",
+        "silhouetteIoU": 0.9391,
+        "rgbMae": 23.31
+      }
+    },
+    {
+      "key": "act_whale_spin_0",
+      "v1": {
+        "key": "act_whale_spin_0",
+        "silhouetteIoU": 0.8923,
+        "rgbMae": 39.45
+      },
+      "v2": {
+        "key": "act_whale_spin_0",
+        "silhouetteIoU": 0.9509,
+        "rgbMae": 22.09
+      }
+    },
+    {
+      "key": "act_whale_spin_1",
+      "v1": {
+        "key": "act_whale_spin_1",
+        "silhouetteIoU": 0.9259,
+        "rgbMae": 34.85
+      },
+      "v2": {
+        "key": "act_whale_spin_1",
+        "silhouetteIoU": 0.7518,
+        "rgbMae": 52.5
+      }
+    },
+    {
+      "key": "act_whale_spin_2",
+      "v1": {
+        "key": "act_whale_spin_2",
+        "silhouetteIoU": 0.3541,
+        "rgbMae": 102.42
+      },
+      "v2": {
+        "key": "act_whale_spin_2",
+        "silhouetteIoU": 0.4401,
+        "rgbMae": 87.73
+      }
+    },
+    {
+      "key": "act_whale_spin_3",
+      "v1": {
+        "key": "act_whale_spin_3",
+        "silhouetteIoU": 0.6964,
+        "rgbMae": 82.92
+      },
+      "v2": {
+        "key": "act_whale_spin_3",
+        "silhouetteIoU": 0.6814,
+        "rgbMae": 81.93
+      }
+    },
+    {
+      "key": "act_whale_spin_4",
+      "v1": {
+        "key": "act_whale_spin_4",
+        "silhouetteIoU": 0.5523,
+        "rgbMae": 84.24
+      },
+      "v2": {
+        "key": "act_whale_spin_4",
+        "silhouetteIoU": 0.613,
+        "rgbMae": 83.98
+      }
+    },
+    {
+      "key": "act_whale_spin_5",
+      "v1": {
+        "key": "act_whale_spin_5",
+        "silhouetteIoU": 0.6394,
+        "rgbMae": 85.99
+      },
+      "v2": {
+        "key": "act_whale_spin_5",
+        "silhouetteIoU": 0.7001,
+        "rgbMae": 79.6
+      }
+    },
+    {
+      "key": "act_whale_spin_6",
+      "v1": {
+        "key": "act_whale_spin_6",
+        "silhouetteIoU": 0.4975,
+        "rgbMae": 82.08
+      },
+      "v2": {
+        "key": "act_whale_spin_6",
+        "silhouetteIoU": 0.3804,
+        "rgbMae": 84.09
+      }
+    },
+    {
+      "key": "act_whale_spin_7",
+      "v1": {
+        "key": "act_whale_spin_7",
+        "silhouetteIoU": 0.6936,
+        "rgbMae": 64.55
+      },
+      "v2": {
+        "key": "act_whale_spin_7",
+        "silhouetteIoU": 0.6615,
+        "rgbMae": 62.29
+      }
+    },
+    {
+      "key": "act_whale_shiver_0",
+      "v1": {
+        "key": "act_whale_shiver_0",
+        "silhouetteIoU": 0.8842,
+        "rgbMae": 41.01
+      },
+      "v2": {
+        "key": "act_whale_shiver_0",
+        "silhouetteIoU": 0.9597,
+        "rgbMae": 25.53
+      }
+    },
+    {
+      "key": "act_whale_shiver_1",
+      "v1": {
+        "key": "act_whale_shiver_1",
+        "silhouetteIoU": 0.8846,
+        "rgbMae": 40.0
+      },
+      "v2": {
+        "key": "act_whale_shiver_1",
+        "silhouetteIoU": 0.9505,
+        "rgbMae": 25.49
+      }
+    },
+    {
+      "key": "act_whale_shiver_2",
+      "v1": {
+        "key": "act_whale_shiver_2",
+        "silhouetteIoU": 0.8842,
+        "rgbMae": 41.01
+      },
+      "v2": {
+        "key": "act_whale_shiver_2",
+        "silhouetteIoU": 0.9597,
+        "rgbMae": 25.53
+      }
+    },
+    {
+      "key": "act_whale_shiver_3",
+      "v1": {
+        "key": "act_whale_shiver_3",
+        "silhouetteIoU": 0.8846,
+        "rgbMae": 40.0
+      },
+      "v2": {
+        "key": "act_whale_shiver_3",
+        "silhouetteIoU": 0.9505,
+        "rgbMae": 25.49
+      }
+    }
+  ]
+}

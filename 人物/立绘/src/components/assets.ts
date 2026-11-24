@@ -48,8 +48,13 @@ export function loadAssets(onProgress?: (done: number, total: number) => void): 
         tachie[id] = buildMips(im, CAST[id].w, CAST[id].h, makeCanvas);
         tick();
       }),
+      // 背景是可选素材：仓库没有新增背景生图，缺图时 scene.drawBg 会画程序渐变。
       ...(["meadow", "night"] as const).map(async (name) => {
-        images[`bg_${name}`] = await loadImage(`/bg/${name}.jpg`);
+        try {
+          images[`bg_${name}`] = await loadImage(`/bg/${name}.jpg`);
+        } catch {
+          /* 缺背景不拦着预览 / 逐帧导出 */
+        }
         tick();
       }),
       // 字体加载不上不拦着出画面，退回系统黑体

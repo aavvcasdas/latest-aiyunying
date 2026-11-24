@@ -20,12 +20,12 @@ npx vite                                       # 浏览器预览：空格播放�
 # 仓库根目录
 node tools/shoot_vite_mv.mjs --dist 番外MV/超级棒棒糖_童年治愈3D/源码/dist --out /tmp/frames_bbt --dur 72.3766 --fps 30 --w 1280 --h 720 --query clean
 node tools/shoot_vite_mv.mjs --dist 番外MV/超级棒棒糖_童年治愈3D/源码/dist --out /tmp/still_bbt --still 50.2 --w 1280 --h 720   # 只看一张构图
-python3 tools/encode_frames.py --frames /tmp/frames_bbt --audio 超级棒棒糖.WAV --out 番外MV/超级棒棒糖_童年治愈3D/成片/超级棒棒糖_童年治愈3D.mp4 --crf 21 --maxrate 3200k
+python3 tools/encode_frames.py --frames /tmp/frames_bbt --audio 超级棒棒糖.WAV --out 番外MV/超级棒棒糖_童年治愈3D/成片/超级棒棒糖_童年治愈3D.mp4
 ```
 
-- 页面自带 `window.__mv.render(t, clean, w, h)`（直接返回画布 JPEG）与 `window.__seek(t)`，出帧不用加钩子。
+- 页面自带 `window.__mv.render(t, clean, w, h)`（直接返回 lossless PNG dataURL）与 `window.__seek(t)`，出帧不用加钩子。
 - 音轨从 0 秒对齐混入，不加增益；片尾 71.35–72.30 秒画面渐白，音乐自然收尾。
-- 中间帧（约 2171 张 JPEG）放 `/tmp`，不进仓库；成片目录叫 `成片/`。本片按用户要求将 MP4 入库（已用 `git add -f`），其他成片仍按 `媒体说明.md` 处理。
+- 中间帧（约 2171 张 PNG）放 `/tmp`，不进仓库；编码默认 CRF 16 / 12000k，成片目录叫 `成片/`。本片按用户要求将 MP4 入库（已用 `git add -f`），其他成片仍按 `媒体说明.md` 处理。
 
 ## 三、文件
 
@@ -50,7 +50,7 @@ python3 tools/encode_frames.py --frames /tmp/frames_bbt --audio 超级棒棒糖.
 - 和《童话镇》只共享做法（three.js 搭景 + 像素角色当纸片人 + 逐帧函数只读时间），不共享画面元素：没有彩虹河、城堡、童话书、童话人物形象。
 - 画风是「软糖黏土」：全部圆角体块（圆角方块、胶囊、球、圆环），粉桃 / 薄荷 / 奶油黄 / 薰衣草的低饱和糖果色，PBR 中性色调映射，柔和阴影 + 轻微泛光 + 暗角，像放在桌上的玩具微缩景。
 - 背景全部是程序化 3D：渐变天空球、程序化星空、程序生成的棉花糖树和积木，没有任何生成的背景图。
-- 角色只用图集里的 Q 版像素造型（人物/atlas.png，逐字节一致），NearestFilter 硬边；超级棒棒糖是程序化 3D 道具（螺旋贴图由 Canvas 现画），没有新增生图。
+- 角色只用图集里的 Q 版像素造型（人物/atlas.png，逐字节一致），NearestFilter；本工程没有新增生图。2026-11-24 上游唯一授权的本鲸重画 / `master_soft` 1px 边缘 / 最终手臂与干饭修正只改母版本鲸格，本工程仅同步镜像；超级棒棒糖是程序化 3D 道具（螺旋贴图由 Canvas 现画）。
 - 画面零水印、零角标、零「AI 生成」贴纸；不出现任何运营数字；歌词条只用模板字体（站酷快乐体）里有的常用汉字。
 
 ## 五、歌词深读
@@ -167,7 +167,7 @@ python3 tools/encode_frames.py --frames /tmp/frames_bbt --audio 超级棒棒糖.
 
 - 零水印、零角标、零「AI 生成」贴纸；不出现粉丝数、播放量、进度条、数据图表。
 - 角色只用图集里的 Q 版像素造型，七头身立绘没用；缺动作直接报错（`Actor.do` 找不到动作就抛错，不顶替）。
-- **没有新增生图**：背景全部是程序化 3D；超级棒棒糖、灯、积木、月亮都是代码现搭的体块，螺旋糖纹由 Canvas 现画。人物提示词只作参考，没有出图。
+- **本工程没有新增生图**：背景全部是程序化 3D；超级棒棒糖、灯、积木、月亮都是代码现搭的体块，螺旋糖纹由 Canvas 现画。人物提示词只作参考，没有出图。上游母版在 2026-11-24 有一次用户明确授权的本鲸重画 / `master_soft` / 最终手臂与干饭修正例外，详见 `docs/quality_comparison/whale_redraw/whale_redraw_report.md`；本工程只同步已登记哈希的图集镜像。
 - 不画假手：道具和糖都放在手边略靠前，不画手指。
 - 画面上的字只有片名和歌词，全部是常用汉字；用 fontTools 查过站酷快乐体的字表，24 句歌词与片名逐字都在。
 - 歌词条上没有数字。

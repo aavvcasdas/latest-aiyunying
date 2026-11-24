@@ -12,37 +12,50 @@
 // 为什么是「每帧重画一张 Canvas」而不是几十个网格：立绘的形变本来就是 2D 画布上的横带积分，
 // `人物/立绘/src/mv/rig.ts` 里那份 drawTachie 是唯一出处，这里直接调它，两边长得一模一样，也不用维护第二套公式。
 import * as THREE from 'three';
+import anchorsJson from './assets/tachie_anchors.json';
 import { drawTachie } from '../../人物/立绘/src/mv/rig';
-import { poseOf, ACTIONS } from '../../人物/立绘/src/mv/actions';
+import { poseOf, poseOfBlend, ACTIONS } from '../../人物/立绘/src/mv/actions';
 import type { Actor } from './actors';
+import type { Frame } from './core';
 import { imageOf } from './props';
 
 export type TachieId = 'whale' | 'gpt' | 'claude' | 'gemini' | 'kimi' | 'doubao' | 'qwen' | 'zai';
 
-export interface TachieMeta {
-  id: TachieId;
+export interface TachieAnchor {
   name: string;
-  /** 打包后的图片 URL（webpack / Vite 处理过的 import） */
-  url: string;
   /** 原图像素尺寸 */
   w: number;
   h: number;
-  /** 骨架三参数：下巴占全高比例、脚底中心、头部中心（量自立绘原图，见 人物/立绘/src/mv/cast.ts） */
+  /** 骨架三参数：下巴占全高比例、脚底中心、头部中心 */
   neck: number;
   cx: number;
   hx: number;
+  /** 单张全身图的路径；独立五官 / 手部图层目前都为空 */
+  base: string;
+  layers: { eyes: string | null; mouth: string | null; hands: string | null };
 }
 
-/** 八位角色的长大版。w/h/neck/cx/hx 与 人物/立绘/src/mv/cast.ts 保持一致，换图两边一起改 */
+export interface TachieMeta extends TachieAnchor {
+  id: TachieId;
+  /** 打包后的图片 URL（webpack / Vite 处理过的 import） */
+  url: string;
+  layerStatus: 'single-layer' | 'layered';
+}
+
+type AnchorJson = { layerStatus: 'single-layer' | 'layered'; anchors: Record<TachieId, TachieAnchor> };
+const ANCHORS = (anchorsJson as AnchorJson).anchors;
+const LAYER_STATUS = (anchorsJson as AnchorJson).layerStatus;
+
+/** 八位角色的长大版。尺寸与骨架参数只读 assets/tachie_anchors.json，网页立绘与模板共用一份 */
 export const TACHIE: Record<TachieId, TachieMeta> = {
-  whale: { id: 'whale', name: '本鲸', url: '', w: 721, h: 1280, neck: 0.2, cx: 0.411, hx: 0.406 },
-  gpt: { id: 'gpt', name: '龙娘', url: '', w: 581, h: 1280, neck: 0.2, cx: 0.458, hx: 0.468 },
-  claude: { id: 'claude', name: '小克', url: '', w: 657, h: 1280, neck: 0.195, cx: 0.5, hx: 0.536 },
-  gemini: { id: 'gemini', name: '猫', url: '', w: 502, h: 1280, neck: 0.21, cx: 0.419, hx: 0.395 },
-  kimi: { id: 'kimi', name: 'Kimi', url: '', w: 446, h: 1280, neck: 0.18, cx: 0.423, hx: 0.477 },
-  doubao: { id: 'doubao', name: '豆包', url: '', w: 576, h: 1280, neck: 0.185, cx: 0.471, hx: 0.468 },
-  qwen: { id: 'qwen', name: '千问', url: '', w: 489, h: 1280, neck: 0.195, cx: 0.463, hx: 0.453 },
-  zai: { id: 'zai', name: '狐狸', url: '', w: 491, h: 1280, neck: 0.205, cx: 0.525, hx: 0.525 },
+  whale: { id: 'whale', url: '', layerStatus: LAYER_STATUS, ...ANCHORS.whale },
+  gpt: { id: 'gpt', url: '', layerStatus: LAYER_STATUS, ...ANCHORS.gpt },
+  claude: { id: 'claude', url: '', layerStatus: LAYER_STATUS, ...ANCHORS.claude },
+  gemini: { id: 'gemini', url: '', layerStatus: LAYER_STATUS, ...ANCHORS.gemini },
+  kimi: { id: 'kimi', url: '', layerStatus: LAYER_STATUS, ...ANCHORS.kimi },
+  doubao: { id: 'doubao', url: '', layerStatus: LAYER_STATUS, ...ANCHORS.doubao },
+  qwen: { id: 'qwen', url: '', layerStatus: LAYER_STATUS, ...ANCHORS.qwen },
+  zai: { id: 'zai', url: '', layerStatus: LAYER_STATUS, ...ANCHORS.zai },
 };
 
 /**
@@ -106,15 +119,38 @@ export class Tachie {
 
   /**
    * 换成某个动作的第 t 秒（动作名见 人物/立绘/src/mv/actions.ts 的 ACTIONS）。
-   * T 是全片时间，只用来叠呼吸与头部微动——同一帧永远画出同一张，不存状态。
+   * t 是动作局部时间，T 是全片时间只用来叠呼吸，beat 是拍位；三者都不读全局状态。
    */
-  act(action: string, t: number, T = 0): this {
+  act(action: string, t: number, T = 0, beat = t * 2): this {
     if (!ACTIONS[action]) throw new Error(`[tachie] 没有动作「${action}」（可用：${Object.keys(ACTIONS).join('、')}）`);
     this._action = action; this._t = t;   // 状态先写全（哪怕这一帧看不见）
-    const key = `${action}|${t.toFixed(3)}|${T.toFixed(3)}|${this._flip ? 1 : 0}`;
+    const key = `${action}|${t.toFixed(3)}|${T.toFixed(3)}|${beat.toFixed(3)}|${this._flip ? 1 : 0}`;
     if (key === this.painted || !(this._alpha > 0.02)) return this;
     this.painted = key;
-    const pose = poseOf(action, t, t * 2, T, this.meta.cx * 9);
+    const pose = poseOf(action, t, beat, T, this.meta.cx * 9);
+    this.ctx.clearRect(0, 0, this.meta.w, this.meta.h);
+    drawTachie(this.ctx, { img: this.img, w: this.meta.w, h: this.meta.h }, this.meta as never, pose, this.meta.w / 2, this.meta.h, this.meta.h, this._flip);
+    this.tex.needsUpdate = true;
+    return this;
+  }
+
+  /**
+   * 推荐的成片时钟 API：从 Frame 取动作局部时间 f.t、全片时间 f.T 和实测拍位 f.bt，
+   * 不再把全片秒数误当成动作秒数。t0 可以让动作从镜头内某个时间点起算。
+   */
+  actFrame(action: string, f: Frame, t0 = 0): this {
+    return this.act(action, f.t - t0, f.T, f.bt.idx + f.bt.phase);
+  }
+
+  /** 两个动作交叉淡入：w=0 是 a，w=1 是 b。仍是纯函数，倒放 / 跳帧一致。 */
+  blend(a: string, ta: number, b: string, tb: number, w: number, T = 0, beat = Math.max(ta, tb) * 2): this {
+    if (!ACTIONS[a] || !ACTIONS[b]) throw new Error(`[tachie] 混合动作不存在：「${a}」或「${b}」`);
+    const k = Math.max(0, Math.min(1, w));
+    this._action = `${a}+${b}@${k.toFixed(3)}`; this._t = ta + (tb - ta) * k;
+    const key = `${a}|${ta.toFixed(3)}|${b}|${tb.toFixed(3)}|${k.toFixed(3)}|${T.toFixed(3)}|${beat.toFixed(3)}|${this._flip ? 1 : 0}`;
+    if (key === this.painted || !(this._alpha > 0.02)) return this;
+    this.painted = key;
+    const pose = poseOfBlend(a, ta, b, tb, k, beat, T, this.meta.cx * 9);
     this.ctx.clearRect(0, 0, this.meta.w, this.meta.h);
     drawTachie(this.ctx, { img: this.img, w: this.meta.w, h: this.meta.h }, this.meta as never, pose, this.meta.w / 2, this.meta.h, this.meta.h, this._flip);
     this.tex.needsUpdate = true;

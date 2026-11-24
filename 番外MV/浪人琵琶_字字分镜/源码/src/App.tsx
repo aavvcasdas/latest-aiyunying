@@ -28,7 +28,7 @@ export default function App() {
     Promise.all([img.decode(), face.load().then((f) => document.fonts.add(f))]).then(() => {
       if (!alive) return;
       setAtlas(img);
-      // 与仓库 tools/shoot_vite_mv.mjs 对接：window.__mv.render(t, clean, width) 直接返回画面 JPEG
+      // 与仓库 tools/shoot_vite_mv.mjs 对接：window.__mv.render(t, clean, width) 直接返回画面 PNG
       const off = document.createElement("canvas");
       (window as unknown as { __mv: unknown }).__mv = {
         duration: DURATION,
@@ -41,7 +41,7 @@ export default function App() {
           g.scale(w / W, w / W);
           render(g, t);
           g.restore();
-          return off.toDataURL("image/jpeg", 0.92);
+          return off.toDataURL("image/png");
         },
         seek: (t: number) => draw(t),
         pack: async () => {

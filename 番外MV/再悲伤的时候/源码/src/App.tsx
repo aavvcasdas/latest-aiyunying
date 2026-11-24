@@ -39,7 +39,7 @@ export default function App() {
         const [mv] = await Promise.all([MV.create(canvasRef.current!, setProgress), player.load()]);
         mvRef.current = mv; setReady(true);
         player.onEnded = () => { setPlaying(false); setEnded(true); dirty.current = true; };
-        (window as unknown as Record<string, unknown>).__mv = { render: (t: number) => { mv.render(t); return canvasRef.current!.toDataURL('image/jpeg', 0.92); }, duration: DURATION, lines: LINES };
+        (window as unknown as Record<string, unknown>).__mv = { render: (t: number) => { mv.render(t); return canvasRef.current!.toDataURL('image/png'); }, duration: DURATION, lines: LINES };
         const loop = (now: number) => {
           const t = Math.min(player.time(), DURATION);
           if (player.playing || dirty.current) { mv.render(t); dirty.current = false; }

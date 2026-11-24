@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>通用模板 · 动作预览台</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="title-row">
+      <div>
+        <h1>通用模板 · 动作预览台</h1>
+        <p id="subtitle">正在读取 canonical 图集与动作表…</p>
+      </div>
+      <div class="badge" id="master-badge">—</div>
+    </div>
+    <div class="toolbar">
+      <label class="field">
+        <span>内容</span>
+        <div class="tabs" id="mode-tabs">
+          <button class="tab active" data-mode="actions">动作</button>
+          <button class="tab" data-mode="props">道具</button>
+          <button class="tab" data-mode="fx">表情贴</button>
+        </div>
+      </label>
+      <label class="field">
+        <span>角色</span>
+        <select id="character">
+          <option value="all">全部角色</option>
+          <option value="whale">本鲸</option>
+          <option value="gpt">龙娘</option>
+          <option value="claude">小克</option>
+          <option value="doubao">豆包</option>
+          <option value="gemini">猫 / Gemini</option>
+          <option value="kimi">Kimi</option>
+          <option value="qwen">千问</option>
+          <option value="zai">狐狸 / 智谱</option>
+        </select>
+      </label>
+      <button class="btn quick" id="whale-only">只看本鲸 13 动作</button>
+      <button class="btn" id="play-toggle">暂停</button>
+      <button class="btn" id="step">逐帧 +1</button>
+      <button class="btn" id="reset">回到第 0 帧</button>
+      <label class="field speed">
+        <span>速度 <b id="speed-value">1.00×</b></span>
+        <input id="speed" type="range" min="0.25" max="2" step="0.05" value="1" />
+      </label>
+      <label class="check">
+        <input id="show-strip" type="checkbox" checked />
+        <span>显示整段胶片</span>
+      </label>
+    </div>
+    <div class="stats" id="stats">—</div>
+  </header>
+
+  <main>
+    <section class="film-banner">
+      <div class="film-copy">
+        <h2>本鲸修复短片对照 · 6.5 秒</h2>
+        <p>原版 / V1 重构 / 当前修正版逐帧同屏，覆盖 13 个动作；挥手与递出去已重画成单手稿并附手臂局部放大，干饭标出可见饭碗，正面基础格恢复重画前旧版围裙 / 裙摆 / 靴子，发抖、摇摆舞、吃惊等动作改为头身裙摆联动，走路重做手臂 / 双腿 / 鱼尾节奏，转圈仍单独标注细面条修复。</p>
+        <a class="film-link" href="/film/">打开全屏短片对照 →</a>
+      </div>
+      <video class="film-video" controls muted loop playsinline poster="/film/contact.png" src="/film/compare.mp4"></video>
+    </section>
+    <div id="error" class="error hidden"></div>
+    <div id="grid" class="grid" aria-live="polite"></div>
+  </main>
+
+  <footer>
+    <span>像素按 nearest 放大；透明底用棋盘格表示。点击任意胶片格可暂停并定位到该帧。</span>
+    <span>数据源：<code>cast_atlas.png</code> · <code>cast_atlas.json</code> · <code>cast_actions.json</code></span>
+  </footer>
+</body>
+</html>

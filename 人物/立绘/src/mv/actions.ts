@@ -267,3 +267,38 @@ export function poseOf(action: string, t: number, beat: number, T: number, seed:
   }
   return p;
 }
+
+/** 交叉淡入两个动作：w=0 是 a，w=1 是 b。纯函数，逐帧可重复。 */
+export function blendPose(a: Pose, b: Pose, w: number): Pose {
+  const k = Math.max(0, Math.min(1, w));
+  const mix = (x: number, y: number) => x + (y - x) * k;
+  const out: Pose = { ...a };
+  out.dx = mix(a.dx, b.dx);
+  out.lift = mix(a.lift, b.lift);
+  out.rot = mix(a.rot, b.rot);
+  out.sx = mix(a.sx, b.sx);
+  out.sy = mix(a.sy, b.sy);
+  out.bend = mix(a.bend, b.bend);
+  out.headRot = mix(a.headRot, b.headRot);
+  out.headSy = mix(a.headSy, b.headSy);
+  out.headDx = mix(a.headDx, b.headDx);
+  out.legSy = mix(a.legSy, b.legSy);
+  out.torsoSy = mix(a.torsoSy, b.torsoSy);
+  out.chest = mix(a.chest, b.chest);
+  out.turn = mix(a.turn, b.turn);
+  out.wave = mix(a.wave, b.wave);
+  out.wavePhase = mix(a.wavePhase, b.wavePhase);
+  out.tintA = mix(a.tintA, b.tintA);
+  out.alpha = mix(a.alpha, b.alpha);
+  out.tint = k < 0.5 ? a.tint : b.tint;
+  out.still = k < 0.5 ? a.still : b.still;
+  return out;
+}
+
+/** 按两个动作各自的局部时间取姿态，再线性混合。 */
+export function poseOfBlend(
+  a: string, ta: number, b: string, tb: number, w: number,
+  beat: number, T: number, seed: number,
+): Pose {
+  return blendPose(poseOf(a, ta, beat, T, seed), poseOf(b, tb, beat, T, seed), w);
+}

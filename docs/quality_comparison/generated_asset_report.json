@@ -1,0 +1,10 @@
+{
+  "status": "ok",
+  "assets": 11,
+  "copiesChecked": 22,
+  "provenanceStatus": "legacy_unknown",
+  "warnings": [
+    "model/version/seed are unknown for legacy generated assets; regeneration is not reproducible"
+  ],
+  "problems": []
+}

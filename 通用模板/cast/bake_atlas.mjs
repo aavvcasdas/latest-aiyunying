@@ -28,8 +28,13 @@ await imp('walk_cycle_data.js'); // 把 walk_* 注册进同一张精灵表
 await imp('actions_data.js');    // 派生动作 / 道具 / 表情贴（由 bake_actions.mjs 生成）
 
 const meta = JSON.parse(fs.readFileSync(META_PATH, 'utf8'));
+const defaults = JSON.parse(fs.readFileSync(path.join(HERE, '../../tools/render_defaults.json'), 'utf8'));
 const { w: W, h: H, s: cells } = meta;
 const rgba = Buffer.alloc(W * H * 4); // 透明处保持 (0,0,0,0)
+// 2026-11-24 `master_soft`: only 本鲸 cells get one 1px coverage band outside
+// their hard silhouette. Other characters remain byte-for-byte hard-alpha.
+const SOFT_ALPHA = Math.round(255 * (1 - defaults.visualQuality.pixelSmoothing));
+const WHALE_RECTS = Object.entries(cells).filter(([key]) => key.toLowerCase().includes('whale'));
 
 for (const [key, [x0, y0, w, h]] of Object.entries(cells)) {
   const spr = getBakedSprite(key);
@@ -44,6 +49,34 @@ for (const [key, [x0, y0, w, h]] of Object.entries(cells)) {
       if (!c) throw new Error(`「${key}」用到了调色板外的索引 ${idx}`);
       const o = ((y0 + y) * W + x0 + x) * 4;
       rgba[o] = c[0]; rgba[o + 1] = c[1]; rgba[o + 2] = c[2]; rgba[o + 3] = 255;
+    }
+  }
+}
+
+// Add a conservative 1px anti-aliased coverage band to 本鲸 silhouettes only.
+// We snapshot each cell first so neighboring soft pixels cannot cascade into a
+// second blurred ring. The RGB remains a straight-alpha palette color; the
+// shader outputs the band's alpha instead of forcing every texel opaque.
+for (const [, [x0, y0, w, h]] of WHALE_RECTS) {
+  const snap = Buffer.alloc(w * h * 4);
+  for (let y = 0; y < h; y++) {
+    rgba.copy(snap, y * w * 4, ((y0 + y) * W + x0) * 4, ((y0 + y) * W + x0 + w) * 4);
+  }
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      if ((x === 0 || x === w - 1) && (y === 0 || y === h - 1)) continue; // keep all four corners transparent
+      const i = (y * w + x) * 4;
+      if (snap[i + 3] !== 0) continue;
+      let color = null;
+      for (const [dx, dy] of [[0, -1], [-1, 0], [1, 0], [0, 1]]) {
+        const nx = x + dx, ny = y + dy;
+        if (nx < 0 || nx >= w || ny < 0 || ny >= h) continue;
+        const j = (ny * w + nx) * 4;
+        if (snap[j + 3] === 255) { color = [snap[j], snap[j + 1], snap[j + 2]]; break; }
+      }
+      if (!color) continue;
+      const o = ((y0 + y) * W + x0 + x) * 4;
+      rgba[o] = color[0]; rgba[o + 1] = color[1]; rgba[o + 2] = color[2]; rgba[o + 3] = SOFT_ALPHA;
     }
   }
 }

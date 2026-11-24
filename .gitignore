@@ -1,5 +1,6 @@
 # 依赖与缓存
 node_modules/
+.venv/
 __pycache__/
 *.pyc
 .DS_Store
@@ -20,3 +21,7 @@ __pycache__/
 # 视频一律不入库（2026-11-12 起）：成片、参考原片、素材录像都出库，
 # 只留音轨和静帧。要看某个 mp4 怎么取回来，见 媒体说明.md。
 *.mp4
+
+# 本鲸重画的上游生图原稿（每张 1.5–2 MB，共 30 MB，只是历史留档；
+# 构建只读 *_clean.png / *_ref.png，原稿见 docs/quality_comparison/whale_redraw 说明）
+通用模板/cast/source/whale_redraw_refs/whale_*_raw*.png

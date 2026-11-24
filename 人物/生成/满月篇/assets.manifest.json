@@ -1,0 +1,2454 @@
+{
+  "schema": 1,
+  "generatedBy": "tools/generated_assets/validate_generated.py --write",
+  "policy": "Generated character assets are allowed only when recorded here with prompt/raw/output hashes and license provenance.",
+  "generation": {
+    "model": "unknown",
+    "modelVersion": "unknown",
+    "seed": null,
+    "status": "legacy_unknown",
+    "note": "These five images predate the manifest. Do not regenerate without recording model/version/seed and re-running --write."
+  },
+  "license": "CC BY-NC-SA 4.0; see 素材许可与来源.md and 番外MV/若是月亮还没来/素材/remade.md",
+  "assets": [
+    {
+      "id": "whale_lookup",
+      "kind": "pose",
+      "prompt": {
+        "path": "人物/提示词/满月篇/whale_仰望_绿幕.txt",
+        "sha256": "f9a20f6bf0e8ad07771f9ac662df5db9d5cb166ce7cdac0ca7bd33db6f76f633",
+        "bytes": 1779
+      },
+      "raw": {
+        "path": "番外MV/若是月亮还没来/源码/gen_raw/whale_sit_lookup.png",
+        "sha256": "8d2d1674fb495872234110f11f3686c0ec476bf85dcaecccd6c6cea3d820bfb4",
+        "bytes": 1440857,
+        "width": 832,
+        "height": 1248,
+        "alpha_hard": true,
+        "alpha_values": [
+          255
+        ],
+        "bbox": [
+          0,
+          0,
+          832,
+          1248
+        ],
+        "foot_baseline": 1248,
+        "corner_alpha": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "corner_rgb": [
+          [
+            17,
+            240,
+            9
+          ],
+          [
+            21,
+            241,
+            11
+          ],
+          [
+            14,
+            240,
+            10
+          ],
+          [
+            2,
+            255,
+            0
+          ]
+        ],
+        "green_corners": true
+      },
+      "canonical": {
+        "path": "人物/生成/满月篇/whale_lookup.png",
+        "sha256": "0da6f024776e0209de9591b1b03c622df36220e2c7d273c9a356af166008ffb1",
+        "bytes": 10650,
+        "width": 64,
+        "height": 98,
+        "alpha_hard": true,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "bbox": [
+          1,
+          1,
+          63,
+          97
+        ],
+        "foot_baseline": 97,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "corner_rgb": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "copies": [
+        {
+          "path": "番外MV/若是月亮还没来/源码/src/assets/gen/whale_lookup.png",
+          "sha256": "0da6f024776e0209de9591b1b03c622df36220e2c7d273c9a356af166008ffb1",
+          "bytes": 10650,
+          "width": 64,
+          "height": 98,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            63,
+            97
+          ],
+          "foot_baseline": 97,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "path": "番外MV/若是月亮fable5.2high/源码/src/assets/gen/whale_lookup.png",
+          "sha256": "0da6f024776e0209de9591b1b03c622df36220e2c7d273c9a356af166008ffb1",
+          "bytes": 10650,
+          "width": 64,
+          "height": 98,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            63,
+            97
+          ],
+          "foot_baseline": 97,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whale_hug_benyu",
+      "kind": "pose",
+      "prompt": {
+        "path": "人物/提示词/满月篇/whale_抱笨鱼_绿幕.txt",
+        "sha256": "18045ba3958e571b0906a81db45381ba600c3b032d01e4af6884738ebb37c70f",
+        "bytes": 1859
+      },
+      "raw": {
+        "path": "番外MV/若是月亮还没来/源码/gen_raw/whale_hug_benyu.png",
+        "sha256": "928cdacbaa1a94ee59ebf971752492c6376fbd0703a3c17c7ee0ab2686914021",
+        "bytes": 1413928,
+        "width": 832,
+        "height": 1248,
+        "alpha_hard": true,
+        "alpha_values": [
+          255
+        ],
+        "bbox": [
+          0,
+          0,
+          832,
+          1248
+        ],
+        "foot_baseline": 1248,
+        "corner_alpha": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "corner_rgb": [
+          [
+            17,
+            240,
+            12
+          ],
+          [
+            16,
+            239,
+            11
+          ],
+          [
+            14,
+            241,
+            12
+          ],
+          [
+            0,
+            255,
+            0
+          ]
+        ],
+        "green_corners": true
+      },
+      "canonical": {
+        "path": "人物/生成/满月篇/whale_hug_benyu.png",
+        "sha256": "80fbca89d5b01b6a5e42fbd07c71715e55e6bde299530510e5b126716270987e",
+        "bytes": 10168,
+        "width": 53,
+        "height": 98,
+        "alpha_hard": true,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "bbox": [
+          1,
+          1,
+          52,
+          97
+        ],
+        "foot_baseline": 97,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "corner_rgb": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "copies": [
+        {
+          "path": "番外MV/若是月亮还没来/源码/src/assets/gen/whale_hug_benyu.png",
+          "sha256": "80fbca89d5b01b6a5e42fbd07c71715e55e6bde299530510e5b126716270987e",
+          "bytes": 10168,
+          "width": 53,
+          "height": 98,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            52,
+            97
+          ],
+          "foot_baseline": 97,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "path": "番外MV/若是月亮fable5.2high/源码/src/assets/gen/whale_hug_benyu.png",
+          "sha256": "80fbca89d5b01b6a5e42fbd07c71715e55e6bde299530510e5b126716270987e",
+          "bytes": 10168,
+          "width": 53,
+          "height": 98,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            52,
+            97
+          ],
+          "foot_baseline": 97,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "whale_hold_camellia",
+      "kind": "pose",
+      "prompt": {
+        "path": "人物/提示词/满月篇/whale_捧山茶_绿幕.txt",
+        "sha256": "2db258b8538552fa7c71b4ff2d1fa1c80947f72b3ee551cc106c702691bf9deb",
+        "bytes": 1731
+      },
+      "raw": {
+        "path": "番外MV/若是月亮还没来/源码/gen_raw/whale_hold_camellia.png",
+        "sha256": "5de8db74c28225911fbd485c22167434833d0c26600cbb60d92c71ebda1de7b5",
+        "bytes": 1692486,
+        "width": 832,
+        "height": 1248,
+        "alpha_hard": true,
+        "alpha_values": [
+          255
+        ],
+        "bbox": [
+          0,
+          0,
+          832,
+          1248
+        ],
+        "foot_baseline": 1248,
+        "corner_alpha": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "corner_rgb": [
+          [
+            14,
+            242,
+            9
+          ],
+          [
+            14,
+            241,
+            11
+          ],
+          [
+            15,
+            241,
+            11
+          ],
+          [
+            0,
+            255,
+            1
+          ]
+        ],
+        "green_corners": true
+      },
+      "canonical": {
+        "path": "人物/生成/满月篇/whale_hold_camellia.png",
+        "sha256": "4804bf5a8ba3a0f6fe0543a07312820a1891f5e35db9d430ca57dc336005b8c6",
+        "bytes": 11526,
+        "width": 59,
+        "height": 98,
+        "alpha_hard": true,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "bbox": [
+          1,
+          1,
+          58,
+          97
+        ],
+        "foot_baseline": 97,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "corner_rgb": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "copies": [
+        {
+          "path": "番外MV/若是月亮还没来/源码/src/assets/gen/whale_hold_camellia.png",
+          "sha256": "4804bf5a8ba3a0f6fe0543a07312820a1891f5e35db9d430ca57dc336005b8c6",
+          "bytes": 11526,
+          "width": 59,
+          "height": 98,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            58,
+            97
+          ],
+          "foot_baseline": 97,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "path": "番外MV/若是月亮fable5.2high/源码/src/assets/gen/whale_hold_camellia.png",
+          "sha256": "4804bf5a8ba3a0f6fe0543a07312820a1891f5e35db9d430ca57dc336005b8c6",
+          "bytes": 11526,
+          "width": 59,
+          "height": 98,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            58,
+            97
+          ],
+          "foot_baseline": 97,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "streetlamp",
+      "kind": "prop",
+      "prompt": {
+        "path": "人物/提示词/满月篇/道具_路灯_绿幕.txt",
+        "sha256": "ea24db69e73db67189a78d4a71c3f4746618e9715fca4ea60e91ef7901cbc70e",
+        "bytes": 890
+      },
+      "raw": {
+        "path": "番外MV/若是月亮还没来/源码/gen_raw/prop_streetlamp.png",
+        "sha256": "ecc33d29bba4d88626d398e306821b98ca04aaf0370863b93043a6ad573b83ea",
+        "bytes": 658938,
+        "width": 720,
+        "height": 1280,
+        "alpha_hard": true,
+        "alpha_values": [
+          255
+        ],
+        "bbox": [
+          0,
+          0,
+          720,
+          1280
+        ],
+        "foot_baseline": 1280,
+        "corner_alpha": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "corner_rgb": [
+          [
+            12,
+            249,
+            13
+          ],
+          [
+            17,
+            249,
+            17
+          ],
+          [
+            12,
+            248,
+            15
+          ],
+          [
+            10,
+            255,
+            12
+          ]
+        ],
+        "green_corners": true
+      },
+      "canonical": {
+        "path": "人物/道具/满月篇/streetlamp.png",
+        "sha256": "bbaca7772e6a0b1d631dd8c5d7a43b4d9e29ceea84021e7576721fc4fb1439f0",
+        "bytes": 7127,
+        "width": 41,
+        "height": 162,
+        "alpha_hard": true,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "bbox": [
+          1,
+          1,
+          40,
+          161
+        ],
+        "foot_baseline": 161,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "corner_rgb": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "copies": [
+        {
+          "path": "番外MV/若是月亮还没来/源码/src/assets/gen/streetlamp.png",
+          "sha256": "bbaca7772e6a0b1d631dd8c5d7a43b4d9e29ceea84021e7576721fc4fb1439f0",
+          "bytes": 7127,
+          "width": 41,
+          "height": 162,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            40,
+            161
+          ],
+          "foot_baseline": 161,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "path": "番外MV/若是月亮fable5.2high/源码/src/assets/gen/streetlamp.png",
+          "sha256": "bbaca7772e6a0b1d631dd8c5d7a43b4d9e29ceea84021e7576721fc4fb1439f0",
+          "bytes": 7127,
+          "width": 41,
+          "height": 162,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            40,
+            161
+          ],
+          "foot_baseline": 161,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "camellia_bud",
+      "kind": "camellia",
+      "prompt": {
+        "path": "人物/提示词/满月篇/道具_白山茶三态_绿幕.txt",
+        "sha256": "897f34ae6fd49b39fc662737a10fdabd1926028394f7495af30acb715dcc1d2c",
+        "bytes": 970
+      },
+      "raw": {
+        "path": "番外MV/若是月亮还没来/源码/gen_raw/prop_camellia_stages.png",
+        "sha256": "1130ba1d08081477236c193dbe2690682f37599753b22f963e06fda266dcebf7",
+        "bytes": 837421,
+        "width": 1280,
+        "height": 720,
+        "alpha_hard": true,
+        "alpha_values": [
+          255
+        ],
+        "bbox": [
+          0,
+          0,
+          1280,
+          720
+        ],
+        "foot_baseline": 720,
+        "corner_alpha": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "corner_rgb": [
+          [
+            15,
+            247,
+            13
+          ],
+          [
+            15,
+            249,
+            12
+          ],
+          [
+            9,
+            248,
+            9
+          ],
+          [
+            0,
+            255,
+            6
+          ]
+        ],
+        "green_corners": true
+      },
+      "canonical": {
+        "path": "人物/道具/满月篇/camellia_bud.png",
+        "sha256": "e6a13a8d1fb00f855169004d76219f146c5397d80c4b9b38fcaf32008cb2ed34",
+        "bytes": 1644,
+        "width": 30,
+        "height": 30,
+        "alpha_hard": true,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "bbox": [
+          1,
+          1,
+          29,
+          29
+        ],
+        "foot_baseline": 29,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "corner_rgb": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "copies": [
+        {
+          "path": "番外MV/若是月亮还没来/源码/src/assets/gen/camellia_bud.png",
+          "sha256": "e6a13a8d1fb00f855169004d76219f146c5397d80c4b9b38fcaf32008cb2ed34",
+          "bytes": 1644,
+          "width": 30,
+          "height": 30,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            29,
+            29
+          ],
+          "foot_baseline": 29,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "path": "番外MV/若是月亮fable5.2high/源码/src/assets/gen/camellia_bud.png",
+          "sha256": "e6a13a8d1fb00f855169004d76219f146c5397d80c4b9b38fcaf32008cb2ed34",
+          "bytes": 1644,
+          "width": 30,
+          "height": 30,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            29,
+            29
+          ],
+          "foot_baseline": 29,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "camellia_half",
+      "kind": "camellia",
+      "prompt": {
+        "path": "人物/提示词/满月篇/道具_白山茶三态_绿幕.txt",
+        "sha256": "897f34ae6fd49b39fc662737a10fdabd1926028394f7495af30acb715dcc1d2c",
+        "bytes": 970
+      },
+      "raw": {
+        "path": "番外MV/若是月亮还没来/源码/gen_raw/prop_camellia_stages.png",
+        "sha256": "1130ba1d08081477236c193dbe2690682f37599753b22f963e06fda266dcebf7",
+        "bytes": 837421,
+        "width": 1280,
+        "height": 720,
+        "alpha_hard": true,
+        "alpha_values": [
+          255
+        ],
+        "bbox": [
+          0,
+          0,
+          1280,
+          720
+        ],
+        "foot_baseline": 720,
+        "corner_alpha": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "corner_rgb": [
+          [
+            15,
+            247,
+            13
+          ],
+          [
+            15,
+            249,
+            12
+          ],
+          [
+            9,
+            248,
+            9
+          ],
+          [
+            0,
+            255,
+            6
+          ]
+        ],
+        "green_corners": true
+      },
+      "canonical": {
+        "path": "人物/道具/满月篇/camellia_half.png",
+        "sha256": "094df0a723761450022e288c57fb97084aa3a09a552c0cbc0921a3cadf670b8d",
+        "bytes": 1845,
+        "width": 30,
+        "height": 30,
+        "alpha_hard": true,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "bbox": [
+          1,
+          1,
+          29,
+          29
+        ],
+        "foot_baseline": 29,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "corner_rgb": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "copies": [
+        {
+          "path": "番外MV/若是月亮还没来/源码/src/assets/gen/camellia_half.png",
+          "sha256": "094df0a723761450022e288c57fb97084aa3a09a552c0cbc0921a3cadf670b8d",
+          "bytes": 1845,
+          "width": 30,
+          "height": 30,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            29,
+            29
+          ],
+          "foot_baseline": 29,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "path": "番外MV/若是月亮fable5.2high/源码/src/assets/gen/camellia_half.png",
+          "sha256": "094df0a723761450022e288c57fb97084aa3a09a552c0cbc0921a3cadf670b8d",
+          "bytes": 1845,
+          "width": 30,
+          "height": 30,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            29,
+            29
+          ],
+          "foot_baseline": 29,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "camellia_bloom",
+      "kind": "camellia",
+      "prompt": {
+        "path": "人物/提示词/满月篇/道具_白山茶三态_绿幕.txt",
+        "sha256": "897f34ae6fd49b39fc662737a10fdabd1926028394f7495af30acb715dcc1d2c",
+        "bytes": 970
+      },
+      "raw": {
+        "path": "番外MV/若是月亮还没来/源码/gen_raw/prop_camellia_stages.png",
+        "sha256": "1130ba1d08081477236c193dbe2690682f37599753b22f963e06fda266dcebf7",
+        "bytes": 837421,
+        "width": 1280,
+        "height": 720,
+        "alpha_hard": true,
+        "alpha_values": [
+          255
+        ],
+        "bbox": [
+          0,
+          0,
+          1280,
+          720
+        ],
+        "foot_baseline": 720,
+        "corner_alpha": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "corner_rgb": [
+          [
+            15,
+            247,
+            13
+          ],
+          [
+            15,
+            249,
+            12
+          ],
+          [
+            9,
+            248,
+            9
+          ],
+          [
+            0,
+            255,
+            6
+          ]
+        ],
+        "green_corners": true
+      },
+      "canonical": {
+        "path": "人物/道具/满月篇/camellia_bloom.png",
+        "sha256": "7a55f9ab040a75cee5646ffd10cd6af9860eef9e910d1cbbaaf0abf86950df7a",
+        "bytes": 2251,
+        "width": 32,
+        "height": 30,
+        "alpha_hard": true,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "bbox": [
+          1,
+          1,
+          31,
+          29
+        ],
+        "foot_baseline": 29,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "corner_rgb": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "copies": [
+        {
+          "path": "番外MV/若是月亮还没来/源码/src/assets/gen/camellia_bloom.png",
+          "sha256": "7a55f9ab040a75cee5646ffd10cd6af9860eef9e910d1cbbaaf0abf86950df7a",
+          "bytes": 2251,
+          "width": 32,
+          "height": 30,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            31,
+            29
+          ],
+          "foot_baseline": 29,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "path": "番外MV/若是月亮fable5.2high/源码/src/assets/gen/camellia_bloom.png",
+          "sha256": "7a55f9ab040a75cee5646ffd10cd6af9860eef9e910d1cbbaaf0abf86950df7a",
+          "bytes": 2251,
+          "width": 32,
+          "height": 30,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            31,
+            29
+          ],
+          "foot_baseline": 29,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "camellia_bud_hd",
+      "kind": "camellia",
+      "prompt": {
+        "path": "人物/提示词/满月篇/道具_白山茶三态_绿幕.txt",
+        "sha256": "897f34ae6fd49b39fc662737a10fdabd1926028394f7495af30acb715dcc1d2c",
+        "bytes": 970
+      },
+      "raw": {
+        "path": "番外MV/若是月亮还没来/源码/gen_raw/prop_camellia_stages.png",
+        "sha256": "1130ba1d08081477236c193dbe2690682f37599753b22f963e06fda266dcebf7",
+        "bytes": 837421,
+        "width": 1280,
+        "height": 720,
+        "alpha_hard": true,
+        "alpha_values": [
+          255
+        ],
+        "bbox": [
+          0,
+          0,
+          1280,
+          720
+        ],
+        "foot_baseline": 720,
+        "corner_alpha": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "corner_rgb": [
+          [
+            15,
+            247,
+            13
+          ],
+          [
+            15,
+            249,
+            12
+          ],
+          [
+            9,
+            248,
+            9
+          ],
+          [
+            0,
+            255,
+            6
+          ]
+        ],
+        "green_corners": true
+      },
+      "canonical": {
+        "path": "人物/道具/满月篇/camellia_bud_hd.png",
+        "sha256": "9b7d59790c6d4df666c83151965dbbc9a3b4c93c024fe112350a32ec238167f5",
+        "bytes": 13422,
+        "width": 97,
+        "height": 98,
+        "alpha_hard": true,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "bbox": [
+          1,
+          1,
+          96,
+          97
+        ],
+        "foot_baseline": 97,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "corner_rgb": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "copies": [
+        {
+          "path": "番外MV/若是月亮还没来/源码/src/assets/gen/camellia_bud_hd.png",
+          "sha256": "9b7d59790c6d4df666c83151965dbbc9a3b4c93c024fe112350a32ec238167f5",
+          "bytes": 13422,
+          "width": 97,
+          "height": 98,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            96,
+            97
+          ],
+          "foot_baseline": 97,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "path": "番外MV/若是月亮fable5.2high/源码/src/assets/gen/camellia_bud_hd.png",
+          "sha256": "9b7d59790c6d4df666c83151965dbbc9a3b4c93c024fe112350a32ec238167f5",
+          "bytes": 13422,
+          "width": 97,
+          "height": 98,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            96,
+            97
+          ],
+          "foot_baseline": 97,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "camellia_half_hd",
+      "kind": "camellia",
+      "prompt": {
+        "path": "人物/提示词/满月篇/道具_白山茶三态_绿幕.txt",
+        "sha256": "897f34ae6fd49b39fc662737a10fdabd1926028394f7495af30acb715dcc1d2c",
+        "bytes": 970
+      },
+      "raw": {
+        "path": "番外MV/若是月亮还没来/源码/gen_raw/prop_camellia_stages.png",
+        "sha256": "1130ba1d08081477236c193dbe2690682f37599753b22f963e06fda266dcebf7",
+        "bytes": 837421,
+        "width": 1280,
+        "height": 720,
+        "alpha_hard": true,
+        "alpha_values": [
+          255
+        ],
+        "bbox": [
+          0,
+          0,
+          1280,
+          720
+        ],
+        "foot_baseline": 720,
+        "corner_alpha": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "corner_rgb": [
+          [
+            15,
+            247,
+            13
+          ],
+          [
+            15,
+            249,
+            12
+          ],
+          [
+            9,
+            248,
+            9
+          ],
+          [
+            0,
+            255,
+            6
+          ]
+        ],
+        "green_corners": true
+      },
+      "canonical": {
+        "path": "人物/道具/满月篇/camellia_half_hd.png",
+        "sha256": "77cd4ceb02acd1e8cd584b0d3b3706f260460d3af5977b075cccb34cb75fe5db",
+        "bytes": 14912,
+        "width": 99,
+        "height": 98,
+        "alpha_hard": true,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "bbox": [
+          1,
+          1,
+          98,
+          97
+        ],
+        "foot_baseline": 97,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "corner_rgb": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "copies": [
+        {
+          "path": "番外MV/若是月亮还没来/源码/src/assets/gen/camellia_half_hd.png",
+          "sha256": "77cd4ceb02acd1e8cd584b0d3b3706f260460d3af5977b075cccb34cb75fe5db",
+          "bytes": 14912,
+          "width": 99,
+          "height": 98,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            98,
+            97
+          ],
+          "foot_baseline": 97,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "path": "番外MV/若是月亮fable5.2high/源码/src/assets/gen/camellia_half_hd.png",
+          "sha256": "77cd4ceb02acd1e8cd584b0d3b3706f260460d3af5977b075cccb34cb75fe5db",
+          "bytes": 14912,
+          "width": 99,
+          "height": 98,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            98,
+            97
+          ],
+          "foot_baseline": 97,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "camellia_bloom_hd",
+      "kind": "camellia",
+      "prompt": {
+        "path": "人物/提示词/满月篇/道具_白山茶三态_绿幕.txt",
+        "sha256": "897f34ae6fd49b39fc662737a10fdabd1926028394f7495af30acb715dcc1d2c",
+        "bytes": 970
+      },
+      "raw": {
+        "path": "番外MV/若是月亮还没来/源码/gen_raw/prop_camellia_stages.png",
+        "sha256": "1130ba1d08081477236c193dbe2690682f37599753b22f963e06fda266dcebf7",
+        "bytes": 837421,
+        "width": 1280,
+        "height": 720,
+        "alpha_hard": true,
+        "alpha_values": [
+          255
+        ],
+        "bbox": [
+          0,
+          0,
+          1280,
+          720
+        ],
+        "foot_baseline": 720,
+        "corner_alpha": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "corner_rgb": [
+          [
+            15,
+            247,
+            13
+          ],
+          [
+            15,
+            249,
+            12
+          ],
+          [
+            9,
+            248,
+            9
+          ],
+          [
+            0,
+            255,
+            6
+          ]
+        ],
+        "green_corners": true
+      },
+      "canonical": {
+        "path": "人物/道具/满月篇/camellia_bloom_hd.png",
+        "sha256": "119ad8d9ab83a0b1cb5c1768e4e73b4f948d06373eefaef1e379b150aa3ec68a",
+        "bytes": 18344,
+        "width": 105,
+        "height": 98,
+        "alpha_hard": true,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "bbox": [
+          1,
+          1,
+          104,
+          97
+        ],
+        "foot_baseline": 97,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "corner_rgb": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "copies": [
+        {
+          "path": "番外MV/若是月亮还没来/源码/src/assets/gen/camellia_bloom_hd.png",
+          "sha256": "119ad8d9ab83a0b1cb5c1768e4e73b4f948d06373eefaef1e379b150aa3ec68a",
+          "bytes": 18344,
+          "width": 105,
+          "height": 98,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            104,
+            97
+          ],
+          "foot_baseline": 97,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "path": "番外MV/若是月亮fable5.2high/源码/src/assets/gen/camellia_bloom_hd.png",
+          "sha256": "119ad8d9ab83a0b1cb5c1768e4e73b4f948d06373eefaef1e379b150aa3ec68a",
+          "bytes": 18344,
+          "width": 105,
+          "height": 98,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            104,
+            97
+          ],
+          "foot_baseline": 97,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "benyu_px",
+      "kind": "derived",
+      "prompt": null,
+      "raw": {
+        "path": "人物/q版/笨鱼.png",
+        "sha256": "b27a19db77b222c1b621c41d79e4ef7e4abcb0ce6ffb2e4809ec0ae08212eb57",
+        "bytes": 103100,
+        "width": 1024,
+        "height": 1024,
+        "alpha_hard": false,
+        "alpha_values": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145,
+          146,
+          147,
+          148,
+          149,
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161,
+          162,
+          163,
+          164,
+          165,
+          166,
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          175,
+          176,
+          177,
+          178,
+          179,
+          180,
+          181,
+          182,
+          183,
+          184,
+          185,
+          186,
+          187,
+          188,
+          189,
+          190,
+          191,
+          192,
+          193,
+          194,
+          195,
+          196,
+          197,
+          198,
+          199,
+          200,
+          201,
+          202,
+          203,
+          204,
+          205,
+          206,
+          207,
+          208,
+          209,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215,
+          216,
+          217,
+          218,
+          219,
+          220,
+          221,
+          222,
+          223,
+          224,
+          225,
+          226,
+          227,
+          228,
+          229,
+          230,
+          231,
+          232,
+          233,
+          234,
+          235,
+          236,
+          237,
+          238,
+          239,
+          240,
+          241,
+          242,
+          243,
+          244,
+          245,
+          246,
+          247,
+          248,
+          249,
+          250,
+          251,
+          252,
+          253,
+          254,
+          255
+        ],
+        "bbox": [
+          60,
+          169,
+          964,
+          855
+        ],
+        "foot_baseline": 855,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "corner_rgb": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "canonical": {
+        "path": "人物/q版/笨鱼_px.png",
+        "sha256": "9145f5089a4135210513fb2668cab99a8b4f1f6f1dea2a7feb4b82d22cf6fd70",
+        "bytes": 2241,
+        "width": 60,
+        "height": 46,
+        "alpha_hard": true,
+        "alpha_values": [
+          0,
+          255
+        ],
+        "bbox": [
+          1,
+          1,
+          59,
+          45
+        ],
+        "foot_baseline": 45,
+        "corner_alpha": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "corner_rgb": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "copies": [
+        {
+          "path": "番外MV/若是月亮还没来/源码/src/assets/gen/benyu_px.png",
+          "sha256": "9145f5089a4135210513fb2668cab99a8b4f1f6f1dea2a7feb4b82d22cf6fd70",
+          "bytes": 2241,
+          "width": 60,
+          "height": 46,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            59,
+            45
+          ],
+          "foot_baseline": 45,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "path": "番外MV/若是月亮fable5.2high/源码/src/assets/gen/benyu_px.png",
+          "sha256": "9145f5089a4135210513fb2668cab99a8b4f1f6f1dea2a7feb4b82d22cf6fd70",
+          "bytes": 2241,
+          "width": 60,
+          "height": 46,
+          "alpha_hard": true,
+          "alpha_values": [
+            0,
+            255
+          ],
+          "bbox": [
+            1,
+            1,
+            59,
+            45
+          ],
+          "foot_baseline": 45,
+          "corner_alpha": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "corner_rgb": [
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
