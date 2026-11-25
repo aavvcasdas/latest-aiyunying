@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* 站酷快乐体：包里的沙盒没有中文字体，逐帧截图时中文会掉成豆腐块。
+   这里内联同一份 woff2（878 KB，全字符集），画面与界面都走它。 */
+@font-face { font-family: "ZCOOLKL"; src: url("./assets/zcool.woff2") format("woff2"); font-weight: 400 900; font-display: swap; }
+
+html, body, #root { height: 100%; margin: 0; background: #070910; }
+body { font-family: "ZCOOLKL", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif; overscroll-behavior: none; }
+
+.mv-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 14px; height: 14px; border-radius: 9999px; background: #fff; box-shadow: 0 0 10px rgba(143, 208, 255, 0.9); }
+.mv-range::-moz-range-thumb { width: 14px; height: 14px; border: 0; border-radius: 9999px; background: #fff; box-shadow: 0 0 10px rgba(143, 208, 255, 0.9); }
+
+@media (prefers-reduced-motion: reduce) { .animate-spin { animation-duration: 2s; } }
