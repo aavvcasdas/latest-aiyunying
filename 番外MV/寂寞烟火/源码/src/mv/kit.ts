@@ -575,7 +575,7 @@ export class VoxelKeyword3D {
     g.fillStyle = '#ffffff';
     g.textAlign = 'center';
     g.textBaseline = 'middle';
-    g.font = `700 15px "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif`;
+    g.font = `15px "MV Local", sans-serif`;
     chars.forEach((ch, idx) => {
       const cx = (idx + 0.5) * (cellW / chars.length);
       g.fillText(ch, cx, cellH * 0.52);

@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 import {
   ChevronLeft,
   ChevronRight,
@@ -163,8 +164,13 @@ export function App() {
           audioRef.current.pause();
         }
         playingRef.current = false;
-        setPlaying(false);
-        seekTo(t, true);
+        // 同步刷新 DOM 歌词，确保截图与 Canvas 是同一时间点；不逐帧 seek 音频。
+        flushSync(() => {
+          setPlaying(false);
+          setStarted(true);
+          setEnded(false);
+          renderAt(t);
+        });
       },
       getTime: () => currentTimeRef.current,
       duration: MV_DURATION,
@@ -173,7 +179,7 @@ export function App() {
     return () => {
       delete window.__mv;
     };
-  }, [seekTo]);
+  }, [renderAt]);
 
   // Main animation loop synchronized to audio clock
   useEffect(() => {

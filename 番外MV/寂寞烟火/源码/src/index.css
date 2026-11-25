@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* 本地模板字体，离线渲染字幕与体素字时不依赖外部字体服务。 */
+@font-face {
+  font-family: "MV Local";
+  src: url('./assets/ZCOOLKuaiLe-Regular.ttf') format('truetype');
+  font-display: block;
+}
+
 @layer base {
   html,
   body,
@@ -31,7 +38,7 @@
 
 /* Crisp cinema subtitle font smoothing */
 .mv-subtitle {
-  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "MV Local", sans-serif;
   letter-spacing: 0.08em;
   text-shadow: 0 1px 4px rgba(5, 12, 20, 0.85);
 }
