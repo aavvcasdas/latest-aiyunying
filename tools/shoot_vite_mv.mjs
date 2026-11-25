@@ -96,7 +96,9 @@ if (mode === 'seek') {
   // 整页截图：只留舞台，铺满视口
   await page.evaluate(() => {
     const c = [...document.querySelectorAll('canvas')].sort((a, b) => b.width * b.height - a.width * a.height)[0];
-    const st = c ? c.parentElement : null;
+    // 页面可以指定整页舞台（例如 3D 视口 + 内嵌字幕条那一层）；否则退回 canvas 父元素
+    const custom = typeof window.__captureStage === 'function' ? window.__captureStage() : null;
+    const st = custom || (c ? c.parentElement : null);
     document.documentElement.style.background = '#000';
     document.body.style.overflow = 'hidden';
     if (st) {

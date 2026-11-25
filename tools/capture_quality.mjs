@@ -56,7 +56,10 @@ export async function prepareCaptureStage(page) {
   await page.evaluate(() => {
     const canvases = [...document.querySelectorAll('canvas')].sort((a, b) => b.width * b.height - a.width * a.height);
     const canvas = canvases[0];
-    const stage = canvas?.parentElement;
+    // 页面可以用 window.__captureStage 指定「整页出片」的舞台（例如 3D 视口 + 内嵌字幕条的那一层），
+    // 不指定时退回 canvas 的父元素。
+    const custom = (typeof window.__captureStage === 'function' && window.__captureStage()) || null;
+    const stage = custom || canvas?.parentElement;
     if (!stage) return;
     document.documentElement.style.background = '#000';
     document.body.style.overflow = 'hidden';
@@ -70,7 +73,9 @@ export async function prepareCaptureStage(page) {
       width: '100vw', height: '100vh', aspectRatio: 'auto', borderRadius: '0',
       margin: '0', boxShadow: 'none', outline: 'none',
     });
-    if (canvas) Object.assign(canvas.style, { width: '100%', height: '100%', objectFit: 'contain' });
+    // 页面自己指定舞台时不要动 canvas 尺寸：那个舞台里通常还有 canvas 之外的东西（比如字幕条），
+    // 把 canvas 拉到 100% 会把它盖住。
+    if (canvas && !custom) Object.assign(canvas.style, { width: '100%', height: '100%', objectFit: 'contain' });
     document.querySelectorAll('audio,video').forEach((el) => { el.pause(); el.muted = true; });
   });
 }
