@@ -1,0 +1,21 @@
+{
+  "authorization": "2026-11-26 用户明确要求根据所给参考图与提示词重新生成，并提供样片端口；仅独立实验，不覆盖现行图集。",
+  "reference_url": "https://github.com/aavvcasdas/latest-aiyunying/blob/arena/ea1459d5-latest-aiyunying/dafeiyu-chibi-character-sheet.png",
+  "reference_rights": "用户提供；本轮未独立核实公开再分发许可，不接入正式MV。",
+  "generation": "image generation tool; user selected option 1; no video generation model",
+  "art_direction": "用户提供的约三头身蓝色鲸鱼娘、渐变长发、鲸鳍耳、鲸尾、蓝白女仆裙、鲸鱼围裙图案、金色细节；单人正面完整全身，纯白背景。",
+  "files": {
+    "reference.png": {
+      "sha256": "539548dbdf78a6488b9baca3af07521fe422c62bd8dee6e5664a1880754325b6",
+      "bytes": 2123873
+    },
+    "whale-regenerated-cutout.png": {
+      "sha256": "f0bdb5ba969b38fefbcf379fd523bf2fdcdaeb221a0a7a909831e5cbfc520fdb",
+      "bytes": 1009509
+    },
+    "whale-regenerated.png": {
+      "sha256": "00e1dde626ac69ac45dafb2f0a0aa81157ab661fb882e1fb7c86c6f9c8346b2a",
+      "bytes": 1195607
+    }
+  }
+}

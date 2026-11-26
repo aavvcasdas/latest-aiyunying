@@ -1,0 +1,39 @@
+{
+  "video_exported": false,
+  "template_class": "Tachie",
+  "checks": {
+    "six_distinct_expressions": true,
+    "expression_does_not_deform_legs": true,
+    "zero_elbow_is_straight": true,
+    "seek_deterministic": true,
+    "frame_step": true,
+    "automatic_expression_switch": true,
+    "mobile_no_overflow": true,
+    "browser_errors": []
+  },
+  "human_sign_off": false,
+  "scope": "template rigid whale binding, not all eight historical portraits",
+  "unit_tests": {
+    "javascript": 66,
+    "python": 13
+  },
+  "typecheck": true,
+  "template_sheet": {
+    "shot": "R1",
+    "forward_reverse_frames": 319,
+    "glyphs": 29,
+    "frames_sampled": 6
+  },
+  "legacy_regression": {
+    "project": "童话镇",
+    "shot": "L01",
+    "forward_reverse_frames": 4272,
+    "glyphs": 188,
+    "frames_sampled": 6
+  },
+  "limits": [
+    "frontal artwork, planar walk; not side-view motion capture",
+    "shoulder/knee silhouette and occlusion still require human approval",
+    "template rich expressions use synchronous drawing, not a claim of full Iki expression rig"
+  ]
+}

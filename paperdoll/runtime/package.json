@@ -1,0 +1,16 @@
+{
+  "name": "whale-puppet-experiment",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "model": "node build-model.mjs",
+    "bundle": "esbuild viewer.js --bundle --format=esm --minify --outfile=../viewer/puppet.js",
+    "test": "node --test kinematics.test.mjs"
+  },
+  "dependencies": {
+    "@ikijs/editor": "0.36.0",
+    "@ikijs/engine": "0.13.0",
+    "@ikijs/format": "0.12.0",
+    "esbuild": "0.28.2"
+  }
+}

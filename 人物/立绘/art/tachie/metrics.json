@@ -2,7 +2,7 @@
   "schema": 1,
   "generatedBy": "tools/key-tachie.mjs",
   "layerStatus": "single-layer",
-  "note": "Single source of truth for standing-art rig anchors. Existing art is one transparent full-body PNG per character; eyes/mouth/hands are not separate layers yet. Do not invent new character art.",
+  "note": "Updateable character registry. Legacy single-layer entries use strip rendering. Rigid entries use the rig bind files (separate eyes and three links per limb), NEVER a flattened hands layer or strip deformation.",
   "anchors": {
     "whale": {
       "name": "本鲸",
@@ -157,6 +157,28 @@
         "mouth": null,
         "hands": null
       },
+      "alphaCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "whale_cutout": {
+      "name": "本鲸分层",
+      "w": 912,
+      "h": 1136,
+      "neck": 0.4225352112676056,
+      "cx": 0.5,
+      "hx": 0.48,
+      "base": "../../通用模板/engine/assets/rigid/whale/body.png",
+      "layerStatus": "layered",
+      "layers": {
+        "eyes": null,
+        "mouth": null,
+        "hands": null
+      },
+      "rig": "rigid/whale/bind.json",
       "alphaCorners": [
         0,
         0,

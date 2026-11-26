@@ -1,0 +1,15 @@
+{
+  "measured": false,
+  "audio": false,
+  "duration_seconds": 8.0,
+  "frames": 240,
+  "size": [
+    1280,
+    720
+  ],
+  "fps": 30,
+  "render_and_encode_seconds": 5.489,
+  "throughput_fps": 43.72,
+  "scope": "single-layer pixel sprite fallback only; not an old/new quality benchmark",
+  "human_sign_off": false
+}

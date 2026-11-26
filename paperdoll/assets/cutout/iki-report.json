@@ -1,0 +1,94 @@
+{
+  "generator": "@ikijs/editor generateIkiFromLayerSet",
+  "editor": "0.36.0",
+  "engine": "0.13.0",
+  "validation": "parseIkiModel passed",
+  "parts": [
+    "mouth",
+    "mouth_open",
+    "eye_L",
+    "eye_R",
+    "closed_L",
+    "closed_R"
+  ],
+  "parameters": [
+    {
+      "id": "ParamAngleX",
+      "name": "Head Angle",
+      "min": -30,
+      "max": 30,
+      "default": 0
+    },
+    {
+      "id": "ParamAngleY",
+      "name": "Head Angle Y",
+      "min": -30,
+      "max": 30,
+      "default": 0
+    },
+    {
+      "id": "ParamAngleZ",
+      "name": "Head Angle Z",
+      "min": -30,
+      "max": 30,
+      "default": 0
+    },
+    {
+      "id": "ParamBodyAngleX",
+      "name": "Body Angle X",
+      "min": -10,
+      "max": 10,
+      "default": 0
+    },
+    {
+      "id": "ParamBodyAngleY",
+      "name": "Body Angle Y",
+      "min": -10,
+      "max": 10,
+      "default": 0
+    },
+    {
+      "id": "ParamBodyAngleZ",
+      "name": "Body Angle Z",
+      "min": -10,
+      "max": 10,
+      "default": 0
+    },
+    {
+      "id": "ParamEyeLOpen",
+      "name": "Eye L",
+      "min": 0,
+      "max": 1,
+      "default": 1
+    },
+    {
+      "id": "ParamEyeROpen",
+      "name": "Eye R",
+      "min": 0,
+      "max": 1,
+      "default": 1
+    },
+    {
+      "id": "ParamMouthOpenY",
+      "name": "Mouth Open",
+      "min": 0,
+      "max": 1,
+      "default": 0
+    },
+    {
+      "id": "ParamMouthForm",
+      "name": "Mouth Form",
+      "min": -1,
+      "max": 1,
+      "default": 0
+    },
+    {
+      "id": "ParamBreath",
+      "name": "Breath",
+      "min": 0,
+      "max": 1,
+      "default": 0
+    }
+  ],
+  "limitation": "Face/eye/mouth isolation only. No inferred hand-painted turns or real audio lip-sync. No hair spring claimed."
+}

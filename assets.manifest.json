@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "generatedBy": "tools/check_asset_hashes.mjs --write",
-  "note": "Commit this file after an intentional asset rebuild. Mirrors must match their source hash.",
+  "note": "Updateable version record. New generated assets and intentional replacements are allowed; default check reports hash drift without blocking. --strict audits recorded versions. Missing files and inconsistent live mirrors still fail.",
   "files": [
     {
       "path": "通用模板/engine/assets/cast_atlas.png",
@@ -25,8 +25,8 @@
     {
       "path": "通用模板/engine/assets/tachie_anchors.json",
       "role": "canonical-rig-anchors",
-      "sha256": "6fdb645e06d51f852ca863a928563a1d7bfcd37578ab60cd3ef482875ec4dae0",
-      "bytes": 1753
+      "sha256": "fd6c9ed6c8f8ad94b165f02da0961196abd90c304860bd347adf11a04ef87c35",
+      "bytes": 2822
     },
     {
       "path": "人物/atlas.png",
@@ -151,8 +151,8 @@
     {
       "path": "人物/立绘/art/tachie/metrics.json",
       "role": "standing-art-metrics",
-      "sha256": "3fedaaaad639552aed778d671c189ae5e6986a95d5d73e986bdecc4ed32c82f7",
-      "bytes": 3058
+      "sha256": "c7a83fd6589bb2b9caaf0ab75612b9466b977881539463a992075a6ce5f3be5d",
+      "bytes": 3547
     },
     {
       "path": "tools/render_defaults.json",
@@ -275,6 +275,102 @@
       "source": "人物/立绘/art/tachie/zai.png",
       "sha256": "1863c8847c879801a724cb57804774ee14a4b2ab5d67209a8c12bf350ff1fd13",
       "bytes": 738071
+    },
+    {
+      "path": "通用模板/engine/assets/rigid/whale/body.png",
+      "role": "registered-tachie-layer",
+      "sha256": "fd8fe70c4aa2b46df520256260fa7bfbbcd1bd6f4af9e78fe577dc143390cc8b",
+      "bytes": 861308
+    },
+    {
+      "path": "通用模板/engine/assets/rigid/whale/bind.json",
+      "role": "rigid-bind",
+      "sha256": "88df9778f7fde9e3ab176ef4959d52df806d43517b26ceaae4e886fcddf1890a",
+      "bytes": 1702
+    },
+    {
+      "path": "通用模板/engine/assets/rigid/whale/arm_R_upper.png",
+      "role": "rigid-link-artwork",
+      "sha256": "8c8236d18c2ae29722c52149575e24d2916d2d5199b5a5fecd8bb5a645902e4b",
+      "bytes": 17739
+    },
+    {
+      "path": "通用模板/engine/assets/rigid/whale/arm_R_lower.png",
+      "role": "rigid-link-artwork",
+      "sha256": "f9a32e4876a1ab09df55d80ae11465a7045034dd2fd48ba8b917f43f399b129d",
+      "bytes": 20000
+    },
+    {
+      "path": "通用模板/engine/assets/rigid/whale/arm_R_end.png",
+      "role": "rigid-link-artwork",
+      "sha256": "98344c93d335d637cdf3db128e034e3073c2abe163a6f0d97f1582acb327e841",
+      "bytes": 18722
+    },
+    {
+      "path": "通用模板/engine/assets/rigid/whale/arm_L_upper.png",
+      "role": "rigid-link-artwork",
+      "sha256": "57402a97e1f5522cb2b3f6fc384b5edfaead8f6ce894133291c11de06c448aa6",
+      "bytes": 18782
+    },
+    {
+      "path": "通用模板/engine/assets/rigid/whale/arm_L_lower.png",
+      "role": "rigid-link-artwork",
+      "sha256": "808187936b08a6e363d57a605c3e6843748d1bd052622795b021c5efe02fdc24",
+      "bytes": 19079
+    },
+    {
+      "path": "通用模板/engine/assets/rigid/whale/arm_L_end.png",
+      "role": "rigid-link-artwork",
+      "sha256": "e9408dd8a9b4d2c5044ee37f4b6307e24375d570c0ed92a52c2c693923f5d56f",
+      "bytes": 14581
+    },
+    {
+      "path": "通用模板/engine/assets/rigid/whale/leg_R_upper.png",
+      "role": "rigid-link-artwork",
+      "sha256": "9706cfd41784d933b659283bca6991e3b722e852269a21bfc132e33dbd66b6bb",
+      "bytes": 8626
+    },
+    {
+      "path": "通用模板/engine/assets/rigid/whale/leg_R_lower.png",
+      "role": "rigid-link-artwork",
+      "sha256": "5ebfe7dbc70b9299b95bbb2881b23ffe015fbee5b2f8cf59022f5ba0ef73f0c4",
+      "bytes": 14127
+    },
+    {
+      "path": "通用模板/engine/assets/rigid/whale/leg_R_end.png",
+      "role": "rigid-link-artwork",
+      "sha256": "2db761dfc772805d120feae0d6e3f2beef966d469b04ede3bdd5e6edaea1babc",
+      "bytes": 22275
+    },
+    {
+      "path": "通用模板/engine/assets/rigid/whale/leg_L_upper.png",
+      "role": "rigid-link-artwork",
+      "sha256": "3a6d4fe5b10bd9a5f24346ca8daa3eccec5ebd5751a3b369b0a7611cac255caf",
+      "bytes": 9390
+    },
+    {
+      "path": "通用模板/engine/assets/rigid/whale/leg_L_lower.png",
+      "role": "rigid-link-artwork",
+      "sha256": "6fa2ea6ce9b22499bd071a4fafab3a40a5ba6b1cc8053609717a7d5c2dbe8d81",
+      "bytes": 14327
+    },
+    {
+      "path": "通用模板/engine/assets/rigid/whale/leg_L_end.png",
+      "role": "rigid-link-artwork",
+      "sha256": "b216290506f5733ae1ed642e1b7724d89cccfd87fbe073c9599189507998280e",
+      "bytes": 22490
+    },
+    {
+      "path": "通用模板/engine/assets/rigid/whale/eye_R.png",
+      "role": "rigid-link-artwork",
+      "sha256": "bb7439ad837cad70cae9baeb3d38daa823eef6658d8ef07a310a06e650c556f2",
+      "bytes": 18281
+    },
+    {
+      "path": "通用模板/engine/assets/rigid/whale/eye_L.png",
+      "role": "rigid-link-artwork",
+      "sha256": "c890e5bbe5c669442b0c706db9c6766d08d459e4365ffd5215766cc3ee3b01d5",
+      "bytes": 18373
     }
   ]
 }

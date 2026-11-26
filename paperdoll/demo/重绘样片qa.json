@@ -1,0 +1,16 @@
+{
+  "measured": false,
+  "audio": false,
+  "grid": "synthetic 120 BPM",
+  "duration": 8,
+  "frames": 240,
+  "fps": 30,
+  "resolution": [
+    1280,
+    720
+  ],
+  "render_encode_seconds": 15.051,
+  "source_sha256": "00e1dde626ac69ac45dafb2f0a0aa81157ab661fb882e1fb7c86c6f9c8346b2a",
+  "human_sign_off": false,
+  "scope": "authorized regeneration; single-layer transforms, not articulated animation"
+}

@@ -1,0 +1,14 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>通用角色 · 骨架定格台</title><style>
+*{box-sizing:border-box}body{margin:0;background:#101b27;color:#e1edf7;font:14px system-ui}main{max-width:1200px;margin:auto;padding:24px}h1{font-size:27px;margin:0 0 8px}p{color:#9cb2c6;line-height:1.8}section{display:grid;grid-template-columns:1fr 310px;gap:20px}.stage{background:#edf3f7;border-radius:14px;overflow:hidden;min-width:0}canvas{display:block;width:100%;height:auto}aside{background:#1a2c3e;padding:20px;border-radius:14px}label{display:block;margin:15px 0 8px}select,button{background:#274158;color:#eef6ff;padding:10px;border:1px solid #46627c;border-radius:6px;font:inherit}input[type=range],select{width:100%}button{cursor:pointer}pre{font:11px/1.6 monospace;white-space:pre-wrap;color:#9fdac9}.buttons{display:flex;gap:8px;flex-wrap:wrap}.hint{font-size:12px}.badge{color:#9be2ce}#error{color:#ffadad}@media(max-width:760px){section{grid-template-columns:1fr}main{padding:15px}}
+</style></head><body><main><h1>通用角色 · 骨架定格台</h1><p>直接调用模板的 Tachie，不是另一套样片播放器。上臂 / 前臂 / 手掌、大腿 / 小腿 / 鞋各自刚性旋转；暂停或拖动时间即可定格关节点。<span class="badge">不导出视频</span></p><section><div class="stage"><canvas id="rigStage" width="912" height="1136"></canvas></div><aside>
+<label>动作</label><select id="action"><option value="bind">绑定姿态 · 手臂伸直</option><option value="walk" selected>走路 · 双腿交替 / 同向屈膝</option><option value="wave">招手 · 单独肩肘</option><option value="idle">站立</option></select>
+<label>表情</label><select id="emotion"><option value="auto" selected>自动 · 喜怒哀乐切换</option><option value="neutral">平静</option><option value="happy">喜 · 微笑</option><option value="angry">怒 · 压眉 / 紧嘴</option><option value="sad">哀 · 垂眉 / 泪光</option><option value="joy">乐 · 笑眼 / 张嘴</option><option value="surprised">惊讶 · 张嘴</option></select>
+<label>表情强度</label><input id="strength" type="range" min="0" max="1" step=".01" value="1">
+<label>时间 / 定格 <span id="clock"></span></label><input id="time" type="range" min="0" max="12" step=".001" value="0">
+<div class="buttons"><button id="play">暂停</button><button id="previous">上一帧</button><button id="next">下一帧</button></div>
+<label><input id="bones" type="checkbox" checked> 显示固定骨架与落脚标记</label>
+<label><input id="speak" type="checkbox"> 测试独立嘴形（非音频口型）</label>
+<label><input id="manual" type="checkbox"> 手动固定右臂关节</label>
+<label>肩角度</label><input id="shoulder" type="range" min="-100" max="30" step="1" value="-10">
+<label>肘屈曲（0 = 直臂）</label><input id="elbow" type="range" min="-130" max="0" step="1" value="0">
+<p class="hint">绿线为固定骨段，圆点为转轴；橙线为支撑脚。走路是当前正面原画的二维步态，不冒充侧面姿态或三维重建。原有八张单层立绘仍是历史路径，不能凭空自动获得骨架。</p><pre id="state">装载中…</pre><p id="error"></p></aside></section></main><script type="module" src="/src/rig-inspector.ts"></script></body></html>

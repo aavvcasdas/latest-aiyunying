@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-26",
+  "authorization": "2026-11-26 用户解除禁止新增生图与不可更新哈希限制；要求 Cutout 刚性手脚与 Iki 面部在同一角色组合。新增 whale_cutout，不覆盖历史像素图集。",
+  "original_prompt": "../prompts/本鲸重绘_用户原始提示词.md",
+  "generation": "重新调用图片生成工具产生 whale-face-cleanplate-v2.png；仅安装局部缺失五官的皮肤补片。未使用视频生成模型。模型名称、版本与 seed 未由工具提供，均 unknown。",
+  "source_scope": "用户提供参考图的形象再分发许可未独立核实，沿用 regeneration.manifest.json；不因此授予商业发布许可。",
+  "manual_work": "刚性分段、圆形重叠关节、局部肤色匹配、透明层与闭眼线；非自动语义分割。",
+  "sources": {
+    "whale-regenerated.png": {
+      "sha256": "00e1dde626ac69ac45dafb2f0a0aa81157ab661fb882e1fb7c86c6f9c8346b2a",
+      "bytes": 1195607
+    },
+    "whale-cleanplate.png": {
+      "sha256": "65b0a3285c262929ddec7f03d412b81bc5fdfadcc1d8bf44f2ff8716b3b72ad0",
+      "bytes": 1481991
+    },
+    "whale-face-cleanplate.png": {
+      "sha256": "f0246150664d452a408ec7f2c604b73d8b28d845d7c3a0d425ff6f7b5c6e2299",
+      "bytes": 1473570
+    },
+    "whale-face-cleanplate-v2.png": {
+      "sha256": "3b62e3253ff580e31ffd07739721fed037aaf83e065cd6d4b97d92b845037a2a",
+      "bytes": 1261094
+    }
+  },
+  "parts": {
+    "arm_L.png": "c504605b7a351d890856c44caa1bb5402110bbe9d2c98b7b08bd7eb2cecd1ef5",
+    "arm_L_lower.png": "7bef53c8623971557f114e26e9fc0181552b8101c5a8721bffd7d0c03e0cd3dc",
+    "arm_L_upper.png": "e1ed2aed110697d7233ad5b34756c083867029ad422652d0e5bf0fe871597a73",
+    "arm_R.png": "27bcf1ad8378ea13646df0f05178b3c7e10578e2cfbc8f3661207fb95b3bc1f0",
+    "arm_R_lower.png": "2d8a7ea5f98e8fc52b06095ce090ee7fdc39278bbe6b6855ce3a1c29ddca85f8",
+    "arm_R_upper.png": "3c7ca8288c8e75c2c14bb182415ca5c0e5512b778c20049fba027f25b2a464f4",
+    "body.png": "1af961813cf0df5b82e354a4da0d6eccf11467a45fe539bed3962e92df759bf3",
+    "closed_L.png": "c5daa8bb25085dd7203fea960b478835ee02a1f9bb5f374b83b84f58803b7515",
+    "closed_R.png": "d91f8428a32e828f653ffef37c20bda2c67c69272904e6c722061e6d908dd275",
+    "eye_L.png": "c890e5bbe5c669442b0c706db9c6766d08d459e4365ffd5215766cc3ee3b01d5",
+    "eye_R.png": "bb7439ad837cad70cae9baeb3d38daa823eef6658d8ef07a310a06e650c556f2",
+    "eyes.png": "e5e06f3b130e36120475929a8007e13a7dbd3e518e23a2287a97cb652331864b",
+    "face.png": "c9c1deeafd26c1aa8fbc71df31d9874919effdf81f93ac7842e5b36c8f0bd561",
+    "hands.png": "24099432581e76fa5895e56a9bdfdf41b6e90609aea9d9cc6a2dadaa9ca21217",
+    "leg_L.png": "dab2fe032255d1030e9374f53ca4dafab8107db316c56e98c55e7dbdb6ed8ba2",
+    "leg_L_lower.png": "f4e0a5a4c7ae8a5f57619541cdc4ab270304400e28992040000fc43985dbe734",
+    "leg_L_upper.png": "75deb140baaf5e89c2fadea99e2f0ab76381c429e2dcc829c83175b05f235bc6",
+    "leg_R.png": "eb747e344bf0f32931f047a69f8ca51d14b2ae04a0022209790cc697342cc5f7",
+    "leg_R_lower.png": "2cffecb157f6c5874e86f19f5d16f4b71808a7555c9f072eaa428378b8452abf",
+    "leg_R_upper.png": "4ff76ceff288aa57db1197a5cb62dc2876298fc3f0fc8950747e23aeee5db06b",
+    "mouth.png": "8bb2c02369e11a4f38829e8c84e9a8e7835b3bd8600627f27230b6fb767042fc",
+    "mouth_open.png": "5173b2467279e602aa64172fcbe2bd0d7e0cde1fb71d69a6a88d6bb4e4e81daf",
+    "original.png": "a8c04ffd52ea0cac0b3be05356aad9b2b4628fe587041cb0aac2c03a8f1cdce1",
+    "portrait_body.png": "42778af87ca8f8e567b1876fc059d22967b5ed1b9c9e34050aee736a265254de",
+    "template_base.png": "d47cbd85745c6805164267eb48211731236e2b643d82f35f79f299932a6255b0"
+  },
+  "revision_prompt": "../prompts/本鲸_分层修订提示词.md"
+}

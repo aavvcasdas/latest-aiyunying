@@ -1,0 +1,30 @@
+{
+  "source": "paperdoll/assets/cutout-provenance.json",
+  "generator": "\u4eba\u7269/\u7acb\u7ed8/tools/prepare-rigid-whale.py",
+  "method": "manual three-link alpha cuts and locally painted rigid joint caps; generated limb-free body patch only, limbs never resampled or stretched",
+  "generation": {
+    "asset": "body-cleanplate-source.png",
+    "model": "unknown",
+    "version": "unknown",
+    "seed": "unknown",
+    "purpose": "remove all old limbs; reconstruct hair and tail behind them; not video generation"
+  },
+  "files": {
+    "arm_L_end.png": "e9408dd8a9b4d2c5044ee37f4b6307e24375d570c0ed92a52c2c693923f5d56f",
+    "arm_L_lower.png": "808187936b08a6e363d57a605c3e6843748d1bd052622795b021c5efe02fdc24",
+    "arm_L_upper.png": "57402a97e1f5522cb2b3f6fc384b5edfaead8f6ce894133291c11de06c448aa6",
+    "arm_R_end.png": "98344c93d335d637cdf3db128e034e3073c2abe163a6f0d97f1582acb327e841",
+    "arm_R_lower.png": "f9a32e4876a1ab09df55d80ae11465a7045034dd2fd48ba8b917f43f399b129d",
+    "arm_R_upper.png": "8c8236d18c2ae29722c52149575e24d2916d2d5199b5a5fecd8bb5a645902e4b",
+    "body-cleanplate-source.png": "b306ae3d3dd28335d7fa3dd1bd2fdfdabf90ed2ce2dd58633ab953c650a6f532",
+    "body.png": "fd8fe70c4aa2b46df520256260fa7bfbbcd1bd6f4af9e78fe577dc143390cc8b",
+    "eye_L.png": "c890e5bbe5c669442b0c706db9c6766d08d459e4365ffd5215766cc3ee3b01d5",
+    "eye_R.png": "bb7439ad837cad70cae9baeb3d38daa823eef6658d8ef07a310a06e650c556f2",
+    "leg_L_end.png": "b216290506f5733ae1ed642e1b7724d89cccfd87fbe073c9599189507998280e",
+    "leg_L_lower.png": "6fa2ea6ce9b22499bd071a4fafab3a40a5ba6b1cc8053609717a7d5c2dbe8d81",
+    "leg_L_upper.png": "3a6d4fe5b10bd9a5f24346ca8daa3eccec5ebd5751a3b369b0a7611cac255caf",
+    "leg_R_end.png": "2db761dfc772805d120feae0d6e3f2beef966d469b04ede3bdd5e6edaea1babc",
+    "leg_R_lower.png": "5ebfe7dbc70b9299b95bbb2881b23ffe015fbee5b2f8cf59022f5ba0ef73f0c4",
+    "leg_R_upper.png": "9706cfd41784d933b659283bca6991e3b722e852269a21bfc132e33dbd66b6bb"
+  }
+}

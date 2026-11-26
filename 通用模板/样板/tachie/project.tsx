@@ -2,15 +2,14 @@
 // 规则见 设定/立绘.md：主用 Q 版，立绘只放在长大时刻；同一镜头允许长大过程、也允许和长大的自己同框。
 import { defineProject, type CueFile } from '@tpl/project';
 import '@tpl/tachie-assets';               // 注册八张立绘的图片地址（浏览器侧）
-import { TACHIE, type TachieId } from '@tpl/tachie';
-import { preloadImage } from '@tpl/props';
+import { preloadTachie, type TachieId } from '@tpl/tachie';
 import cues from './cues.json';
 import film from './film.json';
 import { SHOTS } from './shots/shots';
 
 // 立绘要用的图先解码好，否则第一帧的贴图是空的（imageOf 会当场报错）
 const used: TachieId[] = ['whale'];
-const preloads = used.map((id) => () => preloadImage(TACHIE[id].url));
+const preloads = used.map((id) => () => preloadTachie(id));
 
 export default defineProject({
   id: film.id,

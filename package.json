@@ -30,7 +30,8 @@
     "generated:postcheck": "node 番外MV/若是月亮还没来/源码/tools/process_generated.cjs --check && node 番外MV/若是月亮fable5.2high/源码/tools/process_generated.cjs --check",
     "whale:qa": "node tools/run_python.mjs tools/check_whale_redraw.py",
     "actions:preview": "node 通用模板/actions_preview/server.mjs",
-    "clarity:shoot": "node tools/preview_clarity_shot.mjs"
+    "clarity:shoot": "node tools/preview_clarity_shot.mjs",
+    "rig:preview": "vite --config 通用模板/preview/vite.config.ts --mode rig"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.436",

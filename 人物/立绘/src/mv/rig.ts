@@ -50,12 +50,21 @@ export interface HeadAnchor {
   y: number;
 }
 
+/** Full-canvas transparent independent artwork. Pivot is in source coordinates.
+ * Layers attach rigidly to one integrated spine transform, NOT to every strip. */
+export interface TachieLayer {
+  img: Img;
+  pivot: [number, number];
+  opacity?: number;
+  rotation?: number;
+}
+
 /**
  * @param px,gy 脚底落点（画布坐标）
  * @param H 立绘在画布上的高度
  * @returns 头顶位置，表情贴挂在这里
  */
-export function drawTachie(ctx: Ctx2D, src: Mip, m: CastMeta, p: Pose, px: number, gy: number, H: number, flip: boolean): HeadAnchor {
+export function drawTachie(ctx: Ctx2D, src: Mip, m: CastMeta, p: Pose, px: number, gy: number, H: number, flip: boolean, layers: TachieLayer[] = []): HeadAnchor {
   const img = src.img, iw = src.w, ih = src.h;
   // 条数跟着画面上的大小走：近景切 112 条，远处的小人六七十条就够
   const STRIPS = Math.max(48, Math.min(112, Math.round(H / 7)));
@@ -72,6 +81,7 @@ export function drawTachie(ctx: Ctx2D, src: Mip, m: CastMeta, p: Pose, px: numbe
   ctx.translate(ox, oy);
   ctx.scale(dir * turn, 1);
   let x = 0, y = 0, prevAng = p.rot;
+  const attached: {layer: TachieLayer; x: number; y: number; ang: number; sx: number; sy: number; spx: number; bottom: number}[] = [];
   for (let k = 0; k < STRIPS; k++) {
     const v = (k + 0.5) / STRIPS;
     const hw = smooth(neckV - 0.045, neckV + 0.045, v);
@@ -83,6 +93,10 @@ export function drawTachie(ctx: Ctx2D, src: Mip, m: CastMeta, p: Pose, px: numbe
     const spx = iw * (m.cx + (m.hx - m.cx) * v);
     // 相邻两条转角不同时外侧会裂缝：按转角差把这一条往下多画几行盖住
     const ov = k === 0 ? 0 : Math.min(hs * 0.9, 1.2 + Math.abs(ang - prevAng) * halfW);
+    for (const layer of layers) {
+      const target=Math.max(0,Math.min(STRIPS-1,Math.floor((1-layer.pivot[1]/ih)*STRIPS)));
+      if (k===target) attached.push({layer,x:x+off*Math.cos(ang),y:y+off*Math.sin(ang),ang,sx:sxL*s,sy:syL*s,spx,bottom:ih-k*hs});
+    }
     ctx.save();
     ctx.translate(x + off * Math.cos(ang), y + off * Math.sin(ang));
     ctx.rotate(ang);
@@ -92,6 +106,13 @@ export function drawTachie(ctx: Ctx2D, src: Mip, m: CastMeta, p: Pose, px: numbe
     x += Math.sin(ang) * hs * s * syL;
     y -= Math.cos(ang) * hs * s * syL;
     prevAng = ang;
+  }
+  for (const a of attached) {
+    const {layer}=a;
+    ctx.save();ctx.translate(a.x,a.y);ctx.rotate(a.ang);ctx.scale(a.sx,a.sy);
+    ctx.translate(layer.pivot[0]-a.spx,layer.pivot[1]-a.bottom);
+    ctx.rotate(layer.rotation??0);ctx.globalAlpha*=Math.max(0,Math.min(1,layer.opacity??1));
+    ctx.drawImage(layer.img,-layer.pivot[0],-layer.pivot[1],iw,ih);ctx.restore();
   }
   ctx.restore();
   return { x: ox + dir * turn * x, y: oy + y };

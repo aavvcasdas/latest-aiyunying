@@ -25,7 +25,7 @@ const problems = [];
 const cornerAlphas = {};
 for (const id of IDS) {
   const a = anchorsJson.anchors[id];
-  const file = path.join(OUT, `${id}.png`);
+  const file = path.resolve(ROOT, a.base);
   if (!fs.existsSync(file)) { problems.push(`${id}: 缺 ${path.relative(ROOT, file)}`); continue; }
   const png = PNG.sync.read(fs.readFileSync(file));
   const alphaAt = (x, y) => png.data[(y * png.width + x) * 4 + 3];
@@ -58,4 +58,4 @@ if (problems.length) {
   console.error("TACHIE_CHECK_FAIL\n  - " + problems.join("\n  - "));
   process.exit(1);
 }
-console.log(`TACHIE_CHECK_OK ${IDS.length} transparent standing-art files · single-layer`);
+console.log(`TACHIE_CHECK_OK ${IDS.length} transparent standing-art files · per-character layers`);

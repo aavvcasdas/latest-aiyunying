@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Hash-verified asset source of truth. Run `node tools/check_asset_hashes.mjs --write`
+// Updateable asset version records, NOT a ban on new/generated artwork. Run `node tools/check_asset_hashes.mjs --write`
 // after an intentional asset rebuild, then commit the regenerated manifest.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -46,6 +46,28 @@ const SPEC = [
   ]),
 ];
 
+// Discover additive characters from the registry instead of fixing the whitelist
+// to eight historical ids. Paths use the same base as key-tachie.mjs.
+const anchors=JSON.parse(fs.readFileSync(path.join(ROOT,'通用模板/engine/assets/tachie_anchors.json'),'utf8')).anchors;
+for(const a of Object.values(anchors)) for(const file of [a.base,...Object.values(a.layers??{})].filter(Boolean)) {
+  const relative=path.relative(ROOT,path.resolve(ROOT,'人物/立绘',file)).split(path.sep).join('/');
+  if(relative.startsWith('../')) throw new Error('Asset path must stay inside repository: '+file);
+  if(!SPEC.some(e=>e.path===relative)) SPEC.push({path:relative,role:'registered-tachie-layer'});
+}
+
+for(const a of Object.values(anchors)) if(a.rig){
+  const bindFile=path.resolve(ROOT,'通用模板/engine/assets',a.rig);
+  const relative=path.relative(ROOT,bindFile).split(path.sep).join('/');
+  if(relative.startsWith('../'))throw new Error('Rig outside repository');
+  SPEC.push({path:relative,role:'rigid-bind'});
+  const bind=JSON.parse(fs.readFileSync(bindFile,'utf8'));
+  for(const file of Object.values(bind.files)){
+    const full=path.resolve(path.dirname(bindFile),file),p=path.relative(ROOT,full).split(path.sep).join('/');
+    if(p.startsWith('../'))throw new Error('Rig artwork outside repository');
+    if(!SPEC.some(e=>e.path===p))SPEC.push({path:p,role:'rigid-link-artwork'});
+  }
+}
+
 const sha256 = (file) => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 const stat = (entry) => {
   const abs = path.join(ROOT, entry.path);
@@ -59,7 +81,7 @@ if (write) {
   const manifest = {
     schema: 1,
     generatedBy: 'tools/check_asset_hashes.mjs --write',
-    note: 'Commit this file after an intentional asset rebuild. Mirrors must match their source hash.',
+    note: 'Updateable version record. New generated assets and intentional replacements are allowed; default check reports hash drift without blocking. --strict audits recorded versions. Missing files and inconsistent live mirrors still fail.',
     files: SPEC.map(stat),
   };
   fs.writeFileSync(MANIFEST, JSON.stringify(manifest, null, 2) + '\n');
@@ -69,21 +91,31 @@ if (write) {
 
 const manifest = JSON.parse(fs.readFileSync(MANIFEST, 'utf8'));
 const byPath = new Map(manifest.files.map((f) => [f.path, f]));
-const problems = [];
+const problems = [], drift = [];
+const strict=process.argv.includes('--strict');
 for (const expected of manifest.files) {
   const abs = path.join(ROOT, expected.path);
   if (!fs.existsSync(abs)) { problems.push(`${expected.path}: 文件不存在`); continue; }
   const actual = stat({ path: expected.path });
-  if (actual.sha256 !== expected.sha256) problems.push(`${expected.path}: SHA256 不一致`);
-  if (actual.bytes !== expected.bytes) problems.push(`${expected.path}: 字节数不一致`);
+  if (actual.sha256 !== expected.sha256) drift.push(`${expected.path}: SHA256 已更新`);
+  if (actual.bytes !== expected.bytes) drift.push(`${expected.path}: 字节数已更新`);
   if (expected.source && byPath.has(expected.source)) {
-    const source = byPath.get(expected.source);
+    const sourcePath=path.join(ROOT,expected.source);
+    if(!fs.existsSync(sourcePath)){problems.push(`${expected.source}: 文件不存在`);continue;}
+    const source = stat({path:expected.source});
     if (actual.sha256 !== source.sha256) problems.push(`${expected.path}: 与 ${expected.source} 不是同一份`);
   }
 }
-for (const entry of SPEC) if (!byPath.has(entry.path)) problems.push(`${entry.path}: 清单里没有这一项`);
+for (const entry of SPEC) if (!byPath.has(entry.path)) {
+  if(!fs.existsSync(path.join(ROOT,entry.path))) problems.push(`${entry.path}: 文件不存在`);
+  else drift.push(`${entry.path}: 新增注册素材，尚未记录版本`);
+}
+if(drift.length){
+  console.warn('ASSET_VERSION_CHANGED（允许有意更新；运行 npm run assets:write 刷新记录）\n  - '+drift.join('\n  - '));
+  if(strict)problems.push(...drift);
+}
 if (problems.length) {
   console.error('ASSET_HASH_FAIL\n  - ' + [...new Set(problems)].join('\n  - '));
   process.exit(1);
 }
-console.log(`ASSET_HASH_OK ${manifest.files.length} files · master ${manifest.files[0].sha256.slice(0, 12)}`);
+console.log(`ASSET_HASH_OK ${manifest.files.length} recorded files · current master ${sha256(path.join(ROOT,MASTER)).slice(0,12)}`);

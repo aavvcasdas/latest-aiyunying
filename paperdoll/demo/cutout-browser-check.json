@@ -1,0 +1,20 @@
+{
+  "measured": false,
+  "audio": false,
+  "frames": 240,
+  "fps": 30,
+  "resolution": [
+    1280,
+    720
+  ],
+  "human_sign_off": false,
+  "checks": {
+    "combined_apron_stationary": true,
+    "rigid_limb_motion": true,
+    "random_access": true,
+    "iki_face_on_same_cutout_canvas": true,
+    "combined_bones_and_face_sliders": true,
+    "mobile_no_horizontal_overflow": true,
+    "browser_errors": []
+  }
+}

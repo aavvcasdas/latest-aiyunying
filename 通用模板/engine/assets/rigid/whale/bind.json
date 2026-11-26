@@ -1,0 +1,116 @@
+{
+  "w": 912,
+  "h": 1136,
+  "ground": 1095,
+  "face": {
+    "eyes": {
+      "R": [
+        318,
+        329,
+        89,
+        96
+      ],
+      "L": [
+        457,
+        309,
+        91,
+        98
+      ]
+    },
+    "mouth": [
+      436,
+      430
+    ]
+  },
+  "chains": {
+    "arm_R": {
+      "root": [
+        350,
+        551
+      ],
+      "joint": [
+        294,
+        600
+      ],
+      "end": [
+        250,
+        658
+      ],
+      "tip": [
+        216,
+        672
+      ]
+    },
+    "arm_L": {
+      "root": [
+        550,
+        550
+      ],
+      "joint": [
+        601,
+        607
+      ],
+      "end": [
+        641,
+        663
+      ],
+      "tip": [
+        675,
+        677
+      ]
+    },
+    "leg_R": {
+      "root": [
+        391,
+        879
+      ],
+      "joint": [
+        388,
+        939
+      ],
+      "end": [
+        388,
+        1000
+      ],
+      "tip": [
+        387,
+        1070
+      ]
+    },
+    "leg_L": {
+      "root": [
+        503,
+        880
+      ],
+      "joint": [
+        509,
+        938
+      ],
+      "end": [
+        507,
+        1000
+      ],
+      "tip": [
+        509,
+        1071
+      ]
+    }
+  },
+  "files": {
+    "arm_R_upper": "arm_R_upper.png",
+    "arm_R_lower": "arm_R_lower.png",
+    "arm_R_end": "arm_R_end.png",
+    "arm_L_upper": "arm_L_upper.png",
+    "arm_L_lower": "arm_L_lower.png",
+    "arm_L_end": "arm_L_end.png",
+    "leg_R_upper": "leg_R_upper.png",
+    "leg_R_lower": "leg_R_lower.png",
+    "leg_R_end": "leg_R_end.png",
+    "leg_L_upper": "leg_L_upper.png",
+    "leg_L_lower": "leg_L_lower.png",
+    "leg_L_end": "leg_L_end.png",
+    "body": "body.png",
+    "eye_R": "eye_R.png",
+    "eye_L": "eye_L.png"
+  }
+}

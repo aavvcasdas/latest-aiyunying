@@ -175,6 +175,7 @@ function walkFilm(shots: ShotDef[], tl: Timeline, atlas: AtlasData, enter: (shot
       const fr = frameOf(tl, st, f);
       timeU.value = fr.T;
       for (const a of rt.kit.actors) a.begin();
+      for (const t of rt.kit.tachies) t.begin();
       const cs = rt.update(fr);
       if (![...cs.p, ...cs.l, cs.fov, cs.roll].every(Number.isFinite)) note(`镜头 ${st.id}：机位里有非有限数（位置 [${cs.p}]，看向 [${cs.l}]，视角 ${cs.fov}，侧倾 ${cs.roll}）——这一帧整个画面都出不来`, f);
       rt.kit.actors.forEach((a, i) => {

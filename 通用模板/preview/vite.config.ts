@@ -7,13 +7,13 @@ import { defineConfig } from 'vite';
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const REPO = path.resolve(HERE, '../..');
 
-export default defineConfig({
+export default defineConfig(({mode})=>({
   root: HERE,
-  plugins: [react()],
+  plugins: [react(), ...(mode==='rig'?[{name:'rig-inspector-entry',configureServer(server: import('vite').ViteDevServer){server.middlewares.use((req,res,next)=>{if(req.url==='/'){res.statusCode=302;res.setHeader('Location','/rig.html');res.end();}else next();});}}]:[])],
   // 与出片时 webpack 的别名一致：镜头代码里的 '@tpl/xxx' = 通用模板/engine/xxx
   resolve: { alias: { '@tpl': path.resolve(HERE, '../engine') } },
   // 作品在模板目录外面（番外MV/），要允许开发服务器读整个仓库；监听所有网卡、放行任意主机名，远程预览才打得开
   server: { host: '0.0.0.0', port: 5173, strictPort: false, allowedHosts: true, fs: { allow: [REPO] } },
   preview: { host: '0.0.0.0', allowedHosts: true },
   build: { outDir: path.join(HERE, 'dist'), emptyOutDir: true, chunkSizeWarningLimit: 4000 },
-});
+}));

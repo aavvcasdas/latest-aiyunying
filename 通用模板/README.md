@@ -387,7 +387,7 @@ track([[0, A], [0.5, B], [1, C]], u) // 多段运镜；每段起止机位要不�
 
 ### 动作预览台（浏览器）
 
-`npm run actions:preview` 启动 [`通用模板/actions_preview/README.md`](actions_preview/README.md) 里的零依赖预览服务，默认监听 `0.0.0.0:4173`；根路径直接按 `通用模板/engine/assets/cast_atlas.png` / `cast_atlas.json` / `cast_actions.json` 取帧，展示全部 74 个动作 / 538 帧，也可一键切到本鲸 13 个动作 / 92 帧，或查看 15 件道具、12 组表情贴。首页内嵌 6.5 秒本鲸「原版 / V1 / 最终修复版」渲染对照，`/film/` 是全屏版，`通用模板/actions_preview/film_compare/compare.mp4` 是模板捕获链输出的无声短片。另有 `npm run preview` 的真实模板预览台；`通用模板/样板/whale_clarity/` 是 13 个本鲸动作的全屏清晰度检查工程，先启动预览服务，再执行 `npm run clarity:shoot`，原生 1920×1080 截图与总览写入 `docs/quality_comparison/whale_redraw/template_clarity/`。预览只读资产，不生成 GIF、不写盘、不改母版；服务脚本是 `通用模板/actions_preview/server.mjs`。
+`npm run actions:preview` 启动 [`通用模板/actions_preview/README.md`](actions_preview/README.md) 里的零依赖预览服务，默认监听 `0.0.0.0:4173`；根路径直接按 `通用模板/engine/assets/cast_atlas.png` / `cast_atlas.json` / `cast_actions.json` 取帧，展示全部 74 个动作 / 538 帧，也可一键切到本鲸 13 个动作 / 92 帧，或查看 15 件道具、12 组表情贴。首页支持内嵌历史 6.5 秒本鲸「原版 / V1 / 最终修复版」渲染对照，`/film/` 是全屏入口；历史 compare.mp4 默认不随源码分发，当前工作区未恢复，不能把该入口当作现成视频（媒体规则见 `媒体说明.md`）。另有 `npm run preview` 的真实模板预览台；`通用模板/样板/whale_clarity/` 是 13 个本鲸动作的全屏清晰度检查工程，先启动预览服务，再执行 `npm run clarity:shoot`，原生 1920×1080 截图与总览写入 `docs/quality_comparison/whale_redraw/template_clarity/`。预览只读资产，不生成 GIF、不写盘、不改母版；服务脚本是 `通用模板/actions_preview/server.mjs`。
 
 | id | 角色 | 派生动作（`.act(…)`） | 推荐道具（`k.thing(…)`） |
 |---|---|---|---|
@@ -461,7 +461,7 @@ track([[0, A], [0.5, B], [1, C]], u) // 多段运镜；每段起止机位要不�
 - **不出现运营数字**：粉丝数、播放量、目标值、进度条、余额条、数据曲线、账本表格，一律不进画面。沙漏只画沙子，钟只画指针。
 - **不伪造接触**：角色是纸片，不给道具画一只假手。
 - **不加片尾卡**：最后一句唱完就结束。
-- **不新增生图、不换画风**：角色只用图集里的像素造型；2026-11-24 用户明确授权的本鲸母版重画是唯一例外，且只在既有格坐标与 `px.js` 调色板内重建。
+- **生图与素材更新（2026-11-26）**：允许新增生图、角色差分、透明分层与有意的素材替换；不再把历史 8 位角色或素材 SHA 当作不可更改的白名单。默认新增角色 key / 独立目录，不直接覆盖 `cast_atlas.png`。保留原始提示词、修订提示词和来源记录；哈希用于可更新的版本追踪，修改后可运行 `npm run assets:write`。缺素材、缺字、音频对齐与外部版权要求继续生效。
 - **缺素材就失败**：不允许静默回退。
 - **时间只认实测**：`measured=false` 的东西只能叫样片。
 
@@ -524,3 +524,19 @@ track([[0, A], [0.5, B], [1, C]], u) // 多段运镜；每段起止机位要不�
 - 没有景深、辉光、描边后处理；没有音效轨和母带处理；只出 16:9 横屏。
 - 软件渲染慢（2 核实测 2–2.8 帧/秒，三分钟的片子要渲四十分钟上下）。
 - 按停顿切句只在合成信号上测过，**没有用真人配音验证过**；第一次用到真配音时务必对着 `cues.json` 听一遍。
+
+
+### 新增分层角色（2026-11-26）
+
+`whale_cutout` 是追加的本鲸分层 key，原有 8 位立绘与像素图集不变。尺寸 / 骨架 / 源路径在 `通用模板/engine/assets/tachie_anchors.json`；浏览器的底图与图层 URL 在 `通用模板/engine/tachie-assets.ts` 注册。仅改 JSON 不会自动得到动画。
+
+在 project 的预载数组中调用 preloadTachie('whale_cutout')，它会一起等待底图和所有声明的透明图层，缺层直接报错。镜头逐帧先调用 layer('eyes', {opacity: 1}) / layer('mouth', {opacity: 0.5}) / layer('hands', {rotation: 0})，再 actFrame('idle', f)。begin() 每帧清空图层状态。drawTachie 会把每个独立层只画一次，刚性挂接到对应高度的脊柱坐标，而不是逐横带拉伸五官。
+
+注意：该模板 API 是独立层的透明度 / 刚性旋转，不是 Iki 的眨眼或嘴形求值。真实 Cutout + Iki 组合、分段肩肘和统一输出画布见 `paperdoll/README.md`；不能把模板中的整组 hands 层控制宣称成每根手指或两条手臂的独立 IK。
+
+哈希默认用于版本记录：有意替换 / 新增注册素材只提示版本变动，不再作为禁止生图的开关；需要审计记录版本可运行 node tools/check_asset_hashes.mjs --strict，刷新用 npm run assets:write。缺文件与当前母版 / 镜像不一致仍会报错。新镜头仍按句子 / 实测拍点挂接，先出六格 sheet，不能因解除美术限制而绕过字体、音源或确定性检查。
+
+
+### 当前角色工作入口：固定骨架与表情
+
+上节基于单张 hands 层的控制只是早期接口说明，不能用于本鲸刚性关节。whale_cutout 现在由 rig 声明强制进入固定骨长渲染器；身体不切横带，每肢为上段 / 下段 / 手掌或鞋，面部每帧独立求值。缺骨架不会回退到旧变形。查看 `通用模板/角色骨架.md`；运行 npm run rig:preview 可暂停、逐帧、直臂定格和切换喜怒哀乐。当前只做模板 / 通用角色改造与临时静帧回归，不再导出新样片。
