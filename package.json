@@ -25,13 +25,15 @@
     "qa:motion": "node tools/run_python.mjs tools/visual_motion_qa.py",
     "capture:film": "node tools/shoot_film_adapter.mjs",
     "typecheck": "tsc --noEmit -p tsconfig.quality.json",
-    "test": "node --experimental-transform-types --disable-warning=ExperimentalWarning --test \"通用模板/tests/*.test.mjs\" && node tools/run_python.mjs -m unittest discover -s 通用模板/tests -p \"test_*.py\"",
+    "test": "node tools/check_readonly_paths.mjs && node --experimental-transform-types --disable-warning=ExperimentalWarning --test \"通用模板/tests/*.test.mjs\" && node tools/run_python.mjs -m unittest discover -s 通用模板/tests -p \"test_*.py\"",
     "qa:all": "npm test && npm run typecheck && npm run atlas:check && npm run whale:qa && npm run walk:check && npm run standing:check && npm run assets:check && npm run generated:validate && npm run generated:postcheck && npm run qa:visual",
     "generated:postcheck": "node 番外MV/若是月亮还没来/源码/tools/process_generated.cjs --check && node 番外MV/若是月亮fable5.2high/源码/tools/process_generated.cjs --check",
     "whale:qa": "node tools/run_python.mjs tools/check_whale_redraw.py",
     "actions:preview": "node 通用模板/actions_preview/server.mjs",
     "clarity:shoot": "node tools/preview_clarity_shot.mjs",
-    "rig:preview": "vite --config 通用模板/preview/vite.config.ts --mode rig"
+    "rig:preview": "vite --config 通用模板/preview/vite.config.ts --mode rig",
+    "readonly:check": "node tools/check_readonly_paths.mjs",
+    "readonly:apply": "node tools/check_readonly_paths.mjs --apply"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.436",
