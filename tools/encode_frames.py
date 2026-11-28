@@ -38,6 +38,7 @@ def main() -> int:
     ap.add_argument('--preset', default='medium')
     ap.add_argument('--grain', type=int, default=0, help='补胶片颗粒（alls 强度，0=不加）；给摘掉 CSS grain 的片子用')
     ap.add_argument('--multiply', type=float, default=1.0, help='整体压暗系数（1=不压）。摘掉 multiply 混合的颗粒层后用它把亮度还原回去')
+    ap.add_argument('--afade-out', default='', help='音轨淡出（秒，格式「起点:时长」）。页面里靠 audio.volume 做的淡出，导出静帧再编码时不会生效，用这里补')
     a = ap.parse_args()
 
     frame_dir = Path(a.frames)
@@ -74,6 +75,9 @@ def main() -> int:
             '-maxrate', a.maxrate, '-bufsize', '2M',
             '-movflags', '+faststart']
     if a.audio:
+        if a.afade_out:
+            st, du = a.afade_out.split(':')
+            cmd += ['-af', f'afade=t=out:st={st}:d={du}']
         cmd += ['-c:a', 'aac', '-b:a', '192k', '-shortest']
     cmd += [a.out]
     subprocess.run(cmd, check=True)
